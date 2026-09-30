@@ -9,5 +9,9 @@
 - Kritičnost: rizika hlásit hned, ne až potom.
 
 ## Stav
-- Fáze: založení (2026-09). Repo zatím prázdné.
-- Pracovní návrh produktu: digitální šablona (Excel/Google Sheets) pro CZ trh. Zatím nepotvrzeno.
+- Fáze: založení (2026-09).
+- Ondřej = investor: dává kapitál, chce reporting, do provozu nezasahuje. Co Claude fyzicky neudělá (účty, platby, doména), mu předá jako přesný seznam kroků.
+- Rozpočet na start: do 1 000 Kč.
+- Cíl: vedlejší příjem, potom škálovatelný byznys.
+- Právně: existující s.r.o., neplátce DPH.
+- Návrh (čeká na schválení): svatební plánovač v Google Sheets pro CZ trh, platby přes merchant of record (Lemon Squeezy), hosting Cloudflare Pages.
