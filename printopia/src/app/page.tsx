@@ -6,6 +6,8 @@ import LeadForm from "@/components/LeadForm";
 import MathText from "@/components/MathText";
 import Beacon from "@/components/Beacon";
 import Feedback from "@/components/Feedback";
+import Icon from "@/components/Icon";
+import Image from "next/image";
 import ukazka from "@/content/ukazka.json";
 import { LAUNCH_DATE, PRICE } from "@/lib/config";
 
@@ -29,7 +31,8 @@ export default async function Home({ searchParams }: Props) {
     <>
       <Beacon page="home" />
       <section className="hero">
-        <div className="wrap">
+        <div className="wrap hero-grid">
+          <div>
           <p className="eyebrow">Přijímačky na SŠ 2027 · matematika</p>
           <h1>Přijímačky z matiky po tématech</h1>
           <p className="lead">
@@ -40,16 +43,21 @@ export default async function Home({ searchParams }: Props) {
             <a href="#ukazka" className="btn" data-track="cta_sample">Stáhnout ukázku zdarma</a>
             <Link href={`/koupit${src ? `?src=${src}` : ""}`} className="btn btn-ghost" data-track="cta_buy">Koupit sadu za {PRICE} Kč</Link>
           </div>
+          </div>
+          <div className="papers" aria-label="Ukázka stránek sady">
+            <Image src="/nahled-ulohy.webp" alt="Stránka s úlohami na zlomky a místem na počítání" width={909} height={719} priority className="paper paper-back" />
+            <Image src="/nahled-postup.webp" alt="Stránka s postupy řešení krok za krokem" width={909} height={719} priority className="paper paper-front" />
+          </div>
         </div>
       </section>
 
       <section>
         <div className="wrap">
           <div className="grid">
-            <div className="card"><h3>Podle témat, ne podle testů</h3><p className="muted" style={{ margin: 0 }}>Procvičíte přesně to, co nejde. Zlomky zvlášť, procenta zvlášť.</p></div>
-            <div className="card"><h3>Postup u každé úlohy</h3><p className="muted" style={{ margin: 0 }}>Ne jen výsledek. Dítě vidí, kde udělalo chybu, a rodič nemusí nic vysvětlovat.</p></div>
-            <div className="card"><h3>K tisku</h3><p className="muted" style={{ margin: 0 }}>PDF, které si vytisknete, kolikrát chcete. Počítá se s tužkou, jako u zkoušky.</p></div>
-            <div className="card"><h3>Plán do 12. dubna</h3><p className="muted" style={{ margin: 0 }}>Úvodní test ukáže slabá místa a plán rozvrhne procvičování až do zkoušky.</p></div>
+            <div className="card"><Icon name="target" /><h3>Podle témat, ne podle testů</h3><p className="muted" style={{ margin: 0 }}>Procvičíte přesně to, co nejde. Zlomky zvlášť, procenta zvlášť.</p></div>
+            <div className="card"><Icon name="steps" /><h3>Postup u každé úlohy</h3><p className="muted" style={{ margin: 0 }}>Ne jen výsledek. Dítě vidí, kde udělalo chybu, a rodič nemusí nic vysvětlovat.</p></div>
+            <div className="card"><Icon name="print" /><h3>K tisku</h3><p className="muted" style={{ margin: 0 }}>PDF, které si vytisknete, kolikrát chcete. Počítá se s tužkou, jako u zkoušky.</p></div>
+            <div className="card"><Icon name="calendar" /><h3>Plán do 12. dubna</h3><p className="muted" style={{ margin: 0 }}>Úvodní test ukáže slabá místa a plán rozvrhne procvičování až do zkoušky.</p></div>
           </div>
         </div>
       </section>
@@ -57,7 +65,7 @@ export default async function Home({ searchParams }: Props) {
       <section>
         <div className="wrap narrow">
           <h2>Co v sadě bude</h2>
-          <ul className="topics">{TOPICS.map((t) => <li key={t}>{t}</li>)}</ul>
+          <ol className="topics">{TOPICS.map((t) => <li key={t}>{t}</li>)}</ol>
           <p className="muted small">
             Chcete si to vyzkoušet hned? Příklady s postupem: <Link href="/zlomky-prijimacky" data-track="topic_link">zlomky</Link>,{" "}
             <Link href="/procenta-prijimacky" data-track="topic_link">procenta</Link>, <Link href="/rovnice-prijimacky" data-track="topic_link">rovnice</Link>,{" "}

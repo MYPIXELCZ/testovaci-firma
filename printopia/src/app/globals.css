@@ -65,3 +65,14 @@ section { padding: 48px 0; }
 .chip.on, .chip:hover { border-color: var(--blue); background: var(--blue-light); }
 .btn-small { padding: 10px 18px; font-size: 0.92rem; }
 input.text { width: 100%; font: inherit; padding: 11px 13px; border-radius: 10px; border: 1.5px solid var(--line); background: #fff; }
+.hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; }
+.papers { position: relative; aspect-ratio: 909 / 719; margin: 10px 18px 30px 0; }
+.paper { position: absolute; width: 88%; height: auto; border-radius: 6px; background: #fff; box-shadow: 0 18px 40px -18px rgba(28, 34, 48, 0.45), 0 0 0 1px var(--line); }
+.paper-back { top: 0; left: 0; transform: rotate(-3deg); }
+.paper-front { top: 14%; left: 12%; transform: rotate(2deg); }
+.icon { color: var(--blue); background: var(--blue-light); border-radius: 12px; padding: 8px; width: 44px; height: 44px; margin-bottom: 10px; }
+.card h3 { margin-top: 0; }
+ol.topics { counter-reset: t; }
+ol.topics li { counter-increment: t; display: flex; gap: 12px; align-items: baseline; }
+ol.topics li::before { content: counter(t); font-family: var(--serif); font-weight: 600; color: var(--yellow); min-width: 1.4em; }
+@media (max-width: 800px) { .hero-grid { grid-template-columns: 1fr; gap: 12px; } .papers { max-width: 460px; } }
