@@ -12,8 +12,10 @@ export async function saveFioToken(_prev: SaveState, form: FormData): Promise<Sa
   try {
     const payments = await incomingPayments(30, token);
     await setSecret("FIO_TOKEN", token);
+    console.log(`[nastaveni] FIO_TOKEN uložen, plateb za 30 dní: ${payments.length}`);
     return { ok: true, message: `Token funguje a je uložený. Za posledních 30 dní vidím ${payments.length} příchozích plateb.` };
   } catch (e) {
+    console.warn(`[nastaveni] FIO_TOKEN odmítnut: ${e instanceof Error ? e.message : e}`);
     return { ok: false, message: `Banka token nepřijala: ${e instanceof Error ? e.message : e}. Nic jsem neuložil.` };
   }
 }
@@ -23,5 +25,6 @@ export async function saveResendKey(_prev: SaveState, form: FormData): Promise<S
   const key = String(form.get("token") ?? "").trim();
   if (!/^re_[A-Za-z0-9_]{10,}$/.test(key)) return { ok: false, message: "Klíč z Resendu začíná „re_“. Zkopírujte ho celý." };
   await setSecret("RESEND_API_KEY", key);
+  console.log("[nastaveni] RESEND_API_KEY uložen");
   return { ok: true, message: "Klíč je uložený." };
 }

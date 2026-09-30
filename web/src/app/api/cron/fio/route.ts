@@ -1,6 +1,7 @@
 import { SALES_OPEN, UNPAID_RETENTION_DAYS } from "@/lib/config";
 import { sendDelivery } from "@/lib/email";
 import { incomingPayments } from "@/lib/fio";
+import { getSecret } from "@/lib/secrets";
 import { deleteOrder, getOrder, listPending, markPaid } from "@/lib/orders";
 
 export const maxDuration = 60;
@@ -12,7 +13,12 @@ export async function GET(req: Request) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  if (!SALES_OPEN) return Response.json({ skipped: "prodej není spuštěný" });
+  if (!SALES_OPEN) {
+    // Před spuštěním jen hlásí připravenost do logu (bez obsahu tajemství).
+    const [fio, resend] = await Promise.all([getSecret("FIO_TOKEN"), getSecret("RESEND_API_KEY")]);
+    console.log(`[cron] prodej vypnutý; fio=${Boolean(fio)} resend=${Boolean(resend)}`);
+    return Response.json({ skipped: "prodej není spuštěný" });
+  }
 
   const pending = await listPending();
   const result = { pending: pending.length, paid: [] as string[], underpaid: [] as string[], expired: 0 };
