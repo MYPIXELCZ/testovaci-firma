@@ -1,21 +1,30 @@
+import Image from "next/image";
 import Link from "next/link";
 import { headers } from "next/headers";
 import { after } from "next/server";
-import { track } from "@/lib/track";
-import LeadForm from "@/components/LeadForm";
-import MathText from "@/components/MathText";
 import Beacon from "@/components/Beacon";
 import Feedback from "@/components/Feedback";
 import Icon from "@/components/Icon";
-import Image from "next/image";
+import LeadForm from "@/components/LeadForm";
+import MathText from "@/components/MathText";
 import ukazka from "@/content/ukazka.json";
-import { LAUNCH_DATE, PRICE } from "@/lib/config";
+import { COMPANY, CONTACT, LAUNCH_DATE, PRICE } from "@/lib/config";
+import { track } from "@/lib/track";
 
-// Témata kompletní sady (matematika, jednotná přijímací zkouška pro čtyřleté obory).
+// Cílová skupina (plan/prijimacky.md 1b): hledají deváťáci, platí rodiče i žáci 15+ (měří test).
+// Prodejní sdělení pro dospělé, žákům jen informace; žádná výzva dětem ke koupi. Design: plan/design-prijimacky.md.
 const TOPICS = [
   "Zlomky a desetinná čísla", "Procenta", "Poměr a úměrnost", "Mocniny a odmocniny",
   "Výrazy a mnohočleny", "Lineární rovnice", "Slovní úlohy (pohyb, práce, směsi)", "Jednotky a převody",
   "Úhly a trojúhelníky", "Obvody a obsahy", "Pythagorova věta", "Tělesa: objem a povrch",
+];
+const EXAM = new Date("2027-04-12T08:00:00+02:00");
+
+// Srovnání ceny přípravy, zdroje v plan/research-2026-10-01.md a plan/zdroje-2026-10-01/konkurence-prijimacky.md.
+const PRICES: [string, string][] = [
+  ["Doučování s lektorem", "200–350 Kč za hodinu"],
+  ["Online videokurz", "od 3 990 Kč"],
+  ["Videořešení testů", "7 900–9 900 Kč"],
 ];
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
@@ -25,24 +34,32 @@ export default async function Home({ searchParams }: Props) {
   const src = String(sp.utm_source ?? sp.src ?? "").slice(0, 40).replace(/[^\w.-]/g, "");
   const ua = (await headers()).get("user-agent");
   after(() => track("visit", src, ua));
+  const days = Math.max(0, Math.ceil((EXAM.getTime() - Date.now()) / 86_400_000));
+  const w = Math.max(1, Math.floor(days / 7 / 12));
+  const perTopic = w === 1 ? "týden" : w < 5 ? `${w} týdny` : `${w} týdnů`;
   const preview = ukazka.tasks.filter((t) => ["Složený zlomek", "Slovní úloha"].includes(t.topic)).slice(0, 2);
+  const buyHref = `/koupit${src ? `?src=${src}` : ""}`;
 
   return (
     <>
       <Beacon page="home" />
-      <section className="hero">
+
+      <section className="hero-dark">
         <div className="wrap hero-grid">
           <div>
-          <p className="eyebrow">Přijímačky na SŠ 2027 · matematika</p>
-          <h1>Přijímačky z matiky po tématech</h1>
-          <p className="lead">
-            Víte, že vaše dítě nejistí zlomky nebo slovní úlohy? Místo dalšího celého testu mu dejte sadu úloh přesně na to
-            téma. U každé úlohy je postup řešení krok za krokem. Na papíře, bez videí a bez obrazovky.
-          </p>
-          <div className="actions">
-            <a href="#ukazka" className="btn" data-track="cta_sample">Stáhnout ukázku zdarma</a>
-            <Link href={`/koupit${src ? `?src=${src}` : ""}`} className="btn btn-ghost" data-track="cta_buy">Koupit sadu za {PRICE} Kč</Link>
-          </div>
+            <p className="eyebrow eyebrow-light">Přijímačky na SŠ 2027 · matematika</p>
+            <h1>Procvičte přesně to téma, které na přijímačkách nejde</h1>
+            <ul className="checks">
+              <li><strong>12 témat</strong> podle jednotné přijímací zkoušky, každé zvlášť</li>
+              <li><strong>Postup krok za krokem</strong> u každé úlohy, ne jen výsledek</li>
+              <li><strong>PDF k tisku</strong>: počítá se tužkou, jako u zkoušky</li>
+              <li><strong>Plán procvičování</strong> až do 12. dubna 2027</li>
+            </ul>
+            <div className="actions">
+              <Link href={buyHref} className="btn btn-yellow" data-track="cta_buy">Koupit sadu za {PRICE} Kč</Link>
+              <a href="#ukazka" className="btn btn-outline-light" data-track="cta_sample">8 úloh zdarma</a>
+            </div>
+            <p className="trust">Jednorázová platba, bez předplatného · 14 dní na vrácení peněz · Provozuje {COMPANY.name}</p>
           </div>
           <div className="papers" aria-label="Ukázka stránek sady">
             <Image src="/nahled-ulohy.webp" alt="Stránka s úlohami na zlomky a místem na počítání" width={909} height={719} priority className="paper paper-back" />
@@ -51,37 +68,40 @@ export default async function Home({ searchParams }: Props) {
         </div>
       </section>
 
+      <div className="strip">
+        <div className="wrap strip-inner">
+          <span className="strip-num">{days}</span>
+          <span>dní do přijímaček. Kdo začne teď, má na každé z 12 témat zhruba {perTopic} v klidu.</span>
+        </div>
+      </div>
+
       <section>
         <div className="wrap">
-          <div className="grid">
-            <div className="card"><Icon name="target" /><h3>Podle témat, ne podle testů</h3><p className="muted" style={{ margin: 0 }}>Procvičíte přesně to, co nejde. Zlomky zvlášť, procenta zvlášť.</p></div>
-            <div className="card"><Icon name="steps" /><h3>Postup u každé úlohy</h3><p className="muted" style={{ margin: 0 }}>Ne jen výsledek. Dítě vidí, kde udělalo chybu, a rodič nemusí nic vysvětlovat.</p></div>
-            <div className="card"><Icon name="print" /><h3>K tisku</h3><p className="muted" style={{ margin: 0 }}>PDF, které si vytisknete, kolikrát chcete. Počítá se s tužkou, jako u zkoušky.</p></div>
-            <div className="card"><Icon name="calendar" /><h3>Plán do 12. dubna</h3><p className="muted" style={{ margin: 0 }}>Úvodní test ukáže slabá místa a plán rozvrhne procvičování až do zkoušky.</p></div>
+          <div className="two">
+            <div className="card">
+              <p className="eyebrow">Pro rodiče</p>
+              <ul className="checks checks-dark">
+                <li><strong>Nemusíte umět matiku.</strong> Postup je u každé úlohy, stačí zkontrolovat výsledek.</li>
+                <li><strong>Víte, na čem dítě je.</strong> Úvodní test ukáže slabá témata, plán rozvrhne čas.</li>
+                <li><strong>Za cenu jedné až dvou hodin doučování.</strong> A dá se tisknout znovu.</li>
+              </ul>
+            </div>
+            <div className="card">
+              <p className="eyebrow">Pro deváťáky</p>
+              <ul className="checks checks-dark">
+                <li><strong>Jen to, co nejde.</strong> Zlomky zvlášť, procenta zvlášť, žádné zbytečné testy dokola.</li>
+                <li><strong>Když se zasekneš,</strong> postup ukáže krok, kde se výpočet rozešel.</li>
+                <li><strong>Na papíře,</strong> bez obrazovky, stejně jako u zkoušky.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      <section>
+      <section className="soft">
         <div className="wrap narrow">
-          <p className="small">
-            Nevíte, kde začít? <Link href="/jak-se-pripravit-na-prijimacky" data-track="topic_link">Plán přípravy na přijímačky z matematiky od října do dubna</Link>.
-          </p>
-          <h2>Co v sadě bude</h2>
-          <ol className="topics">{TOPICS.map((t) => <li key={t}>{t}</li>)}</ol>
-          <p className="muted small">
-            Chcete si to vyzkoušet hned? Příklady s postupem: <Link href="/zlomky-prijimacky" data-track="topic_link">zlomky</Link>,{" "}
-            <Link href="/procenta-prijimacky" data-track="topic_link">procenta</Link>, <Link href="/rovnice-prijimacky" data-track="topic_link">rovnice</Link>,{" "}
-            <Link href="/slovni-ulohy-prijimacky" data-track="topic_link">slovní úlohy</Link>.
-            Všechny úlohy jsou vlastní, ve stylu jednotné přijímací zkoušky. Výsledky ověřujeme výpočtem. Sada není
-            oficiálním materiálem CERMAT.
-          </p>
-        </div>
-      </section>
-
-      <section>
-        <div className="wrap narrow">
-          <h2>Ukázka: jak vypadá postup</h2>
+          <p className="eyebrow">Ukázka</p>
+          <h2 style={{ marginTop: 0 }}>Takhle vypadá postup řešení</h2>
           {preview.map((t) => (
             <div className="task" key={t.text}>
               <span className="tag">{t.topic}</span>
@@ -90,6 +110,39 @@ export default async function Home({ searchParams }: Props) {
               <p className="a">Výsledek: <MathText text={t.answer} /></p>
             </div>
           ))}
+          <p className="small muted">
+            Víc příkladů zdarma: <Link href="/zlomky-prijimacky" data-track="topic_link">zlomky</Link>,{" "}
+            <Link href="/procenta-prijimacky" data-track="topic_link">procenta</Link>, <Link href="/rovnice-prijimacky" data-track="topic_link">rovnice</Link>,{" "}
+            <Link href="/slovni-ulohy-prijimacky" data-track="topic_link">slovní úlohy</Link> a{" "}
+            <Link href="/jak-se-pripravit-na-prijimacky" data-track="topic_link">plán přípravy od října do dubna</Link>.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div className="wrap narrow">
+          <p className="eyebrow">Obsah sady</p>
+          <h2 style={{ marginTop: 0 }}>12 témat, která se na přijímačkách opakují</h2>
+          <ol className="topics">{TOPICS.map((t) => <li key={t}>{t}</li>)}</ol>
+          <p className="muted small">
+            Všechny úlohy jsou vlastní, ve stylu jednotné přijímací zkoušky. Každý výsledek ověřujeme výpočtem. Sada není
+            oficiálním materiálem CERMAT.
+          </p>
+        </div>
+      </section>
+
+      <section className="soft">
+        <div className="wrap narrow">
+          <p className="eyebrow">Cena</p>
+          <h2 style={{ marginTop: 0 }}>Kolik stojí příprava na přijímačky</h2>
+          <table className="compare">
+            <tbody>
+              {PRICES.map(([k, v]) => <tr key={k}><td>{k}</td><td className="num">{v}</td></tr>)}
+              <tr className="us"><td><strong>Sada Printopia</strong>, 12 témat k tisku s postupy</td><td className="num"><strong>{PRICE} Kč jednorázově</strong></td></tr>
+            </tbody>
+          </table>
+          <p className="small muted">Ceny konkurence podle veřejných ceníků a článků k 1. 10. 2026. Doučování a kurzy dávají víc než sada, ta je levný začátek nebo doplněk.</p>
+          <div className="actions"><Link href={buyHref} className="btn btn-yellow" data-track="cta_buy">Koupit sadu za {PRICE} Kč</Link></div>
         </div>
       </section>
 
@@ -111,7 +164,17 @@ export default async function Home({ searchParams }: Props) {
 
       <section>
         <div className="wrap narrow">
-          <Feedback />
+          <div className="guarantee">
+            <Icon name="target" />
+            <div>
+              <h3>Nic neriskujete</h3>
+              <p className="muted" style={{ margin: 0 }}>
+                Když vám sada nesedne, do 14 dnů vrátíme peníze, bez vysvětlování. Platíte jednou, převodem nebo QR kódem,
+                žádné předplatné ani karta.
+              </p>
+            </div>
+          </div>
+          <div style={{ marginTop: 24 }}><Feedback /></div>
         </div>
       </section>
 
@@ -127,9 +190,15 @@ export default async function Home({ searchParams }: Props) {
             <dd>Ne. Úlohy jsou vlastní, ve stylu zkoušky. Oficiální testy z minulých let najdete zdarma na webu CERMAT a doporučujeme je projít také.</dd>
             <dt>Zaručíte přijetí?</dt>
             <dd>Ne, to nemůže slíbit nikdo. Sada pomáhá procvičit slabá místa, výsledek je na přípravě.</dd>
+            <dt>Kdo za Printopií stojí?</dt>
+            <dd>{COMPANY.name}, {COMPANY.address}, IČO {COMPANY.ico}. Napište nám na <a href={`mailto:${CONTACT}`}>{CONTACT}</a>.</dd>
           </dl>
         </div>
       </section>
+
+      <div className="sticky-cta">
+        <Link href={buyHref} className="btn btn-yellow" data-track="cta_buy">Koupit sadu za {PRICE} Kč</Link>
+      </div>
     </>
   );
 }

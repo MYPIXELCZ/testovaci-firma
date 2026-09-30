@@ -31,7 +31,10 @@ try {
     await new Promise((r) => setTimeout(r, 500));
   }
   const home = await (await get("/?utm_source=sklik")).text();
-  check(home.includes("Přijímačky z matiky po tématech"), "úvodní stránka");
+  check(home.includes("Procvičte přesně to téma"), "úvodní stránka");
+  const flat = home.replaceAll("<!-- -->", "");
+  check(["nahled-postup.webp", "Koupit sadu za 349", "8 úloh zdarma", "14 dnů vrátíme peníze", "Kolik stojí příprava", "Časté otázky", "Kdo za Printopií stojí", "dní do přijímaček"].every((t) => flat.includes(t)),
+    "prodejní stránka má povinné prvky (náhled, cena v CTA, ukázka, záruka, srovnání, FAQ, kdo stojí, odpočet)");
   check(home.includes('class="fr"'), "zlomky nad sebou v ukázce");
   check(home.includes("/koupit?src=sklik"), "zdroj návštěvy se předává do Koupit");
   const pdf = await fetch(`${BASE}/ukazka-zlomky.pdf`);
