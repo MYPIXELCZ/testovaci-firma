@@ -110,13 +110,16 @@ export default async function Home({ searchParams }: Props) {
       <section className="soft">
         <div className="wrap narrow">
           <p className="eyebrow">Ukázka</p>
-          <h2 style={{ marginTop: 0 }}>Takhle vypadá postup řešení</h2>
+          <h2 style={{ marginTop: 0 }}>Vyzkoušejte si dvě úlohy</h2>
           {preview.map((t) => (
             <div className="task" key={t.text}>
               <span className="tag">{t.topic}</span>
               <p className="q"><MathText text={t.text} /></p>
-              <ol>{t.steps.map((s) => <li key={s}><MathText text={s} /></li>)}</ol>
-              <p className="a">Výsledek: <MathText text={t.answer} /></p>
+              <details>
+                <summary className="small" style={{ cursor: "pointer", color: "var(--blue)" }}>Zkuste to spočítat, pak zobrazte postup a výsledek</summary>
+                <ol>{t.steps.map((s) => <li key={s}><MathText text={s} /></li>)}</ol>
+                <p className="a">Výsledek: <MathText text={t.answer} /></p>
+              </details>
             </div>
           ))}
           <p className="small muted">

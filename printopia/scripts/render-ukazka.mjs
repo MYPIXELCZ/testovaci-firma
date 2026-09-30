@@ -42,15 +42,17 @@ h2{font-family:F;font-weight:500;font-size:18pt;margin:0 0 10pt}
 .sol ol{margin:4pt 0 0;padding-left:16pt;color:#3a4150}
 .a{font-weight:600;color:#1f3f9e;margin:4pt 0 0}
 .break{break-before:page}
+.stop{border:1.5pt dashed #f5b82e;background:#fdf3dc;border-radius:6pt;padding:6pt 10pt;font-weight:600;margin-bottom:10pt;text-align:center}
 .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.85em;line-height:1.05;margin:0 1.5pt}
 .fr span:first-child{border-bottom:.7pt solid currentColor;padding:0 1.5pt}
 .sol li,.q{line-height:1.9}
 .foot{margin-top:12pt;color:#5f6675;font-size:8.5pt}
 </style></head><body>
 <header><div><h1>Přijímačky z matiky: ${esc(data.title)}</h1><div class="sub">Ukázka zdarma · ${data.tasks.length} úloh s postupem řešení · printopia.cz</div></div><div class="logo">Printopia<span>.</span></div></header>
-<div class="intro">Počítejte bez kalkulačky, jako u zkoušky. Postupy řešení najdete na konci. Když úloha nevyjde, projděte postup krok za krokem a najděte místo, kde se výpočet rozešel.</div>
+<div class="intro">Počítejte bez kalkulačky, jako u zkoušky. <b>Řešení jsou na samostatných stranách na konci</b>: rodič je může vytisknout zvlášť a dát až po výpočtu. Když úloha nevyjde, projděte postup krok za krokem a najděte místo, kde se výpočet rozešel.</div>
 ${tasks}
 <div class="break"></div>
+<div class="stop">Řešení · nahlédněte až po výpočtu</div>
 <h2>Postupy řešení</h2>
 ${solutions}
 <p class="foot">Úlohy jsou vlastní, ve stylu jednotné přijímací zkoušky, nejde o oficiální materiál CERMAT. Kompletní sada podle témat: printopia.cz · MYPIXEL s.r.o., IČO 17617421</p>
