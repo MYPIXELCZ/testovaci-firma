@@ -98,7 +98,10 @@ export async function deleteOrder(order: Pick<Order, "vs" | "id">) {
 export async function listPending() {
   const items = await storage.list("pending/");
   return items.flatMap((b) => {
-    const [vs, id] = b.pathname.slice("pending/".length).split("_");
-    return vs && id ? [{ vs, id, uploadedAt: b.uploadedAt }] : [];
+    // VS obsahuje jen číslice, ID (base64url) může obsahovat „_“, proto dělit jen podle prvního podtržítka.
+    const rest = b.pathname.slice("pending/".length);
+    const sep = rest.indexOf("_");
+    const [vs, id] = [rest.slice(0, sep), rest.slice(sep + 1)];
+    return sep > 0 && id ? [{ vs, id, uploadedAt: b.uploadedAt }] : [];
   });
 }

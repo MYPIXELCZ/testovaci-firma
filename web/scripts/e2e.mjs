@@ -2,7 +2,7 @@
 // Spouštění: npm run build && node scripts/e2e.mjs
 // Potřebuje Chromium (CHROMIUM_PATH, výchozí /opt/pw-browsers/...). Nic neposílá ven.
 import { spawn } from "node:child_process";
-import { readFileSync, rmSync } from "node:fs";
+import { readFileSync, rmSync, writeFileSync } from "node:fs";
 import http from "node:http";
 import { chromium } from "playwright-core";
 
@@ -155,6 +155,17 @@ try {
   r = await (await cron()).json();
   check(r.pending === 1 && r.paid.length === 0, "stará platba neodemkla novou objednávku");
 
+  // 9a) Objednávka, jejíž ID obsahuje „_“ (u base64url běžné), se musí spárovat
+  const uid = "Ab_cD_eF_gH_iJ_kL_mN_o"; // 22 znaků jako skutečné ID
+  const uvs = vs.slice(0, 6) + "4242";
+  const uorder = { id: uid, vs: uvs, email: "podtrzitko@example.cz", name: "Podtržítko", amount: 349, status: "pending",
+    createdAt: new Date().toISOString(), consents: { terms: new Date().toISOString(), marketing: false } };
+  writeFileSync(`${STORE}orders/${uid}.json`, JSON.stringify(uorder));
+  writeFileSync(`${STORE}pending/${uvs}_${uid}`, uid);
+  payments.push({ vs: uvs, amount: 349, date: today });
+  r = await (await cron()).json();
+  check(r.paid.includes(uvs), "objednávka s podtržítky v ID se spárovala");
+
   // 9b) Platba s „naším“ VS bez objednávky se nahlásí jednou
   payments.push({ vs: vs.slice(0, 6) + "9999", amount: 349, date: today });
   await cron();
@@ -166,8 +177,8 @@ try {
   const rep = await (await fetch(`${base}/api/cron/report?month=${month}`, { headers: { authorization: `Bearer ${SECRET}` } })).json();
   const report = toOwner().find((e) => e.subject.includes("Přehled prodejů"));
   const csv = report ? Buffer.from(report.attachments[0].content, "base64").toString("utf8") : "";
-  check(rep.count === 1 && rep.total === 349, `měsíční přehled: 1 objednávka za 349 Kč (${rep.count}, ${rep.total})`);
-  check(csv.includes(vs) && csv.includes("Tereza Nováková"), "CSV pro účetní obsahuje doklad a kupujícího");
+  check(rep.count === 2 && rep.total === 698, `měsíční přehled: 2 objednávky za 698 Kč (${rep.count}, ${rep.total})`);
+  check(csv.includes(vs) && csv.includes("Tereza Nováková") && csv.includes(uvs), "CSV pro účetní obsahuje doklady a kupující");
   check((await fetch(`${base}/api/cron/report`)).status === 401, "přehled bez tajemství vrací 401");
 
   // 10) Validace a honeypot

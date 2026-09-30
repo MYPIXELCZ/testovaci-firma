@@ -54,31 +54,31 @@ const blobStorage: Storage = {
 };
 
 // Lokální vývoj a testy: soubory na disku.
-const root = path.resolve(process.env.LOCAL_STORE_DIR ?? ".localstore");
-const file = (pathname: string) => path.join(root, pathname);
+const root = path.resolve(/*turbopackIgnore: true*/ process.env.LOCAL_STORE_DIR ?? ".localstore");
+const file = (pathname: string) => path.join(/*turbopackIgnore: true*/ root, pathname);
 
 const fileStorage: Storage = {
   async read(pathname) {
-    return readFile(file(pathname), "utf8").catch(() => null);
+    return readFile(/*turbopackIgnore: true*/ file(pathname), "utf8").catch(() => null);
   },
   async write(pathname, body, { overwrite }) {
-    await mkdir(path.dirname(file(pathname)), { recursive: true });
-    await writeFile(file(pathname), body, { flag: overwrite ? "w" : "wx" });
+    await mkdir(/*turbopackIgnore: true*/ path.dirname(file(pathname)), { recursive: true });
+    await writeFile(/*turbopackIgnore: true*/ file(pathname), body, { flag: overwrite ? "w" : "wx" });
   },
   async exists(pathname) {
-    return stat(file(pathname)).then(() => true, () => false);
+    return stat(/*turbopackIgnore: true*/ file(pathname)).then(() => true, () => false);
   },
   async list(prefix) {
     const dir = path.dirname(file(prefix + "x"));
-    const names = await readdir(dir).catch(() => [] as string[]);
+    const names = await readdir(/*turbopackIgnore: true*/ dir).catch(() => [] as string[]);
     const base = path.relative(root, dir);
     const items = names
       .map((n) => (base ? `${base}/${n}` : n))
       .filter((p) => p.startsWith(prefix));
-    return Promise.all(items.map(async (p) => ({ pathname: p, uploadedAt: (await stat(file(p))).mtime })));
+    return Promise.all(items.map(async (p) => ({ pathname: p, uploadedAt: (await stat(/*turbopackIgnore: true*/ file(p))).mtime })));
   },
   async remove(pathnames) {
-    await Promise.all(pathnames.map((p) => rm(file(p), { force: true })));
+    await Promise.all(pathnames.map((p) => rm(/*turbopackIgnore: true*/ file(p), { force: true })));
   },
 };
 
