@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
+import { articleMetadata } from "@/lib/seo";
 import ArticleCta from "@/components/ArticleCta";
 
-export const metadata: Metadata = {
-  title: "Svědek na svatbě: co ho čeká a jak to zvládnout",
-  description:
-    "Co dělá svědek a svědkyně na svatbě: před svatbou, při obřadu i na oslavě. Přehled úkolů, na které se nezapomíná, a tipy, jak pomoct novomanželům.",
-  alternates: { canonical: "/svedek-na-svatbe" },
-};
+export const metadata: Metadata = articleMetadata(
+  "svedek-na-svatbe",
+  "Svědek na svatbě: co ho čeká a jak to zvládnout",
+  "Co dělá svědek a svědkyně na svatbě: před svatbou, při obřadu i na oslavě. Přehled úkolů, na které se nezapomíná, a tipy, jak pomoct novomanželům.",
+);
 
 export default function WitnessPage() {
   return (

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
+import { articleMetadata } from "@/lib/seo";
 import ArticleCta from "@/components/ArticleCta";
 import planner from "@/content/planner.json";
 
-export const metadata: Metadata = {
-  title: "Svatební checklist: co zařídit a kdy, měsíc po měsíci",
-  description:
-    "Kompletní svatební checklist od zásnub po svatební cestu. Co zařídit rok předem, co tři měsíce předem a na co se nejčastěji zapomíná.",
-  alternates: { canonical: "/svatebni-checklist" },
-};
+export const metadata: Metadata = articleMetadata(
+  "svatebni-checklist",
+  "Svatební checklist: co zařídit a kdy, měsíc po měsíci",
+  "Kompletní svatební checklist od zásnub po svatební cestu. Co zařídit rok předem, co tři měsíce předem a na co se nejčastěji zapomíná.",
+);
 
 const phases = [...new Set(planner.tasks.map((t) => t.phase))];
 

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
+import { articleMetadata } from "@/lib/seo";
 import ArticleCta from "@/components/ArticleCta";
 
-export const metadata: Metadata = {
-  title: "Text svatebního oznámení: vzory a co v něm nesmí chybět",
-  description:
-    "Vzory textů svatebního oznámení (klasický, moderní, krátký i s nadsázkou), pozvánka na hostinu a co všechno musí oznámení obsahovat. Plus kdy ho rozeslat.",
-  alternates: { canonical: "/text-svatebniho-oznameni" },
-};
+export const metadata: Metadata = articleMetadata(
+  "text-svatebniho-oznameni",
+  "Text svatebního oznámení: vzory a co v něm nesmí chybět",
+  "Vzory textů svatebního oznámení (klasický, moderní, krátký i s nadsázkou), pozvánka na hostinu a co všechno musí oznámení obsahovat. Plus kdy ho rozeslat.",
+);
 
 const TEMPLATES: [string, string][] = [
   [

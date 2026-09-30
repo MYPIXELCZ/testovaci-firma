@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
+import { articleMetadata } from "@/lib/seo";
 import ArticleCta from "@/components/ArticleCta";
 
-export const metadata: Metadata = {
-  title: "Seznam hostů na svatbu: jak ho sestavit a koho pozvat",
-  description:
-    "Jak sestavit seznam hostů na svatbu krok za krokem: počet, okruhy hostů, doprovod a děti, oznámení vs. pozvánka na hostinu a sběr odpovědí.",
-  alternates: { canonical: "/seznam-hostu-na-svatbu" },
-};
+export const metadata: Metadata = articleMetadata(
+  "seznam-hostu-na-svatbu",
+  "Seznam hostů na svatbu: jak ho sestavit a koho pozvat",
+  "Jak sestavit seznam hostů na svatbu krok za krokem: počet, okruhy hostů, doprovod a děti, oznámení vs. pozvánka na hostinu a sběr odpovědí.",
+);
 
 export default function GuestListPage() {
   return (

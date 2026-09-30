@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
+import { articleMetadata } from "@/lib/seo";
 import ArticleCta from "@/components/ArticleCta";
 import planner from "@/content/planner.json";
 
-export const metadata: Metadata = {
-  title: "Harmonogram svatebního dne: vzor, který můžete převzít",
-  description:
-    "Vzorový harmonogram svatebního dne od ranní přípravy po půlnoční překvapení. S tradicemi, rezervami a tipy, jak den zvládnout v klidu.",
-  alternates: { canonical: "/harmonogram-svatebniho-dne" },
-};
+export const metadata: Metadata = articleMetadata(
+  "harmonogram-svatebniho-dne",
+  "Harmonogram svatebního dne: vzor, který můžete převzít",
+  "Vzorový harmonogram svatebního dne od ranní přípravy po půlnoční překvapení. S tradicemi, rezervami a tipy, jak den zvládnout v klidu.",
+);
 
 export default function SchedulePage() {
   return (

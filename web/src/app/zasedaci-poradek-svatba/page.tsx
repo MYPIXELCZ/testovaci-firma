@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
+import { articleMetadata } from "@/lib/seo";
 import ArticleCta from "@/components/ArticleCta";
 
-export const metadata: Metadata = {
-  title: "Zasedací pořádek na svatbě: jak rozsadit hosty",
-  description:
-    "Jak udělat zasedací pořádek na svatbu: kdy ho sestavit, kdo sedí u hlavního stolu, kulaté stoly nebo tabule a jak rozsadit rodinu, přátele i děti.",
-  alternates: { canonical: "/zasedaci-poradek-svatba" },
-};
+export const metadata: Metadata = articleMetadata(
+  "zasedaci-poradek-svatba",
+  "Zasedací pořádek na svatbě: jak rozsadit hosty",
+  "Jak udělat zasedací pořádek na svatbu: kdy ho sestavit, kdo sedí u hlavního stolu, kulaté stoly nebo tabule a jak rozsadit rodinu, přátele i děti.",
+);
 
 export default function SeatingPage() {
   return (

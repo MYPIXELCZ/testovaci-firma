@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
+import { articleMetadata } from "@/lib/seo";
 import ArticleCta from "@/components/ArticleCta";
 import planner from "@/content/planner.json";
 
-export const metadata: Metadata = {
-  title: "Svatební rozpočet: jak ho rozdělit a nepřetáhnout",
-  description:
-    "Jak rozdělit svatební rozpočet do kategorií, příklad rozdělení 250 000 Kč a pět pravidel, díky kterým svatbu nepřetáhnete.",
-  alternates: { canonical: "/svatebni-rozpocet" },
-};
+export const metadata: Metadata = articleMetadata(
+  "svatebni-rozpocet",
+  "Svatební rozpočet: jak ho rozdělit a nepřetáhnout",
+  "Jak rozdělit svatební rozpočet do kategorií, příklad rozdělení 250 000 Kč a pět pravidel, díky kterým svatbu nepřetáhnete.",
+);
 
 const EXAMPLE = 250_000;
 const kc = (n: number) => `${Math.round(n).toLocaleString("cs-CZ")} Kč`;
