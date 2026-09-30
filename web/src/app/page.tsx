@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ARTICLES } from "@/content/articles";
-import { PRODUCT } from "@/lib/config";
+import { COMPANY, PRODUCT, SALES_OPEN, SITE_URL } from "@/lib/config";
 import prehled from "../../public/img/prehled.png";
 import ukoly from "../../public/img/ukoly.png";
 import rozpocet from "../../public/img/rozpocet.png";
@@ -32,9 +32,29 @@ const FAQ = [
     "Jsou to osvědčené orientační termíny. Každý si můžete posunout nebo přidat vlastní úkol. Doklady a lhůty pro sňatek vždy ověřte na své matrice."],
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: PRODUCT.name,
+  description: "Svatební plánovač pro Excel a Google Tabulky: rozpočet, hosté, úkoly s termíny, zasedací pořádek a harmonogram dne D.",
+  image: `${SITE_URL}/og.png`,
+  brand: { "@type": "Brand", name: "Ano, beru" },
+  offers: {
+    "@type": "Offer",
+    price: PRODUCT.price,
+    priceCurrency: "CZK",
+    availability: "https://schema.org/InStock",
+    url: `${SITE_URL}/objednat`,
+    seller: { "@type": "Organization", name: COMPANY.name },
+  },
+};
+
 export default function Home() {
   return (
     <>
+      {SALES_OPEN && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+      )}
       <section className="hero">
         <div className="wrap hero-grid">
           <div>
