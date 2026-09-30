@@ -25,6 +25,7 @@
 - Infrastruktura: Ondřejův Vercel Pro (k dispozici zdarma). **Správný Vercel účet: ondrej@mypixel.cz (MYPIXEL s.r.o., GitHub MYPIXELCZ).** Účet beta@mypixel.cz NEPOUŽÍVAT.
 
 ## Rozhodnutí
+- **Výběr produktu (pojistka z FAILS.md):** u každého nového produktu/služby ověřit sezónnost poptávky vůči dnešnímu datu a čas do první tržby. Přednost: poptávka teď nebo celoročně. Sezónní produkt mimo sezónu jen se zdůvodněním a nikdy jako jediný.
 - Produkt: svatební plánovač v Google Sheets (+ .xlsx) pro CZ trh. Později webová aplikace, potom SK/PL.
 - Brand: **Ano, beru**, doména anoberu.cz: koupena u WEDOSu 2026-09-30, NS ns1/ns2.vercel-dns.com, DNS zóna omylem založena v účtu beta@mypixel.cz (tým ondrej-chloupeks-projects), Ondřej ji tam má smazat a doména se přidá do správného účtu. Podklady v `brand/`.
 - Ochranná známka „Ano, beru“: neověřena, riziko Ondřej přijal (2026-09-30).
@@ -35,7 +36,7 @@
 ## Stav práce
 - Hotovo: brand (`brand/`), plánovač v1.1 (`product/dist/`, ověřeno přepočtem: 0 chyb ve vzorcích; v1.1 = sloupce Dar a Poděkováno v listu Hosté). Po změně plánovače: build_planner.py (obě verze), recalc, `web/scripts/copy-product.mjs`, e2e.
 - Web (`web/`, Next.js 16): landing, objednávka, QR platba (SPAYD), cron párování Fio (`/api/cron/fio`, každých 5 min), doručovací e-mail (Resend), stažení, doklad, VOP a GDPR (schváleny Ondřejem 2026-09-30). Objednávky jsou v privátním Vercel Blob.
-- SEO články: /svatebni-checklist, /svatebni-rozpocet, /harmonogram-svatebniho-dne, /seznam-hostu-na-svatbu, /zasedaci-poradek-svatba, /text-svatebniho-oznameni, /svedek-na-svatbe, /podekovani-za-svatebni-dar, /svatebni-tradice (seznam v `web/src/content/articles.ts`) (data z `web/src/content/planner.json`, generuje `build_planner.py`). Sitemap + robots. IndexNow (Seznam, Bing): klíč `web/public/31de1fcd1629afe01591a762c249bc90.txt`, cron oznámí URL při INDEXING=1, jen když se seznam změní.
+- SEO články: /svatebni-checklist, /svatebni-rozpocet, /harmonogram-svatebniho-dne, /seznam-hostu-na-svatbu, /zasedaci-poradek-svatba, /text-svatebniho-oznameni, /svedek-na-svatbe, /podekovani-za-svatebni-dar, /svatebni-tradice, nástroj /kalkulacka-svatebniho-rozpoctu (seznam v `web/src/content/articles.ts`) (data z `web/src/content/planner.json`, generuje `build_planner.py`). Sitemap + robots. IndexNow (Seznam, Bing): klíč `web/public/31de1fcd1629afe01591a762c249bc90.txt`, cron oznámí URL při INDEXING=1, jen když se seznam změní.
 - Test: `cd web && npm run test:e2e` (celý nákup proti falešnému Fio a Resend, lokálně ukládá do souborů, 42 kontrol). Commitovat až po zeleném testu, výsledek kontrolovat přes exit code, ne přes grep.
 - Google Tabulky: všechny použité funkce jsou podporované, reálně neotestováno (Sheets konektor chybí), ověřit při spuštění.
 - Upozornění firmě (anoberu@mypixel.cz): zaplaceno, nedoplatek, platba bez objednávky (každá platba jen jednou, značky `payments/{fioId}`). Výpadek Fio API (např. vypršený token) → upozornění max 1× denně. Měsíční CSV pro účetní: cron `/api/cron/report` 1. den v 6:00 UTC (ručně `?month=RRRR-MM`).
