@@ -21,7 +21,7 @@
 
 ## Rozhodnutí
 - Produkt: svatební plánovač v Google Sheets (+ .xlsx) pro CZ trh. Později webová aplikace, potom SK/PL.
-- Brand: **Ano, beru**, doména anoberu.cz: schválena 2026-09-30, koupí ji Ondřej u CZ registrátora na s.r.o., NS přesměruje na Vercel. Podklady v `brand/`.
+- Brand: **Ano, beru**, doména anoberu.cz: koupena u WEDOSu 2026-09-30, NS ns1/ns2.vercel-dns.com, DNS zóna ve Vercel týmu ondrej-chloupeks-projects. Podklady v `brand/`.
 - Ochranná známka „Ano, beru“: neověřena, riziko Ondřej přijal (2026-09-30).
 - Produkt (zdroj): `product/build_planner.py` generuje .xlsx. Výstupy v `product/dist/`.
 - Platby: QR platba převodem + automatické párování plateb přes API banky (bez poplatků). Lemon Squeezy zamítnut (poplatky + zahraniční služba = problém s DPH).
@@ -31,5 +31,5 @@
 - Hotovo: brand (`brand/`), plánovač v1.0 (`product/dist/`, ověřeno přepočtem: 0 chyb ve vzorcích).
 - Web (`web/`, Next.js 16): landing, objednávka, QR platba (SPAYD), cron párování Fio (`/api/cron/fio`, každých 5 min), doručovací e-mail (Resend), stažení, doklad, VOP a GDPR (koncepty, čekají na Ondřejovo schválení). Objednávky jsou v privátním Vercel Blob.
 - Obchodní rozhodnutí: cena 349 Kč, bez vzdání se práva na odstoupení (14 dní na vrácení peněz), platba jen převodem/QR.
-- Blokováno (Ondřej): propojit GitHub ve Vercelu, IBAN Fio, pak FIO_TOKEN + RESEND_API_KEY do env Vercel projektu `anoberu` (tým ondrej-chloupeks-projects).
+- Blokováno (Ondřej): propojit GitHub ve Vercel účtu beta@mypixel.cz (na něm běží Vercel MCP), IBAN Fio, pak FIO_TOKEN + RESEND_API_KEY do env Vercel projektu `anoberu` (tým ondrej-chloupeks-projects).
 - Ověření .xlsx: `recalc.py` ze skillu xlsx (potřebuje `apt-get install libreoffice-calc`), pracovní soubory v `.build/`.
