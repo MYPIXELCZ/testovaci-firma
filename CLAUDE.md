@@ -7,7 +7,7 @@
 
 ## Pravidla (VŽDY)
 - **Nečekat na Ondřeje.** Jeho kroky shrnout jednou a stručně, pak hned pokračovat ve všem, co jimi není blokované. Nikdy nekončit práci jen proto, že něco čeká na něj.
-- **Nezastavovat se:** na konci každého bloku práce si naplánovat další připomínku (`send_later`, cca 60 min) s tím, na čem pokračovat, dokud je co dělat.
+- **Nezastavovat se:** běží trvalá hodinová připomínka (Routine `trig_01JwSBqqYubWBAPLvW1ZK1Te`, každou hodinu v :25 do této session). Při každém spuštění: kontrola stavu, navázat na Ondřejovy kroky, jinak další neblokovaná práce. Vypnout jen na Ondřejův pokyn (update_trigger enabled=false).
 - **Víc práce Clauda ve prospěch nižších nákladů a méně práce Ondřeje.**
 - Stručně: krátké odpovědi, žádné dlouhé checklisty, minimum nadpisů.
 - Rizika hlásit hned, ne až potom.
