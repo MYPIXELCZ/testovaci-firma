@@ -191,7 +191,8 @@ try {
   const bot = await fetch(`${base}/api/orders`, { method: "POST", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email: "a@example.cz", name: "X", terms: true, website: "spam" }) });
   check(bot.status === 400, "honeypot zastaví bota");
-  check((await fetch(`${base}/objednavka/neexistuje`)).status === 404, "neexistující objednávka vrací 404");
+  const nf = await fetch(`${base}/objednavka/neexistuje`);
+  check(nf.status === 404 && (await nf.text()).includes("Tahle stránka tu není"), "neexistující objednávka vrací českou 404");
   const spam = async (email) => (await fetch(`${base}/api/orders`, { method: "POST", headers: { "Content-Type": "application/json", "x-real-ip": "203.0.113.9" },
     body: JSON.stringify({ email, name: "Bot", terms: true }) })).status;
   const burst = [];
