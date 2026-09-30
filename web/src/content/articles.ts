@@ -29,4 +29,9 @@ export const ARTICLES = [
     title: "Text svatebního oznámení: vzory",
     description: "Pět vzorů textu oznámení, pozvánka na hostinu a co v oznámení nesmí chybět.",
   },
+  {
+    href: "/svedek-na-svatbe",
+    title: "Svědek na svatbě: co ho čeká",
+    description: "Úkoly svědka a svědkyně před svatbou, při obřadu i na oslavě a jak se na ně připravit.",
+  },
 ] as const;
