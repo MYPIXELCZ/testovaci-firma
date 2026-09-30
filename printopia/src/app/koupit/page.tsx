@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { after } from "next/server";
 import LeadForm from "@/components/LeadForm";
+import Beacon from "@/components/Beacon";
 import { track } from "@/lib/track";
 import { LAUNCH_DATE, LAUNCH_PRICE, PRICE } from "@/lib/config";
 
@@ -16,6 +17,7 @@ export default async function Buy({ searchParams }: Props) {
   after(() => track("buy_click", src, ua));
   return (
     <section className="hero">
+      <Beacon page="koupit" />
       <div className="wrap narrow">
         <p className="eyebrow">Přijímačky z matiky po tématech</p>
         <h1>Sadu spouštíme {LAUNCH_DATE}</h1>

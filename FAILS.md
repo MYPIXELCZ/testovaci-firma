@@ -31,3 +31,8 @@ Chyby nahlášené Ondřejem ("FAIL: ..."). Každá má příčinu a pojistku, a
 - **Hlášení:** pokud vidíš perspektivu v pokračování projektu a máš co ještě dělat i když ti ode mne chybí nějaké informace, pokračuj a nastav si opakující připomínku na 5 min
 - **Příčina:** Po spuštění prodeje jsem přešel na hodinovou kontrolu a tahy končil větou „zkontroluju v X“ s jednorázovou připomínkou, místo abych pokračoval v další neblokované práci. Čekání na Ondřeje (DNS, token, kredit) jsem bral jako důvod skončit.
 - **Pojistka:** Pravidlo v CLAUDE.md: opakující se 5min `send_later` řetěz platí trvale (do Ondřejova pokynu) a tah nekončím, dokud je neblokovaná práce s perspektivou. Stop hook `.claude/hooks/stop-continue.py` před každým koncem tahu jednou vynutí kontrolu: je naplánovaná připomínka za 5 min a nezbývá práce?
+
+## 2026-10-01 01:28 (Praha)
+- **Hlášení:** metriky musíš sbírat automaticky u každého business projektu - nesmím ti to připomínat. Pokud projekt selže, musíš vědět co upravit/zlepšit pro další RUN
+- **Příčina:** Metriky jsem bral jako věc, která se doplní, až bude provoz. Nebyly součástí šablony plánu ani podmínkou spuštění. Měřil jsem jen výsledky (návštěva, lead), ne cestu a důvody, takže by po neúspěchu nebylo jasné, co zlepšit.
+- **Pojistka:** Šablona `plan/SABLONA.md` má povinný oddíl 7 „Metriky a vyhodnocení“ (trychtýř, důvody, automatické závěry, zápis poučení pro další RUN). Pravidlo v CLAUDE.md: bez metrik se nespouští. Kontrola v kódu `plan/kontrola-spusteni.py <plán> <aplikace>` musí projít před každým spuštěním. Printopia: anonymní trychtýř, anketa „co vás drží“, `/api/stats` se závěry. Anoberu doplnit stejně.

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import MathText from "@/components/MathText";
+import Beacon from "@/components/Beacon";
+import Feedback from "@/components/Feedback";
 import ukazka from "@/content/ukazka.json";
 import { LAUNCH_DATE, PRICE } from "@/lib/config";
 
@@ -15,6 +17,7 @@ export const metadata: Metadata = {
 export default function FractionsPage() {
   return (
     <section className="hero">
+      <Beacon page="tema" topic="zlomky-prijimacky" />
       <div className="wrap narrow">
         <p className="eyebrow">Přijímačky z matematiky · zlomky</p>
         <h1>Zlomky na přijímačky: příklady s postupem</h1>
@@ -56,6 +59,8 @@ export default function FractionsPage() {
             done="Děkujeme! PDF je připravené ke stažení."
           />
         </div>
+
+        <div style={{ marginTop: 32 }}><Feedback /></div>
 
         <p style={{ marginTop: 32 }}>
           Další témata: <Link href="/procenta-prijimacky">procenta</Link>, <Link href="/rovnice-prijimacky">rovnice</Link>, <Link href="/slovni-ulohy-prijimacky">slovní úlohy</Link>.

@@ -28,6 +28,7 @@
 
 ## Rozhodnutí
 - **Research poptávky (pojistka z FAILS.md):** každý nový produkt/službu nejdřív zpracovat podle `plan/SABLONA.md` (poptávka s čísly a zdroji, konkurence, ekonomika, test poptávky). Bez oddílů 1–4 nic nestavět a nic po Ondřejovi nechtít.
+- **Metriky (pojistka z FAILS.md):** každý business projekt sbírá automaticky, bez připomínání: trychtýř po krocích, důvody „proč ne“ (anketa, hledané dotazy), automatické závěry. Bez toho se nespouští: `python3 plan/kontrola-spusteni.py plan/<projekt>.md <aplikace>`. Po každém testu zapsat `plan/<projekt>-vyhodnoceni.md` s poučením pro další RUN.
 - **Cílová skupina (pojistka z FAILS.md):** u každé reklamy, webu a materiálu nejdřív určit, kdo hledá, kdo používá a kdo platí, a uvést to v hlavičce souboru či specifikace. Materiál pro plátce mluví k plátci. Cílovou skupinu doložit daty, ne předpokladem; kde data chybí, změřit v testu. U nezletilých hlídat GDPR (souhlas od 15 let) a zákaz přímé výzvy dětem ke koupi nebo k přemlouvání rodičů (UCPD příloha I bod 28).
 - **Výběr produktu (pojistka z FAILS.md):** u každého nového produktu/služby ověřit sezónnost poptávky vůči dnešnímu datu a čas do první tržby. Přednost: poptávka teď nebo celoročně. Sezónní produkt mimo sezónu jen se zdůvodněním a nikdy jako jediný.
 - Produkt 1: svatební plánovač v Google Sheets (+ .xlsx) pro CZ trh (sezónní, běží sám, sezóna od prosince).

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import LeadForm from "@/components/LeadForm";
 import MathText from "@/components/MathText";
+import Beacon from "@/components/Beacon";
+import Feedback from "@/components/Feedback";
 import { TOPICS } from "@/content/temata";
 import { LAUNCH_DATE, PRICE } from "@/lib/config";
 
@@ -20,6 +22,7 @@ export default async function TopicPage({ params }: PageProps<"/[slug]">) {
   if (!topic) notFound();
   return (
     <section className="hero">
+      <Beacon page="tema" topic={topic.slug} />
       <div className="wrap narrow">
         <p className="eyebrow">Přijímačky z matematiky</p>
         <h1>{topic.h1}</h1>
@@ -52,6 +55,8 @@ export default async function TopicPage({ params }: PageProps<"/[slug]">) {
             done="Děkujeme! PDF je připravené ke stažení."
           />
         </div>
+
+        <div style={{ marginTop: 32 }}><Feedback /></div>
 
         <p style={{ marginTop: 32 }}>
           Další témata: <Link href="/zlomky-prijimacky">zlomky</Link>

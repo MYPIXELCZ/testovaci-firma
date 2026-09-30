@@ -60,3 +60,9 @@ Nic dalšího: žádné příspěvky, obsah ani ruční marketing.
 - **GDPR:** e-maily rodičů (ne dětí) jen se souhlasem pro upozornění na spuštění, smazat po 30 dnech, když produkt nevznikne. Reklama cílí na dospělé.
 - **Finance:** test 400 Kč. Když neprojde, ztráta je 400 Kč a asi 4 h práce. Sezóna končí v dubnu: co se neprodá do 04/2027, čeká do 09/2027 (obsah se dá použít znovu, zkouška se mění málo).
 - **Sezónnost:** od května do srpna nulové tržby. Firma nesmí stát jen na tomto produktu (FAILS 2026-09-30 22:00).
+
+## 7. Metriky a vyhodnocení
+- Trychtýř (anonymně, bez cookies): `printopia/src/components/Beacon.tsx` → `/api/e` → `/api/stats` (kroky: view, t10/t30, scroll50/100, cta_sample, cta_buy, topic_link, solution_open, form_start, form_submit, pdf_download, feedback), podle stránky, zdroje a zařízení.
+- Proč ne: anketa „Co vás zatím drží od objednání?“ na úvodní a tematických stránkách, role v e-mailovém formuláři.
+- Reklama: statistiky a hledané dotazy ze Skliku (API).
+- Závěry: `/api/stats` → `findings` (od 30 návštěv). Po testu zapsat `plan/prijimacky-vyhodnoceni.md` s poučením pro další RUN.

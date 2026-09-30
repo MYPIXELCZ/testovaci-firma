@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { send } from "./Beacon";
 
 // Kdo formulář vyplňuje: test poptávky tím měří, kdo je kupující. Mladší 15 let možnost nemají (GDPR, souhlas v ČR od 15 let).
 const ROLES = [["rodic", "Rodič"], ["zak", "Žák/žákyně, je mi aspoň 15 let"], ["ucitel", "Učitel/lektor"]] as const;
@@ -30,6 +31,7 @@ export default function LeadForm({ source, src, button, consentText, done }: Pro
       return;
     }
     setDownload(data.download ?? null);
+    send("form_submit");
     setState("done");
   }
 
@@ -37,7 +39,7 @@ export default function LeadForm({ source, src, button, consentText, done }: Pro
     return (
       <div>
         <p style={{ fontWeight: 600 }}>{done}</p>
-        {download && <a className="btn" href={download} download>Stáhnout ukázku (PDF)</a>}
+        {download && <a className="btn" href={download} download data-track="pdf_download">Stáhnout ukázku (PDF)</a>}
       </div>
     );
 

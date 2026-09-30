@@ -26,3 +26,10 @@ a Ondřej nekupuje nic (doména, reklama). Každé tvrzení o poptávce musí m�
 - Jen autorizace a schválení (test kroku pro Ondřeje). Vypsat přesně.
 
 ## 6. Rizika (právo, finance) a co schvaluje Ondřej
+
+## 7. Metriky a vyhodnocení (povinné před spuštěním, pojistka z FAILS.md)
+- Trychtýř po krocích: zobrazení reklamy → proklik → návštěva → dočtení / čas → klik na nabídku → začátek formuláře → dokončení → nákup. Rozdělit podle zdroje a zařízení.
+- Proč ne: anonymní anketa s důvody (cena, nedůvěra, jiné hledání…) a hledané dotazy z reklamy.
+- Automatické závěry z dat: kde lidé odpadají a co upravit (reklama, stránka, nabídka, formulář, cena).
+- Po testu zapsat `plan/<projekt>-vyhodnoceni.md`: čísla, závěr pokračovat/zastavit, co zlepšit pro další RUN.
+- Kontrola: `python3 plan/kontrola-spusteni.py plan/<projekt>.md <aplikace>` musí projít.

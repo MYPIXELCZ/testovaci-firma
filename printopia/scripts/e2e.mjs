@@ -73,9 +73,27 @@ try {
   await fetch(`${BASE}/`, { headers: { "User-Agent": "Googlebot/2.1" } });
   await new Promise((r) => setTimeout(r, 500));
   check((await fetch(`${BASE}/api/stats`)).status === 401, "souhrn testu je chráněný");
+  // Anonymní trychtýř: dvě návštěvy (mobil a počítač), jedna dojde až k formuláři, anketa s důvodem
+  const beacon = (pv, ev, extra = {}, ua = UA["User-Agent"]) => fetch(`${BASE}/api/e`, {
+    method: "POST", headers: { "Content-Type": "application/json", "User-Agent": ua },
+    body: JSON.stringify({ pv, ev, page: "home", src: "sklik", topic: "", ...extra }) });
+  const pv1 = "11111111-1111-4111-8111-111111111111", pv2 = "22222222-2222-4222-8222-222222222222";
+  for (const ev of ["view", "t10", "scroll50", "cta_buy", "form_start", "form_submit"]) await beacon(pv1, ev);
+  for (const ev of ["view", "form_start"]) await beacon(pv2, ev, {}, "Mozilla/5.0 (iPhone; Mobile)");
+  await beacon(pv2, "feedback", { choice: "drahe", text: "moc drahé" }, "Mozilla/5.0 (iPhone; Mobile)");
+  check((await beacon("x", "view")).status === 400, "událost s neplatným ID odmítnuta");
+  check((await beacon(pv1, "feedback", { choice: "nesmysl" })).status === 400, "neznámá odpověď ankety odmítnuta");
+  check((await beacon(pv1, "view", {}, "Googlebot/2.1")).status === 204, "robot se tiše ignoruje");
   const st = await (await fetch(`${BASE}/api/stats`, { headers: { "x-stats-key": "tajne" } })).json();
-  check(st.events.visit?.sklik === 1 && st.events.buy_click?.sklik === 1 && st.totals.leads === 1, "souhrn: návštěva, klik na Koupit a lead ze Skliku (robot a opakovaný lead nezapočten)");
-  check(st.leadsByRole.rodic === 1 && st.buyClickRate === 1 / st.totals.visits, "souhrn: role a míra kliků na Koupit");
+  check(st.server.visits.sklik === 1 && st.server.buyClicks.sklik === 1 && st.server.leads === 1, "souhrn: serverové návštěvy, klik na Koupit a lead ze Skliku (robot a opakovaný lead nezapočten)");
+  check(st.server.leadsByRole.rodic === 1, "souhrn: role kupujícího");
+  const h = st.funnel.byPage.home;
+  check(h.view === 2 && h.form_start === 2 && h.form_submit === 1 && h.cta_buy === 1, "trychtýř: kroky se počítají za návštěvy");
+  check(st.rates.formCompletion === 50 && st.funnel.byDevice["home:mobil"].view === 1, "trychtýř: dokončení formuláře a rozdělení podle zařízení");
+  check(st.feedback["Je to na mě drahé"] === 1 && st.feedbackTexts[0] === "moc drahé", "anketa: důvod i text");
+  check(st.findings[0].startsWith("Málo dat"), "závěry: při málo datech to řekne");
+  const home2 = await (await get("/")).text();
+  check(home2.includes("co vás zatím drží od objednání") && home2.includes('data-track="cta_buy"'), "úvodní stránka má anketu a měřená tlačítka");
 } finally {
   process.kill(-app.pid);
 }

@@ -39,7 +39,11 @@ export default function Privacy() {
         </p>
 
         <h2>Cookies</h2>
-        <p>Web nepoužívá žádné cookies ani analytické nebo reklamní sledovací nástroje.</p>
+        <p>
+          Web nepoužívá žádné cookies ani reklamní sledovací nástroje. Anonymně počítáme, jak se stránky používají (například
+          jak daleko lidé dočtou a na co kliknou), bez IP adresy a bez jakéhokoli identifikátoru, který by šel spojit
+          s konkrétním člověkem. Stejně anonymní je i krátká anketa, co vám na nabídce chybí.
+        </p>
 
         <h2>Vaše práva</h2>
         <p>

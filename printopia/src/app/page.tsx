@@ -4,6 +4,8 @@ import { after } from "next/server";
 import { track } from "@/lib/track";
 import LeadForm from "@/components/LeadForm";
 import MathText from "@/components/MathText";
+import Beacon from "@/components/Beacon";
+import Feedback from "@/components/Feedback";
 import ukazka from "@/content/ukazka.json";
 import { LAUNCH_DATE, PRICE } from "@/lib/config";
 
@@ -25,6 +27,7 @@ export default async function Home({ searchParams }: Props) {
 
   return (
     <>
+      <Beacon page="home" />
       <section className="hero">
         <div className="wrap">
           <p className="eyebrow">Přijímačky na SŠ 2027 · matematika</p>
@@ -34,8 +37,8 @@ export default async function Home({ searchParams }: Props) {
             téma. U každé úlohy je postup řešení krok za krokem. Na papíře, bez videí a bez obrazovky.
           </p>
           <div className="actions">
-            <a href="#ukazka" className="btn">Stáhnout ukázku zdarma</a>
-            <Link href={`/koupit${src ? `?src=${src}` : ""}`} className="btn btn-ghost">Koupit sadu za {PRICE} Kč</Link>
+            <a href="#ukazka" className="btn" data-track="cta_sample">Stáhnout ukázku zdarma</a>
+            <Link href={`/koupit${src ? `?src=${src}` : ""}`} className="btn btn-ghost" data-track="cta_buy">Koupit sadu za {PRICE} Kč</Link>
           </div>
         </div>
       </section>
@@ -56,9 +59,9 @@ export default async function Home({ searchParams }: Props) {
           <h2>Co v sadě bude</h2>
           <ul className="topics">{TOPICS.map((t) => <li key={t}>{t}</li>)}</ul>
           <p className="muted small">
-            Chcete si to vyzkoušet hned? Příklady s postupem: <Link href="/zlomky-prijimacky">zlomky</Link>,{" "}
-            <Link href="/procenta-prijimacky">procenta</Link>, <Link href="/rovnice-prijimacky">rovnice</Link>,{" "}
-            <Link href="/slovni-ulohy-prijimacky">slovní úlohy</Link>.
+            Chcete si to vyzkoušet hned? Příklady s postupem: <Link href="/zlomky-prijimacky" data-track="topic_link">zlomky</Link>,{" "}
+            <Link href="/procenta-prijimacky" data-track="topic_link">procenta</Link>, <Link href="/rovnice-prijimacky" data-track="topic_link">rovnice</Link>,{" "}
+            <Link href="/slovni-ulohy-prijimacky" data-track="topic_link">slovní úlohy</Link>.
             Všechny úlohy jsou vlastní, ve stylu jednotné přijímací zkoušky. Výsledky ověřujeme výpočtem. Sada není
             oficiálním materiálem CERMAT.
           </p>
@@ -92,6 +95,12 @@ export default async function Home({ searchParams }: Props) {
               done="Děkujeme! Ukázka je připravená ke stažení."
             />
           </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="wrap narrow">
+          <Feedback />
         </div>
       </section>
 
