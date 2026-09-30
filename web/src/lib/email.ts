@@ -1,6 +1,7 @@
 import "server-only";
 import { COMPANY, PAYMENT, PRODUCT, SITE_URL } from "./config";
 import type { Order } from "./orders";
+import { getSecret } from "./secrets";
 
 const FROM = process.env.EMAIL_FROM ?? "Ano, beru <objednavky@anoberu.cz>";
 const RESEND_URL = process.env.RESEND_API_URL ?? "https://api.resend.com/emails";
@@ -24,7 +25,7 @@ const button = (href: string, label: string) =>
   `<p style="margin:24px 0"><a href="${href}" style="background:#56654A;color:#fff;text-decoration:none;padding:12px 20px;border-radius:8px;display:inline-block">${label}</a></p>`;
 
 async function send(to: string, subject: string, html: string) {
-  const key = process.env.RESEND_API_KEY;
+  const key = await getSecret("RESEND_API_KEY");
   if (!key) {
     console.warn(`[email] RESEND_API_KEY chybí, e-mail „${subject}“ pro ${to} se neposlal`);
     return;

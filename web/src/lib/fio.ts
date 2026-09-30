@@ -1,4 +1,5 @@
 import "server-only";
+import { getSecret } from "./secrets";
 
 // Fio API: https://www.fio.cz/docs/cz/API_Bankovnictvi.pdf
 // Token jen pro čtení. Limit: jeden dotaz na token za 30 s, jinak HTTP 409.
@@ -12,12 +13,13 @@ type FioTransaction = Record<string, Column>;
 const iso = (d: Date) => d.toISOString().slice(0, 10);
 
 /** Příchozí platby za posledních `days` dní. Dotaz podle období je idempotentní, na rozdíl od „last“. */
-export async function incomingPayments(days = 5): Promise<IncomingPayment[]> {
-  const token = process.env.FIO_TOKEN;
+export async function incomingPayments(days = 5, tokenOverride?: string): Promise<IncomingPayment[]> {
+  const token = tokenOverride ?? (await getSecret("FIO_TOKEN"));
   if (!token) throw new Error("FIO_TOKEN není nastaven");
   const to = new Date();
   const from = new Date(to.getTime() - days * 86_400_000);
   const res = await fetch(`${BASE}/periods/${token}/${iso(from)}/${iso(to)}/transactions.json`, { cache: "no-store" });
+  if (res.status === 409) throw new Error("Fio API: moc častý dotaz, zkuste to za 30 s");
   if (!res.ok) throw new Error(`Fio API odpovědělo ${res.status}`);
   const data = await res.json();
   const txs: FioTransaction[] = data?.accountStatement?.transactionList?.transaction ?? [];

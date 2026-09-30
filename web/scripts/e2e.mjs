@@ -23,7 +23,7 @@ const payments = [];
 const emails = [];
 let fioCalls = 0;
 const mock = http.createServer((req, res) => {
-  if (req.url.startsWith("/fio/periods/test-token/")) {
+  if (req.url.startsWith("/fio/periods/")) {
     fioCalls++;
     const transaction = payments.map((p, i) => ({
       column22: { value: 1000 + i }, column0: { value: p.date }, column1: { value: p.amount },
@@ -159,6 +159,17 @@ try {
   check(bot.status === 400, "honeypot zastaví bota");
   check((await fetch(`${base}/objednavka/neexistuje`)).status === 404, "neexistující objednávka vrací 404");
   check(fioCalls >= 4, `Fio API voláno (${fioCalls}×)`);
+
+  // 11) Nastavení: uložení tokenu Fio přes stránku (lokálně povoleno, na produkci jen *.vercel.app)
+  await page.goto(`${base}/nastaveni`);
+  await page.locator('form').first().locator('input[name="token"]').fill("kratky");
+  await page.locator('form').first().locator('button').click();
+  await page.waitForSelector("text=nevypadá jako token");
+  check(true, "nastavení odmítne nesmyslný token");
+  await page.locator('form').first().locator('input[name="token"]').fill("AbCdEf1234567890GhIjKl1234567890");
+  await page.locator('form').first().locator('button').click();
+  await page.waitForSelector("text=Token funguje a je uložený");
+  check(readFileSync(`${STORE}secrets/FIO_TOKEN`, "utf8") === "AbCdEf1234567890GhIjKl1234567890", "token Fio uložen do úložiště");
 } catch (e) {
   failures++;
   console.error(e);
