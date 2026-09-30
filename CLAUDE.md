@@ -26,7 +26,9 @@
 
 ## Rozhodnutí
 - **Výběr produktu (pojistka z FAILS.md):** u každého nového produktu/služby ověřit sezónnost poptávky vůči dnešnímu datu a čas do první tržby. Přednost: poptávka teď nebo celoročně. Sezónní produkt mimo sezónu jen se zdůvodněním a nikdy jako jediný.
-- Produkt: svatební plánovač v Google Sheets (+ .xlsx) pro CZ trh. Později webová aplikace, potom SK/PL.
+- Produkt 1: svatební plánovač v Google Sheets (+ .xlsx) pro CZ trh (sezónní, běží sám, sezóna od prosince).
+- Produkt 2 (2026-09-30, rozpracováno): **rodinný rozpočet** (Excel + Google Tabulky) s tříděním výpisu z banky, celoroční poptávka. Znovu použít platby/párování/doručení. Potřebuje Ondřejovo schválení: doména (~200 Kč), později kredit Sklik.
+- Reklama: jen Sklik (česká služba). Google Ads, Meta a jiné zahraniční placené = ZAKÁZÁNO (identifikace k DPH). Ondřej je ochoten dát peníze do reklamy, spustit až bude produkt 2 hotový a měřitelný.
 - Brand: **Ano, beru**, doména anoberu.cz: koupena u WEDOSu 2026-09-30, NS ns1/ns2.vercel-dns.com, DNS zóna omylem založena v účtu beta@mypixel.cz (tým ondrej-chloupeks-projects), Ondřej ji tam má smazat a doména se přidá do správného účtu. Podklady v `brand/`.
 - Ochranná známka „Ano, beru“: neověřena, riziko Ondřej přijal (2026-09-30).
 - Produkt (zdroj): `product/build_planner.py` generuje .xlsx. Výstupy v `product/dist/`.
