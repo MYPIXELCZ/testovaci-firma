@@ -30,6 +30,9 @@
 ## Stav práce
 - Hotovo: brand (`brand/`), plánovač v1.0 (`product/dist/`, ověřeno přepočtem: 0 chyb ve vzorcích).
 - Web (`web/`, Next.js 16): landing, objednávka, QR platba (SPAYD), cron párování Fio (`/api/cron/fio`, každých 5 min), doručovací e-mail (Resend), stažení, doklad, VOP a GDPR (koncepty, čekají na Ondřejovo schválení). Objednávky jsou v privátním Vercel Blob.
+- SEO články: /svatebni-checklist, /svatebni-rozpocet, /harmonogram-svatebniho-dne (data z `web/src/content/planner.json`, generuje `build_planner.py`). Sitemap + robots.
+- Test: `cd web && npm run test:e2e` (celý nákup proti falešnému Fio a Resend, lokálně ukládá do souborů).
+- Google Tabulky: všechny použité funkce jsou podporované, reálně neotestováno (Sheets konektor chybí), ověřit při spuštění.
 - Obchodní rozhodnutí: cena 349 Kč, bez vzdání se práva na odstoupení (14 dní na vrácení peněz), platba jen převodem/QR.
 - Blokováno (Ondřej): přepojit Vercel konektor v claude.ai na ondrej@mypixel.cz a začít novou session na větvi claude/hopeful-hamilton-n1pbnk, pak FIO_TOKEN + RESEND_API_KEY do env Vercel projektu `anoberu` (tým ondrej-chloupeks-projects).
 - Ověření .xlsx: `recalc.py` ze skillu xlsx (potřebuje `apt-get install libreoffice-calc`), pracovní soubory v `.build/`.
