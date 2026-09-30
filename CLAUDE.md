@@ -14,7 +14,7 @@
 
 ## Firma
 - Právně: **MYPIXEL s.r.o.**, IČO 17617421, Příčná 1892/4, Nové Město, 110 00 Praha 1, C 373971 vedená u Městského soudu v Praze, datová schránka g9233dt. Neplátce DPH (bývalý plátce, DIČ CZ17617421 už neplatné). Ano, beru je značka této s.r.o.
-- Banka s.r.o.: Fio (API zdarma, použijeme na párování plateb). Ondřejova OSVČ má ČSOB, tržby firmy na ni nesmí jít.
+- Banka s.r.o.: Fio, účet 2202343801/2010, IBAN CZ5220100000002202343801 (API zdarma, použijeme na párování plateb). Ondřejova OSVČ má ČSOB, tržby firmy na ni nesmí jít.
 - Počáteční rozpočet: do 1 000 Kč (+ tržby).
 - Cíl: vedlejší příjem, potom škálovatelný byznys.
 - Infrastruktura: Ondřejův Vercel Pro (k dispozici zdarma). **Správný Vercel účet: ondrej@mypixel.cz (MYPIXEL s.r.o., GitHub MYPIXELCZ).** Účet beta@mypixel.cz NEPOUŽÍVAT.
@@ -31,5 +31,5 @@
 - Hotovo: brand (`brand/`), plánovač v1.0 (`product/dist/`, ověřeno přepočtem: 0 chyb ve vzorcích).
 - Web (`web/`, Next.js 16): landing, objednávka, QR platba (SPAYD), cron párování Fio (`/api/cron/fio`, každých 5 min), doručovací e-mail (Resend), stažení, doklad, VOP a GDPR (koncepty, čekají na Ondřejovo schválení). Objednávky jsou v privátním Vercel Blob.
 - Obchodní rozhodnutí: cena 349 Kč, bez vzdání se práva na odstoupení (14 dní na vrácení peněz), platba jen převodem/QR.
-- Blokováno (Ondřej): přepojit Vercel konektor v claude.ai na ondrej@mypixel.cz a začít novou session na větvi claude/hopeful-hamilton-n1pbnk, IBAN Fio, pak FIO_TOKEN + RESEND_API_KEY do env Vercel projektu `anoberu` (tým ondrej-chloupeks-projects).
+- Blokováno (Ondřej): přepojit Vercel konektor v claude.ai na ondrej@mypixel.cz a začít novou session na větvi claude/hopeful-hamilton-n1pbnk, pak FIO_TOKEN + RESEND_API_KEY do env Vercel projektu `anoberu` (tým ondrej-chloupeks-projects).
 - Ověření .xlsx: `recalc.py` ze skillu xlsx (potřebuje `apt-get install libreoffice-calc`), pracovní soubory v `.build/`.

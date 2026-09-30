@@ -16,9 +16,9 @@ export const COMPANY = {
 };
 
 export const PAYMENT = {
-  // Účet MYPIXEL s.r.o. u Fio banky. Doplní se přes env, dokud ho nemáme.
-  iban: process.env.PAYMENT_IBAN ?? "",
-  account: process.env.PAYMENT_ACCOUNT ?? "",
+  // Účet MYPIXEL s.r.o. u Fio banky (veřejný údaj pro platby).
+  iban: process.env.PAYMENT_IBAN ?? "CZ5220100000002202343801",
+  account: process.env.PAYMENT_ACCOUNT ?? "2202343801/2010",
   recipient: "ANO BERU",
 };
 
