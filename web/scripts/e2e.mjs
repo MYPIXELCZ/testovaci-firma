@@ -24,9 +24,11 @@ const emails = [];
 const toCustomer = () => emails.filter((e) => e.to === "nevesta@example.cz");
 const toOwner = () => emails.filter((e) => e.to === "anoberu@mypixel.cz");
 let fioCalls = 0;
+let fioDown = false;
 const mock = http.createServer((req, res) => {
   if (req.url.startsWith("/fio/periods/")) {
     fioCalls++;
+    if (fioDown) { res.statusCode = 401; return res.end("{}"); }
     const transaction = payments.map((p, i) => ({
       column22: { value: 1000 + i }, column0: { value: p.date }, column1: { value: p.amount },
       column14: { value: "CZK" }, column5: p.vs ? { value: p.vs } : null,
@@ -189,6 +191,14 @@ try {
     body: JSON.stringify({ email: "stejny@example.cz", name: "X", terms: true }) })).status);
   check(same.slice(0, 3).every((x) => x === 200) && same[3] === 429, `4. objednávka na stejný e-mail za den odmítnuta (${same.join(",")})`);
   check(fioCalls >= 4, `Fio API voláno (${fioCalls}×)`);
+
+  // 10b) Výpadek Fio API se nahlásí firmě jednou denně
+  fioDown = true;
+  const down = await cron();
+  await cron();
+  fioDown = false;
+  check(down.status === 502, "cron při chybě Fio vrací 502");
+  check(toOwner().filter((e) => e.subject.includes("Párování plateb nefunguje")).length === 1, "výpadek Fio nahlášen firmě jednou");
 
   // 11) Nastavení: uložení tokenu Fio přes stránku (lokálně povoleno, na produkci jen *.vercel.app)
   await page.goto(`${base}/nastaveni`);

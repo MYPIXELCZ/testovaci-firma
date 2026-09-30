@@ -4,6 +4,7 @@ import { incomingPayments, type IncomingPayment } from "@/lib/fio";
 import { pingSearchEngines } from "@/lib/indexnow";
 import { deleteOrder, getOrder, listPending, markPaid, markPaymentAlerted, paymentSeen } from "@/lib/orders";
 import { cleanupRateLimits } from "@/lib/ratelimit";
+import { storage } from "@/lib/storage";
 import { getSecret } from "@/lib/secrets";
 
 export const maxDuration = 60;
@@ -37,7 +38,24 @@ export async function GET(req: Request) {
   const result = { pending: pending.length, paid: [] as string[], underpaid: [] as string[], orphans: 0, expired: 0 };
 
   if (pending.length > 0 || SALES_OPEN) {
-    const payments = await incomingPayments();
+    let payments: IncomingPayment[];
+    try {
+      payments = await incomingPayments();
+    } catch (e) {
+      // Nejčastěji vypršený nebo zrušený token. Upozornit firmu nejvýš jednou denně.
+      const msg = e instanceof Error ? e.message : String(e);
+      console.error("[cron] Fio API selhalo:", msg);
+      const marker = `alerts/fio-${new Date().toISOString().slice(0, 10)}`;
+      if (!msg.includes("409") && !msg.includes("30 s") && !(await storage.exists(marker))) {
+        await notifyOwner("Párování plateb nefunguje", [
+          `Fio API vrací chybu: ${msg}`,
+          "Nejspíš vypršel token. Vytvořte nový (Fio internetbanking → Nastavení → API, jen pro čtení) a vložte ho na https://anoberu-mypixelcz.vercel.app/nastaveni.",
+          "Do té doby se zaplacené objednávky neodešlou automaticky.",
+        ]).catch(() => undefined);
+        await storage.write(marker, msg, { overwrite: true });
+      }
+      return Response.json({ ...result, error: "fio" }, { status: 502 });
+    }
     const matched = new Set<string>();
 
     for (const p of pending) {
