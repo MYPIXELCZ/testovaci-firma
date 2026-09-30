@@ -22,7 +22,7 @@
 ## Rozhodnutí
 - Produkt: svatební plánovač v Google Sheets (+ .xlsx) pro CZ trh. Později webová aplikace, potom SK/PL.
 - Brand: **Ano, beru**, doména anoberu.cz: schválena 2026-09-30, koupí ji Ondřej u CZ registrátora na s.r.o., NS přesměruje na Vercel. Podklady v `brand/`.
-- Ochranná známka „Ano, beru“: neověřeno (databáze známek jsou pro Clauda blokované). Čeká na Ondřejovo rozhodnutí.
+- Ochranná známka „Ano, beru“: neověřena, riziko Ondřej přijal (2026-09-30).
 - Produkt (zdroj): `product/build_planner.py` generuje .xlsx. Výstupy v `product/dist/`.
 - Platby: QR platba převodem + automatické párování plateb přes API banky (bez poplatků). Lemon Squeezy zamítnut (poplatky + zahraniční služba = problém s DPH).
 - Spuštění: do konce listopadu 2026 (sezóna zásnub prosinec–únor).
