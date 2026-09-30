@@ -112,3 +112,12 @@ ol.topics li::before { content: counter(t); font-family: var(--serif); font-weig
   .sticky-cta .btn { width: 100%; text-align: center; }
   body { padding-bottom: 72px; }
 }
+.hero-visual { position: relative; }
+.hero-photo { width: 100%; height: auto; border-radius: 18px; display: block; box-shadow: 0 24px 50px -24px rgba(0,0,0,0.6); }
+.hero-paper { position: absolute; width: 46%; height: auto; left: -8%; bottom: -10%; border-radius: 6px; background: #fff; transform: rotate(-4deg); box-shadow: 0 18px 40px -16px rgba(0,0,0,0.55); }
+.credit { margin: 8px 0 0; font-size: 0.72rem; color: #8b93a6; text-align: right; }
+.credit a { color: inherit; }
+.credit-dark { color: var(--muted); margin: 0 0 12px; }
+.card-photo { padding-top: 0; overflow: hidden; }
+.card-img { width: calc(100% + 44px); margin: 0 -22px 0; height: 190px; object-fit: cover; display: block; }
+@media (max-width: 800px) { .hero-paper { width: 40%; left: auto; right: -2%; bottom: -12%; transform: rotate(3deg); } .hero-visual { margin: 12px 0 28px; } }

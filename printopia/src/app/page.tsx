@@ -7,6 +7,7 @@ import Feedback from "@/components/Feedback";
 import Icon from "@/components/Icon";
 import LeadForm from "@/components/LeadForm";
 import MathText from "@/components/MathText";
+import foto from "@/content/foto.json";
 import ukazka from "@/content/ukazka.json";
 import { COMPANY, CONTACT, LAUNCH_DATE, PRICE } from "@/lib/config";
 import { track } from "@/lib/track";
@@ -61,9 +62,11 @@ export default async function Home({ searchParams }: Props) {
             </div>
             <p className="trust">Jednorázová platba, bez předplatného · 14 dní na vrácení peněz · Provozuje {COMPANY.name}</p>
           </div>
-          <div className="papers" aria-label="Ukázka stránek sady">
-            <Image src="/nahled-ulohy.webp" alt="Stránka s úlohami na zlomky a místem na počítání" width={909} height={719} priority className="paper paper-back" />
-            <Image src="/nahled-postup.webp" alt="Stránka s postupy řešení krok za krokem" width={909} height={719} priority className="paper paper-front" />
+          <div className="hero-visual">
+            <Image src="/foto/rodic-a-dcera-1400.webp" width={1400} height={788} priority sizes="(max-width: 800px) 100vw, 520px"
+                   alt="Maminka pomáhá dceři s úlohami u psacího stolu" className="hero-photo" />
+            <Image src="/nahled-postup.webp" width={909} height={719} alt="Stránka sady s postupy řešení krok za krokem" className="hero-paper" />
+            <p className="credit">Foto: <a href={foto["rodic-a-dcera"].author_url}>{foto["rodic-a-dcera"].author}</a>, <a href={foto["rodic-a-dcera"].page}>Unsplash</a></p>
           </div>
         </div>
       </section>
@@ -78,7 +81,10 @@ export default async function Home({ searchParams }: Props) {
       <section>
         <div className="wrap">
           <div className="two">
-            <div className="card">
+            <div className="card card-photo">
+              <Image src="/foto/rodic-podpora-800.webp" width={800} height={450} sizes="(max-width: 800px) 100vw, 460px"
+                     alt="Maminka povzbuzuje dceru při učení" className="card-img" />
+              <p className="credit credit-dark">Foto: <a href={foto["rodic-podpora"].author_url}>{foto["rodic-podpora"].author}</a>, <a href={foto["rodic-podpora"].page}>Unsplash</a></p>
               <p className="eyebrow">Pro rodiče</p>
               <ul className="checks checks-dark">
                 <li><strong>Nemusíte umět matiku.</strong> Postup je u každé úlohy, stačí zkontrolovat výsledek.</li>
@@ -86,7 +92,10 @@ export default async function Home({ searchParams }: Props) {
                 <li><strong>Za cenu jedné až dvou hodin doučování.</strong> A dá se tisknout znovu.</li>
               </ul>
             </div>
-            <div className="card">
+            <div className="card card-photo">
+              <Image src="/foto/sesit-matematika-800.webp" width={800} height={600} sizes="(max-width: 800px) 100vw, 460px"
+                     alt="Žák počítá úlohy z matematiky do sešitu" className="card-img" />
+              <p className="credit credit-dark">Foto: <a href={foto["sesit-matematika"].author_url}>{foto["sesit-matematika"].author}</a>, <a href={foto["sesit-matematika"].page}>Unsplash</a></p>
               <p className="eyebrow">Pro deváťáky</p>
               <ul className="checks checks-dark">
                 <li><strong>Jen to, co nejde.</strong> Zlomky zvlášť, procenta zvlášť, žádné zbytečné testy dokola.</li>

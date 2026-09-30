@@ -23,13 +23,13 @@ Datum: 2026-10-01. Screenshoty a osnovy stránek pořízeny automaticky (Chromiu
 ## Vizuální směr
 - Tmavě modrý úvodní blok (#1c2230) s žlutým akcentem (#f5b82e) jako tužka/zvýrazňovač, zbytek světlý papír (#fbfaf6).
 - Hlavní CTA žluté s tmavým textem (kontrast, odliší se od modrých odkazů), sekundární obrysové.
-- Fotky: Unsplash (licence zdarma i komerčně, bez Unsplash+): žák nad úlohami, rodič a dospívající u stolu. Čeká na Access Key od Ondřeje; do té doby náhled produktu.
+- Fotky: Unsplash (licence zdarma i komerčně, bez Unsplash+): žák nad úlohami, rodič a dospívající u stolu. Access Key od Ondřeje (limit 50 dotazů/h, šetřit; náhledy z CDN se nepočítají). Fotky jsou hostované u nás (`printopia/public/foto/`), autoři v `src/content/foto.json`.
 - Typografie: Fraunces (nadpisy) + Inter (text), jako doteď.
 
 ## Kontrolní seznam před nasazením
 - [x] úvod: nabídka pro plátce, přínosy v číslech, cena v CTA, ukázka zdarma
 - [x] náhled skutečného produktu
-- [ ] lidská fotka (Unsplash) – čeká na klíč
+- [x] lidské fotky (Unsplash, Vitaly Gariev a Annie Spratt, licence Unsplash, stažení ohlášeno přes API, uvedení autora u fotky)
 - [x] srovnání ceny se zdroji, záruka, kdo za tím stojí, FAQ
 - [x] rodiče × deváťáci, bez výzvy dětem ke koupi
 - [x] screenshoty desktop + mobil zkontrolované
