@@ -10,6 +10,7 @@
 - **Nečekat na Ondřeje.** Jeho kroky shrnout jednou a stručně, pak hned pokračovat ve všem, co jimi není blokované. Nikdy nekončit práci jen proto, že něco čeká na něj.
 - **Kontrola:** prodej spuštěn 2026-09-30, proto už jen hodinová rutina (5min řetěz `send_later` ukončen, schváleno Ondřejem).
 - **Pojistka:** běží trvalá hodinová připomínka (Routine `trig_01JwSBqqYubWBAPLvW1ZK1Te`, každou hodinu v :25 do této session). Při každém spuštění: kontrola stavu, navázat na Ondřejovy kroky, jinak další neblokovaná práce. Vypnout jen na Ondřejův pokyn (update_trigger enabled=false).
+- **FAIL:** zpráva od Ondřeje začínající „FAIL: …“ = trvalý záznam do `FAILS.md` (hook `.claude/hooks/fail-log.py` ji zapíše sám; když ne, zapsat ručně). Pokaždé doplnit příčinu a pojistku (pravidlo sem, test nebo kontrola v kódu), zavést ji, commit + push. Před prací projít `FAILS.md`, ať se nic neopakuje.
 - **Víc práce Clauda ve prospěch nižších nákladů a méně práce Ondřeje.**
 - Stručně: krátké odpovědi, žádné dlouhé checklisty, minimum nadpisů.
 - Rizika hlásit hned, ne až potom.
