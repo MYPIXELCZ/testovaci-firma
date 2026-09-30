@@ -21,7 +21,8 @@ export default function Privacy() {
           Když nám necháte e-mail (u ukázky zdarma nebo u upozornění na spuštění), uložíme si ho spolu s datem a
           s tím, odkud jste na web přišli (například z reklamy). E-mail použijeme jen k tomu, abychom vám dali vědět, že
           je kompletní sada k dispozici, případně se slevou, kterou jsme slíbili. Pošleme nejvýše dva e-maily. Právním
-          základem je váš souhlas (čl. 6 odst. 1 písm. a) GDPR).
+          základem je váš souhlas (čl. 6 odst. 1 písm. a) GDPR). Formulář je určen rodičům a lidem starším 15 let,
+          e-maily dětí mladších 15 let vědomě nesbíráme.
         </p>
 
         <h2>Jak dlouho</h2>

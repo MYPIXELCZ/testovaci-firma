@@ -27,6 +27,7 @@
 
 ## Rozhodnutí
 - **Research poptávky (pojistka z FAILS.md):** každý nový produkt/službu nejdřív zpracovat podle `plan/SABLONA.md` (poptávka s čísly a zdroji, konkurence, ekonomika, test poptávky). Bez oddílů 1–4 nic nestavět a nic po Ondřejovi nechtít.
+- **Cílová skupina (pojistka z FAILS.md):** u každé reklamy, webu a materiálu nejdřív určit, kdo hledá, kdo používá a kdo platí, a uvést to v hlavičce souboru či specifikace. Materiál pro plátce mluví k plátci. U nezletilých hlídat GDPR (souhlas od 15 let) a pravidla reklamy na děti.
 - **Výběr produktu (pojistka z FAILS.md):** u každého nového produktu/služby ověřit sezónnost poptávky vůči dnešnímu datu a čas do první tržby. Přednost: poptávka teď nebo celoročně. Sezónní produkt mimo sezónu jen se zdůvodněním a nikdy jako jediný.
 - Produkt 1: svatební plánovač v Google Sheets (+ .xlsx) pro CZ trh (sezónní, běží sám, sezóna od prosince).
 - Rodinný rozpočet (2026-09-30): ZAMÍTNUT researchem (zdarma šablony + banky třídí samy) (Excel + Google Tabulky) s tříděním výpisu z banky, celoroční poptávka. Znovu použít platby/párování/doručení. Volné Ondřejovy domény (zdarma): printopia.cz, vratime.cz, webprodava.cz, rugsy.cz, reviewboost.cz, emotionsmatter.cz.

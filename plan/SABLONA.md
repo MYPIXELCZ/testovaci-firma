@@ -8,6 +8,11 @@ a Ondřej nekupuje nic (doména, reklama). Každé tvrzení o poptávce musí m�
 - Kdo už to prodává a jak se mu daří (počty prodejů, recenze, ceny, tržiště).
 - Sezónnost vůči dnešnímu datu a odhad, kdy přijde první tržba.
 
+## 1b. Cílová skupina (povinné, pojistka z FAILS.md)
+- Kdo HLEDÁ (zadává dotazy, kliká na reklamu), kdo POUŽÍVÁ, kdo PLATÍ. Často jsou to různí lidé.
+- Pro koho je který materiál: reklama a web → plátce (a hledající, aby ho přivedl k plátci), produkt → uživatel.
+- Omezení: nezletilí (GDPR souhlas v ČR od 15 let, reklama na děti), způsob platby dostupný plátci.
+
 ## 2. Konkurence a proč koupí od nás
 - Zdarma alternativy (šablony, aplikace, banky…) a v čem jsme lepší.
 

@@ -12,6 +12,13 @@ Stav: **research hotový, čeká se na test poptávky (oddíl 4). Nic se nestav�
 - **Sezónnost vůči dnešku (2026-10-01):** zkouška je 12.–13. 4. 2027 (MŠMT), přihlášky se podávají v únoru. Průměr zájmu podle Trends: říjen 9, listopad 11, prosinec 9, leden 23, únor 24, březen 26, duben 38, květen až srpen 2–10. **Teď je začátek sezóny**, vrchol přijde za 3–6 měsíců, od května do srpna nebude nic.
 - **První tržba (odhad):** když test projde do 20. 10. a produkt bude hotový do 15. 11., první prodeje čekám v listopadu až prosinci (reklama). Hlavní tržby přijdou v lednu až dubnu, SEO naběhne nejdřív v lednu. Jde o sezónní produkt, výjimku z pravidla zdůvodňuji tím, že sezóna právě začíná a roste. Nesmí být jediný: svatební plánovač běží dál.
 
+## 1b. Cílová skupina (doplněno po FAIL 2026-10-01 01:09)
+- **Hledá:** hlavně deváťáci (14–15 let), méně rodiče („příprava na přijímačky“). **Používá:** deváťák. **Platí:** rodič (349 Kč, převod/QR).
+- **Web a reklama mluví k rodičům** („Pro rodiče deváťáků“). Žák, který přijde z vyhledávání, může stránku jedním klikem poslat rodičům (`?src=rodic`, měří se).
+- **Produkt (PDF) mluví k žákovi**, úvodní stránka sady a plán procvičování i k rodiči.
+- **Nezletilí:** formulář vyžaduje „Jsem rodič, nebo je mi aspoň 15 let“ (GDPR, souhlas v ČR od 15 let). Reklamy necílí na děti.
+- **Dopad na test:** proklik žáka bez rodiče nekoupí, proto sledujeme i `src=rodic` (žák poslal odkaz rodiči) jako signál zájmu.
+
 ## 2. Konkurence a proč koupí od nás
 - **Zdarma (silné):** CERMAT (všechna zadání od 2017, klíče, webová aplikace s tematickými sadami, ale bez postupu, „průvodce řešením“ jen u vybraných testů), Blesk Přijímačky (PDF + videa řešení celých testů), StatníPřijímačky.cz (testy online s vysvětlením), YouTube videořešení, Umíme to (online, denní limit).
 - **Mezera:** zdarma i placené materiály jsou řazené **po testech**, ne po tématech. Postup řešení je buď ve videu, nebo chybí (recenze Kosmas na Taktik: „chybí výsledky“). Tisknutelnou sadu na jedno téma s postupem u každé úlohy v pásmu 150–400 Kč jsme nenašli (Fler a Etsy: 0).

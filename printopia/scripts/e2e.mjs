@@ -43,12 +43,14 @@ try {
   check((await fetch(`${BASE}/og.png`)).ok, "náhled pro sdílení");
   check((await fetch(`${BASE}/neexistuje`)).status === 404, "404");
 
-  check((await post({ email: "spatny", consent: true, source: "ukazka" })).status === 400, "odmítne neplatný e-mail");
-  check((await post({ email: "a@b.cz", consent: false, source: "ukazka" })).status === 400, "odmítne bez souhlasu");
-  const r1 = await post({ email: "Rodic@Example.cz", consent: true, source: "ukazka", src: "sklik" });
+  check((await post({ email: "spatny", consent: true, adult: true, source: "ukazka" })).status === 400, "odmítne neplatný e-mail");
+  check((await post({ email: "a@b.cz", consent: false, adult: true, source: "ukazka" })).status === 400, "odmítne bez souhlasu");
+  check((await post({ email: "a@b.cz", consent: true, source: "ukazka" })).status === 400, "odmítne bez potvrzení rodič/15+");
+  check(home.includes("Jsem rodič, nebo je mi aspoň 15 let") && home.includes("Pošli tuhle stránku rodičům"), "formulář pro rodiče, žák může poslat odkaz");
+  const r1 = await post({ email: "Rodic@Example.cz", consent: true, adult: true, source: "ukazka", src: "sklik" });
   const j1 = await r1.json();
   check(r1.ok && j1.download === "/ukazka-zlomky.pdf", "lead z ukázky vrátí odkaz na PDF");
-  const r2 = await post({ email: "rodic@example.cz", consent: true, source: "koupit", src: "sklik" });
+  const r2 = await post({ email: "rodic@example.cz", consent: true, adult: true, source: "koupit", src: "sklik" });
   check(r2.ok, "lead z Koupit");
   const hp = await post({ email: "bot@example.cz", consent: true, source: "ukazka", website: "x" });
   check(hp.ok, "honeypot odpoví ok");

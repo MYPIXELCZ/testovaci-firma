@@ -4,6 +4,9 @@
     python3 printopia/marketing/sklik.py   → ověří délky textů a vypíše kampaň jako JSON
 
 Kampaň se zakládá přes API Sklik (api.sklik.cz/drak), až bude token a web online.
+
+Cílová skupina (FAILS.md 2026-10-01 01:09): hledají hlavně deváťáci, používají deváťáci, PLATÍ RODIČE.
+Inzeráty proto mluví k rodičům; žák, který klikne, může na webu stránku poslat rodičům.
 """
 import json
 
@@ -22,13 +25,15 @@ KEYWORDS = [
 NEGATIVE = ["maturita", "vš", "vysoká", "osmileté", "osmiletá", "5 třída", "7 třída", "angličtina", "čeština",
             "řešení 2025", "řešení 2024", "řešení 2026", "výsledky", "termín", "policejní", "zdravotnick"]
 
-HEADLINES = ["Přijímačky z matiky", "Úlohy podle témat s postupem", "Ukázka zdarma ke stažení",
-             "Zlomky, procenta, rovnice", "Sady k tisku na přijímačky"]
+HEADLINES = ["Pro rodiče deváťáků", "Přijímačky: matika po tématech", "Ukázka zdarma ke stažení",
+             "Úlohy k tisku s postupem", "Procvičí přesně slabá témata"]
 DESCRIPTIONS = [
-    "Sady úloh k tisku na přijímačky z matematiky. U každé úlohy postup řešení krok za krokem.",
-    "Procvičte přesně to téma, které nejde. Stáhněte si zdarma ukázku 8 úloh na zlomky.",
+    "Pro rodiče deváťáků: úlohy k tisku na přijímačky z matiky, u každé postup řešení.",
+    "Dítěti nejdou zlomky? Stáhněte si zdarma ukázku 8 úloh s postupem a vyzkoušejte to.",
 ]
 
+# Pojistka: inzerát musí oslovit plátce (rodiče), ne jen dítě.
+assert any("rodič" in t.lower() for t in HEADLINES[:1] + DESCRIPTIONS), "Inzeráty musí oslovit rodiče (plátce)"
 for h in HEADLINES:
     assert len(h) <= 30, (h, len(h))
 for d in DESCRIPTIONS:

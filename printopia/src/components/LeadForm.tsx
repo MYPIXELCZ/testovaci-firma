@@ -18,7 +18,7 @@ export default function LeadForm({ source, src, button, consentText, done }: Pro
     const res = await fetch("/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: f.get("email"), consent: f.get("consent") === "on", website: f.get("website"), source, src }),
+      body: JSON.stringify({ email: f.get("email"), consent: f.get("consent") === "on", adult: f.get("adult") === "on", website: f.get("website"), source, src }),
     }).catch(() => null);
     const data = res ? await res.json().catch(() => ({})) : {};
     if (!res?.ok) {
@@ -42,6 +42,10 @@ export default function LeadForm({ source, src, button, consentText, done }: Pro
     <form className="form" onSubmit={submit}>
       <input type="email" name="email" required placeholder="vas@email.cz" autoComplete="email" aria-label="E-mail" />
       <div className="hp" aria-hidden="true"><input type="text" name="website" tabIndex={-1} autoComplete="off" /></div>
+      <label className="check">
+        <input type="checkbox" name="adult" required />
+        <span>Jsem rodič, nebo je mi aspoň 15 let.</span>
+      </label>
       <label className="check">
         <input type="checkbox" name="consent" required />
         <span>{consentText} <Link href="/ochrana-osobnich-udaju" target="_blank">Jak s e-mailem naložíme</Link>.</span>

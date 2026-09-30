@@ -11,6 +11,10 @@ const TOPICS = [
   "Úhly a trojúhelníky", "Obvody a obsahy", "Pythagorova věta", "Tělesa: objem a povrch",
 ];
 
+// Hledají často sami žáci, platí ale rodiče (FAILS.md): žák může stránku poslat rodiči.
+const PARENT_SUBJECT = "Příprava na přijímačky z matiky";
+const PARENT_BODY = "Ahoj, našel/našla jsem sady úloh na přijímačky z matiky podle témat, s postupem řešení. Mrkneš? https://printopia.cz/?src=rodic";
+
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
 
 export default async function Home({ searchParams }: Props) {
@@ -33,6 +37,10 @@ export default async function Home({ searchParams }: Props) {
             <a href="#ukazka" className="btn">Stáhnout ukázku zdarma</a>
             <Link href={`/koupit${src ? `?src=${src}` : ""}`} className="btn btn-ghost">Koupit sadu za {PRICE} Kč</Link>
           </div>
+          <p className="small muted" style={{ marginTop: 18 }}>
+            Jsi deváťák a hledáš procvičování?{" "}
+            <a href={`mailto:?subject=${encodeURIComponent(PARENT_SUBJECT)}&body=${encodeURIComponent(PARENT_BODY)}`}>Pošli tuhle stránku rodičům</a>.
+          </p>
         </div>
       </section>
 
