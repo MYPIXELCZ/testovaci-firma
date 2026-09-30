@@ -7,7 +7,8 @@
 
 ## Pravidla (VŽDY)
 - **Nečekat na Ondřeje.** Jeho kroky shrnout jednou a stručně, pak hned pokračovat ve všem, co jimi není blokované. Nikdy nekončit práci jen proto, že něco čeká na něj.
-- **Nezastavovat se:** běží trvalá hodinová připomínka (Routine `trig_01JwSBqqYubWBAPLvW1ZK1Te`, každou hodinu v :25 do této session). Při každém spuštění: kontrola stavu, navázat na Ondřejovy kroky, jinak další neblokovaná práce. Vypnout jen na Ondřejův pokyn (update_trigger enabled=false).
+- **Kontrola každých 5 minut** (Ondřejův pokyn): na konci KAŽDÉHO probuzení naplánovat `send_later` za 5 min (zpráva „5min kontrola (Ano, beru)…“). Rutiny neumí pod 1 h, proto řetěz.
+- **Pojistka:** běží trvalá hodinová připomínka (Routine `trig_01JwSBqqYubWBAPLvW1ZK1Te`, každou hodinu v :25 do této session). Při každém spuštění: kontrola stavu, navázat na Ondřejovy kroky, jinak další neblokovaná práce. Vypnout jen na Ondřejův pokyn (update_trigger enabled=false).
 - **Víc práce Clauda ve prospěch nižších nákladů a méně práce Ondřeje.**
 - Stručně: krátké odpovědi, žádné dlouhé checklisty, minimum nadpisů.
 - Rizika hlásit hned, ne až potom.
