@@ -1,6 +1,7 @@
-import { PRODUCT, SALES_OPEN, TEST_PRICE, UNPAID_RETENTION_DAYS } from "@/lib/config";
+import { INDEXING, PRODUCT, SALES_OPEN, TEST_PRICE, UNPAID_RETENTION_DAYS } from "@/lib/config";
 import { notifyOwner, sendDelivery } from "@/lib/email";
 import { incomingPayments, type IncomingPayment } from "@/lib/fio";
+import { pingSearchEngines } from "@/lib/indexnow";
 import { deleteOrder, getOrder, listPending, markPaid, markPaymentAlerted, paymentSeen } from "@/lib/orders";
 import { getSecret } from "@/lib/secrets";
 
@@ -87,6 +88,11 @@ export async function GET(req: Request) {
       await deleteOrder(p);
       result.expired++;
     }
+  }
+
+  if (INDEXING) {
+    const msg = await pingSearchEngines().catch((e) => `indexnow chyba: ${e instanceof Error ? e.message : e}`);
+    if (msg !== "indexnow: beze změny") console.log("[cron]", msg);
   }
 
   if (result.paid.length || result.underpaid.length || result.orphans || result.expired) console.log("[cron]", JSON.stringify(result));
