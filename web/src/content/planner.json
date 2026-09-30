@@ -1,0 +1,532 @@
+{
+  "tasks": [
+    {
+      "phase": "12+ měsíců",
+      "task": "Ujasnit si představu: velikost svatby, styl, roční období",
+      "daysBefore": 390
+    },
+    {
+      "phase": "12+ měsíců",
+      "task": "Stanovit celkový rozpočet a domluvit, kdo co platí",
+      "daysBefore": 380
+    },
+    {
+      "phase": "12+ měsíců",
+      "task": "Sepsat první seznam hostů (hrubý odhad počtu)",
+      "daysBefore": 370
+    },
+    {
+      "phase": "12+ měsíců",
+      "task": "Vybrat termín a 2–3 náhradní",
+      "daysBefore": 365
+    },
+    {
+      "phase": "12+ měsíců",
+      "task": "Vybrat a rezervovat místo obřadu i hostiny",
+      "daysBefore": 350
+    },
+    {
+      "phase": "12+ měsíců",
+      "task": "Zjistit na matrice doklady, lhůty a poplatky pro váš termín a místo",
+      "daysBefore": 345
+    },
+    {
+      "phase": "12+ měsíců",
+      "task": "Domluvit oddávajícího (matrika, církev, obřadník)",
+      "daysBefore": 340
+    },
+    {
+      "phase": "12+ měsíců",
+      "task": "Vybrat a rezervovat fotografa",
+      "daysBefore": 330
+    },
+    {
+      "phase": "12+ měsíců",
+      "task": "Vybrat a rezervovat kameramana",
+      "daysBefore": 320
+    },
+    {
+      "phase": "9–12 měsíců",
+      "task": "Vybrat a požádat svědky",
+      "daysBefore": 300
+    },
+    {
+      "phase": "9–12 měsíců",
+      "task": "Rezervovat kapelu nebo DJ",
+      "daysBefore": 290
+    },
+    {
+      "phase": "9–12 měsíců",
+      "task": "Rezervovat catering (pokud není součástí místa)",
+      "daysBefore": 285
+    },
+    {
+      "phase": "9–12 měsíců",
+      "task": "Poslat „save the date“ hostům, kteří cestují zdaleka",
+      "daysBefore": 280
+    },
+    {
+      "phase": "9–12 měsíců",
+      "task": "Sjednotit styl svatby (barvy, výzdoba, nástěnka s inspirací)",
+      "daysBefore": 275
+    },
+    {
+      "phase": "6–9 měsíců",
+      "task": "Začít vybírat svatební šaty",
+      "daysBefore": 250
+    },
+    {
+      "phase": "6–9 měsíců",
+      "task": "Rezervovat floristku a výzdobu",
+      "daysBefore": 230
+    },
+    {
+      "phase": "6–9 měsíců",
+      "task": "Rezervovat kadeřnici a vizážistku",
+      "daysBefore": 220
+    },
+    {
+      "phase": "6–9 měsíců",
+      "task": "Zajistit ubytování pro hosty",
+      "daysBefore": 210
+    },
+    {
+      "phase": "6–9 měsíců",
+      "task": "Naplánovat svatební cestu, zkontrolovat platnost pasů",
+      "daysBefore": 200
+    },
+    {
+      "phase": "6–9 měsíců",
+      "task": "Vybrat oblek pro ženicha",
+      "daysBefore": 190
+    },
+    {
+      "phase": "6–9 měsíců",
+      "task": "Rezervovat dopravu (svatební auto, autobus pro hosty)",
+      "daysBefore": 185
+    },
+    {
+      "phase": "3–6 měsíců",
+      "task": "Objednat snubní prsteny",
+      "daysBefore": 160
+    },
+    {
+      "phase": "3–6 měsíců",
+      "task": "Objednat svatební oznámení a pozvánky na hostinu",
+      "daysBefore": 150
+    },
+    {
+      "phase": "3–6 měsíců",
+      "task": "Objednat svatební dort a koláčky",
+      "daysBefore": 130
+    },
+    {
+      "phase": "3–6 měsíců",
+      "task": "Ochutnávka menu a výběr jídla",
+      "daysBefore": 110
+    },
+    {
+      "phase": "3–6 měsíců",
+      "task": "Rozeslat oznámení a pozvánky",
+      "daysBefore": 100
+    },
+    {
+      "phase": "3–6 měsíců",
+      "task": "Domluvit program: proslovy, hry, první tanec",
+      "daysBefore": 95
+    },
+    {
+      "phase": "3–6 měsíců",
+      "task": "Zkouška účesu a líčení",
+      "daysBefore": 90
+    },
+    {
+      "phase": "1–3 měsíce",
+      "task": "Podat na matrice dotazník k uzavření manželství s doklady",
+      "daysBefore": 75
+    },
+    {
+      "phase": "1–3 měsíce",
+      "task": "Rozhodnout o příjmení po svatbě (uvádí se v dotazníku)",
+      "daysBefore": 75
+    },
+    {
+      "phase": "1–3 měsíce",
+      "task": "Nacvičit první tanec",
+      "daysBefore": 60
+    },
+    {
+      "phase": "1–3 měsíce",
+      "task": "Koupit doplňky: boty, závoj, kravata, podvazek",
+      "daysBefore": 50
+    },
+    {
+      "phase": "1–3 měsíce",
+      "task": "Doplatit zálohy podle smluv s dodavateli",
+      "daysBefore": 45
+    },
+    {
+      "phase": "1–3 měsíce",
+      "task": "Zkouška šatů a úpravy",
+      "daysBefore": 40
+    },
+    {
+      "phase": "1–3 měsíce",
+      "task": "Připomenout se hostům, kteří neodpověděli",
+      "daysBefore": 35
+    },
+    {
+      "phase": "1–3 měsíce",
+      "task": "Sepsat harmonogram dne D a poslat ho dodavatelům",
+      "daysBefore": 35
+    },
+    {
+      "phase": "1–3 měsíce",
+      "task": "Nahlásit konečný počet hostů místu a cateringu",
+      "daysBefore": 30
+    },
+    {
+      "phase": "1–3 měsíce",
+      "task": "Připravit zasedací pořádek",
+      "daysBefore": 30
+    },
+    {
+      "phase": "2–4 týdny",
+      "task": "Vyzvednout snubní prsteny a zkontrolovat velikost",
+      "daysBefore": 21
+    },
+    {
+      "phase": "2–4 týdny",
+      "task": "Připravit jmenovky, menu a tabuli se zasedacím pořádkem",
+      "daysBefore": 21
+    },
+    {
+      "phase": "2–4 týdny",
+      "task": "Potvrdit časy se všemi dodavateli",
+      "daysBefore": 14
+    },
+    {
+      "phase": "2–4 týdny",
+      "task": "Připravit obálky s doplatky pro dodavatele",
+      "daysBefore": 10
+    },
+    {
+      "phase": "2–4 týdny",
+      "task": "Rozdělit úkoly na den D svědkům a pomocníkům",
+      "daysBefore": 10
+    },
+    {
+      "phase": "Poslední týden",
+      "task": "Poslední zkouška šatů",
+      "daysBefore": 7
+    },
+    {
+      "phase": "Poslední týden",
+      "task": "Sbalit nouzovou tašku (jehla a nit, náplasti, léky, deodorant)",
+      "daysBefore": 4
+    },
+    {
+      "phase": "Poslední týden",
+      "task": "Odvézt výzdobu a věci na místo konání",
+      "daysBefore": 2
+    },
+    {
+      "phase": "Poslední týden",
+      "task": "Odpočinout si a jít brzy spát",
+      "daysBefore": 1
+    },
+    {
+      "phase": "Den D",
+      "task": "Občanské průkazy a prsteny má u sebe svědek",
+      "daysBefore": 0
+    },
+    {
+      "phase": "Den D",
+      "task": "Najíst se a užít si to",
+      "daysBefore": 0
+    },
+    {
+      "phase": "Po svatbě",
+      "task": "Vrátit půjčené věci (oblek, dekorace)",
+      "daysBefore": -7
+    },
+    {
+      "phase": "Po svatbě",
+      "task": "Vyzvednout oddací list, pokud jste ho nedostali při obřadu",
+      "daysBefore": -7
+    },
+    {
+      "phase": "Po svatbě",
+      "task": "Vyřídit nové doklady po změně příjmení (lhůtu ověřte na úřadě)",
+      "daysBefore": -7
+    },
+    {
+      "phase": "Po svatbě",
+      "task": "Nahlásit změnu jména bance, pojišťovně a zaměstnavateli",
+      "daysBefore": -14
+    },
+    {
+      "phase": "Po svatbě",
+      "task": "Poděkovat hostům a dodavatelům",
+      "daysBefore": -14
+    },
+    {
+      "phase": "Po svatbě",
+      "task": "Vybrat fotky a objednat album",
+      "daysBefore": -60
+    }
+  ],
+  "categories": [
+    {
+      "name": "Místo a hostina",
+      "share": 0.4
+    },
+    {
+      "name": "Foto a video",
+      "share": 0.12
+    },
+    {
+      "name": "Oblečení a doplňky",
+      "share": 0.09
+    },
+    {
+      "name": "Prsteny",
+      "share": 0.07
+    },
+    {
+      "name": "Hudba a zábava",
+      "share": 0.07
+    },
+    {
+      "name": "Květiny a výzdoba",
+      "share": 0.07
+    },
+    {
+      "name": "Dort a sladkosti",
+      "share": 0.03
+    },
+    {
+      "name": "Vlasy a líčení",
+      "share": 0.02
+    },
+    {
+      "name": "Oznámení a tiskoviny",
+      "share": 0.02
+    },
+    {
+      "name": "Doprava",
+      "share": 0.02
+    },
+    {
+      "name": "Obřad a poplatky",
+      "share": 0.02
+    },
+    {
+      "name": "Dárky",
+      "share": 0.02
+    },
+    {
+      "name": "Rezerva",
+      "share": 0.05
+    },
+    {
+      "name": "Svatební cesta",
+      "share": 0.0
+    }
+  ],
+  "budgetItems": [
+    {
+      "category": "Místo a hostina",
+      "item": "Pronájem prostor"
+    },
+    {
+      "category": "Místo a hostina",
+      "item": "Svatební oběd"
+    },
+    {
+      "category": "Místo a hostina",
+      "item": "Večerní raut"
+    },
+    {
+      "category": "Místo a hostina",
+      "item": "Nápoje"
+    },
+    {
+      "category": "Foto a video",
+      "item": "Fotograf"
+    },
+    {
+      "category": "Foto a video",
+      "item": "Kameraman"
+    },
+    {
+      "category": "Oblečení a doplňky",
+      "item": "Svatební šaty"
+    },
+    {
+      "category": "Oblečení a doplňky",
+      "item": "Boty a doplňky nevěsty"
+    },
+    {
+      "category": "Oblečení a doplňky",
+      "item": "Oblek ženicha"
+    },
+    {
+      "category": "Oblečení a doplňky",
+      "item": "Boty a doplňky ženicha"
+    },
+    {
+      "category": "Prsteny",
+      "item": "Snubní prsteny"
+    },
+    {
+      "category": "Hudba a zábava",
+      "item": "Kapela / DJ"
+    },
+    {
+      "category": "Hudba a zábava",
+      "item": "Hudba na obřad"
+    },
+    {
+      "category": "Květiny a výzdoba",
+      "item": "Kytice nevěsty"
+    },
+    {
+      "category": "Květiny a výzdoba",
+      "item": "Korsáže a kytičky pro svědky"
+    },
+    {
+      "category": "Květiny a výzdoba",
+      "item": "Výzdoba obřadu"
+    },
+    {
+      "category": "Květiny a výzdoba",
+      "item": "Výzdoba stolů"
+    },
+    {
+      "category": "Dort a sladkosti",
+      "item": "Svatební dort"
+    },
+    {
+      "category": "Dort a sladkosti",
+      "item": "Svatební koláčky"
+    },
+    {
+      "category": "Vlasy a líčení",
+      "item": "Kadeřnice a vizážistka"
+    },
+    {
+      "category": "Oznámení a tiskoviny",
+      "item": "Oznámení a pozvánky"
+    },
+    {
+      "category": "Oznámení a tiskoviny",
+      "item": "Jmenovky, menu, tabule"
+    },
+    {
+      "category": "Doprava",
+      "item": "Svatební auto"
+    },
+    {
+      "category": "Doprava",
+      "item": "Doprava hostů"
+    },
+    {
+      "category": "Obřad a poplatky",
+      "item": "Poplatky matrice a oddávajícímu"
+    },
+    {
+      "category": "Dárky",
+      "item": "Výslužka pro hosty"
+    },
+    {
+      "category": "Dárky",
+      "item": "Dárky pro rodiče a svědky"
+    },
+    {
+      "category": "Rezerva",
+      "item": "Nečekané výdaje"
+    },
+    {
+      "category": "Svatební cesta",
+      "item": "Letenky a ubytování"
+    }
+  ],
+  "dayPlan": [
+    {
+      "time": "08:00",
+      "what": "Snídaně a příprava nevěsty (účes, líčení)",
+      "who": "Kadeřnice, vizážistka"
+    },
+    {
+      "time": "10:00",
+      "what": "Fotograf fotí přípravy",
+      "who": "Fotograf"
+    },
+    {
+      "time": "11:00",
+      "what": "Ženich přijíždí pro nevěstu",
+      "who": "Ženich, svědci"
+    },
+    {
+      "time": "11:30",
+      "what": "Odjezd na obřad",
+      "who": "Řidič"
+    },
+    {
+      "time": "12:00",
+      "what": "Svatební obřad",
+      "who": "Oddávající"
+    },
+    {
+      "time": "12:30",
+      "what": "Gratulace a skupinové focení",
+      "who": "Fotograf, svědci"
+    },
+    {
+      "time": "13:30",
+      "what": "Svatební oběd (rozbití talíře, krmení polévkou)",
+      "who": "Místo konání"
+    },
+    {
+      "time": "15:00",
+      "what": "Krájení dortu",
+      "who": ""
+    },
+    {
+      "time": "15:30",
+      "what": "Focení novomanželů",
+      "who": "Fotograf"
+    },
+    {
+      "time": "17:00",
+      "what": "Zábava a hry",
+      "who": "Svědci"
+    },
+    {
+      "time": "19:00",
+      "what": "První tanec",
+      "who": "Kapela / DJ"
+    },
+    {
+      "time": "20:00",
+      "what": "Večerní raut",
+      "who": "Catering"
+    },
+    {
+      "time": "22:00",
+      "what": "Házení kytice",
+      "who": ""
+    },
+    {
+      "time": "00:00",
+      "what": "Půlnoční překvapení, čepení nevěsty",
+      "who": ""
+    },
+    {
+      "time": "02:00",
+      "what": "Konec oslavy",
+      "who": ""
+    }
+  ]
+}

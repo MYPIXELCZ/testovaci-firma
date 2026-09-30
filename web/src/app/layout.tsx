@@ -40,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </p>
             </div>
             <ul>
+              <li><Link href="/svatebni-checklist">Svatební checklist</Link></li>
               <li><Link href="/obchodni-podminky">Obchodní podmínky</Link></li>
               <li><Link href="/ochrana-osobnich-udaju">Ochrana osobních údajů</Link></li>
               <li><a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a></li>

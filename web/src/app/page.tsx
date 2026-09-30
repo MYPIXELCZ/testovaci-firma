@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ARTICLES } from "@/content/articles";
 import { PRODUCT } from "@/lib/config";
 import prehled from "../../public/img/prehled.png";
 import ukoly from "../../public/img/ukoly.png";
@@ -119,6 +120,22 @@ export default function Home() {
               <li>14 dní na vrácení peněz bez udání důvodu</li>
             </ul>
             <div><Link href="/objednat" className="btn">Koupit plánovač</Link></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="clanky">
+        <div className="wrap">
+          <div className="section-head">
+            <h2>Než začnete plánovat</h2>
+            <p className="muted">Zdarma: přehledy, které vám ušetří spoustu hledání.</p>
+          </div>
+          <div className="grid-3 article-list">
+            {ARTICLES.map((a) => (
+              <Link href={a.href} key={a.href}>
+                <div className="card"><h3>{a.title}</h3><p>{a.description}</p></div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

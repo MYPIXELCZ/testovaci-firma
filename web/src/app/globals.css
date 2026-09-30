@@ -183,3 +183,21 @@ details p { margin: 12px 0 0; color: var(--muted); }
   .header, .footer, .no-print { display: none; }
   body { background: #fff; }
 }
+
+/* Články */
+.article { max-width: 720px; }
+.article .lead { font-size: 1.15rem; color: var(--muted); }
+.article h2 { font-size: 1.6rem; margin-top: 1.8em; }
+.article ul, .article ol { padding-left: 1.3em; }
+.article li { margin-bottom: 0.4em; }
+.tip { background: var(--sage-light); border-radius: 12px; padding: 18px 20px; margin: 24px 0; }
+.tip p:last-child { margin-bottom: 0; }
+.data-table { width: 100%; border-collapse: collapse; margin: 16px 0 8px; font-size: 0.95rem; }
+.data-table th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 1.5px solid var(--ink); padding: 8px 8px 8px 0; }
+.data-table td { border-bottom: 1px solid var(--line); padding: 9px 8px 9px 0; vertical-align: top; }
+.data-table .num { text-align: right; white-space: nowrap; }
+.cta-box { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 32px; margin: 48px 0 0; }
+.cta-box h2 { margin-top: 0; font-size: 1.5rem; }
+.article-list { display: grid; gap: 16px; }
+.article-list a { text-decoration: none; color: inherit; }
+.article-list .card:hover { border-color: var(--sage); }

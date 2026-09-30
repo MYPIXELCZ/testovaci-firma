@@ -4,6 +4,7 @@
     python3 product/build_planner.py          # prodejní verze (vzorové řádky označené „příklad“)
     python3 product/build_planner.py --demo   # vyplněná ukázka pro screenshoty na web
 """
+import json
 import sys
 from datetime import date, time, timedelta
 from pathlib import Path
@@ -689,6 +690,21 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     wb.save(OUT)
     print(OUT)
+    export_content()
+
+
+def export_content():
+    """Obsah plánovače pro web (články), aby web a produkt říkaly totéž."""
+    out = ROOT / "web" / "src" / "content" / "planner.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    data = {
+        "tasks": [{"phase": p, "task": t, "daysBefore": d} for p, t, d in TASKS],
+        "categories": [{"name": n, "share": s} for n, s in CATEGORIES],
+        "budgetItems": [{"category": c, "item": i} for c, i, *_ in BUDGET],
+        "dayPlan": [{"time": t.strftime("%H:%M"), "what": w, "who": who} for t, w, who in DAY_PLAN],
+    }
+    out.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(out)
 
 
 if __name__ == "__main__":
