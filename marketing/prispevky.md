@@ -3,7 +3,7 @@
 Zásady: nejdřív užitek, prodej až potom. Vždy otevřeně za značku Ano, beru, nikdy nepředstírat nevěstu ani recenzi. Před vložením projít pravidla skupiny (reklama často jen v určený den nebo v komentáři).
 
 ## 1. Checklist (bez prodeje)
-Ahoj, pracujeme na svatebním plánovači a sepsali jsme k tomu kompletní checklist: 55 úkolů od zásnub po svatební cestu, seřazených podle toho, kolik času do svatby zbývá. Je zdarma, bez registrace:
+Ahoj, pracujeme na svatebním plánovači a sepsali jsme k tomu kompletní checklist: 55 úkolů od zásnub po svatební cestu, seřazených podle toho, kolik času do svatby zbývá. Je zdarma, bez registrace, a dá se stáhnout i jako PDF k tisku (se zaškrtávacími políčky a tabulkou kontaktů):
 👉 https://anoberu.cz/svatebni-checklist
 
 Na co se podle vás zapomíná nejčastěji? Rádi ho doplníme.

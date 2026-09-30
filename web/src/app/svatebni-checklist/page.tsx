@@ -22,6 +22,12 @@ export default function ChecklistPage() {
           na které se při přípravách nejčastěji myslí, i těch, na které se zapomíná.
         </p>
 
+        <p>
+          <a className="btn btn-ghost btn-small" href="/ke-stazeni/svatebni-checklist-anoberu.pdf" download>
+            Stáhnout checklist k tisku (PDF, zdarma)
+          </a>
+        </p>
+
         <div className="tip">
           <p>
             <strong>Máte na přípravu méně než rok?</strong> Nic se neděje. Nejdřív zajistěte místo, oddávajícího a fotografa,
