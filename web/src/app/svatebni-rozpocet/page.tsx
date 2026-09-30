@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { articleMetadata } from "@/lib/seo";
 import ArticleCta from "@/components/ArticleCta";
 import planner from "@/content/planner.json";
@@ -41,6 +42,10 @@ export default function BudgetPage() {
           </tbody>
         </table>
         <p className="muted small">Svatební cestu počítejte zvlášť, do rozpočtu svatby ji většina párů nezahrnuje.</p>
+        <p>
+          Pro vlastní částku a počet hostů použijte{" "}
+          <Link href="/kalkulacka-svatebniho-rozpoctu">kalkulačku svatebního rozpočtu</Link>.
+        </p>
 
         <h2>Pět pravidel, díky kterým rozpočet vydrží</h2>
         <ol>

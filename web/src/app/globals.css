@@ -201,3 +201,5 @@ details p { margin: 12px 0 0; color: var(--muted); }
 .article-list { display: grid; gap: 16px; }
 .article-list a { text-decoration: none; color: inherit; }
 .article-list .card:hover { border-color: var(--sage); }
+.calc { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 24px; margin: 24px 0; }
+.calc-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 8px; }

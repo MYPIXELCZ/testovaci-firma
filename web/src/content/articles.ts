@@ -5,6 +5,11 @@ export const ARTICLES = [
     description: "Kompletní seznam úkolů od zásnub po svatební cestu, seřazený podle toho, kolik času do svatby zbývá.",
   },
   {
+    href: "/kalkulacka-svatebniho-rozpoctu",
+    title: "Kalkulačka svatebního rozpočtu",
+    description: "Zadejte částku a počet hostů. Kalkulačka rozpočet rozdělí do kategorií a spočítá cenu hostiny na hosta.",
+  },
+  {
     href: "/svatebni-rozpocet",
     title: "Svatební rozpočet: jak ho rozdělit a nepřetáhnout",
     description: "Orientační rozdělení rozpočtu do kategorií, příklad pro 250 000 Kč a pět pravidel, díky kterým se neutratíte.",
