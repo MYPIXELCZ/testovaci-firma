@@ -213,6 +213,8 @@ try {
 
   // 11) Nastavení: uložení tokenu Fio přes stránku (lokálně povoleno, na produkci jen *.vercel.app)
   await page.goto(`${base}/nastaveni`);
+  const settings = await page.textContent("main");
+  check(settings.includes("2 × 698") && settings.includes("stejny@example.cz"), "nastavení ukazuje přehled prodejů a poslední objednávky");
   await page.locator('form').first().locator('input[name="token"]').fill("kratky");
   await page.locator('form').first().locator('button').click();
   await page.waitForSelector("text=nevypadá jako token");
