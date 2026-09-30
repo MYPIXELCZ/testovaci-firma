@@ -34,4 +34,9 @@ export const ARTICLES = [
     title: "Svědek na svatbě: co ho čeká",
     description: "Úkoly svědka a svědkyně před svatbou, při obřadu i na oslavě a jak se na ně připravit.",
   },
+  {
+    href: "/podekovani-za-svatebni-dar",
+    title: "Poděkování za svatební dar: vzory textů",
+    description: "Pět vzorů poděkování za dar i za pomoc se svatbou, kdy je poslat a jak na nikoho nezapomenout.",
+  },
 ] as const;
