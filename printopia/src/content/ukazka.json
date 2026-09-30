@@ -1,0 +1,88 @@
+{
+  "title": "Zlomky",
+  "tasks": [
+    {
+      "topic": "Sčítání a odčítání",
+      "text": "Vypočtěte a výsledek zapište v základním tvaru: 2/3 + 3/4 − 5/6",
+      "answer": "7/12",
+      "steps": [
+        "Společný jmenovatel čísel 3, 4 a 6 je 12.",
+        "2/3 = 8/12, 3/4 = 9/12, 5/6 = 10/12.",
+        "8/12 + 9/12 − 10/12 = 7/12.",
+        "7 a 12 nemají společného dělitele, 7/12 je v základním tvaru."
+      ]
+    },
+    {
+      "topic": "Dělení zlomkem",
+      "text": "Vypočtěte: (3/5 − 1/2) : 3/10",
+      "answer": "1/3",
+      "steps": [
+        "Nejdřív závorka: 3/5 − 1/2 = 6/10 − 5/10 = 1/10.",
+        "Dělit zlomkem znamená násobit převrácenou hodnotou: 1/10 : 3/10 = 1/10 · 10/3.",
+        "1/10 · 10/3 = 10/30 = 1/3."
+      ]
+    },
+    {
+      "topic": "Složený zlomek",
+      "text": "Vypočtěte složený zlomek: (1 + 1/2) / (2 − 1/4)",
+      "answer": "6/7",
+      "steps": [
+        "Čitatel: 1 + 1/2 = 3/2.",
+        "Jmenovatel: 2 − 1/4 = 8/4 − 1/4 = 7/4.",
+        "3/2 : 7/4 = 3/2 · 4/7 = 12/14 = 6/7."
+      ]
+    },
+    {
+      "topic": "Zlomky a desetinná čísla",
+      "text": "Vypočtěte: 1 1/2 · 0,4 + 2/5",
+      "answer": "1",
+      "steps": [
+        "Převedeme na zlomky: 1 1/2 = 3/2 a 0,4 = 4/10 = 2/5.",
+        "3/2 · 2/5 = 6/10 = 3/5.",
+        "3/5 + 2/5 = 5/5 = 1."
+      ]
+    },
+    {
+      "topic": "Porovnávání",
+      "text": "Seřaďte od nejmenšího: 5/8, 2/3, 7/12",
+      "answer": "7/12 < 5/8 < 2/3",
+      "steps": [
+        "Společný jmenovatel čísel 8, 3 a 12 je 24.",
+        "5/8 = 15/24, 2/3 = 16/24, 7/12 = 14/24.",
+        "14/24 < 15/24 < 16/24, tedy 7/12 < 5/8 < 2/3."
+      ]
+    },
+    {
+      "topic": "Slovní úloha",
+      "text": "Petr přečetl první den 1/4 knihy a druhý den 1/3 zbytku. Zbývá mu přečíst 120 stran. Kolik stran má kniha?",
+      "answer": "240 stran",
+      "steps": [
+        "Po prvním dni zbývají 3/4 knihy.",
+        "Druhý den přečte 1/3 ze zbytku: 1/3 · 3/4 = 1/4 knihy.",
+        "Zbývá 3/4 − 1/4 = 1/2 knihy, což je 120 stran.",
+        "Celá kniha: 120 · 2 = 240 stran.",
+        "Zkouška: 240/4 = 60, zbytek 180, 180/3 = 60, zbývá 240 − 60 − 60 = 120. ✓"
+      ]
+    },
+    {
+      "topic": "Slovní úloha",
+      "text": "První čerpadlo vyčerpá nádrž za 6 hodin, druhé za 3 hodiny. Za kolik hodin ji vyčerpají, když pracují současně?",
+      "answer": "2 hodiny",
+      "steps": [
+        "První čerpadlo vyčerpá za hodinu 1/6 nádrže, druhé 1/3 nádrže.",
+        "Společně za hodinu: 1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2 nádrže.",
+        "Celou nádrž tedy vyčerpají za 2 hodiny."
+      ]
+    },
+    {
+      "topic": "Rovnice se zlomky",
+      "text": "Řešte rovnici: 5/6 · x − 1/3 = 1/2",
+      "answer": "x = 1",
+      "steps": [
+        "Přičteme 1/3 k oběma stranám: 5/6 · x = 1/2 + 1/3 = 3/6 + 2/6 = 5/6.",
+        "Vydělíme 5/6: x = 5/6 : 5/6 = 1.",
+        "Zkouška: 5/6 · 1 − 1/3 = 5/6 − 2/6 = 3/6 = 1/2. ✓"
+      ]
+    }
+  ]
+}
