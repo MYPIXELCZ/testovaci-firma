@@ -32,6 +32,18 @@ export async function GET(req: Request) {
     // Před spuštěním hlásí připravenost do logu (bez obsahu tajemství). Testovací objednávky se párují i tak.
     const [fio, resend] = await Promise.all([getSecret("FIO_TOKEN"), getSecret("RESEND_API_KEY")]);
     console.log(`[cron] prodej vypnutý; fio=${Boolean(fio)} resend=${Boolean(resend)}`);
+    // Jednorázový zkušební e-mail firmě: ověří Resend a doménu bez testovacího nákupu.
+    if (resend && !(await storage.exists("alerts/email-test-ok"))) {
+      try {
+        await notifyOwner("E-maily fungují", [
+          "Tohle je zkušební zpráva z anoberu.cz. Pokud ji čtete, odesílání přes Resend z domény anoberu.cz funguje.",
+        ]);
+        await storage.write("alerts/email-test-ok", new Date().toISOString(), { overwrite: true });
+        console.log("[cron] zkušební e-mail odeslán");
+      } catch (e) {
+        console.error("[cron] zkušební e-mail selhal:", e instanceof Error ? e.message : e);
+      }
+    }
   }
 
   const pending = await listPending();
