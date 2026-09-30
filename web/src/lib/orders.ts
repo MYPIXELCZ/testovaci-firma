@@ -16,6 +16,7 @@ export type Order = {
   paidAt?: string;
   paymentId?: string;
   consents: { terms: string; marketing: boolean };
+  test?: boolean;
 };
 
 // Úložiště (produkce: privátní Vercel Blob):
@@ -45,17 +46,24 @@ async function newVs(): Promise<string> {
   throw new Error("Nepodařilo se vygenerovat variabilní symbol");
 }
 
-export async function createOrder(input: { email: string; name: string; marketing: boolean }): Promise<Order> {
+export async function createOrder(input: {
+  email: string;
+  name: string;
+  marketing: boolean;
+  test?: boolean;
+  amount?: number;
+}): Promise<Order> {
   const now = new Date().toISOString();
   const order: Order = {
     id: randomBytes(16).toString("base64url"),
     vs: await newVs(),
     email: input.email,
     name: input.name,
-    amount: PRODUCT.price,
+    amount: input.amount ?? PRODUCT.price,
     status: "pending",
     createdAt: now,
     consents: { terms: now, marketing: input.marketing },
+    ...(input.test ? { test: true } : {}),
   };
   await save(order);
   await storage.write(pendingPath(order), order.id, { overwrite: true });

@@ -4,6 +4,10 @@ export const SITE_URL = process.env.SITE_URL ?? "https://anoberu.cz";
 export const SALES_OPEN = process.env.SALES_OPEN === "1";
 export const INDEXING = process.env.INDEXING === "1";
 
+/** Objednávky přes chráněné *.vercel.app (jen tým) jsou testovací: za 1 Kč a i při vypnutém prodeji. */
+export const TEST_PRICE = 1;
+export const isInternalHost = (host: string | null) => (host ?? "").endsWith(".vercel.app");
+
 export const PRODUCT = {
   name: "Svatební plánovač Ano, beru",
   price: 349,

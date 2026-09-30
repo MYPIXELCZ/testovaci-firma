@@ -31,10 +31,11 @@
 
 ## Stav práce
 - Hotovo: brand (`brand/`), plánovač v1.0 (`product/dist/`, ověřeno přepočtem: 0 chyb ve vzorcích).
-- Web (`web/`, Next.js 16): landing, objednávka, QR platba (SPAYD), cron párování Fio (`/api/cron/fio`, každých 5 min), doručovací e-mail (Resend), stažení, doklad, VOP a GDPR (koncepty, čekají na Ondřejovo schválení). Objednávky jsou v privátním Vercel Blob.
+- Web (`web/`, Next.js 16): landing, objednávka, QR platba (SPAYD), cron párování Fio (`/api/cron/fio`, každých 5 min), doručovací e-mail (Resend), stažení, doklad, VOP a GDPR (schváleny Ondřejem 2026-09-30). Objednávky jsou v privátním Vercel Blob.
 - SEO články: /svatebni-checklist, /svatebni-rozpocet, /harmonogram-svatebniho-dne (data z `web/src/content/planner.json`, generuje `build_planner.py`). Sitemap + robots.
 - Test: `cd web && npm run test:e2e` (celý nákup proti falešnému Fio a Resend, lokálně ukládá do souborů).
 - Google Tabulky: všechny použité funkce jsou podporované, reálně neotestováno (Sheets konektor chybí), ověřit při spuštění.
+- Testovací režim: objednávka přes *.vercel.app (chráněno Vercel Authentication) = 1 Kč, projde i s vypnutým prodejem, doklad označen jako testovací. Cron páruje vždy.
 - Obchodní rozhodnutí: cena 349 Kč, bez vzdání se práva na odstoupení (14 dní na vrácení peněz), platba jen převodem/QR.
 - Vercel: projekt `anoberu` (prj_03AAVPn5Unj5aZgXeVvZ3VkGYdes) v týmu mypixelcz (team_fNHd0fCTFAA6MuEnT4BlEeWu), root `web`, funkce fra1, Vercel Authentication na *.vercel.app. Konektor má plný přístup k projektu (po rozšíření autorizace). Blob `anoberu-orders` (privátní, fra1, připojený). Nepoužitý prázdný store `anoberu-objednavky` (store_PzJcBM5ask99PXx1) smazat. Env: BLOB_READ_WRITE_TOKEN, CRON_SECRET, SITE_URL. Diagnostika: /api/health (na anoberu.cz jen ok/nok). web_fetch_vercel_url na *.vercel.app končí na SSO; automation bypass zamítnut bezpečnostním pravidlem, neobcházet. Tajemství (FIO_TOKEN, RESEND_API_KEY) buď env, nebo privátní úložiště přes https://anoberu-mypixelcz.vercel.app/nastaveni (jen pro přihlášené do Vercelu). Build se přeskočí, když se nezměnil `web/`.
 - FIO_TOKEN uložen přes /nastaveni a ověřen u banky (2026-09-30). RESEND_API_KEY uložen (jen odesílání). Doménu anoberu.cz v Resendu (EU) založil Ondřej; DNS záznamy zadává na WEDOSu.

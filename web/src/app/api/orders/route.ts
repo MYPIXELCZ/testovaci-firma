@@ -1,12 +1,13 @@
 import { after } from "next/server";
 import { sendPaymentInstructions } from "@/lib/email";
-import { SALES_OPEN } from "@/lib/config";
+import { SALES_OPEN, TEST_PRICE, isInternalHost } from "@/lib/config";
 import { createOrder } from "@/lib/orders";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export async function POST(req: Request) {
-  if (!SALES_OPEN) return Response.json({ error: "Prodej jsme ještě nespustili." }, { status: 403 });
+  const test = isInternalHost(req.headers.get("host"));
+  if (!SALES_OPEN && !test) return Response.json({ error: "Prodej jsme ještě nespustili." }, { status: 403 });
   const body = await req.json().catch(() => null);
   if (!body) return Response.json({ error: "Neplatný požadavek." }, { status: 400 });
 
@@ -17,7 +18,12 @@ export async function POST(req: Request) {
   if (!name) return Response.json({ error: "Vyplňte prosím jméno." }, { status: 400 });
   if (body.terms !== true) return Response.json({ error: "Bez souhlasu s obchodními podmínkami to nepůjde." }, { status: 400 });
 
-  const order = await createOrder({ email, name, marketing: body.marketing === true });
+  const order = await createOrder({
+    email,
+    name,
+    marketing: body.marketing === true,
+    ...(test ? { test: true, amount: TEST_PRICE } : {}),
+  });
   after(() => sendPaymentInstructions(order).catch((e) => console.error("[orders] e-mail s platbou selhal", order.vs, e)));
   return Response.json({ id: order.id });
 }

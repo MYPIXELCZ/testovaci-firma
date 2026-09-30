@@ -14,10 +14,9 @@ export async function GET(req: Request) {
   }
 
   if (!SALES_OPEN) {
-    // Před spuštěním jen hlásí připravenost do logu (bez obsahu tajemství).
+    // Před spuštěním hlásí připravenost do logu (bez obsahu tajemství). Testovací objednávky se párují i tak.
     const [fio, resend] = await Promise.all([getSecret("FIO_TOKEN"), getSecret("RESEND_API_KEY")]);
     console.log(`[cron] prodej vypnutý; fio=${Boolean(fio)} resend=${Boolean(resend)}`);
-    return Response.json({ skipped: "prodej není spuštěný" });
   }
 
   const pending = await listPending();

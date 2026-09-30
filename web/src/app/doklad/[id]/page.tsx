@@ -26,7 +26,7 @@ export default async function ReceiptPage(props: PageProps<"/doklad/[id]">) {
             <tr><td>Způsob úhrady</td><td>bankovní převod</td></tr>
           </tbody>
         </table>
-        <p className="muted small" style={{ marginTop: 16 }}>{COMPANY.vat}</p>
+        <p className="muted small" style={{ marginTop: 16 }}>{COMPANY.vat}{order.test ? " Testovací objednávka." : ""}</p>
         <PrintButton />
       </div>
     </section>
