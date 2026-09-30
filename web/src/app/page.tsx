@@ -20,6 +20,8 @@ const SHEETS = [
 const FAQ = [
   ["Funguje to v Google Tabulkách?",
     "Ano. Soubor nahrajete na Disk Google a otevřete v Tabulkách. Pak ho můžete sdílet s partnerem a plánovat spolu, každý ze svého telefonu nebo počítače."],
+  ["Jak ho dostanu do Google Tabulek?",
+    "Na Disku Google zvolte Nový → Nahrát soubor, pak na soubor pravým tlačítkem → Otevřít v aplikaci → Tabulky Google. Trvá to minutu a návod dostanete i v e-mailu."],
   ["A v Excelu?", "Ano, v Excelu 2019, 2021 i Microsoft 365. Na Macu doporučujeme Excel nebo Google Tabulky, v aplikaci Numbers nefungují všechny funkce."],
   ["Jak rychle plánovač dostanu?",
     "Platby párujeme automaticky každých pár minut. Když zaplatíte okamžitou platbou, přijde vám e-mail s plánovačem obvykle do 10 minut. U běžného převodu nejpozději další pracovní den."],

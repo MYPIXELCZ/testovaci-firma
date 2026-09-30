@@ -68,6 +68,8 @@ export async function sendDelivery(o: Order) {
 Tam ho můžete sdílet s partnerem a plánovat spolu.</p>
 ${button(`${SITE_URL}/stahnout/${o.id}`, "Stáhnout plánovač")}
 <p>Odkaz funguje i později, stačí si tento e-mail nechat.</p>
+<p style="font-size:14px;line-height:1.6"><strong>Google Tabulky:</strong> na <a href="https://drive.google.com" style="color:#56654A">Disku Google</a> klikněte na Nový → Nahrát soubor,
+pak na nahraný soubor pravým tlačítkem → Otevřít v aplikaci → Tabulky Google. Tlačítkem Sdílet ho pošlete partnerovi a můžete plánovat spolu.</p>
 <h2 style="font-family:Georgia,serif;font-size:18px;font-weight:normal;margin:32px 0 8px">Doklad o zaplacení č. ${o.vs}</h2>
 <p style="font-size:14px;line-height:1.6">
 Prodávající: ${COMPANY.name}, ${COMPANY.address}, IČO ${COMPANY.ico}, ${COMPANY.register}<br>

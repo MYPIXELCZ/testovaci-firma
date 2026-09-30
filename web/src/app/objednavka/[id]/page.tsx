@@ -26,7 +26,10 @@ export default async function OrderStatusPage(props: PageProps<"/objednavka/[id]
           </p>
           <h2 style={{ fontSize: "1.4rem", marginTop: 48 }}>Jak začít</h2>
           <ol>
-            <li>Otevřete soubor v Excelu, nebo ho nahrajte na Disk Google a otevřete v Google Tabulkách.</li>
+            <li>
+              Otevřete soubor v Excelu. Pro Google Tabulky: na <a href="https://drive.google.com" target="_blank" rel="noreferrer">Disku Google</a>{" "}
+              Nový → Nahrát soubor, pak pravým tlačítkem Otevřít v aplikaci → Tabulky Google. Tlačítkem Sdílet ho pošlete partnerovi.
+            </li>
             <li>Na listu Přehled vyplňte jména, datum svatby a rozpočet.</li>
             <li>Termíny úkolů se dopočítají samy. Začněte tím, co svítí nahoře.</li>
           </ol>
