@@ -34,6 +34,6 @@
 - Test: `cd web && npm run test:e2e` (celý nákup proti falešnému Fio a Resend, lokálně ukládá do souborů).
 - Google Tabulky: všechny použité funkce jsou podporované, reálně neotestováno (Sheets konektor chybí), ověřit při spuštění.
 - Obchodní rozhodnutí: cena 349 Kč, bez vzdání se práva na odstoupení (14 dní na vrácení peněz), platba jen převodem/QR.
-- Vercel: projekt `anoberu` (prj_03AAVPn5Unj5aZgXeVvZ3VkGYdes) v týmu mypixelcz, root `web`, funkce fra1, Vercel Authentication na *.vercel.app. Konektor (ondrej@mypixel.cz) smí: číst projekt/deployment BEZ teamId, update_project, zakládat Blob. NESMÍ: zakládat projekty, env proměnné, listovat deploymenty. Blob store `anoberu-objednavky` (privátní, fra1).
-- Blokováno (Ondřej, dashboard): připojit Blob store k projektu, env CRON_SECRET, FIO_TOKEN; později RESEND_API_KEY, SALES_OPEN=1, INDEXING=1, doména.
+- Vercel: projekt `anoberu` (prj_03AAVPn5Unj5aZgXeVvZ3VkGYdes) v týmu mypixelcz (team_fNHd0fCTFAA6MuEnT4BlEeWu), root `web`, funkce fra1, Vercel Authentication na *.vercel.app. Konektor má plný přístup k projektu (po rozšíření autorizace). Blob `anoberu-orders` (privátní, fra1, připojený). Nepoužitý prázdný store `anoberu-objednavky` (store_PzJcBM5ask99PXx1) smazat. Env: BLOB_READ_WRITE_TOKEN, CRON_SECRET, SITE_URL. Diagnostika: /api/health na *.vercel.app (web_fetch_vercel_url).
+- Blokováno (Ondřej): Fio token (banka), NS anoberu.cz zpět na Vercel. Později Resend účet. Při spuštění: SALES_OPEN=1, INDEXING=1.
 - Ověření .xlsx: `recalc.py` ze skillu xlsx (potřebuje `apt-get install libreoffice-calc`), pracovní soubory v `.build/`.
