@@ -2,6 +2,7 @@ import { after } from "next/server";
 import { sendPaymentInstructions } from "@/lib/email";
 import { SALES_OPEN, TEST_PRICE, isInternalHost } from "@/lib/config";
 import { createOrder } from "@/lib/orders";
+import { allow, dayWindow, hourWindow } from "@/lib/ratelimit";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -17,6 +18,12 @@ export async function POST(req: Request) {
   if (!EMAIL_RE.test(email) || email.length > 200) return Response.json({ error: "Zkontrolujte prosím e-mail." }, { status: 400 });
   if (!name) return Response.json({ error: "Vyplňte prosím jméno." }, { status: 400 });
   if (body.terms !== true) return Response.json({ error: "Bez souhlasu s obchodními podmínkami to nepůjde." }, { status: 400 });
+
+  // Ochrana proti spamu: max 5 objednávek za hodinu z jedné IP a 3 denně na jeden e-mail.
+  const ip = req.headers.get("x-real-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+  if (!(await allow("ip", ip, 5, hourWindow())) || !(await allow("email", email, 3, dayWindow()))) {
+    return Response.json({ error: "Objednávek je teď nějak moc. Zkuste to prosím později, nebo nám napište." }, { status: 429 });
+  }
 
   const order = await createOrder({
     email,

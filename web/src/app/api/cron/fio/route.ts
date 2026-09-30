@@ -3,6 +3,7 @@ import { notifyOwner, sendDelivery } from "@/lib/email";
 import { incomingPayments, type IncomingPayment } from "@/lib/fio";
 import { pingSearchEngines } from "@/lib/indexnow";
 import { deleteOrder, getOrder, listPending, markPaid, markPaymentAlerted, paymentSeen } from "@/lib/orders";
+import { cleanupRateLimits } from "@/lib/ratelimit";
 import { getSecret } from "@/lib/secrets";
 
 export const maxDuration = 60;
@@ -89,6 +90,9 @@ export async function GET(req: Request) {
       result.expired++;
     }
   }
+
+  // Jednou za hodinu uklidit stará počítadla ochrany proti spamu.
+  if (new Date().getUTCMinutes() < 5) await cleanupRateLimits().catch((e) => console.error("[cron] úklid limitů selhal", e));
 
   if (INDEXING) {
     const msg = await pingSearchEngines().catch((e) => `indexnow chyba: ${e instanceof Error ? e.message : e}`);

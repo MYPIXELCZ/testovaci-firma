@@ -36,6 +36,7 @@
 - Test: `cd web && npm run test:e2e` (celý nákup proti falešnému Fio a Resend, lokálně ukládá do souborů).
 - Google Tabulky: všechny použité funkce jsou podporované, reálně neotestováno (Sheets konektor chybí), ověřit při spuštění.
 - Upozornění firmě (anoberu@mypixel.cz): zaplaceno, nedoplatek, platba bez objednávky (každá platba jen jednou, značky `payments/{fioId}`). Měsíční CSV pro účetní: cron `/api/cron/report` 1. den v 6:00 UTC (ručně `?month=RRRR-MM`).
+- Ochrana proti spamu: /api/orders max 5/h z IP a 3/den na e-mail (počítadla `ratelimit/` v úložišti, hashované, úklid v cronu).
 - Testovací režim: objednávka přes *.vercel.app (chráněno Vercel Authentication) = 1 Kč, projde i s vypnutým prodejem, doklad označen jako testovací. Cron páruje vždy.
 - Marketing: `marketing/prispevky.md` (FB skupiny, jen otevřeně za značku), piny `marketing/piny/` (generuje `render.mjs`), checklist k tisku `web/public/ke-stazeni/svatebni-checklist-anoberu.pdf` (generuje `marketing/checklist-pdf/render.mjs`).
 - Obchodní rozhodnutí: cena 349 Kč, bez vzdání se práva na odstoupení (14 dní na vrácení peněz), platba jen převodem/QR.

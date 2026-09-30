@@ -179,6 +179,15 @@ try {
     body: JSON.stringify({ email: "a@example.cz", name: "X", terms: true, website: "spam" }) });
   check(bot.status === 400, "honeypot zastaví bota");
   check((await fetch(`${base}/objednavka/neexistuje`)).status === 404, "neexistující objednávka vrací 404");
+  const spam = async (email) => (await fetch(`${base}/api/orders`, { method: "POST", headers: { "Content-Type": "application/json", "x-real-ip": "203.0.113.9" },
+    body: JSON.stringify({ email, name: "Bot", terms: true }) })).status;
+  const burst = [];
+  for (let i = 0; i < 6; i++) burst.push(await spam(`bot${i}@example.cz`));
+  check(burst.slice(0, 5).every((x) => x === 200) && burst[5] === 429, `6. objednávka z jedné IP za hodinu odmítnuta (${burst.join(",")})`);
+  const same = [];
+  for (let i = 0; i < 4; i++) same.push((await fetch(`${base}/api/orders`, { method: "POST", headers: { "Content-Type": "application/json", "x-real-ip": `198.51.100.${i}` },
+    body: JSON.stringify({ email: "stejny@example.cz", name: "X", terms: true }) })).status);
+  check(same.slice(0, 3).every((x) => x === 200) && same[3] === 429, `4. objednávka na stejný e-mail za den odmítnuta (${same.join(",")})`);
   check(fioCalls >= 4, `Fio API voláno (${fioCalls}×)`);
 
   // 11) Nastavení: uložení tokenu Fio přes stránku (lokálně povoleno, na produkci jen *.vercel.app)
