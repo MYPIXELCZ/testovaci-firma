@@ -29,5 +29,7 @@
 
 ## Stav práce
 - Hotovo: brand (`brand/`), plánovač v1.0 (`product/dist/`, ověřeno přepočtem: 0 chyb ve vzorcích).
-- Další: prodejní web na Vercelu, objednávky, QR platby + párování přes Fio API, automatické doručení a doklad.
+- Web (`web/`, Next.js 16): landing, objednávka, QR platba (SPAYD), cron párování Fio (`/api/cron/fio`, každých 5 min), doručovací e-mail (Resend), stažení, doklad, VOP a GDPR (koncepty, čekají na Ondřejovo schválení). Objednávky jsou v privátním Vercel Blob.
+- Obchodní rozhodnutí: cena 349 Kč, bez vzdání se práva na odstoupení (14 dní na vrácení peněz), platba jen převodem/QR.
+- Blokováno (Ondřej): propojit GitHub ve Vercelu, IBAN Fio, pak FIO_TOKEN + RESEND_API_KEY do env Vercel projektu `anoberu` (tým ondrej-chloupeks-projects).
 - Ověření .xlsx: `recalc.py` ze skillu xlsx (potřebuje `apt-get install libreoffice-calc`), pracovní soubory v `.build/`.
