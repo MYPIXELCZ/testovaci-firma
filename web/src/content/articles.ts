@@ -24,4 +24,9 @@ export const ARTICLES = [
     title: "Zasedací pořádek na svatbě: jak rozsadit hosty",
     description: "Kdy ho sestavit, kdo sedí u hlavního stolu, kulaté stoly nebo tabule a pravidla, která se osvědčila.",
   },
+  {
+    href: "/text-svatebniho-oznameni",
+    title: "Text svatebního oznámení: vzory",
+    description: "Pět vzorů textu oznámení, pozvánka na hostinu a co v oznámení nesmí chybět.",
+  },
 ] as const;

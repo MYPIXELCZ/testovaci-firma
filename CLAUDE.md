@@ -32,7 +32,7 @@
 ## Stav práce
 - Hotovo: brand (`brand/`), plánovač v1.0 (`product/dist/`, ověřeno přepočtem: 0 chyb ve vzorcích).
 - Web (`web/`, Next.js 16): landing, objednávka, QR platba (SPAYD), cron párování Fio (`/api/cron/fio`, každých 5 min), doručovací e-mail (Resend), stažení, doklad, VOP a GDPR (schváleny Ondřejem 2026-09-30). Objednávky jsou v privátním Vercel Blob.
-- SEO články: /svatebni-checklist, /svatebni-rozpocet, /harmonogram-svatebniho-dne, /seznam-hostu-na-svatbu, /zasedaci-poradek-svatba (seznam v `web/src/content/articles.ts`) (data z `web/src/content/planner.json`, generuje `build_planner.py`). Sitemap + robots.
+- SEO články: /svatebni-checklist, /svatebni-rozpocet, /harmonogram-svatebniho-dne, /seznam-hostu-na-svatbu, /zasedaci-poradek-svatba, /text-svatebniho-oznameni (seznam v `web/src/content/articles.ts`) (data z `web/src/content/planner.json`, generuje `build_planner.py`). Sitemap + robots.
 - Test: `cd web && npm run test:e2e` (celý nákup proti falešnému Fio a Resend, lokálně ukládá do souborů).
 - Google Tabulky: všechny použité funkce jsou podporované, reálně neotestováno (Sheets konektor chybí), ověřit při spuštění.
 - Upozornění firmě (anoberu@mypixel.cz): zaplaceno, nedoplatek, platba bez objednávky (každá platba jen jednou, značky `payments/{fioId}`). Měsíční CSV pro účetní: cron `/api/cron/report` 1. den v 6:00 UTC (ručně `?month=RRRR-MM`).
