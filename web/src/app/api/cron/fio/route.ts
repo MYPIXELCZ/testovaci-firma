@@ -1,10 +1,22 @@
-import { SALES_OPEN, UNPAID_RETENTION_DAYS } from "@/lib/config";
-import { sendDelivery } from "@/lib/email";
-import { incomingPayments } from "@/lib/fio";
+import { PRODUCT, SALES_OPEN, TEST_PRICE, UNPAID_RETENTION_DAYS } from "@/lib/config";
+import { notifyOwner, sendDelivery } from "@/lib/email";
+import { incomingPayments, type IncomingPayment } from "@/lib/fio";
+import { deleteOrder, getOrder, listPending, markPaid, markPaymentAlerted, paymentSeen } from "@/lib/orders";
 import { getSecret } from "@/lib/secrets";
-import { deleteOrder, getOrder, listPending, markPaid } from "@/lib/orders";
 
 export const maxDuration = 60;
+
+/** Náš VS má tvar RRMMDDxxxx s platným datem v posledních 60 dnech. Firemní účet přijímá i jiné platby. */
+function looksLikeOurVs(vs: string) {
+  const m = /^(\d{2})(\d{2})(\d{2})\d{4}$/.exec(vs);
+  if (!m) return false;
+  const [month, day] = [Number(m[2]), Number(m[3])];
+  if (month < 1 || month > 12 || day < 1 || day > 31) return false;
+  const age = Date.now() - Date.UTC(2000 + Number(m[1]), month - 1, day);
+  return age >= -86_400_000 && age < 60 * 86_400_000;
+}
+
+const describe = (p: IncomingPayment) => `${p.amount} ${p.currency}, VS ${p.vs || "bez VS"}, ${p.date.slice(0, 10)}, pohyb Fio ${p.id}`;
 
 /** Vercel Cron (vercel.json): spáruje příchozí platby z Fio s nezaplacenými objednávkami. */
 export async function GET(req: Request) {
@@ -20,28 +32,52 @@ export async function GET(req: Request) {
   }
 
   const pending = await listPending();
-  const result = { pending: pending.length, paid: [] as string[], underpaid: [] as string[], expired: 0 };
+  const result = { pending: pending.length, paid: [] as string[], underpaid: [] as string[], orphans: 0, expired: 0 };
 
-  if (pending.length > 0) {
+  if (pending.length > 0 || SALES_OPEN) {
     const payments = await incomingPayments();
+    const matched = new Set<string>();
+
     for (const p of pending) {
       // Platba musí přijít v den objednávky nebo později (Fio datum: "2026-09-30+0200").
       const created = p.uploadedAt.toISOString().slice(0, 10);
       const payment = payments.find((x) => x.vs === p.vs && x.currency === "CZK" && x.date.slice(0, 10) >= created);
       if (!payment) continue;
+      matched.add(payment.id);
       const order = await getOrder(p.id);
       if (!order || order.status !== "pending") continue;
       if (payment.amount < order.amount) {
-        result.underpaid.push(order.vs); // řeší se ručně, viz log
+        result.underpaid.push(order.vs);
+        if (!(await paymentSeen(payment.id))) {
+          await notifyOwner(`Nedoplatek u objednávky ${order.vs}`, [
+            `Zákazník ${order.name} (${order.email}) poslal ${payment.amount} Kč místo ${order.amount} Kč.`,
+            `Platba: ${describe(payment)}`,
+            "Objednávka zůstává nezaplacená. Domluvte doplatek, nebo peníze vraťte.",
+          ]).catch((e) => console.error("[cron] upozornění selhalo", e));
+          await markPaymentAlerted(payment.id, `underpaid ${order.vs}`);
+        }
         continue;
       }
       const paid = await markPaid(order, payment.id);
       result.paid.push(paid.vs);
-      try {
-        await sendDelivery(paid);
-      } catch (e) {
-        console.error("[cron] doručovací e-mail selhal", paid.vs, e);
-      }
+      await sendDelivery(paid).catch((e) => console.error("[cron] doručovací e-mail selhal", paid.vs, e));
+      await notifyOwner(`Zaplaceno ${paid.amount} Kč${paid.test ? " (test)" : ""}`, [
+        `Objednávka ${paid.vs}: ${paid.name}, ${paid.email}`,
+        `Platba: ${describe(payment)}`,
+      ]).catch((e) => console.error("[cron] upozornění selhalo", e));
+    }
+
+    // Platby, které vypadají jako naše, ale k žádné objednávce nesedí (překlep ve VS, platba bez VS, dvojí platba).
+    for (const pay of payments) {
+      if (matched.has(pay.id) || pay.currency !== "CZK") continue;
+      const suspicious = looksLikeOurVs(pay.vs) || (!pay.vs && (pay.amount === PRODUCT.price || pay.amount === TEST_PRICE));
+      if (!suspicious || (await paymentSeen(pay.id))) continue;
+      result.orphans++;
+      await notifyOwner("Platba bez objednávky", [
+        `Přišla platba, kterou jsem nedokázal spárovat: ${describe(pay)}.`,
+        "Nejspíš překlep ve variabilním symbolu, platba bez VS, nebo druhá platba za stejnou objednávku. Zkontrolujte výpis a zákazníkovi případně pošlete odkaz ručně.",
+      ]).catch((e) => console.error("[cron] upozornění selhalo", e));
+      await markPaymentAlerted(pay.id, "orphan");
     }
   }
 
@@ -53,6 +89,6 @@ export async function GET(req: Request) {
     }
   }
 
-  if (result.paid.length || result.underpaid.length || result.expired) console.log("[cron]", JSON.stringify(result));
+  if (result.paid.length || result.underpaid.length || result.orphans || result.expired) console.log("[cron]", JSON.stringify(result));
   return Response.json(result);
 }

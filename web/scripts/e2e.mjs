@@ -21,6 +21,8 @@ const check = (ok, label) => {
 // Falešné Fio API + Resend
 const payments = [];
 const emails = [];
+const toCustomer = () => emails.filter((e) => e.to === "nevesta@example.cz");
+const toOwner = () => emails.filter((e) => e.to === "anoberu@mypixel.cz");
 let fioCalls = 0;
 const mock = http.createServer((req, res) => {
   if (req.url.startsWith("/fio/periods/")) {
@@ -92,9 +94,8 @@ try {
   check((await page.locator(".pay-table").textContent()).includes("2202343801/2010"), "číslo účtu Fio na stránce");
 
   await new Promise((r) => setTimeout(r, 500));
-  check(emails.length === 1 && emails[0].subject.includes(vs), "e-mail s platebními údaji odešel");
-  check(emails[0]?.to === "nevesta@example.cz", "e-mail normalizovaný na malá písmena");
-  check(emails[0]?.html.includes(`/objednavka/${id}`), "e-mail odkazuje na stránku objednávky");
+  check(toCustomer().length === 1 && toCustomer()[0].subject.includes(vs), "e-mail s platebními údaji odešel (na e-mail malými písmeny)");
+  check(toCustomer()[0]?.html.includes(`/objednavka/${id}`), "e-mail odkazuje na stránku objednávky");
 
   // 2) Stažení před zaplacením nesmí projít
   const early = await fetch(`${base}/stahnout/${id}`, { redirect: "manual" });
@@ -110,6 +111,9 @@ try {
   await new Promise((r) => setTimeout(r, 100));
   r = await (await cron()).json();
   check(r.underpaid.includes(vs) && r.paid.length === 0, "nedoplatek se nespáruje");
+  check(toOwner().some((e) => e.subject.includes("Nedoplatek")), "firma dostala upozornění na nedoplatek");
+  await cron();
+  check(toOwner().filter((e) => e.subject.includes("Nedoplatek")).length === 1, "nedoplatek se hlásí jen jednou");
 
   // 5) Správná platba
   payments.length = 0;
@@ -118,8 +122,10 @@ try {
   check(r.paid.includes(vs), "platba 349 Kč se spárovala");
   r = await (await cron()).json();
   check(r.pending === 0 && r.paid.length === 0, "druhý běh cronu už nic nedělá");
-  check(emails.length === 2 && emails[1].subject.includes("plánovač"), "doručovací e-mail odešel");
-  check(emails[1]?.html.includes(`/stahnout/${id}`) && emails[1]?.html.includes(`Doklad o zaplacení č. ${vs}`), "e-mail obsahuje odkaz ke stažení a doklad");
+  const delivery = toCustomer()[1];
+  check(toCustomer().length === 2 && delivery.subject.includes("plánovač"), "doručovací e-mail odešel");
+  check(delivery?.html.includes(`/stahnout/${id}`) && delivery?.html.includes(`Doklad o zaplacení č. ${vs}`), "e-mail obsahuje odkaz ke stažení a doklad");
+  check(toOwner().some((e) => e.subject.includes("Zaplaceno 349")), "firma dostala upozornění na zaplacení");
 
   // 6) Stránka se po zaplacení sama překreslí (poll 15 s)
   await page.waitForSelector("text=Zaplaceno, děkujeme!", { timeout: 25_000 });
@@ -146,6 +152,21 @@ try {
   check(!secondPage.includes(`>${vs}<`), "nová objednávka dostala jiný VS");
   r = await (await cron()).json();
   check(r.pending === 1 && r.paid.length === 0, "stará platba neodemkla novou objednávku");
+
+  // 9b) Platba s „naším“ VS bez objednávky se nahlásí jednou
+  payments.push({ vs: vs.slice(0, 6) + "9999", amount: 349, date: today });
+  await cron();
+  await cron();
+  check(toOwner().filter((e) => e.subject.includes("Platba bez objednávky")).length === 1, "platba bez objednávky nahlášena firmě jednou");
+
+  // 9c) Měsíční přehled pro účetní
+  const month = new Date().toISOString().slice(0, 7);
+  const rep = await (await fetch(`${base}/api/cron/report?month=${month}`, { headers: { authorization: `Bearer ${SECRET}` } })).json();
+  const report = toOwner().find((e) => e.subject.includes("Přehled prodejů"));
+  const csv = report ? Buffer.from(report.attachments[0].content, "base64").toString("utf8") : "";
+  check(rep.count === 1 && rep.total === 349, `měsíční přehled: 1 objednávka za 349 Kč (${rep.count}, ${rep.total})`);
+  check(csv.includes(vs) && csv.includes("Tereza Nováková"), "CSV pro účetní obsahuje doklad a kupujícího");
+  check((await fetch(`${base}/api/cron/report`)).status === 401, "přehled bez tajemství vrací 401");
 
   // 10) Validace a honeypot
   const bad = await fetch(`${base}/api/orders`, { method: "POST", headers: { "Content-Type": "application/json" },

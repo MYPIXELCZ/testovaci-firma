@@ -24,7 +24,9 @@ ${COMPANY.name}, ${COMPANY.address}, IČO ${COMPANY.ico}<br>Dotazy: <a href="mai
 const button = (href: string, label: string) =>
   `<p style="margin:24px 0"><a href="${href}" style="background:#56654A;color:#fff;text-decoration:none;padding:12px 20px;border-radius:8px;display:inline-block">${label}</a></p>`;
 
-async function send(to: string, subject: string, html: string) {
+type Attachment = { filename: string; content: string }; // content = base64
+
+async function send(to: string, subject: string, html: string, attachments?: Attachment[]) {
   const key = await getSecret("RESEND_API_KEY");
   if (!key) {
     console.warn(`[email] RESEND_API_KEY chybí, e-mail „${subject}“ pro ${to} se neposlal`);
@@ -33,7 +35,7 @@ async function send(to: string, subject: string, html: string) {
   const res = await fetch(RESEND_URL, {
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ from: FROM, to, subject, html, reply_to: COMPANY.email }),
+    body: JSON.stringify({ from: FROM, to, subject, html, reply_to: COMPANY.email, ...(attachments ? { attachments } : {}) }),
   });
   if (!res.ok) throw new Error(`Resend odpověděl ${res.status}: ${await res.text()}`);
 }
@@ -75,5 +77,20 @@ Cena: ${kc(o.amount)}, zaplaceno převodem ${new Date(o.paidAt!).toLocaleDateStr
 ${COMPANY.vat}</p>
 <p style="font-size:14px"><a href="${SITE_URL}/doklad/${o.id}" style="color:#56654A">Doklad k tisku</a></p>`,
     ),
+  );
+}
+
+/** Upozornění pro firmu (anoberu@mypixel.cz). */
+export async function notifyOwner(subject: string, lines: string[]) {
+  await send(COMPANY.email, `[Ano, beru] ${subject}`, layout(subject, lines.map((l) => `<p style="margin:4px 0">${escape(l)}</p>`).join("")));
+}
+
+export async function sendMonthlyReport(month: string, csv: string, count: number, total: number) {
+  await send(
+    COMPANY.email,
+    `[Ano, beru] Přehled prodejů ${month}`,
+    layout(`Přehled prodejů ${month}`, `<p>Zaplacených objednávek: <strong>${count}</strong>, tržba celkem <strong>${kc(total)}</strong>.</p>
+<p>V příloze je CSV pro účetní (číslo dokladu = variabilní symbol). ${COMPANY.vat}</p>`),
+    [{ filename: `anoberu-prodeje-${month}.csv`, content: Buffer.from("\uFEFF" + csv, "utf8").toString("base64") }],
   );
 }

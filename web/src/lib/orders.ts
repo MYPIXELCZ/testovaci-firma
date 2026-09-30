@@ -23,6 +23,7 @@ export type Order = {
 //   orders/{id}.json      celý záznam
 //   pending/{vs}_{id}     značka nezaplacené objednávky (pro párování plateb)
 //   vs/{vs}               použitý VS; nemaže se, aby stará platba nemohla odemknout novou objednávku
+//   payments/{fioId}      platba už zpracovaná (paid) nebo nahlášená firmě (alert), aby se nehlásila znovu
 const orderPath = (id: string) => `orders/${id}.json`;
 const pendingPath = (o: Pick<Order, "vs" | "id">) => `pending/${o.vs}_${o.id}`;
 
@@ -73,8 +74,20 @@ export async function createOrder(input: {
 export async function markPaid(order: Order, paymentId: string): Promise<Order> {
   const paid: Order = { ...order, status: "paid", paidAt: new Date().toISOString(), paymentId };
   await save(paid);
+  await storage.write(`payments/${paymentId}`, `paid ${order.vs}`, { overwrite: true });
   await storage.remove([pendingPath(order)]);
   return paid;
+}
+
+export const paymentSeen = (paymentId: string) => storage.exists(`payments/${paymentId}`);
+export const markPaymentAlerted = (paymentId: string, note: string) =>
+  storage.write(`payments/${paymentId}`, `alert ${note}`, { overwrite: true });
+
+/** Všechny objednávky (pro měsíční přehled). Při malém objemu stačí projít úložiště. */
+export async function listOrders(): Promise<Order[]> {
+  const items = await storage.list("orders/");
+  const orders = await Promise.all(items.map(async (i) => JSON.parse((await storage.read(i.pathname)) ?? "null") as Order | null));
+  return orders.filter((o): o is Order => o !== null);
 }
 
 export async function deleteOrder(order: Pick<Order, "vs" | "id">) {
