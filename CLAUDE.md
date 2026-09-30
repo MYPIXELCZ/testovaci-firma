@@ -34,5 +34,6 @@
 - Test: `cd web && npm run test:e2e` (celý nákup proti falešnému Fio a Resend, lokálně ukládá do souborů).
 - Google Tabulky: všechny použité funkce jsou podporované, reálně neotestováno (Sheets konektor chybí), ověřit při spuštění.
 - Obchodní rozhodnutí: cena 349 Kč, bez vzdání se práva na odstoupení (14 dní na vrácení peněz), platba jen převodem/QR.
-- Blokováno (Ondřej): přepojit Vercel konektor v claude.ai na ondrej@mypixel.cz a začít novou session na větvi claude/hopeful-hamilton-n1pbnk, pak FIO_TOKEN + RESEND_API_KEY do env Vercel projektu `anoberu` (v účtu ondrej@mypixel.cz).
+- Vercel: projekt `anoberu` (prj_03AAVPn5Unj5aZgXeVvZ3VkGYdes) v týmu mypixelcz, root `web`, funkce fra1, Vercel Authentication na *.vercel.app. Konektor (ondrej@mypixel.cz) smí: číst projekt/deployment BEZ teamId, update_project, zakládat Blob. NESMÍ: zakládat projekty, env proměnné, listovat deploymenty. Blob store `anoberu-objednavky` (privátní, fra1).
+- Blokováno (Ondřej, dashboard): připojit Blob store k projektu, env CRON_SECRET, FIO_TOKEN; později RESEND_API_KEY, SALES_OPEN=1, INDEXING=1, doména.
 - Ověření .xlsx: `recalc.py` ze skillu xlsx (potřebuje `apt-get install libreoffice-calc`), pracovní soubory v `.build/`.

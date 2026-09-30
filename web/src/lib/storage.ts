@@ -88,4 +88,14 @@ function pick(): Storage {
   return fileStorage;
 }
 
-export const storage = pick();
+// Vybírá se až při prvním použití: při buildu na Vercelu (VERCEL=1) se moduly importují bez tokenu.
+let chosen: Storage | undefined;
+const resolve = () => (chosen ??= pick());
+
+export const storage: Storage = {
+  read: (p) => resolve().read(p),
+  write: (p, body, opts) => resolve().write(p, body, opts),
+  exists: (p) => resolve().exists(p),
+  list: (prefix) => resolve().list(prefix),
+  remove: (ps) => resolve().remove(ps),
+};
