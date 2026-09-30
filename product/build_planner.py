@@ -376,27 +376,32 @@ def build_guests(ws):
     setup_sheet(ws, "Hosté", "Jeden řádek = jedna pozvánka (domácnost). Do sloupce Osob napište, kolik lidí na ni přijde. "
                 "Odpovědi zapisujte průběžně, přehled se přepočítá sám.",
                 {"A": 30, "B": 11, "C": 11, "D": 7, "E": 8, "F": 17, "G": 11, "H": 12, "I": 13, "J": 11,
-                 "K": 7, "L": 30, "M": 24})
+                 "K": 7, "L": 30, "M": 24, "N": 24, "O": 12})
     table(ws, [("A", "Jméno"), ("B", "Strana"), ("C", "Skupina"), ("D", "Osob"), ("E", "Z toho děti"),
                ("F", "Pozvaní na"), ("G", "Oznámení odesláno"), ("H", "Odpověď"), ("I", "Strava"),
-               ("J", "Ubytování"), ("K", "Stůl"), ("L", "Adresa / kontakt"), ("M", "Poznámka")],
-          GUEST_ROWS, center_cols="DEGHJK", formats={"D": "0", "E": "0", "K": "0"})
+               ("J", "Ubytování"), ("K", "Stůl"), ("L", "Adresa / kontakt"), ("M", "Poznámka"),
+               ("N", "Dar (po svatbě)"), ("O", "Poděkováno")],
+          GUEST_ROWS, center_cols="DEGHJKO", formats={"D": "0", "E": "0", "K": "0"})
     rows = DEMO_GUESTS if DEMO else [("Jana a Petr Novákovi", "Nevěsta", "Rodina", 2, 0, "Obřad a hostina",
                                       "Ano", "Čeká", "Bez omezení", "Ne", None)]
     for i, g in enumerate(rows):
         r = GUEST_ROWS[0] + i
         for col, v in zip("ABCDEFGHIJK", g):
             ws[f"{col}{r}"] = v if v != "" else None
+    if DEMO:
+        for i, (gift, thanked) in enumerate([("Příspěvek na cestu", "Ano"), ("Sada nádobí", "Ano"), ("Obraz", "Ne")]):
+            ws[f"N{GUEST_ROWS[0] + i}"], ws[f"O{GUEST_ROWS[0] + i}"] = gift, thanked
     if not DEMO:
         example_note(ws, GUEST_ROWS[0], "M")
     validation(ws, '"Nevěsta,Ženich,Společní"', "B", GUEST_ROWS)
     validation(ws, '"Rodina,Přátelé,Kolegové,Ostatní"', "C", GUEST_ROWS, strict=False)
     validation(ws, '"Obřad a hostina,Jen večer,Jen oznámení"', "F", GUEST_ROWS)
-    validation(ws, '"Ano,Ne"', "GJ", GUEST_ROWS)
+    validation(ws, '"Ano,Ne"', "GJO", GUEST_ROWS)
     validation(ws, '"Potvrzeno,Odmítnuto,Čeká"', "H", GUEST_ROWS)
     validation(ws, '"Bez omezení,Vegetarián,Vegan,Bez lepku,Bez laktózy,Jiné"', "I", GUEST_ROWS, strict=False)
     r0, r1 = GUEST_ROWS
-    cf(ws, f"A{r0}:M{r1}", f'$H{r0}="Odmítnuto"', font=Font(color=MUTED, strike=True))
+    cf(ws, f"A{r0}:O{r1}", f'$H{r0}="Odmítnuto"', font=Font(color=MUTED, strike=True))
+    cf(ws, f"O{r0}:O{r1}", f'$O{r0}="Ano"', font=Font(color=SAGE_DARK, bold=True))
     cf(ws, f"H{r0}:H{r1}", f'$H{r0}="Potvrzeno"', font=Font(color=SAGE_DARK, bold=True))
 
 
@@ -638,7 +643,8 @@ def build_guide(ws):
         ("text", "2. Úkoly: termíny se dopočítají podle data svatby. Hotové úkoly označte ve sloupci Stav."),
         ("text", "3. Rozpočet: ke každé položce napište plán. Jakmile znáte skutečnou cenu, doplňte ji a plánovač "
                  "začne počítat s ní."),
-        ("text", "4. Hosté: jeden řádek = jedna pozvánka. Do sloupce Osob napište, kolik lidí na ni přijde."),
+        ("text", "4. Hosté: jeden řádek = jedna pozvánka. Do sloupce Osob napište, kolik lidí na ni přijde. "
+                 "Po svatbě si tu zapíšete dary a komu už jste poděkovali."),
         ("text", "5. Stoly: v listu Hosté napište číslo stolu, v listu Stoly pak uvidíte obsazenost."),
         ("text", "6. Den D: upravte harmonogram a pošlete ho fotografovi, kapele i svědkům."),
         ("text", ""),
@@ -657,7 +663,7 @@ def build_guide(ws):
         ("text", "Plánovač je určený pro osobní použití jednoho páru. Prosíme, nešiřte ho dál. "
                  "Děkujeme, že podporujete malou českou firmu."),
         ("text", ""),
-        ("hint", "Ano, beru · anoberu.cz · verze 1.0"),
+        ("hint", "Ano, beru · anoberu.cz · verze 1.1"),
     ]
     for i, (kind, text) in enumerate(lines, start=2):
         c = ws[f"B{i}"]

@@ -31,7 +31,7 @@
 - Spuštění: do konce listopadu 2026 (sezóna zásnub prosinec–únor).
 
 ## Stav práce
-- Hotovo: brand (`brand/`), plánovač v1.0 (`product/dist/`, ověřeno přepočtem: 0 chyb ve vzorcích).
+- Hotovo: brand (`brand/`), plánovač v1.1 (`product/dist/`, ověřeno přepočtem: 0 chyb ve vzorcích; v1.1 = sloupce Dar a Poděkováno v listu Hosté). Po změně plánovače: build_planner.py (obě verze), recalc, `web/scripts/copy-product.mjs`, e2e.
 - Web (`web/`, Next.js 16): landing, objednávka, QR platba (SPAYD), cron párování Fio (`/api/cron/fio`, každých 5 min), doručovací e-mail (Resend), stažení, doklad, VOP a GDPR (schváleny Ondřejem 2026-09-30). Objednávky jsou v privátním Vercel Blob.
 - SEO články: /svatebni-checklist, /svatebni-rozpocet, /harmonogram-svatebniho-dne, /seznam-hostu-na-svatbu, /zasedaci-poradek-svatba, /text-svatebniho-oznameni, /svedek-na-svatbe (seznam v `web/src/content/articles.ts`) (data z `web/src/content/planner.json`, generuje `build_planner.py`). Sitemap + robots. IndexNow (Seznam, Bing): klíč `web/public/31de1fcd1629afe01591a762c249bc90.txt`, cron oznámí URL při INDEXING=1, jen když se seznam změní.
 - Test: `cd web && npm run test:e2e` (celý nákup proti falešnému Fio a Resend, lokálně ukládá do souborů, 42 kontrol). Commitovat až po zeleném testu, výsledek kontrolovat přes exit code, ne přes grep.
