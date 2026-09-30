@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     `Jednorázově za ${PRODUCT.price} Kč, doručení e-mailem.`,
   openGraph: { type: "website", locale: "cs_CZ", siteName: "Ano, beru", images: ["/og.png"] },
   robots: INDEXING ? undefined : { index: false, follow: false },
+  verification: { google: "e20zhSIlggh1rHIY13DTfPCrD7A4rOuaIG3cJLujqp4" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
