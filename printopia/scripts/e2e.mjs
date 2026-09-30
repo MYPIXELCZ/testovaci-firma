@@ -43,21 +43,22 @@ try {
   check((await fetch(`${BASE}/og.png`)).ok, "náhled pro sdílení");
   check((await fetch(`${BASE}/neexistuje`)).status === 404, "404");
 
-  check((await post({ email: "spatny", consent: true, adult: true, source: "ukazka" })).status === 400, "odmítne neplatný e-mail");
-  check((await post({ email: "a@b.cz", consent: false, adult: true, source: "ukazka" })).status === 400, "odmítne bez souhlasu");
-  check((await post({ email: "a@b.cz", consent: true, source: "ukazka" })).status === 400, "odmítne bez potvrzení rodič/15+");
-  check(home.includes("Jsem rodič, nebo je mi aspoň 15 let") && home.includes("Pošli tuhle stránku rodičům"), "formulář pro rodiče, žák může poslat odkaz");
-  const r1 = await post({ email: "Rodic@Example.cz", consent: true, adult: true, source: "ukazka", src: "sklik" });
+  check((await post({ email: "spatny", consent: true, role: "rodic", source: "ukazka" })).status === 400, "odmítne neplatný e-mail");
+  check((await post({ email: "a@b.cz", consent: false, role: "rodic", source: "ukazka" })).status === 400, "odmítne bez souhlasu");
+  check((await post({ email: "a@b.cz", consent: true, source: "ukazka" })).status === 400, "odmítne bez role");
+  check((await post({ email: "a@b.cz", consent: true, source: "ukazka", role: "dite" })).status === 400, "odmítne neznámou roli");
+  check(home.includes("je mi aspoň 15 let") && !home.includes("rodičům</a>"), "formulář se ptá na roli, žádná výzva dětem ke koupi");
+  const r1 = await post({ email: "Rodic@Example.cz", consent: true, role: "rodic", source: "ukazka", src: "sklik" });
   const j1 = await r1.json();
   check(r1.ok && j1.download === "/ukazka-zlomky.pdf", "lead z ukázky vrátí odkaz na PDF");
-  const r2 = await post({ email: "rodic@example.cz", consent: true, adult: true, source: "koupit", src: "sklik" });
+  const r2 = await post({ email: "rodic@example.cz", consent: true, role: "rodic", source: "koupit", src: "sklik" });
   check(r2.ok, "lead z Koupit");
   const hp = await post({ email: "bot@example.cz", consent: true, source: "ukazka", website: "x" });
   check(hp.ok, "honeypot odpoví ok");
   const files = readdirSync(path.join(store, "leads"));
   check(files.length === 1, "jeden e-mail = jeden záznam (bot se neuložil)");
   const lead = JSON.parse(readFileSync(path.join(store, "leads", files[0]), "utf8"));
-  check(lead.email === "rodic@example.cz" && lead.sources.join() === "ukazka,koupit" && lead.src === "sklik", "záznam má zdroje i původ");
+  check(lead.email === "rodic@example.cz" && lead.sources.join() === "ukazka,koupit" && lead.src === "sklik" && lead.role === "rodic", "záznam má zdroje, roli i původ");
   check(logs.includes('"ev":"visit"') && logs.includes('"ev":"buy_click"') && logs.includes('"ev":"lead"'), "události v logu pro měření testu");
 } finally {
   process.kill(-app.pid);

@@ -22,12 +22,13 @@
 - Právně: **MYPIXEL s.r.o.**, IČO 17617421, Příčná 1892/4, Nové Město, 110 00 Praha 1, C 373971 vedená u Městského soudu v Praze, datová schránka g9233dt. Neplátce DPH (bývalý plátce, DIČ CZ17617421 už neplatné). Ano, beru je značka této s.r.o.
 - Banka s.r.o.: Fio, účet 2202343801/2010, IBAN CZ5220100000002202343801 (API zdarma, použijeme na párování plateb). Ondřejova OSVČ má ČSOB, tržby firmy na ni nesmí jít.
 - Počáteční rozpočet: do 1 000 Kč (+ tržby).
+- **Účet firmy (vést průběžně):** výdaje: doména anoberu.cz ~200 Kč (09/2026), Sklik kredit 50 Kč (10/2026). Tržby: 0 Kč (jen testovací 1 Kč od Ondřeje). Stav: −250 Kč.
 - Cíl: vedlejší příjem, potom škálovatelný byznys.
 - Infrastruktura: Ondřejův Vercel Pro (k dispozici zdarma). **Správný Vercel účet: ondrej@mypixel.cz (MYPIXEL s.r.o., GitHub MYPIXELCZ).** Účet beta@mypixel.cz NEPOUŽÍVAT.
 
 ## Rozhodnutí
 - **Research poptávky (pojistka z FAILS.md):** každý nový produkt/službu nejdřív zpracovat podle `plan/SABLONA.md` (poptávka s čísly a zdroji, konkurence, ekonomika, test poptávky). Bez oddílů 1–4 nic nestavět a nic po Ondřejovi nechtít.
-- **Cílová skupina (pojistka z FAILS.md):** u každé reklamy, webu a materiálu nejdřív určit, kdo hledá, kdo používá a kdo platí, a uvést to v hlavičce souboru či specifikace. Materiál pro plátce mluví k plátci. U nezletilých hlídat GDPR (souhlas od 15 let) a pravidla reklamy na děti.
+- **Cílová skupina (pojistka z FAILS.md):** u každé reklamy, webu a materiálu nejdřív určit, kdo hledá, kdo používá a kdo platí, a uvést to v hlavičce souboru či specifikace. Materiál pro plátce mluví k plátci. Cílovou skupinu doložit daty, ne předpokladem; kde data chybí, změřit v testu. U nezletilých hlídat GDPR (souhlas od 15 let) a zákaz přímé výzvy dětem ke koupi nebo k přemlouvání rodičů (UCPD příloha I bod 28).
 - **Výběr produktu (pojistka z FAILS.md):** u každého nového produktu/služby ověřit sezónnost poptávky vůči dnešnímu datu a čas do první tržby. Přednost: poptávka teď nebo celoročně. Sezónní produkt mimo sezónu jen se zdůvodněním a nikdy jako jediný.
 - Produkt 1: svatební plánovač v Google Sheets (+ .xlsx) pro CZ trh (sezónní, běží sám, sezóna od prosince).
 - Rodinný rozpočet (2026-09-30): ZAMÍTNUT researchem (zdarma šablony + banky třídí samy) (Excel + Google Tabulky) s tříděním výpisu z banky, celoroční poptávka. Znovu použít platby/párování/doručení. Volné Ondřejovy domény (zdarma): printopia.cz, vratime.cz, webprodava.cz, rugsy.cz, reviewboost.cz, emotionsmatter.cz.
