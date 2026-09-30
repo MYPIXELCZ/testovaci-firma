@@ -1,7 +1,6 @@
 import { SALES_OPEN, UNPAID_RETENTION_DAYS } from "@/lib/config";
 import { sendDelivery } from "@/lib/email";
 import { incomingPayments } from "@/lib/fio";
-import { ensureSendingDomain } from "@/lib/resend-setup";
 import { getSecret } from "@/lib/secrets";
 import { deleteOrder, getOrder, listPending, markPaid } from "@/lib/orders";
 
@@ -18,7 +17,6 @@ export async function GET(req: Request) {
     // Před spuštěním jen hlásí připravenost do logu (bez obsahu tajemství).
     const [fio, resend] = await Promise.all([getSecret("FIO_TOKEN"), getSecret("RESEND_API_KEY")]);
     console.log(`[cron] prodej vypnutý; fio=${Boolean(fio)} resend=${Boolean(resend)}`);
-    console.log("[cron]", await ensureSendingDomain().catch((e) => `resend chyba: ${e instanceof Error ? e.message : e}`));
     return Response.json({ skipped: "prodej není spuštěný" });
   }
 
