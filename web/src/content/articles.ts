@@ -14,4 +14,14 @@ export const ARTICLES = [
     title: "Harmonogram svatebního dne: vzor k převzetí",
     description: "Časový plán svatebního dne od ranní přípravy po půlnoční překvapení, včetně českých tradic a rezerv.",
   },
+  {
+    href: "/seznam-hostu-na-svatbu",
+    title: "Seznam hostů na svatbu: jak ho sestavit",
+    description: "Počet, okruhy hostů, doprovod a děti, oznámení vs. pozvánka na hostinu a sběr odpovědí krok za krokem.",
+  },
+  {
+    href: "/zasedaci-poradek-svatba",
+    title: "Zasedací pořádek na svatbě: jak rozsadit hosty",
+    description: "Kdy ho sestavit, kdo sedí u hlavního stolu, kulaté stoly nebo tabule a pravidla, která se osvědčila.",
+  },
 ] as const;
