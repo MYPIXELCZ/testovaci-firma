@@ -14,12 +14,20 @@
 
 ## Firma
 - Právně: existující s.r.o., neplátce DPH.
+- Banka s.r.o.: Fio (API zdarma, použijeme na párování plateb). Ondřejova OSVČ má ČSOB, tržby firmy na ni nesmí jít.
 - Počáteční rozpočet: do 1 000 Kč (+ tržby).
 - Cíl: vedlejší příjem, potom škálovatelný byznys.
 - Infrastruktura: Ondřejův Vercel Pro (k dispozici zdarma).
 
 ## Rozhodnutí
 - Produkt: svatební plánovač v Google Sheets (+ .xlsx) pro CZ trh. Později webová aplikace, potom SK/PL.
-- Brand: **Ano, beru**, doména anoberu.cz (volná k 2026-09-30, zatím nekoupená). Podklady v `brand/`.
+- Brand: **Ano, beru**, doména anoberu.cz: schválena 2026-09-30, koupí ji Ondřej u CZ registrátora na s.r.o., NS přesměruje na Vercel. Podklady v `brand/`.
+- Ochranná známka „Ano, beru“: neověřeno (databáze známek jsou pro Clauda blokované). Čeká na Ondřejovo rozhodnutí.
+- Produkt (zdroj): `product/build_planner.py` generuje .xlsx. Výstupy v `product/dist/`.
 - Platby: QR platba převodem + automatické párování plateb přes API banky (bez poplatků). Lemon Squeezy zamítnut (poplatky + zahraniční služba = problém s DPH).
 - Spuštění: do konce listopadu 2026 (sezóna zásnub prosinec–únor).
+
+## Stav práce
+- Hotovo: brand (`brand/`), plánovač v1.0 (`product/dist/`, ověřeno přepočtem: 0 chyb ve vzorcích).
+- Další: prodejní web na Vercelu, objednávky, QR platby + párování přes Fio API, automatické doručení a doklad.
+- Ověření .xlsx: `recalc.py` ze skillu xlsx (potřebuje `apt-get install libreoffice-calc`), pracovní soubory v `.build/`.
