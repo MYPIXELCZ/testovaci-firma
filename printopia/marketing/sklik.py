@@ -8,7 +8,7 @@ Kampaň se zakládá přes API Sklik (api.sklik.cz/drak), až bude token a web o
 import json
 
 URL = "https://printopia.cz/?utm_source=sklik"
-DAILY_BUDGET_CZK = 30          # při dobití 100 Kč vydrží asi 3 dny; po doplnění na 400 Kč asi 14 dní
+DAILY_BUDGET_CZK = 25          # první dobití 50 Kč vydrží asi 2 dny; po doplnění na 400 Kč asi 14 dní
 MAX_CPC_CZK = 6                # nad 6 Kč za proklik test podle plánu neprojde
 
 # Frázová shoda: dotazy s přímým zájmem o procvičování matematiky na přijímačky (z našeptávačů 2026-10-01).
