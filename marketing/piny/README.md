@@ -9,4 +9,5 @@ Generuje `node marketing/piny/render.mjs` z `web/src/content/planner.json`. Form
 | harmonogram.png | https://anoberu.cz/harmonogram-svatebniho-dne |
 | oznameni.png | https://anoberu.cz/text-svatebniho-oznameni |
 | svedek.png | https://anoberu.cz/svedek-na-svatbe |
+| podekovani.png | https://anoberu.cz/podekovani-za-svatebni-dar |
 | planovac.png | https://anoberu.cz/ |
