@@ -11,3 +11,8 @@ Chyby nahlášené Ondřejem ("FAIL: ..."). Každá má příčinu a pojistku, a
 - **Hlášení:** vytvářel jsi produt/službu, která je sezónní a sezóny právě není
 - **Příčina:** Produkt jsem vybíral podle toho, co umím vyrobit od A do Z, a podle velikosti trhu. Neověřil jsem, kdy bude první tržba. Sezónu zásnub (prosinec–únor) jsem bral jako termín spuštění, ne jako riziko, že se první 2–3 měsíce nic neprodá.
 - **Pojistka:** Pravidlo v CLAUDE.md (Rozhodnutí): u každého nového produktu nebo služby předem ověřit sezónnost poptávky vůči dnešnímu datu a odhadnout, kdy přijde první tržba. Přednost mají produkty s poptávkou teď nebo po celý rok. Sezónní produkt mimo sezónu jen s výslovným zdůvodněním a jako vedlejší, nikdy jediný.
+
+## 2026-09-30 22:09 UTC
+- **Hlášení:** neděláš research toho, zda je po dané službě/produktu poptávka
+- **Příčina:** Produkty jsem vybíral podle úsudku („velký trh“, „celoroční“), ne podle dat. Neměl jsem povinný krok, který by vyžadoval doložit poptávku čísly a zdroji dřív, než začnu stavět nebo žádat o peníze.
+- **Pojistka:** Povinná šablona `plan/SABLONA.md`: poptávka s čísly a zdroji, konkurence, ekonomika, test poptávky s kritériem pokračovat/zastavit. Pravidlo v CLAUDE.md: bez vyplněných oddílů 1–4 nic nestavím (déle než pár hodin) a Ondřej nic nekupuje.
