@@ -39,4 +39,9 @@ export const ARTICLES = [
     title: "Poděkování za svatební dar: vzory textů",
     description: "Pět vzorů poděkování za dar i za pomoc se svatbou, kdy je poslat a jak na nikoho nezapomenout.",
   },
+  {
+    href: "/svatebni-tradice",
+    title: "Svatební tradice a zvyky: přehled",
+    description: "České svatební tradice od rána do půlnoci: zatahování, rozbití talíře, polévka, únos nevěsty i čepení.",
+  },
 ] as const;
