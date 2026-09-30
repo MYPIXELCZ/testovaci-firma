@@ -57,7 +57,8 @@ export default async function Home({ searchParams }: Props) {
           <ul className="topics">{TOPICS.map((t) => <li key={t}>{t}</li>)}</ul>
           <p className="muted small">
             Chcete si to vyzkoušet hned? Příklady s postupem: <Link href="/zlomky-prijimacky">zlomky</Link>,{" "}
-            <Link href="/procenta-prijimacky">procenta</Link>, <Link href="/rovnice-prijimacky">rovnice</Link>.
+            <Link href="/procenta-prijimacky">procenta</Link>, <Link href="/rovnice-prijimacky">rovnice</Link>,{" "}
+            <Link href="/slovni-ulohy-prijimacky">slovní úlohy</Link>.
             Všechny úlohy jsou vlastní, ve stylu jednotné přijímací zkoušky. Výsledky ověřujeme výpočtem. Sada není
             oficiálním materiálem CERMAT.
           </p>

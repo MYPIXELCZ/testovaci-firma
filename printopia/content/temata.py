@@ -107,3 +107,49 @@ page("rovnice-prijimacky", "Rovnice na přijímačky: příklady s postupem ře�
      ["Co uděláte s jednou stranou rovnice, udělejte i s druhou.", "Zlomků se zbavíte vynásobením celé rovnice společným jmenovatelem.",
       "Minus před závorkou mění znaménka všech členů v závorce.", "U slovní úlohy si nejdřív napište, co je x.",
       "Vždy udělejte zkoušku dosazením do původní rovnice."], r)
+
+# ------------------------------------------------------------------ Slovní úlohy
+w = []
+tt = F(3, 4)
+w.append(t("Pohyb proti sobě", "Z měst vzdálených 105 km vyjeli proti sobě ve stejnou chvíli cyklista rychlostí 20 km/h a auto rychlostí 120 km/h. Za jak dlouho se potkají?",
+           "za 45 minut",
+           ["Při jízdě proti sobě se rychlosti sčítají: 20 + 120 = 140 km/h.", "Čas = dráha : rychlost = 105 : 140 = 3/4 h.",
+            "3/4 hodiny = 45 minut.", "Zkouška: 20 · 3/4 + 120 · 3/4 = 15 + 90 = 105 km. ✓"],
+           F(105, 140) == tt and 20 * tt + 120 * tt == 105))
+tt = 1 / (F(1, 12) + F(1, 4))
+w.append(t("Společná práce", "Malý bagr vykope jámu za 12 hodin, velký za 4 hodiny. Za kolik hodin ji vykopou společně?", "za 3 hodiny",
+           ["Malý bagr za hodinu vykope 1/12 jámy, velký 1/4 jámy.", "Společně za hodinu: 1/12 + 1/4 = 1/12 + 3/12 = 4/12 = 1/3 jámy.",
+            "Celou jámu tedy vykopou za 3 hodiny."], tt == 3))
+x = F(4)
+w.append(t("Směsi", "Kolik kg kávy po 400 Kč/kg musíme smíchat s 6 kg kávy po 250 Kč/kg, aby směs stála 310 Kč/kg?", "4 kg",
+           ["Dražší kávy je x kg. Cena směsi = součet cen obou druhů.", "400x + 250 · 6 = 310 · (x + 6).",
+            "400x + 1 500 = 310x + 1 860, tedy 90x = 360 a x = 4.", "Zkouška: 1 600 + 1 500 = 3 100 Kč za 10 kg = 310 Kč/kg. ✓"],
+           400 * x + 250 * 6 == 310 * (x + 6)))
+x = F(8)
+w.append(t("Věk", "Matka je dnes čtyřikrát starší než dcera. Za 16 let bude jen dvakrát starší. Kolik je dceři dnes?", "8 let",
+           ["Dceři je dnes x let, matce 4x.", "Za 16 let: 4x + 16 = 2(x + 16).", "4x + 16 = 2x + 32, tedy 2x = 16 a x = 8.",
+            "Zkouška: dnes 8 a 32 let, za 16 let 24 a 48 let, 48 = 2 · 24. ✓"], 4 * x + 16 == 2 * (x + 16)))
+x = F(360)
+w.append(t("Části celku", "Jana utratila 1/3 kapesného za kino a 1/4 za jídlo. Zbylo jí 150 Kč. Kolik měla kapesného?", "360 Kč",
+           ["Utratila 1/3 + 1/4 = 4/12 + 3/12 = 7/12 kapesného.", "Zbylo 5/12 kapesného, to je 150 Kč.", "1/12 … 30 Kč, celé kapesné 12 · 30 = 360 Kč.",
+            "Zkouška: 120 + 90 = 210 Kč, 360 − 210 = 150 Kč. ✓"], x - x / 3 - x / 4 == 150))
+x = F(12)
+w.append(t("Pohyb stejným směrem", "Chodec vyšel rychlostí 5 km/h. Za 1 hodinu 12 minut za ním vyjel cyklista rychlostí 20 km/h. Za kolik minut chodce dohoní?", "za 24 minut",
+           ["1 h 12 min = 1,2 h. Za tu dobu ujde chodec 5 · 1,2 = 6 km.", "Cyklista se každou hodinu přiblíží o 20 − 5 = 15 km.",
+            "Náskok 6 km dožene za 6 : 15 = 0,4 h = 24 minut.", "Zkouška: cyklista 20 · 0,4 = 8 km, chodec 5 · 1,6 = 8 km. ✓"],
+           5 * F(6, 5) == 6 and F(6, 15) * 60 == 24 and 20 * F(2, 5) == 5 * (F(6, 5) + F(2, 5))))
+x = F(21)
+w.append(t("Počty kusů", "V ohradě jsou slepice a králíci, celkem 35 hlav a 98 nohou. Kolik je slepic?", "21 slepic",
+           ["Slepic je x, králíků 35 − x.", "Nohy: 2x + 4(35 − x) = 98, tedy 140 − 2x = 98.", "2x = 42, x = 21 slepic a 14 králíků.",
+            "Zkouška: 42 + 56 = 98 nohou. ✓"], 2 * x + 4 * (35 - x) == 98))
+k = F(3, 2)
+w.append(t("Úměrnost", "6 stejných čerpadel vyčerpá nádrž za 9 hodin. Za kolik hodin ji vyčerpají 4 taková čerpadla?", "za 13,5 hodiny",
+           ["Méně čerpadel = víc času: nepřímá úměrnost.", "Čerpadlohodiny: 6 · 9 = 54.", "4 čerpadla: 54 : 4 = 13,5 hodiny."],
+           F(6 * 9, 4) == F(27, 2)))
+page("slovni-ulohy-prijimacky", "Slovní úlohy na přijímačky: příklady s postupem řešení",
+     "Slovní úlohy na přijímačky: příklady s postupem",
+     "8 slovních úloh ve stylu přijímaček z matematiky: pohyb, společná práce, směsi, věk, části celku a úměrnost. U každé postup řešení a zkouška.",
+     "Slovní úlohy dělají v přijímačkách největší potíže, protože je potřeba nejdřív převést text na výpočet. Tady je 8 nejčastějších typů. Nejdřív počítejte sami, postup si rozbalte až potom.",
+     ["Nejdřív si napište, co je neznámá x, a všechno ostatní vyjádřete pomocí ní.", "Pohyb proti sobě: rychlosti se sčítají. Stejným směrem: odčítají.",
+      "Společná práce: sčítají se části práce za hodinu (1/a + 1/b), ne časy.", "Směsi: cena (nebo množství látky) celé směsi = součet cen jednotlivých částí.",
+      "Na konci vždy zkouška dosazením do zadání, ne do rovnice."], w)

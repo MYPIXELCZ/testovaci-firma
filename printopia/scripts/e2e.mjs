@@ -42,11 +42,13 @@ try {
   const zl = await (await fetch(`${BASE}/zlomky-prijimacky`)).text();
   check(zl.includes("Zlomky na přijímačky") && zl.includes("240 stran"), "stránka Zlomky s příklady a řešením");
   const sm = await (await fetch(`${BASE}/sitemap.xml`)).text();
-  check(["/zlomky-prijimacky", "/procenta-prijimacky", "/rovnice-prijimacky"].every((u) => sm.includes(u)), "sitemap obsahuje všechna témata");
+  check(["/zlomky-prijimacky", "/procenta-prijimacky", "/rovnice-prijimacky", "/slovni-ulohy-prijimacky"].every((u) => sm.includes(u)), "sitemap obsahuje všechna témata");
   const pr = await (await fetch(`${BASE}/procenta-prijimacky`)).text();
   check(pr.includes("Procenta na přijímačky") && pr.includes("21 218 Kč"), "stránka Procenta");
   const ro = await (await fetch(`${BASE}/rovnice-prijimacky`)).text();
   check(ro.includes("Rovnice na přijímačky") && ro.includes("v 9:30, 27 km od Brna"), "stránka Rovnice");
+  const sl = await (await fetch(`${BASE}/slovni-ulohy-prijimacky`)).text();
+  check(sl.includes("Slovní úlohy na přijímačky") && sl.includes("21 slepic"), "stránka Slovní úlohy");
   check((await fetch(`${BASE}/neexistujici-prijimacky`)).status === 404, "neznámé téma = 404");
   check((await fetch(`${BASE}/og.png`)).ok, "náhled pro sdílení");
   check((await fetch(`${BASE}/neexistuje`)).status === 404, "404");
