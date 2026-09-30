@@ -11,7 +11,7 @@ Inzeráty proto mluví k rodičům; žák, který klikne, může na webu stránk
 import json
 
 URL = "https://printopia.cz/?utm_source=sklik"
-DAILY_BUDGET_CZK = 25          # první dobití 50 Kč vydrží asi 2 dny; po doplnění na 400 Kč asi 14 dní
+DAILY_BUDGET_CZK = 30          # minimum Skliku; 50 Kč vydrží asi 2 dny, 400 Kč asi 13 dní
 MAX_CPC_CZK = 6                # nad 6 Kč za proklik test podle plánu neprojde
 
 # Frázová shoda: dotazy s přímým zájmem o procvičování matematiky na přijímačky (z našeptávačů 2026-10-01).
