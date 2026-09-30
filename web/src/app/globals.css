@@ -203,3 +203,6 @@ details p { margin: 12px 0 0; color: var(--muted); }
 .article-list .card:hover { border-color: var(--sage); }
 .calc { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 24px; margin: 24px 0; }
 .calc-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 8px; }
+.chip { font: inherit; font-size: 0.9rem; border: 1.5px solid var(--line); background: #fff; border-radius: 999px; padding: 7px 14px; cursor: pointer; color: var(--ink); }
+.chip.on, .chip:hover { border-color: var(--sage-dark); background: var(--sage-light); }
+input.text { width: 100%; font: inherit; padding: 11px 13px; border-radius: 10px; border: 1.5px solid var(--line); background: #fff; }

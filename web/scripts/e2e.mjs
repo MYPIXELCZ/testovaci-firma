@@ -62,6 +62,7 @@ const app = spawn("npx", ["next", "start", "-p", String(APP)], {
     CRON_SECRET: SECRET,
     SALES_OPEN: "1",
     SITE_URL: `http://localhost:${APP}`,
+    STATS_KEY: "tajne",
   },
   stdio: ["ignore", "pipe", "pipe"],
   detached: true, // vlastní skupina procesů, aby šel ukončit i next-server pod npx
@@ -224,6 +225,24 @@ try {
   await page.locator('form').first().locator('button').click();
   await page.waitForSelector("text=Token funguje a je uložený");
   check(readFileSync(`${STORE}secrets/FIO_TOKEN`, "utf8") === "AbCdEf1234567890GhIjKl1234567890", "token Fio uložen do úložiště");
+
+  // Metriky (pojistka z FAILS.md): anonymní trychtýř, anketa, souhrn se závěry
+  const BASE_URL = `http://localhost:${APP}`;
+  const ua = { "User-Agent": "Mozilla/5.0 (e2e) Safari" };
+  const beacon = (body, h = ua) => fetch(`${BASE_URL}/api/e`, { method: "POST", headers: { "Content-Type": "application/json", ...h }, body: JSON.stringify(body) });
+  const pvA = "33333333-3333-4333-8333-333333333333";
+  for (const ev of ["view", "t10", "scroll50", "cta_buy"]) await beacon({ pv: pvA, ev, page: "home", topic: "", src: "sklik" });
+  const pvB = "44444444-4444-4444-8444-444444444444";
+  for (const ev of ["view", "form_start", "form_submit"]) await beacon({ pv: pvB, ev, page: "objednat", topic: "", src: "" });
+  await beacon({ pv: pvA, ev: "feedback", page: "home", topic: "", src: "sklik", choice: "zdarma", text: "mám šablonu" });
+  check((await beacon({ pv: "x", ev: "view", page: "home" })).status === 400, "metriky: neplatná událost odmítnuta");
+  check((await beacon({ pv: pvA, ev: "view", page: "home" }, { "User-Agent": "Googlebot/2.1" })).status === 204, "metriky: robot se tiše ignoruje");
+  check((await fetch(`${BASE_URL}/api/stats`)).status === 401, "metriky: souhrn je chráněný");
+  const st = await (await fetch(`${BASE_URL}/api/stats`, { headers: { "x-stats-key": "tajne" } })).json();
+  check(st.funnel.byType.home.view === 1 && st.funnel.byType.home.cta_buy === 1 && st.funnel.byType.objednat.form_submit === 1, "metriky: trychtýř úvod → objednávka");
+  check(st.orders.created >= 1 && st.orders.paid >= 1 && st.feedback["Stačí mi šablona zdarma"] === 1, "metriky: objednávky a důvody z ankety v souhrnu");
+  const homeHtml = await (await fetch(BASE_URL, { headers: ua })).text();
+  check(homeHtml.includes("co vás zatím drží od objednání") && homeHtml.includes('data-track="cta_buy"'), "metriky: anketa a měřená tlačítka na úvodu");
 } catch (e) {
   failures++;
   console.error(e);

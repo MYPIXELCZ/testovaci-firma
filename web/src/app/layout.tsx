@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { COMPANY, INDEXING, PRODUCT, SITE_URL } from "@/lib/config";
+import Beacon from "@/components/Beacon";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="cs">
       <body>
+        <Beacon />
         <header className="header">
           <div className="wrap">
             <Link href="/" aria-label="Ano, beru – úvod">
@@ -28,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/#co-najdete" className="navlink">Co najdete</Link>
               <Link href="/#jak-to-funguje" className="navlink">Jak to funguje</Link>
               <Link href="/#otazky" className="navlink">Otázky</Link>
-              <Link href="/objednat" className="btn btn-small">Koupit</Link>
+              <Link href="/objednat" className="btn btn-small" data-track="cta_buy">Koupit</Link>
             </nav>
           </div>
         </header>

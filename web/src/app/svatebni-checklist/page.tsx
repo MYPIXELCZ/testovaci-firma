@@ -23,7 +23,7 @@ export default function ChecklistPage() {
         </p>
 
         <p>
-          <a className="btn btn-ghost btn-small" href="/ke-stazeni/svatebni-checklist-anoberu.pdf" download>
+          <a className="btn btn-ghost btn-small" href="/ke-stazeni/svatebni-checklist-anoberu.pdf" download data-track="cta_checklist">
             Stáhnout checklist k tisku (PDF, zdarma)
           </a>
         </p>

@@ -69,11 +69,12 @@ const fileStorage: Storage = {
     return stat(/*turbopackIgnore: true*/ file(pathname)).then(() => true, () => false);
   },
   async list(prefix) {
+    // Rekurzivně jako Vercel Blob (prefix zahrnuje i podsložky), vrací jen soubory.
     const dir = path.dirname(file(prefix + "x"));
-    const names = await readdir(/*turbopackIgnore: true*/ dir).catch(() => [] as string[]);
-    const base = path.relative(root, dir);
-    const items = names
-      .map((n) => (base ? `${base}/${n}` : n))
+    const entries = await readdir(/*turbopackIgnore: true*/ dir, { recursive: true, withFileTypes: true }).catch(() => []);
+    const items = entries
+      .filter((e) => e.isFile())
+      .map((e) => path.relative(root, path.join(e.parentPath, e.name)).split(path.sep).join("/"))
       .filter((p) => p.startsWith(prefix));
     return Promise.all(items.map(async (p) => ({ pathname: p, uploadedAt: (await stat(/*turbopackIgnore: true*/ file(p))).mtime })));
   },

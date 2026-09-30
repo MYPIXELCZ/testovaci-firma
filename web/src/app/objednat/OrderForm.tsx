@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { send } from "@/components/Beacon";
 
 export default function OrderForm() {
   const router = useRouter();
@@ -28,6 +29,7 @@ export default function OrderForm() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Objednávku se nepodařilo odeslat.");
+      send("form_submit");
       router.push(`/objednavka/${data.id}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Objednávku se nepodařilo odeslat.");

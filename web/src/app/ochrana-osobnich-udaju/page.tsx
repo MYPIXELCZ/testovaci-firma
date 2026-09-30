@@ -60,7 +60,12 @@ export default function PrivacyPage() {
         </p>
 
         <h2>Cookies</h2>
-        <p>Web nepoužívá analytické ani reklamní cookies a nesleduje vás. Písma hostujeme sami, nenačítají se od třetích stran.</p>
+        <p>
+          Web nepoužívá analytické ani reklamní cookies a nesleduje vás. Písma hostujeme sami, nenačítají se od třetích stran.
+          Anonymně počítáme, jak se stránky používají (například jak daleko lidé dočtou a na co kliknou), bez IP adresy a bez
+          jakéhokoli identifikátoru, který by šel spojit s konkrétním člověkem. Stejně anonymní je i krátká anketa, co vám na
+          nabídce chybí.
+        </p>
       </div>
     </section>
   );

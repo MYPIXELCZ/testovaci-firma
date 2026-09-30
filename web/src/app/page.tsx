@@ -1,3 +1,4 @@
+import Feedback from "@/components/Feedback";
 import Image from "next/image";
 import Link from "next/link";
 import { ARTICLES } from "@/content/articles";
@@ -67,7 +68,7 @@ export default function Home() {
               i Google Tabulky.
             </p>
             <div className="hero-cta">
-              <Link href="/objednat" className="btn">Koupit za {PRODUCT.price} Kč</Link>
+              <Link href="/objednat" className="btn" data-track="cta_buy">Koupit za {PRODUCT.price} Kč</Link>
               <span className="muted small">Jednorázově · bez předplatného · doručení e‑mailem</span>
             </div>
           </div>
@@ -141,7 +142,7 @@ export default function Home() {
               <li>rozpočet, hosté, stoly, dodavatelé, den D</li>
               <li>14 dní na vrácení peněz bez udání důvodu</li>
             </ul>
-            <div><Link href="/objednat" className="btn">Koupit plánovač</Link></div>
+            <div><Link href="/objednat" className="btn" data-track="cta_buy">Koupit plánovač</Link></div>
           </div>
         </div>
       </section>
@@ -159,6 +160,12 @@ export default function Home() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="wrap narrow">
+          <Feedback />
         </div>
       </section>
 
