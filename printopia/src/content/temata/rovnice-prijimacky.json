@@ -1,0 +1,101 @@
+{
+  "slug": "rovnice-prijimacky",
+  "title": "Rovnice na přijímačky: příklady s postupem řešení",
+  "h1": "Rovnice na přijímačky: příklady s postupem",
+  "description": "8 příkladů na lineární rovnice ve stylu přijímaček z matematiky: závorky, zlomky, slovní úlohy a pohyb. U každého postup krok za krokem a zkouška.",
+  "lead": "Lineární rovnice jsou v přijímačkách samostatně i uvnitř slovních úloh. Tady je 8 příkladů od jednoduchých po úlohu o pohybu. Nejdřív počítejte sami, postup si rozbalte až potom.",
+  "tips": [
+    "Co uděláte s jednou stranou rovnice, udělejte i s druhou.",
+    "Zlomků se zbavíte vynásobením celé rovnice společným jmenovatelem.",
+    "Minus před závorkou mění znaménka všech členů v závorce.",
+    "U slovní úlohy si nejdřív napište, co je x.",
+    "Vždy udělejte zkoušku dosazením do původní rovnice."
+  ],
+  "tasks": [
+    {
+      "topic": "Lineární rovnice",
+      "text": "Řešte rovnici: 3x − 7 = 2x + 5",
+      "answer": "x = 12",
+      "steps": [
+        "Neznámé převedeme na levou stranu, čísla na pravou: 3x − 2x = 5 + 7.",
+        "x = 12.",
+        "Zkouška: L = 3 · 12 − 7 = 29, P = 2 · 12 + 5 = 29. ✓"
+      ]
+    },
+    {
+      "topic": "Závorky",
+      "text": "Řešte rovnici: 2(x − 3) = x + 4",
+      "answer": "x = 10",
+      "steps": [
+        "Roznásobíme závorku: 2x − 6 = x + 4.",
+        "2x − x = 4 + 6, tedy x = 10.",
+        "Zkouška: 2 · 7 = 14, 10 + 4 = 14. ✓"
+      ]
+    },
+    {
+      "topic": "Zlomky v rovnici",
+      "text": "Řešte rovnici: x/3 + x/4 = 7",
+      "answer": "x = 12",
+      "steps": [
+        "Vynásobíme celou rovnici společným jmenovatelem 12: 4x + 3x = 84.",
+        "7x = 84, tedy x = 12.",
+        "Zkouška: 12/3 + 12/4 = 4 + 3 = 7. ✓"
+      ]
+    },
+    {
+      "topic": "Zlomky v rovnici",
+      "text": "Řešte rovnici: (x + 1)/2 − (x − 1)/3 = 2",
+      "answer": "x = 7",
+      "steps": [
+        "Vynásobíme šesti: 3(x + 1) − 2(x − 1) = 12.",
+        "Pozor na znaménko před závorkou: 3x + 3 − 2x + 2 = 12.",
+        "x + 5 = 12, tedy x = 7.",
+        "Zkouška: 8/2 − 6/3 = 4 − 2 = 2. ✓"
+      ]
+    },
+    {
+      "topic": "Závorky",
+      "text": "Řešte rovnici: 5 − 2(3 − x) = 3(x − 1)",
+      "answer": "x = 2",
+      "steps": [
+        "Roznásobíme: 5 − 6 + 2x = 3x − 3.",
+        "−1 + 2x = 3x − 3.",
+        "2x − 3x = −3 + 1, tedy −x = −2 a x = 2.",
+        "Zkouška: L = 5 − 2 · 1 = 3, P = 3 · 1 = 3. ✓"
+      ]
+    },
+    {
+      "topic": "Slovní úloha",
+      "text": "Obvod obdélníku je 46 cm, délka je o 5 cm větší než šířka. Jaké má obdélník rozměry?",
+      "answer": "9 cm a 14 cm",
+      "steps": [
+        "Šířka x, délka x + 5.",
+        "Obvod: 2(x + x + 5) = 46, tedy 4x + 10 = 46.",
+        "4x = 36, x = 9.",
+        "Šířka 9 cm, délka 14 cm. Zkouška: 2 · (9 + 14) = 46. ✓"
+      ]
+    },
+    {
+      "topic": "Slovní úloha",
+      "text": "Součet tří po sobě jdoucích přirozených čísel je 81. Která to jsou?",
+      "answer": "26, 27 a 28",
+      "steps": [
+        "Čísla označíme x, x + 1, x + 2.",
+        "x + x + 1 + x + 2 = 81, tedy 3x + 3 = 81.",
+        "3x = 78, x = 26."
+      ]
+    },
+    {
+      "topic": "Pohyb",
+      "text": "V 8:00 vyjel z Brna cyklista rychlostí 18 km/h. V 9:00 za ním vyjelo auto rychlostí 54 km/h. V kolik hodin a jak daleko od Brna cyklistu dohoní?",
+      "answer": "v 9:30, 27 km od Brna",
+      "steps": [
+        "Auto jede t hodin, cyklista o hodinu déle: t + 1.",
+        "Dohoní ho, až ujedou stejnou dráhu: 54t = 18(t + 1).",
+        "54t = 18t + 18, tedy 36t = 18 a t = 1/2 hodiny.",
+        "Auto vyjelo v 9:00, dohoní ho v 9:30.",
+        "Dráha: 54 · 1/2 = 27 km. Zkouška: cyklista 18 · 3/2 = 27 km. ✓"
+      ]
+    }
+  ]
+}

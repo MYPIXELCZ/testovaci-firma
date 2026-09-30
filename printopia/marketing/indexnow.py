@@ -4,7 +4,9 @@ import json
 import urllib.request
 
 KEY = "11045f5901d96d29bb8a5588cf5115d1"  # veřejný klíč, soubor public/11045f5901d96d29bb8a5588cf5115d1.txt
-URLS = ["https://printopia.cz/", "https://printopia.cz/zlomky-prijimacky", "https://printopia.cz/ochrana-osobnich-udaju"]
+# Seznam URL bereme z živé sitemapy, aby se nové stránky ohlásily samy.
+import re
+URLS = re.findall(r"<loc>(.*?)</loc>", urllib.request.urlopen("https://printopia.cz/sitemap.xml", timeout=20).read().decode())
 
 for endpoint in ["https://search.seznam.cz/indexnow", "https://www.bing.com/indexnow"]:
     body = json.dumps({"host": "printopia.cz", "key": KEY, "keyLocation": f"https://printopia.cz/{KEY}.txt", "urlList": URLS}).encode()
