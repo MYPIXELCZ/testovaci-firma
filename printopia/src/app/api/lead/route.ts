@@ -1,5 +1,7 @@
 import { createHash } from "node:crypto";
+import { after } from "next/server";
 import { storage } from "@/lib/storage";
+import { track } from "@/lib/track";
 
 const SOURCES = ["ukazka", "koupit"] as const;
 type Source = (typeof SOURCES)[number];
@@ -32,6 +34,7 @@ export async function POST(req: Request) {
     ? { ...prev, sources: [...new Set([...prev.sources, source])], role, lastAt: now }
     : { email, sources: [source], role, firstAt: now, lastAt: now, src };
   await storage.write(key, JSON.stringify(lead), { overwrite: true });
-  console.log(JSON.stringify({ ev: "lead", source, role, src, repeat: Boolean(prev) }));
+  const ua = req.headers.get("user-agent");
+  if (!prev) after(() => track("lead", src, ua, { source, role }));
   return Response.json({ ok: true, download: source === "ukazka" ? "/ukazka-zlomky.pdf" : null });
 }

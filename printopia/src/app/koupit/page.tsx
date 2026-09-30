@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { after } from "next/server";
 import LeadForm from "@/components/LeadForm";
+import { track } from "@/lib/track";
 import { LAUNCH_DATE, LAUNCH_PRICE, PRICE } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Koupit sadu", robots: { index: false } };
@@ -9,7 +12,8 @@ type Props = { searchParams: Promise<Record<string, string | string[] | undefine
 export default async function Buy({ searchParams }: Props) {
   const sp = await searchParams;
   const src = String(sp.src ?? "").slice(0, 40).replace(/[^\w.-]/g, "");
-  console.log(JSON.stringify({ ev: "buy_click", src }));
+  const ua = (await headers()).get("user-agent");
+  after(() => track("buy_click", src, ua));
   return (
     <section className="hero">
       <div className="wrap narrow">

@@ -8,7 +8,7 @@ const PORT = 3200;
 const BASE = `http://localhost:${PORT}`;
 const store = mkdtempSync(path.join(tmpdir(), "printopia-"));
 const app = spawn("npx", ["next", "start", "-p", String(PORT)], {
-  env: { ...process.env, LOCAL_STORE_DIR: store, BLOB_READ_WRITE_TOKEN: "", VERCEL: "" },
+  env: { ...process.env, LOCAL_STORE_DIR: store, BLOB_READ_WRITE_TOKEN: "", VERCEL: "", STATS_KEY: "tajne" },
   stdio: ["ignore", "pipe", "pipe"],
   detached: true,
 });
@@ -21,20 +21,22 @@ const check = (ok, name) => {
   console.log(`${ok ? "✓" : "✗"} ${name}`);
   if (!ok) failed++;
 };
-const post = (body) => fetch(`${BASE}/api/lead`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+const UA = { "User-Agent": "Mozilla/5.0 (e2e) Safari" };
+const get = (p) => fetch(`${BASE}${p}`, { headers: UA });
+const post = (body) => fetch(`${BASE}/api/lead`, { method: "POST", headers: { "Content-Type": "application/json", ...UA }, body: JSON.stringify(body) });
 
 try {
   for (let i = 0; i < 60; i++) {
     if (await fetch(BASE).then(() => true, () => false)) break;
     await new Promise((r) => setTimeout(r, 500));
   }
-  const home = await (await fetch(`${BASE}/?utm_source=sklik`)).text();
+  const home = await (await get("/?utm_source=sklik")).text();
   check(home.includes("Přijímačky z matiky po tématech"), "úvodní stránka");
   check(home.includes('class="fr"'), "zlomky nad sebou v ukázce");
   check(home.includes("/koupit?src=sklik"), "zdroj návštěvy se předává do Koupit");
   const pdf = await fetch(`${BASE}/ukazka-zlomky.pdf`);
   check(pdf.ok && pdf.headers.get("content-type")?.includes("pdf"), "ukázka PDF ke stažení");
-  const buy = await (await fetch(`${BASE}/koupit?src=sklik`)).text();
+  const buy = await (await get("/koupit?src=sklik")).text();
   check(buy.includes("Sadu spouštíme") && buy.includes("279"), "stránka Koupit (spuštění + sleva)");
   check((await fetch(`${BASE}/ochrana-osobnich-udaju`)).ok, "ochrana osobních údajů");
   const zl = await (await fetch(`${BASE}/zlomky-prijimacky`)).text();
@@ -66,6 +68,12 @@ try {
   const lead = JSON.parse(readFileSync(path.join(store, "leads", files[0]), "utf8"));
   check(lead.email === "rodic@example.cz" && lead.sources.join() === "ukazka,koupit" && lead.src === "sklik" && lead.role === "rodic", "záznam má zdroje, roli i původ");
   check(logs.includes('"ev":"visit"') && logs.includes('"ev":"buy_click"') && logs.includes('"ev":"lead"'), "události v logu pro měření testu");
+  await fetch(`${BASE}/`, { headers: { "User-Agent": "Googlebot/2.1" } });
+  await new Promise((r) => setTimeout(r, 500));
+  check((await fetch(`${BASE}/api/stats`)).status === 401, "souhrn testu je chráněný");
+  const st = await (await fetch(`${BASE}/api/stats`, { headers: { "x-stats-key": "tajne" } })).json();
+  check(st.events.visit?.sklik === 1 && st.events.buy_click?.sklik === 1 && st.totals.leads === 1, "souhrn: návštěva, klik na Koupit a lead ze Skliku (robot a opakovaný lead nezapočten)");
+  check(st.leadsByRole.rodic === 1 && st.buyClickRate === 1 / st.totals.visits, "souhrn: role a míra kliků na Koupit");
 } finally {
   process.kill(-app.pid);
 }

@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { headers } from "next/headers";
+import { after } from "next/server";
+import { track } from "@/lib/track";
 import LeadForm from "@/components/LeadForm";
 import MathText from "@/components/MathText";
 import ukazka from "@/content/ukazka.json";
@@ -16,7 +19,8 @@ type Props = { searchParams: Promise<Record<string, string | string[] | undefine
 export default async function Home({ searchParams }: Props) {
   const sp = await searchParams;
   const src = String(sp.utm_source ?? sp.src ?? "").slice(0, 40).replace(/[^\w.-]/g, "");
-  console.log(JSON.stringify({ ev: "visit", page: "/", src }));
+  const ua = (await headers()).get("user-agent");
+  after(() => track("visit", src, ua));
   const preview = ukazka.tasks.filter((t) => ["Složený zlomek", "Slovní úloha"].includes(t.topic)).slice(0, 2);
 
   return (
