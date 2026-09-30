@@ -8,4 +8,5 @@ Generuje `node marketing/piny/render.mjs` z `web/src/content/planner.json`. Form
 | rozpocet.png | https://anoberu.cz/svatebni-rozpocet |
 | harmonogram.png | https://anoberu.cz/harmonogram-svatebniho-dne |
 | oznameni.png | https://anoberu.cz/text-svatebniho-oznameni |
+| svedek.png | https://anoberu.cz/svedek-na-svatbe |
 | planovac.png | https://anoberu.cz/ |

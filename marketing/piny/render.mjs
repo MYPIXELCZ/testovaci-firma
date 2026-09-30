@@ -58,6 +58,9 @@ const pins = {
         S radostí oznamujeme, že si<br><b style="font-weight:600">12. června 2027</b><br>řekneme své ano.<br><span style="font-size:30px;color:#6B665E;font-family:I">Tereza a Jakub</span></div>
       <p style="font-size:30px;color:#6B665E;margin-top:36px">+ 4 další vzory a co v oznámení nesmí chybět</p></div>`),
 
+  "svedek.png": page(`<div class="eyebrow">Pro svědky</div><h1>Co čeká svědka na svatbě<span class="dot">.</span></h1>
+    <div class="main">${["Prsteny a doklady u sebe", "Hlídat harmonogram a čas", "Kontakt pro dodavatele", "Obálky s doplatky", "Nouzová taška", "Skupinové focení", "Proslov a přípitek"].map((t) => `<div class="row"><b style="min-width:60px;color:#B5694A">✓</b><span>${t}</span></div>`).join("")}</div>`),
+
   "planovac.png": page(`<div class="eyebrow">Pro Excel a Google Tabulky</div><h1>Naplánujte si svatbu v klidu<span class="dot">.</span></h1>
     <div class="main"><div class="shot"><img src="${img("prehled.png")}"></div>
     <div><span class="cta">Svatební plánovač za 349 Kč</span></div></div>`),
@@ -72,4 +75,4 @@ for (const [name, html] of Object.entries(pins)) {
   console.log("marketing/piny/" + name);
 }
 await browser.close();
-writeFileSync(new URL("README.md", import.meta.url), `# Piny na Pinterest\n\nGeneruje \`node marketing/piny/render.mjs\` z \`web/src/content/planner.json\`. Formát 1000×1500 (2:3).\n\n| Pin | Odkaz |\n|---|---|\n| checklist.png | https://anoberu.cz/svatebni-checklist |\n| rozpocet.png | https://anoberu.cz/svatebni-rozpocet |\n| harmonogram.png | https://anoberu.cz/harmonogram-svatebniho-dne |\n| oznameni.png | https://anoberu.cz/text-svatebniho-oznameni |\n| planovac.png | https://anoberu.cz/ |\n`);
+writeFileSync(new URL("README.md", import.meta.url), `# Piny na Pinterest\n\nGeneruje \`node marketing/piny/render.mjs\` z \`web/src/content/planner.json\`. Formát 1000×1500 (2:3).\n\n| Pin | Odkaz |\n|---|---|\n| checklist.png | https://anoberu.cz/svatebni-checklist |\n| rozpocet.png | https://anoberu.cz/svatebni-rozpocet |\n| harmonogram.png | https://anoberu.cz/harmonogram-svatebniho-dne |\n| oznameni.png | https://anoberu.cz/text-svatebniho-oznameni |\n| svedek.png | https://anoberu.cz/svedek-na-svatbe |\n| planovac.png | https://anoberu.cz/ |\n`);
