@@ -34,5 +34,5 @@
 - Test: `cd web && npm run test:e2e` (celý nákup proti falešnému Fio a Resend, lokálně ukládá do souborů).
 - Google Tabulky: všechny použité funkce jsou podporované, reálně neotestováno (Sheets konektor chybí), ověřit při spuštění.
 - Obchodní rozhodnutí: cena 349 Kč, bez vzdání se práva na odstoupení (14 dní na vrácení peněz), platba jen převodem/QR.
-- Blokováno (Ondřej): přepojit Vercel konektor v claude.ai na ondrej@mypixel.cz a začít novou session na větvi claude/hopeful-hamilton-n1pbnk, pak FIO_TOKEN + RESEND_API_KEY do env Vercel projektu `anoberu` (tým ondrej-chloupeks-projects).
+- Blokováno (Ondřej): přepojit Vercel konektor v claude.ai na ondrej@mypixel.cz a začít novou session na větvi claude/hopeful-hamilton-n1pbnk, pak FIO_TOKEN + RESEND_API_KEY do env Vercel projektu `anoberu` (v účtu ondrej@mypixel.cz).
 - Ověření .xlsx: `recalc.py` ze skillu xlsx (potřebuje `apt-get install libreoffice-calc`), pracovní soubory v `.build/`.
