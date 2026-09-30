@@ -64,6 +64,9 @@ export default async function Home({ searchParams }: Props) {
 
       <section>
         <div className="wrap narrow">
+          <p className="small">
+            Nevíte, kde začít? <Link href="/jak-se-pripravit-na-prijimacky" data-track="topic_link">Plán přípravy na přijímačky z matematiky od října do dubna</Link>.
+          </p>
           <h2>Co v sadě bude</h2>
           <ol className="topics">{TOPICS.map((t) => <li key={t}>{t}</li>)}</ol>
           <p className="muted small">
