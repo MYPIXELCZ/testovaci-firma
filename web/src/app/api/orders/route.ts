@@ -1,10 +1,12 @@
 import { after } from "next/server";
 import { sendPaymentInstructions } from "@/lib/email";
+import { SALES_OPEN } from "@/lib/config";
 import { createOrder } from "@/lib/orders";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export async function POST(req: Request) {
+  if (!SALES_OPEN) return Response.json({ error: "Prodej jsme ještě nespustili." }, { status: 403 });
   const body = await req.json().catch(() => null);
   if (!body) return Response.json({ error: "Neplatný požadavek." }, { status: 400 });
 

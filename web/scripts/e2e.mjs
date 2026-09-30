@@ -56,9 +56,11 @@ const app = spawn("npx", ["next", "start", "-p", String(APP)], {
     RESEND_API_KEY: "test",
     RESEND_API_URL: `http://localhost:${MOCK}/emails`,
     CRON_SECRET: SECRET,
+    SALES_OPEN: "1",
     SITE_URL: `http://localhost:${APP}`,
   },
   stdio: ["ignore", "pipe", "pipe"],
+  detached: true, // vlastní skupina procesů, aby šel ukončit i next-server pod npx
 });
 let appLog = "";
 app.stdout.on("data", (d) => (appLog += d));
@@ -163,7 +165,7 @@ try {
   console.error(appLog.slice(-3000));
 } finally {
   await browser.close();
-  app.kill();
+  process.kill(-app.pid, "SIGTERM");
   mock.close();
   rmSync(STORE, { recursive: true, force: true });
 }

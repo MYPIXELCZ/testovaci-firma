@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { COMPANY, PRODUCT, SITE_URL } from "@/lib/config";
+import { COMPANY, INDEXING, PRODUCT, SITE_URL } from "@/lib/config";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     "Naplánujte si svatbu v klidu. Rozpočet, hosté, úkoly s termíny a harmonogram dne D v jedné tabulce. " +
     `Jednorázově za ${PRODUCT.price} Kč, doručení e-mailem.`,
   openGraph: { type: "website", locale: "cs_CZ", siteName: "Ano, beru", images: ["/og.png"] },
+  robots: INDEXING ? undefined : { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

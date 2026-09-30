@@ -40,8 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# zkopírováno z product/dist při buildu
-/private/
 
 # lokální úložiště objednávek (vývoj)
 /.localstore/

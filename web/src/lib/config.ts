@@ -1,5 +1,9 @@
 export const SITE_URL = process.env.SITE_URL ?? "https://anoberu.cz";
 
+/** Prodej a indexace se zapínají až při spuštění (env SALES_OPEN=1, INDEXING=1). */
+export const SALES_OPEN = process.env.SALES_OPEN === "1";
+export const INDEXING = process.env.INDEXING === "1";
+
 export const PRODUCT = {
   name: "Svatební plánovač Ano, beru",
   price: 349,

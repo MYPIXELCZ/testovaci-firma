@@ -1,4 +1,4 @@
-import { UNPAID_RETENTION_DAYS } from "@/lib/config";
+import { SALES_OPEN, UNPAID_RETENTION_DAYS } from "@/lib/config";
 import { sendDelivery } from "@/lib/email";
 import { incomingPayments } from "@/lib/fio";
 import { deleteOrder, getOrder, listPending, markPaid } from "@/lib/orders";
@@ -11,6 +11,8 @@ export async function GET(req: Request) {
   if (!secret || req.headers.get("authorization") !== `Bearer ${secret}`) {
     return new Response("Unauthorized", { status: 401 });
   }
+
+  if (!SALES_OPEN) return Response.json({ skipped: "prodej není spuštěný" });
 
   const pending = await listPending();
   const result = { pending: pending.length, paid: [] as string[], underpaid: [] as string[], expired: 0 };
