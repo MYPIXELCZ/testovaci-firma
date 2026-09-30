@@ -16,3 +16,8 @@ Chyby nahlášené Ondřejem ("FAIL: ..."). Každá má příčinu a pojistku, a
 - **Hlášení:** neděláš research toho, zda je po dané službě/produktu poptávka
 - **Příčina:** Produkty jsem vybíral podle úsudku („velký trh“, „celoroční“), ne podle dat. Neměl jsem povinný krok, který by vyžadoval doložit poptávku čísly a zdroji dřív, než začnu stavět nebo žádat o peníze.
 - **Pojistka:** Povinná šablona `plan/SABLONA.md`: poptávka s čísly a zdroji, konkurence, ekonomika, test poptávky s kritériem pokračovat/zastavit. Pravidlo v CLAUDE.md: bez vyplněných oddílů 1–4 nic nestavím (déle než pár hodin) a Ondřej nic nekupuje.
+
+## 2026-10-01 00:24 (Praha)
+- **Hlášení:** používej pražské časy
+- **Příčina:** Nástroje (logy Vercelu, plánovač připomínek, kontejner) běží v UTC a já časy Ondřejovi přepisoval bez převodu.
+- **Pojistka:** Pravidlo v CLAUDE.md: Ondřejovi vždy pražský čas (Europe/Prague). Hook `.claude/hooks/prague-time.sh` přidá ke každé zprávě aktuální pražský čas a posun proti UTC, takže převod mám vždy před očima. FAIL záznamy se píšou v pražském čase.

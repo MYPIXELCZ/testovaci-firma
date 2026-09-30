@@ -2,6 +2,7 @@
 # Zpráva od Ondřeje začínající "FAIL:" se automaticky zapíše do FAILS.md
 # a Claude dostane pokyn doplnit příčinu a pojistku.
 import datetime, json, os, sys
+from zoneinfo import ZoneInfo
 
 data = json.load(sys.stdin)
 prompt = (data.get("prompt") or "").strip()
@@ -13,7 +14,7 @@ path = os.path.join(root, "FAILS.md")
 if not os.path.exists(path):
     with open(path, "w", encoding="utf-8") as f:
         f.write("# FAILS\n\nChyby nahlášené Ondřejem (\"FAIL: ...\"). Každá má příčinu a pojistku, aby se neopakovala.\n")
-stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+stamp = datetime.datetime.now(ZoneInfo("Europe/Prague")).strftime("%Y-%m-%d %H:%M (Praha)")
 text = prompt[5:].strip().replace("\n", " ")
 with open(path, "a", encoding="utf-8") as f:
     f.write(f"\n## {stamp}\n- **Hlášení:** {text}\n- **Příčina:** (doplnit)\n- **Pojistka:** (doplnit)\n")

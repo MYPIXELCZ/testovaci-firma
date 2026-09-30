@@ -12,6 +12,7 @@
 - **Pojistka:** běží trvalá hodinová připomínka (Routine `trig_01JwSBqqYubWBAPLvW1ZK1Te`, každou hodinu v :25 do této session). Při každém spuštění: kontrola stavu, navázat na Ondřejovy kroky, jinak další neblokovaná práce. Vypnout jen na Ondřejův pokyn (update_trigger enabled=false).
 - **FAIL:** zpráva od Ondřeje začínající „FAIL: …“ = trvalý záznam do `FAILS.md` (hook `.claude/hooks/fail-log.py` ji zapíše sám; když ne, zapsat ručně). Pokaždé doplnit příčinu a pojistku (pravidlo sem, test nebo kontrola v kódu), zavést ji, commit + push. Před prací projít `FAILS.md`, ať se nic neopakuje.
 - **Víc práce Clauda ve prospěch nižších nákladů a méně práce Ondřeje.**
+- **Čas: Ondřejovi vždy pražský čas** (Europe/Prague; letní čas UTC+2 do 25. 10. 2026, pak UTC+1). Logy, rutiny a kontejner jsou v UTC, vždy převést. Hook přidává aktuální pražský čas ke každé zprávě.
 - Stručně: krátké odpovědi, žádné dlouhé checklisty, minimum nadpisů.
 - Rizika hlásit hned, ne až potom.
 - Žádné placené zahraniční služby: s.r.o. je neplátce DPH a nákupem služby ze zahraničí by se stala identifikovanou osobou. Zahraniční služby zdarma jsou OK.
