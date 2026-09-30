@@ -37,6 +37,10 @@ try {
   const buy = await (await fetch(`${BASE}/koupit?src=sklik`)).text();
   check(buy.includes("Sadu spouštíme") && buy.includes("279"), "stránka Koupit (spuštění + sleva)");
   check((await fetch(`${BASE}/ochrana-osobnich-udaju`)).ok, "ochrana osobních údajů");
+  const zl = await (await fetch(`${BASE}/zlomky-prijimacky`)).text();
+  check(zl.includes("Zlomky na přijímačky") && zl.includes("240 stran"), "stránka Zlomky s příklady a řešením");
+  check((await (await fetch(`${BASE}/sitemap.xml`)).text()).includes("/zlomky-prijimacky"), "sitemap obsahuje Zlomky");
+  check((await fetch(`${BASE}/og.png`)).ok, "náhled pro sdílení");
   check((await fetch(`${BASE}/neexistuje`)).status === 404, "404");
 
   check((await post({ email: "spatny", consent: true, source: "ukazka" })).status === 400, "odmítne neplatný e-mail");

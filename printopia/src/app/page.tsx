@@ -52,6 +52,7 @@ export default async function Home({ searchParams }: Props) {
           <h2>Co v sadě bude</h2>
           <ul className="topics">{TOPICS.map((t) => <li key={t}>{t}</li>)}</ul>
           <p className="muted small">
+            Chcete si to vyzkoušet hned? <Link href="/zlomky-prijimacky">Zlomky na přijímačky: 8 příkladů s postupem</Link>.
             Všechny úlohy jsou vlastní, ve stylu jednotné přijímací zkoušky. Výsledky ověřujeme výpočtem. Sada není
             oficiálním materiálem CERMAT.
           </p>

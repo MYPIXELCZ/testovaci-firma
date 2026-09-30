@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: { default: "Přijímačky z matiky po tématech · Printopia", template: "%s · Printopia" },
   description:
     "Sady úloh k tisku na přijímačky z matematiky, rozdělené podle témat. U každé úlohy postup řešení krok za krokem. Ukázka zdarma.",
-  openGraph: { type: "website", locale: "cs_CZ", siteName: "Printopia" },
+  openGraph: { type: "website", locale: "cs_CZ", siteName: "Printopia", images: ["/og.png"] },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
