@@ -29,6 +29,7 @@
 - **Výběr produktu (pojistka z FAILS.md):** u každého nového produktu/služby ověřit sezónnost poptávky vůči dnešnímu datu a čas do první tržby. Přednost: poptávka teď nebo celoročně. Sezónní produkt mimo sezónu jen se zdůvodněním a nikdy jako jediný.
 - Produkt 1: svatební plánovač v Google Sheets (+ .xlsx) pro CZ trh (sezónní, běží sám, sezóna od prosince).
 - Produkt 2 (2026-09-30, POZASTAVENO do researche podle plan/SABLONA.md): **rodinný rozpočet** (Excel + Google Tabulky) s tříděním výpisu z banky, celoroční poptávka. Znovu použít platby/párování/doručení. Volné Ondřejovy domény (zdarma): printopia.cz, vratime.cz, webprodava.cz, rugsy.cz, reviewboost.cz, emotionsmatter.cz.
+- Research 2026-10-01 (`plan/research-2026-10-01.md`): vítěz podmíněně **přijímačky SŠ, tematické sady s postupem** (`plan/prijimacky.md`), stavět až po testu poptávky (Sklik 400 Kč, čeká na schválení). Pracovní listy 1.–5. tř. zamítnuty (přesycené).
 - Reklama: Sklik (česká služba) přes firmu. Google Ads/Meta: Ondřej je zaplatí soukromě mimo účetnictví, právní riziko vzal na sebe po dohodě s účetní (2026-09-30). Firma sama zahraniční placené služby nekupuje. Ondřej je ochoten dát peníze do reklamy, spustit až bude produkt 2 hotový a měřitelný.
 - Brand: **Ano, beru**, doména anoberu.cz: koupena u WEDOSu 2026-09-30, NS ns1/ns2.vercel-dns.com, DNS zóna omylem založena v účtu beta@mypixel.cz (tým ondrej-chloupeks-projects), Ondřej ji tam má smazat a doména se přidá do správného účtu. Podklady v `brand/`.
 - Ochranná známka „Ano, beru“: neověřena, riziko Ondřej přijal (2026-09-30).

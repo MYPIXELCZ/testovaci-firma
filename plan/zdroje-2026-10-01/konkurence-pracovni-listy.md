@@ -1,0 +1,44 @@
+# Konkurence: tisknutelné pracovní listy (PDF) – 1. stupeň ZŠ, předškoláci, Vánoce
+
+Datum sběru: **2026-10-01** (curl + WebFetch/WebSearch). Nic nekoupeno, nikdo nekontaktován.
+Značky: **[ověřeno]** = viděno přímo na zdrojové stránce; **[odhad]** = z náhledu/výběru, ne přesný počet; **[neověřeno]** = stránka nedostupná (403/blokace) nebo údaj nezveřejněn.
+
+## Placení prodejci a tržiště
+
+| Prodejce | Co prodává | Cena (Kč) | Počet produktů | Recenze / prodeje | Formát | Cíl | Mezery |
+|---|---|---|---|---|---|---|---|
+| [Sluniva.cz](https://www.sluniva.cz/) | PDF listy MŠ + 1.–5. tř. (ČJ, M, AJ), grafomotorika, motivy (Vánoce, Halloween…) | 39–129 [ověřeno, [úvod](https://www.sluniva.cz/), [grafomotorika](https://www.sluniva.cz/grafomotorika---pracovni---listy/)]; Vánoce 45–55 [ověřeno, [vanoce](https://www.sluniva.cz/vanoce/)] | kódy produktů až DIGI_763 → řádově stovky [odhad]; Vánoce 18, grafomotorika 4 [ověřeno] | 5/5 hvězd, ale jednotky hodnocení na produkt (např. 1) [ověřeno, [produkt](https://www.sluniva.cz/cteni-s-porozumenim-1--trida---najdi-vetrelce/)] | PDF e-mailem | učitelé i rodiče | Licence 1 učitel = 1 licence, kopie pro vlastní žáky [ověřeno, [VOP čl. 8](https://www.sluniva.cz/obchodni-podminky/)]; málo grafomotoriky (4 ks); žádné velké roční balíčky pro rodiče |
+| [UčiteléUčitelům.cz](https://uciteleucitelum.cz/katalog) | tržiště učitelských materiálů (hlavně PDF) | 25–70 na 1. stránce katalogu [ověřeno] ; vánoční listy 1. tř. 34 Kč/14 stran [ověřeno, [produkt](https://uciteleucitelum.cz/material/cesky-jazyk/vanocni-pracovni-listy-1-trida)] | **73 654** materiálů celkem; fulltext „vánoční“ 2 918, „vánoční pracovní listy“ 538, „grafomotorika“ 3 694, „předškoláci“ 1 662 [ověřeno, [katalog](https://uciteleucitelum.cz/katalog?fulltext=grafomotorika)] | počty prodejů ani hodnocení se nezobrazují [neověřeno]; provize autorům [neověřeno] | PDF (+ tisk na objednávku) | učitelé | Hlavní konkurence pro učitele; obrovská nabídka, ale roztříštěná, nekonzistentní kvalita, zaměřeno na učitele, ne na rodiče |
+| [Učitelnice.cz](https://www.ucitelnice.cz/) | tržiště učitelských materiálů | 30–145 [neověřeno, jen z výsledků vyhledávání] | „stovky učitelů“ [neověřeno, 403 pro bota] | [neověřeno] | PDF | učitelé | Web blokuje stažení (403) – nelze ověřit |
+| [Fler.cz – kategorie Pracovní list](https://www.fler.cz/zbozi/pro-deti/pro-skolaky/pracovni-list) | ruční výroba + PDF listy od desítek prodejců | 25–780, většina < 200; PDF typicky 35–122 [ověřeno přes WebFetch] | **1 151** položek v kategorii (mix PDF a fyzických) [ověřeno přes WebFetch; curl blokován antibotem] | příklad: „Pracovní listy – STROMY“ 76 Kč, prodejce 436 prodejů celkem, 33 hodnocení 100 % [ověřeno, [produkt](https://www.fler.cz/zbozi/pracovni-listy-stromy-pdf-k-tisku-12829831)] | PDF + tisk | rodiče i učitelé | Malé sady (5–15 listů), bez jednotné řady podle ročníku; poplatky Fleru |
+| [Elis v papíru](https://www.elisvpapiru.cz/materialy-pro-deti) | hlavně samolepky; PDF stezky, hry, lapbooky, prac. listy | 45–165 [ověřeno] | ~56 PDF pro děti, z toho ~9 „pracovní listy a e-booky“ [ověřeno/odhad, [kategorie](https://www.elisvpapiru.cz/pracovni-listy-ebooky)] | hvězdičky u produktů, počty nezjištěny [neověřeno] | PDF | rodiče, školky, tábory | Pracovní listy jsou vedlejší sortiment, nepokrývá ročníky 1–5 |
+| [eTaktik (Taktik)](https://www.etaktik.cz/) | nakladatel tištěných sešitů/učebnic; „Pracovní listy pro 1. ročník“ ke kopírování | sešity MŠ 44–356 [ověřeno, [předškoláci](https://www.etaktik.cz/materske-skoly/podle-veku/predskolni-deti/)]; kopírovací listy 1. roč. **990 Kč / 100 stran** [ověřeno, [produkt](https://www.etaktik.cz/pracovni-listy-pro-1-rocnik/)] | stovky titulů [odhad] | [neověřeno] | tisk (kopírovací předlohy) | školy, učitelé | Není PDF ke stažení; drahé; pro rodiče nevhodné |
+| [Učení s nápadem](https://www.ucenisnapadem.cz/p/pracovni-listy-pro-cesky-jazyk-2-trida/212) | listy ČJ/M po ročnících, tištěné + PDF + vyplnitelné PDF | **1 300 Kč** s multilicencí pro celou školu [ověřeno] | [neověřeno] | „ověřená recenze“ – počet [neověřeno] | tisk/PDF | školy | Cena pro školy; rodiče nemají levnou variantu |
+| [Zápisník učitele](https://eshop.zapisnikucitele.cz/licence/) | materiály pro učitele | [neověřeno] | [neověřeno] | [neověřeno] | PDF | učitelé | Licence: 1 učitel + jeho třídy, nebo multilicence škola [ověřeno] |
+| [E-shop Mamadodeste](https://eshop.mamadodeste.cz/pracovni-listy/) | PDF listy předškoláci/1. tř., grafomotorika, omalovánky | 25–55 [ověřeno] | 36 prac. listů, 171 produktů celkem [ověřeno] | nezobrazuje [neověřeno] | PDF | rodiče | Levné malé sady; zároveň dává hodně zdarma na blogu (kanibalizace) |
+| [Pro Evinku](https://proevinku.cz/obchod/) | PDF aktivity, hry, listy podle věku (i kategorie Učitelé) | 0–299, většina 20–69 [ověřeno]; Vánoční listy [odkaz](https://proevinku.cz/obchod/vanocni-pracovni-listy/) | [neověřeno, počet nezobrazen] | [neověřeno] | PDF | rodiče + učitelé | Licenční podmínky pro třídu nenalezeny |
+| [Materiály dětem](https://www.materialydetem.cz/) | PDF listy, grafomotorika, sezónní | 35–45; Vánoce 40 (17 stran) [ověřeno] | ~40–50 [odhad] | [neověřeno] | PDF | rodiče + učitelé | Malý sortiment, licence neuvedena |
+| [Táborovky](https://www.taborovky.cz/) | stezky, bojovky, únikovky, prac. listy; Vánoční listy 45 Kč | 20–130 [ověřeno/WebFetch] | 100+ [odhad] | reference na webu, bez čísel | PDF | vedoucí, vychovatelé, učitelé | Má **licence podle použití** (osobní/organizace/veřejná akce) – vzor pro nás |
+| [Celostní komunikace](https://eshop.celostnikomunikace.cz/vek/pdf-grafomotoricke-listy-predskolaci/) | 39 grafomotorických listů | 157 [ověřeno] | 1 relevantní produkt | [neověřeno] | PDF | rodiče předškoláků | Úzké zaměření, vázáno na jejich kurz |
+| Etsy (CZ jazyk) | česky psané listy prakticky nenalezeny; jsou slovenské, německé, ESL | – | [neověřeno – etsy.com vrací 403] | – | PDF | – | Česká nabídka na Etsy chybí (a pro nás stejně zahraniční platforma) |
+
+## Zdarma (alternativy, které tlačí cenu dolů)
+
+| Web | Co nabízí | Kvalita (1 řádek) |
+|---|---|---|
+| [mamadodeste.cz (blog)](https://mamadodeste.cz/pracovni-listy-pro-deti-v-pdf-ke-stazeni-zdarma/) | desítky PDF zdarma (předškoláci, Vánoce) | Hezká grafika, ale jednotlivé listy; slouží jako trychtýř do jejich e-shopu. |
+| [Moje Hravotéka](https://www.mojehravoteka.cz/pracovni-listy) | sady PDF zdarma bez registrace (grafomotorika, předškoláci, 4. třída s řešením) | Kvalitní, s náhledy a věkem – nejbližší „zdarma“ konkurent pro rodiče. |
+| [ProDětiCokoliv.cz](https://www.prodeticokoliv.cz/) | SEO články s PDF (čtení s porozuměním, omalovánky, tabulky) | Silné SEO, obsah průměrný, spousta reklam. |
+| [Škola po škole](https://www.skolaposkole.cz/) | výklad a příklady hlavně 6.–9. tř. a SŠ | Pro 1. stupeň prakticky nepoužitelné. |
+| [Školákov.eu](https://skolakov.eu/) | interaktivní online cvičení 1.–5. tř. (ČJ, M, AJ, prvouka) | Užitečné online, ale ne PDF k tisku. |
+| [Umíme to](https://www.umimeto.org/pracovni-listy) | online procvičování + část listů k tisku; řešení jen s licencí; školní licence 10–30 Kč/žák/předmět/rok ([zdroj](https://www.umimeto.org/licence-school-info)) | Didakticky špičkové, ale online-first, listy k tisku doplňkové. |
+| [MojeEdu (NPI, dříve DUM rvp.cz)](https://mojeedu.npi.cz/cela-nabidka?types=teachingMaterial) | 1 921 výukových materiálů [WebFetch] | Státní, zdarma, nesourodé a zastaralé; Vánoce skoro nic. |
+| [Nápady pro Aničku](https://www.napadyproanicku.cz/pracovni-listy-a-sablony/pracovni-listy) | jednotlivé PDF listy zdarma | Amatérské, ale použitelné pro mladší děti. |
+| [uciteleucitelum.cz](https://uciteleucitelum.cz/katalog) | část materiálů za 0 Kč | Mix, kvalita podle autora. |
+
+## Učitelé jako kupující (licence pro kopírování)
+- **Ano, jsou hlavní placená skupina.** Sluniva: 1 licence = 1 učitel, smí tisknout kopie pro své žáky ([VOP čl. 8](https://www.sluniva.cz/obchodni-podminky/)). Zápisník učitele: licence učitel+třídy nebo škola ([zdroj](https://eshop.zapisnikucitele.cz/licence/)). Učení s nápadem: multilicence škola 1 300 Kč ([zdroj](https://www.ucenisnapadem.cz/p/pracovni-listy-pro-cesky-jazyk-2-trida/212)). Taktik: 100 stran ke kopírování 990 Kč ([zdroj](https://www.etaktik.cz/pracovni-listy-pro-1-rocnik/)). Táborovky: licence podle typu použití ([zdroj](https://www.taborovky.cz/)).
+- Tržiště UčiteléUčitelům má 73 654 materiálů → nabídka pro učitele je přesycená; odlišit se jde jen řadou/systémem, ne dalším jednotlivým listem.
+
+## Nepodařilo se ověřit
+Počty prodejů na Slunivě, UčiteléUčitelům, Pro Evinku a Materiály dětem (nezobrazují je); celý web Učitelnice.cz (403); Etsy (403); provize tržišť; přesný počet produktů Slunivy (jen odhad z kódů produktů). Žádná data o hledanosti (Sklik/Google Trends) v tomto přehledu nejsou.
