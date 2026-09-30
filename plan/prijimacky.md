@@ -65,4 +65,5 @@ Nic dalšího: žádné příspěvky, obsah ani ruční marketing.
 - Trychtýř (anonymně, bez cookies): `printopia/src/components/Beacon.tsx` → `/api/e` → `/api/stats` (kroky: view, t10/t30, scroll50/100, cta_sample, cta_buy, topic_link, solution_open, form_start, form_submit, pdf_download, feedback), podle stránky, zdroje a zařízení.
 - Proč ne: anketa „Co vás zatím drží od objednání?“ na úvodní a tematických stránkách, role v e-mailovém formuláři.
 - Reklama: statistiky a hledané dotazy ze Skliku (API).
+- Celkové vyhodnocení jedním příkazem: `SKLIK_TOKEN=… STATS_KEY=… python3 printopia/marketing/vyhodnoceni.py` (reklama + trychtýř + anketa + kritérium pokračovat/zastavit/prodloužit).
 - Závěry: `/api/stats` → `findings` (od 30 návštěv). Po testu zapsat `plan/prijimacky-vyhodnoceni.md` s poučením pro další RUN.
