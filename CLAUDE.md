@@ -13,7 +13,7 @@
 - Tržby se reinvestují, jdou celé do rozpočtu firmy.
 
 ## Firma
-- Právně: existující s.r.o., neplátce DPH.
+- Právně: **MYPIXEL s.r.o.**, IČO 17617421, Příčná 1892/4, Nové Město, 110 00 Praha 1, C 373971 vedená u Městského soudu v Praze, datová schránka g9233dt. Neplátce DPH (bývalý plátce, DIČ CZ17617421 už neplatné). Ano, beru je značka této s.r.o.
 - Banka s.r.o.: Fio (API zdarma, použijeme na párování plateb). Ondřejova OSVČ má ČSOB, tržby firmy na ni nesmí jít.
 - Počáteční rozpočet: do 1 000 Kč (+ tržby).
 - Cíl: vedlejší příjem, potom škálovatelný byznys.
