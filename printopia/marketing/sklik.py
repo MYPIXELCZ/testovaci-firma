@@ -31,7 +31,7 @@ GROUPS = {
         "ads": [
             {"h": ["Přijímačky: matika po tématech", "Pro rodiče deváťáků", "Postup u každé úlohy"],
              "d": ["Sada 12 témat k tisku za 349 Kč: úlohy s postupem řešení a plán do zkoušky.",
-                   "Platba QR kódem, PDF ke stažení hned po zaplacení. 14 dní na vrácení peněz."],
+                   "Zaplatíte převodem, soubory ke stažení máte hned po zaplacení. 14 dní na vrácení peněz."],
              "path": ["přijímačky", "matematika"]},
             {"h": ["Víte, co dítěti nejde?", "Úvodní test + plán do zkoušky", "Sada 12 témat za 349 Kč"],
              "d": ["Úvodní test ukáže slabá témata, plán rozvrhne přípravu do zkoušky 12. dubna 2027.",
@@ -81,11 +81,11 @@ SITELINKS = [  # Odkazy (text ≤ 25 znaků, každý na jinou URL)
     ("Slovní úlohy", f"{BASE}/slovni-ulohy-prijimacky?utm_source=sklik"),
     ("Jak se připravit", f"{BASE}/jak-se-pripravit-na-prijimacky?utm_source=sklik"),
 ]
-CALLOUTS = ["Postup u každé úlohy", "PDF k tisku", "14 dní na vrácení peněz", "Bez předplatného"]  # Popisky (≤ 25)
+CALLOUTS = ["Postup u každé úlohy", "Soubory k tisku", "14 dní na vrácení peněz", "Bez předplatného"]  # Popisky (≤ 25)
 
 # --------------------------------------------------------------------------- pojistky
 FORBIDDEN = ["kup si", "kupte si", "řekni rodičům", "řekněte rodičům", "přemluv", "nech si koupit"]
-ALLOWED_CAPS = {"PDF", "QR"}
+ALLOWED_CAPS: set[str] = set()  # Sklik varuje před 2+ po sobě jdoucími velkými písmeny (PDF, QR), proto je v textech reklam nepoužíváme
 all_text = []
 for name, g in GROUPS.items():
     assert 2 <= len(g["ads"]) <= 4, f"{name}: 2–4 reklamy v sestavě"
@@ -108,6 +108,8 @@ for t in all_text:
     assert '"' not in t and "'" not in t, f"Rovné uvozovky: {t}"
     for w in re.findall(r"\b[A-ZÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ]{3,}\b", t):
         assert w in ALLOWED_CAPS, f"Slovo velkými písmeny: {w} v {t}"
+for c in CALLOUTS:
+    assert not re.search(r"[A-ZÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ]{2,}", c), f"Velká písmena v Popisku: {c}"
 for s, _ in SITELINKS:
     assert len(s) <= 25, (s, len(s))
 assert len({u for _, u in SITELINKS}) == len(SITELINKS), "Odkazy musí mít každý jinou URL"

@@ -41,8 +41,8 @@ def report(kind, filt, columns):
 
 
 user = {"session": call("client.loginByToken", os.environ["SKLIK_TOKEN"])["session"]}
-CAMPAIGN = next((c["id"] for c in call("campaigns.list", user, {}, {"limit": 100, "offset": 0}).get("campaigns", [])
-                 if c.get("name") == CAMPAIGN_NAME and c.get("status") != "removed"), None)
+CAMPAIGN = next((c["id"] for c in call("campaigns.list", user, {"isDeleted": False}, {"limit": 100, "offset": 0}).get("campaigns", [])
+                 if c.get("name", "").startswith(CAMPAIGN_NAME) and not c.get("deleted")), None)
 if CAMPAIGN is None:
     sys.exit("Kampaň zatím neexistuje (sklik_api.py).")
 camp, err1 = report("campaigns", {"ids": [CAMPAIGN]}, ["id", "name"])
