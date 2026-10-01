@@ -188,7 +188,7 @@ try {
   check(tp.includes("Úhly a trojúhelníky na přijímačky") && tp.includes("Zobrazit postup a výsledek") && tp.includes("Kompletní sada"), "tematická stránka z obsahu sady");
 
   // Vizuální a textová kontrola (FAILS.md 2026-10-01 02:02 a 02:05): šířka 1340 + 80 px, mobil, překryvy, z-index, texty.
-  const pages = `/,/koupit,/obchodni-podminky,/objednavka/${oid},/zlomky-prijimacky,/procenta-prijimacky,/telesa-objem-povrch-prijimacky,/konstrukcni-ulohy-prijimacky,/jak-se-pripravit-na-prijimacky,/ochrana-osobnich-udaju`;
+  const pages = `/,/koupit,/obchodni-podminky,/objednavka/${oid},/zlomky-prijimacky,/procenta-prijimacky,/telesa-objem-povrch-prijimacky,/konstrukcni-ulohy-prijimacky,/jak-se-pripravit-na-prijimacky,/prijimacky-z-matematiky-2027,/ochrana-osobnich-udaju`;
   const viz = spawnSync("node", ["../tools/vizualni-kontrola.mjs", BASE, pages, process.env.VIZ_DIR ?? path.join(store, "viz")], { encoding: "utf8" });
   console.log(viz.stdout.trim());
   check(viz.status === 0, "vizuální a textová kontrola stránek");
