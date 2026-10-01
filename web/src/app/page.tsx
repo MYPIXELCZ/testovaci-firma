@@ -1,4 +1,5 @@
 import Feedback from "@/components/Feedback";
+import foto from "@/content/foto.json";
 import Image from "next/image";
 import Link from "next/link";
 import { ARTICLES } from "@/content/articles";
@@ -69,11 +70,16 @@ export default function Home() {
             </p>
             <div className="hero-cta">
               <Link href="/objednat" className="btn" data-track="cta_buy">Koupit za {PRODUCT.price} Kč</Link>
-              <span className="muted small">Jednorázově · bez předplatného · doručení e‑mailem</span>
+              <span className="muted small">Jednorázově · bez předplatného · doručení e‑mailem · 14 dní na vrácení peněz</span>
             </div>
           </div>
-          <div className="shot">
-            <Image src={prehled} alt="Přehled plánovače: odpočet do svatby, rozpočet, hosté a nejbližší úkoly" priority sizes="(max-width: 900px) 100vw, 520px" />
+          <div className="hero-visual">
+            <Image src="/foto/par-planuje-1400.webp" width={1400} height={788} priority sizes="(max-width: 900px) 100vw, 560px"
+                   alt="Snoubenci v klidu plánují svatbu u notebooku" className="hero-photo" />
+            <div className="shot shot-overlay">
+              <Image src={prehled} alt="Přehled plánovače: odpočet do svatby, rozpočet, hosté a nejbližší úkoly" sizes="(max-width: 900px) 60vw, 300px" />
+            </div>
+            <p className="credit">Foto: <a href={foto["par-planuje"].author_url}>{foto["par-planuje"].author}</a>, <a href={foto["par-planuje"].page}>Unsplash</a></p>
           </div>
         </div>
       </section>
@@ -163,6 +169,26 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="band">
+        <div className="wrap narrow">
+          <h2>Proč tabulka, a ne PDF nebo aplikace</h2>
+          <table className="compare">
+            <tbody>
+              <tr><td>PDF plánovače k tisku</td><td className="num">120–849 Kč</td><td className="muted small">nic nespočítají, termíny a rozpočet hlídáte sami</td></tr>
+              <tr><td>Svatební aplikace s předplatným</td><td className="num">až 799 Kč ročně</td><td className="muted small">platíte, dokud plánujete</td></tr>
+              <tr className="us"><td><strong>Ano, beru</strong></td><td className="num"><strong>{PRODUCT.price} Kč jednorázově</strong></td><td className="small">termíny, rozpočet, hosté i stoly se počítají samy, v Excelu i Google Tabulkách</td></tr>
+            </tbody>
+          </table>
+          <p className="muted small">Ceny podle veřejných nabídek na českém trhu k 1. 10. 2026.</p>
+          <div className="guarantee">
+            <div>
+              <h3>Nic neriskujete</h3>
+              <p className="muted" style={{ margin: 0 }}>Když vám plánovač nesedne, do 14 dnů vrátíme peníze. Platíte jednou, převodem nebo QR kódem, žádné předplatné ani karta.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section>
         <div className="wrap narrow">
           <Feedback />
@@ -180,6 +206,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+      <div className="sticky-cta">
+        <Link href="/objednat" className="btn" data-track="cta_buy">Koupit plánovač za {PRODUCT.price} Kč</Link>
+      </div>
     </>
   );
 }

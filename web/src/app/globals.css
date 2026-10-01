@@ -206,3 +206,27 @@ details p { margin: 12px 0 0; color: var(--muted); }
 .chip { font: inherit; font-size: 0.9rem; border: 1.5px solid var(--line); background: #fff; border-radius: 999px; padding: 7px 14px; cursor: pointer; color: var(--ink); }
 .chip.on, .chip:hover { border-color: var(--sage-dark); background: var(--sage-light); }
 input.text { width: 100%; font: inherit; padding: 11px 13px; border-radius: 10px; border: 1.5px solid var(--line); background: #fff; }
+
+/* Prodejní úvod (plan/design-anoberu.md) */
+.hero-visual { position: relative; }
+.hero-photo { width: 100%; height: auto; border-radius: var(--radius); display: block; box-shadow: 0 24px 60px -24px rgba(43, 42, 40, 0.4); }
+.shot-overlay { position: absolute; width: 58%; left: -10%; bottom: -14%; transform: rotate(-2deg); }
+.credit { margin: 8px 0 0; font-size: 0.72rem; color: var(--muted); text-align: right; }
+.credit a { color: inherit; }
+.compare { width: 100%; border-collapse: collapse; margin: 8px 0 10px; background: #fff; border-radius: 14px; overflow: hidden; }
+.compare td { padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.compare .num { white-space: nowrap; }
+.compare tr.us td { background: var(--sage-light); border-bottom: 0; }
+.guarantee { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px; margin-top: 20px; }
+.guarantee h3 { margin: 0 0 4px; }
+.sticky-cta { display: none; }
+@media (max-width: 900px) {
+  .shot-overlay { width: 50%; left: auto; right: -2%; bottom: -16%; transform: rotate(2deg); }
+  .hero-visual { margin-bottom: 40px; }
+}
+@media (max-width: 700px) {
+  .sticky-cta { display: block; position: fixed; left: 0; right: 0; bottom: 0; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(250,247,242,0.96); border-top: 1px solid var(--line); z-index: 20; }
+  .sticky-cta .btn { width: 100%; text-align: center; }
+  body { padding-bottom: 72px; }
+  .compare td:last-child { display: none; }
+}

@@ -243,6 +243,9 @@ try {
   check(st.orders.created >= 1 && st.orders.paid >= 1 && st.feedback["Stačí mi šablona zdarma"] === 1, "metriky: objednávky a důvody z ankety v souhrnu");
   const homeHtml = await (await fetch(BASE_URL, { headers: ua })).text();
   check(homeHtml.includes("co vás zatím drží od objednání") && homeHtml.includes('data-track="cta_buy"'), "metriky: anketa a měřená tlačítka na úvodu");
+  const flat = homeHtml.replaceAll("<!-- -->", "");
+  check(["par-planuje", "Koupit za 349", "Proč tabulka, a ne PDF nebo aplikace", "do 14 dnů vrátíme peníze", "Časté otázky", "sticky-cta"].every((t) => flat.includes(t)),
+    "prodejní stránka má povinné prvky (fotka, cena v CTA, srovnání, záruka, FAQ, sticky CTA)");
 } catch (e) {
   failures++;
   console.error(e);
