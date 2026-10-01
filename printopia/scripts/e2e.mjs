@@ -187,6 +187,23 @@ try {
   const tp = (await (await get("/uhly-a-trojuhelniky-prijimacky")).text()).replaceAll("<!-- -->", "");
   check(tp.includes("Úhly a trojúhelníky na přijímačky") && tp.includes("Zobrazit postup a výsledek") && tp.includes("Kompletní sada"), "tematická stránka z obsahu sady");
 
+  // Feed pro Zboží.cz (plan/postupy/zbozi-heureka.md): validní XML, cena shodná s webem, bez zakázaných slov, URL nabídky je přímý nákup
+  const feedRes = await fetch(`${BASE}/feed/zbozi.xml`);
+  const feed = await feedRes.text();
+  check(feedRes.status === 200 && (feedRes.headers.get("content-type") ?? "").includes("application/xml"), "feed Zboží.cz vrací XML");
+  check(feed.includes('xmlns="http://www.zbozi.cz/ns/offer/1.0"') && (feed.match(/<SHOPITEM>/g) ?? []).length === 1, "feed: jedna nabídka ve jmenném prostoru Zboží.cz");
+  check(feed.includes("<PRICE_VAT>349</PRICE_VAT>") && feed.includes("<DELIVERY_ID>ONLINE</DELIVERY_ID>"), "feed: cena 349 Kč a doručení ONLINE");
+  check(!/kurz|e-learning|doučování|oficiáln|cermat|zaručen/i.test(feed.replace(/<URL>.*<\/URL>/, "")), "feed: žádná zakázaná slova (kurz, oficiální, CERMAT…)");
+  const offerUrl = feed.match(/<URL>(.*?)<\/URL>/)[1].replace(/&amp;/g, "&").replace(/^https?:\/\/[^/]+/, BASE);
+  const offerRes = await fetch(offerUrl, { redirect: "manual" });
+  const offerHtml = await offerRes.text();
+  check(offerRes.status === 200 && /^[\x20-\x7e]+$/.test(offerUrl) && offerHtml.includes("349"), "feed: URL nabídky je přímá objednávka bez přesměrování a bez diakritiky");
+  const robotsTxt = await (await fetch(`${BASE}/robots.txt`)).text();
+  check(!/Disallow: \/koupit/.test(robotsTxt), "robots.txt nezakazuje /koupit (Zboží.cz musí nabídku ověřit)");
+  const imgRes = await fetch(`${BASE}/zbozi-sada.png`);
+  const imgBuf = Buffer.from(await imgRes.arrayBuffer());
+  check(imgRes.status === 200 && imgBuf.readUInt32BE(16) >= 425 && imgBuf.readUInt32BE(20) >= 440, `obrázek sady pro Zboží.cz (${imgBuf.readUInt32BE(16)}×${imgBuf.readUInt32BE(20)} px)`);
+
   // Vizuální a textová kontrola (FAILS.md 2026-10-01 02:02 a 02:05): šířka 1340 + 80 px, mobil, překryvy, z-index, texty.
   const pages = `/,/koupit,/obchodni-podminky,/objednavka/${oid},/zlomky-prijimacky,/procenta-prijimacky,/telesa-objem-povrch-prijimacky,/konstrukcni-ulohy-prijimacky,/jak-se-pripravit-na-prijimacky,/prijimacky-z-matematiky-2027,/ochrana-osobnich-udaju`;
   const viz = spawnSync("node", ["../tools/vizualni-kontrola.mjs", BASE, pages, process.env.VIZ_DIR ?? path.join(store, "viz")], { encoding: "utf8" });
