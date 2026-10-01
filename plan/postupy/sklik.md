@@ -76,21 +76,22 @@ Všechny navštíveny 2026-10-01.
 **Jak dlouho a s kolika kliky vyhodnocovat.** Sklik check list: den 1 schválení, do 7 dnů report dotazů, vylučující slova, mírné úpravy CPC a omezený rozpočet, do 14 dnů nulová zobrazení, slova s nízkým CTR a A/B test reklam, od 30 dnů pravidelný report (zdroj 14). Statistika (vlastní výpočet, Wilsonův 95% interval): 4 kliknutí na „Koupit“ z 80 návštěv (5 %) znamenají interval 2,0–12,2 %, 1 z 80 interval 0,2–6,7 %. **Při 80 návštěvách nejde spolehlivě rozlišit 2 % od 5 %.** K tomu je potřeba zhruba 190 návštěv (jednostranný test, α = 0,05, síla 80 %). A/B test dvou reklam při desítkách prokliků nic neprokáže, Sklik je beztak střídá sám („bayesovský bandita“, zdroj 8).
 
 ## Kontrolní seznam
+_Odškrtnuto 2026-10-01 03:32 (Praha) po ověření: asserty v `sklik.py`, `curl` živé stránky printopia.cz (200, IČO, adresa, e-mail, zásady, cena, QR, 14 dní), `autotagging.get` = vypnuto, `listSearchServices`, měření `utm_term`/`utm_content` v e2e a `vyhodnoceni.py` přes všechny stránky, kritérium v `plan/prijimacky.md` oddíl 4._
 Každý bod se ověřuje příkazem, výstupem API nebo pohledem do reportu. Před spuštěním:
-- [ ] Cílová skupina je v hlavičce `sklik.py` a aspoň jeden titulek nebo popisek každé reklamy oslovuje plátce. Ověří `assert` v `sklik.py`.
-- [ ] Žádný text nevyzývá dítě ke koupi ani k přemlouvání rodičů. Ověří ruční čtení textů a `assert` (zakázaná slova „kup si“, „řekni rodičům“, „přemluv“).
-- [ ] Texty mají správnou délku (titulek ≤ 30, popisek ≤ 90, Cesta ≤ 15, Odkaz a Popisek ≤ 25) a nemají vykřičník v titulku, VELKÁ slova, rovné uvozovky ani slovo víc než 3× (`assert` v `sklik.py`).
-- [ ] Každá cena, „zdarma“ a datum v reklamě jsou pravdivé, na cílové stránce a nepodmíněné. Ověří `curl` cílové URL a hledání stejného textu.
-- [ ] Cílová URL vrací 200, je to webová stránka (ne PDF), má provozovatele (IČO, adresa, e-mail) a odkaz na zásady ochrany osobních údajů (`curl`, grep „IČO“, „Ochrana osobních údajů“).
-- [ ] Kampaň je typu `fulltext` (bez obsahové sítě) a ve sledovaných službách nejsou Sbazar, Sauto a Zboží (`campaigns.list` → `excludedSearchServices`).
-- [ ] Denní rozpočet ≥ 30 Kč, celkový rozpočet (je-li) ≥ denní a kredit v účtu je známý (`client.get`).
-- [ ] Žádná volná shoda; frázová nebo přesná shoda, bez duplicit, ve frázové shodě žádné slovo není nadmnožinou jiného (skript).
-- [ ] Vylučující slova: každé slovo s diakritikou má i variantu bez ní, žádné není kmen bez koncovky (skript), seznam vychází z dotazů v našeptávači.
-- [ ] 2–4 reklamy v každé sestavě, klíčové slovo nebo jeho téma je v titulku, Cesty jsou vyplněné.
-- [ ] Aspoň 4 Popisky a 4 Odkazy na různé URL, všechny s `utm_source=sklik`.
-- [ ] Automatické tagování je vypnuté (`autotagging.get`), nebo měření počítá i `utm_source=seznam`.
-- [ ] Měření: v URL je `utm_source=sklik&utm_term={keywordId}&utm_content={creative}`, trychtýř je ukládá a `vyhodnoceni.py` sčítá Sklik ze všech stránek, ne jen z úvodu.
-- [ ] Je předem zapsané kritérium vyhodnocení i s počtem návštěv potřebným pro rozhodnutí (`plan/<projekt>.md`, oddíl 4).
+- [x] Cílová skupina je v hlavičce `sklik.py` a aspoň jeden titulek nebo popisek každé reklamy oslovuje plátce. Ověří `assert` v `sklik.py`.
+- [x] Žádný text nevyzývá dítě ke koupi ani k přemlouvání rodičů. Ověří ruční čtení textů a `assert` (zakázaná slova „kup si“, „řekni rodičům“, „přemluv“).
+- [x] Texty mají správnou délku (titulek ≤ 30, popisek ≤ 90, Cesta ≤ 15, Odkaz a Popisek ≤ 25) a nemají vykřičník v titulku, VELKÁ slova, rovné uvozovky ani slovo víc než 3× (`assert` v `sklik.py`).
+- [x] Každá cena, „zdarma“ a datum v reklamě jsou pravdivé, na cílové stránce a nepodmíněné. Ověří `curl` cílové URL a hledání stejného textu.
+- [x] Cílová URL vrací 200, je to webová stránka (ne PDF), má provozovatele (IČO, adresa, e-mail) a odkaz na zásady ochrany osobních údajů (`curl`, grep „IČO“, „Ochrana osobních údajů“).
+- [x] Kampaň je typu `fulltext` (bez obsahové sítě). Podle `listSearchServices` Sklik nabízí jen Seznam.cz (1), Encyklopedii (4) a partnerské vyhledávače (8): Encyklopedie je vyloučená, Sbazar, Sauto a Zboží mezi službami nejsou.
+- [x] Denní rozpočet ≥ 30 Kč, celkový rozpočet (je-li) ≥ denní a kredit v účtu je známý (`client.get`).
+- [x] Žádná volná shoda; frázová nebo přesná shoda, bez duplicit, ve frázové shodě žádné slovo není nadmnožinou jiného (skript).
+- [x] Vylučující slova: každé slovo s diakritikou má i variantu bez ní, žádné není kmen bez koncovky (skript), seznam vychází z dotazů v našeptávači.
+- [x] 2–4 reklamy v každé sestavě, klíčové slovo nebo jeho téma je v titulku, Cesty jsou vyplněné.
+- [x] Aspoň 4 Popisky a 4 Odkazy na různé URL, všechny s `utm_source=sklik`.
+- [x] Automatické tagování je vypnuté (`autotagging.get`), nebo měření počítá i `utm_source=seznam`.
+- [x] Měření: v URL je `utm_source=sklik&utm_term={keywordId}&utm_content={creative}`, trychtýř je ukládá a `vyhodnoceni.py` sčítá Sklik ze všech stránek, ne jen z úvodu.
+- [x] Je předem zapsané kritérium vyhodnocení i s počtem návštěv potřebným pro rozhodnutí (`plan/<projekt>.md`, oddíl 4).
 
 Po spuštění: den 1 všechny reklamy schválené (`ads.list` stav), do 3 dnů zobrazení > 0 u sestav, den 7 projitý report dotazů a doplněná vylučující slova, zkontrolované ztracené zobrazení z rozpočtu a pořadí, den 14 slova s nulou zobrazení a slova s nízkým CTR.
 

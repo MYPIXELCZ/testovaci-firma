@@ -59,7 +59,7 @@ try {
     if (await fetch(BASE).then(() => true, () => false)) break;
     await new Promise((r) => setTimeout(r, 500));
   }
-  const home = await (await get("/?utm_source=sklik")).text();
+  const home = await (await get("/?utm_source=sklik&utm_term=123456&utm_content=ad789")).text();
   check(home.includes("Procvičte s dítětem přesně to"), "úvodní stránka");
   const flat = home.replaceAll("<!-- -->", "");
   check(["nahled-postup.webp", "Koupit sadu za 349", "8 úloh zdarma", "vrátíme peníze", "Kolik stojí příprava", "Časté otázky", "Printopia provozuje", "IČO", "dní do přijímaček"].every((t) => flat.includes(t)),
@@ -120,6 +120,7 @@ try {
   check((await beacon(pv1, "feedback", { choice: "nesmysl" })).status === 400, "neznámá odpověď ankety odmítnuta");
   check((await beacon(pv1, "view", {}, "Googlebot/2.1")).status === 204, "robot se tiše ignoruje");
   const st = await (await fetch(`${BASE}/api/stats`, { headers: { "x-stats-key": "tajne" } })).json();
+  check(st.sklik.byKeyword["123456"] === 1 && st.sklik.byAd["ad789"] === 1, "souhrn: návštěvy ze Skliku podle klíčového slova a reklamy (utm_term, utm_content)");
   check(st.server.visits.sklik === 1 && st.server.buyClicks.sklik === 1 && st.server.leads === 1, "souhrn: serverové návštěvy, klik na Koupit a lead ze Skliku (robot a opakovaný lead nezapočten)");
   check(st.server.leadsByRole.rodic === 1, "souhrn: role kupujícího");
   const h = st.funnel.byPage.home;
