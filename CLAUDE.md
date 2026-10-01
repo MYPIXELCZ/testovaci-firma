@@ -22,7 +22,7 @@
 - Právně: **MYPIXEL s.r.o.**, IČO 17617421, Příčná 1892/4, Nové Město, 110 00 Praha 1, C 373971 vedená u Městského soudu v Praze, datová schránka g9233dt. Neplátce DPH (bývalý plátce, DIČ CZ17617421 už neplatné). Ano, beru je značka této s.r.o.
 - Banka s.r.o.: Fio, účet 2202343801/2010, IBAN CZ5220100000002202343801 (API zdarma, použijeme na párování plateb). Ondřejova OSVČ má ČSOB, tržby firmy na ni nesmí jít.
 - Počáteční rozpočet: do 1 000 Kč (+ tržby).
-- **Účet firmy (vést průběžně):** výdaje: doména anoberu.cz ~200 Kč (09/2026), Sklik kredit 50 Kč (10/2026). Tržby: 0 Kč (jen testovací 1 Kč od Ondřeje). Stav: −250 Kč.
+- **Účet firmy (vést průběžně):** výdaje: doména anoberu.cz ~200 Kč (09/2026), Sklik kredit 100 Kč (karta 2026-10-01 12:30, z toho 82,64 Kč kredit bez DPH, zatím nevyčerpáno). Tržby: 0 Kč (jen testovací 1 Kč od Ondřeje). **Stav (Ondřej 2026-10-01 17:16): −300 Kč**, zbývá z rozpočtu 700 Kč. Na Sklik schváleno 400 Kč, vyčerpáno 100 Kč, další kredit do ledna ne.
 - Cíl: vedlejší příjem, potom škálovatelný byznys.
 - Infrastruktura: Ondřejův Vercel Pro (k dispozici zdarma). **Správný Vercel účet: ondrej@mypixel.cz (MYPIXEL s.r.o., GitHub MYPIXELCZ).** Účet beta@mypixel.cz NEPOUŽÍVAT.
 
