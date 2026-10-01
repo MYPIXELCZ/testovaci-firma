@@ -46,6 +46,7 @@ h2{font-family:F;font-weight:500;font-size:15pt;margin:14pt 0 6pt;break-after:av
 .opts.long{grid-template-columns:1fr}
 .yn{border-collapse:collapse;margin:5pt 0 2pt;font-size:10pt}.yn td{padding:2pt 8pt 2pt 0}.yn .box{color:#5f6675;white-space:nowrap}
 .fig{margin:4pt 0}.fig svg{max-width:62mm;max-height:42mm}
+.keyfig svg{max-width:95mm;max-height:62mm}
 .space{background-image:linear-gradient(#eef0f4 .5pt,transparent .5pt);background-size:100% 7mm;margin:4pt 0 5pt}
 .sol{break-inside:avoid;border-bottom:.6pt solid #e4e2da;padding:5pt 0}
 .sol ol{margin:3pt 0 0;padding-left:15pt;color:#3a4150}
@@ -78,7 +79,7 @@ function topicHtml(d) {
     lastLevel = t.level;
     return `${head}<div class="task"><p class="q"><b>${n}.</b> ${math(t.text)}${KIND[t.kind] ? ` <span class="hint">${KIND[t.kind]}</span>` : ""}</p>${t.figure ? `<div class="fig">${t.figure}</div>` : ""}${options(t)}<div class="space" style="height:${t.space * 7}mm"></div></div>`;
   }).join("");
-  const sols = d.tasks.map((t, i) => `<div class="sol"><p class="q"><b>${i + 1}.</b> ${math(t.text)}</p><ol>${t.steps.map((s) => `<li>${math(s)}</li>`).join("")}</ol><p class="a">Výsledek: ${math(t.answer)}</p></div>`).join("");
+  const sols = d.tasks.map((t, i) => `<div class="sol"><p class="q"><b>${i + 1}.</b> ${math(t.text)}</p><ol>${t.steps.map((s) => `<li>${math(s)}</li>`).join("")}</ol>${t.key_figure ? `<div class="fig keyfig">${t.key_figure}</div>` : ""}<p class="a">Výsledek: ${math(t.answer)}</p></div>`).join("");
   const ex = d.example;
   return `<header><div><h1>${esc(d.title)}</h1><div class="sub">Téma ${d.num} · ${d.tasks.length} úloh od základu po náročnější · postupy řešení na konci</div></div><div class="logo">Printopia<span>.</span></div></header>
 <div class="intro">${math(d.intro)}</div>

@@ -142,7 +142,7 @@ class Fig:
         a2 = a1 + (a2 - a1) % 360
         self.arc(v, r, a1, a2, "thin")
         if s:
-            self.el.append(("a", self.xy(v + (r + 0.35) * unit((a1 + a2) / 2)), s))
+            self.el.append(("a", self.xy(v), r, a1, a2, s))
 
     # ---- automatické umístění popisků
     def _samples(self):
@@ -173,7 +173,7 @@ class Fig:
             for o in boxes:
                 if b[0] < o[2] and o[0] < b[2] and b[1] < o[3] and o[1] < b[3]:
                     pen += 40
-            return pen + 0.3 * math.hypot(pos[0] - base[0], pos[1] - base[1]) / (3.0 / (k * U)) * 0 + 0.02 * (-math.hypot(pos[0] - cx, pos[1] - cy))
+            return pen + 0.02 * (-math.hypot(pos[0] - cx, pos[1] - cy))
 
         for e in self.el:
             if e[0] == "l":
@@ -182,9 +182,6 @@ class Fig:
                 out.append(("d", e[1]))
             elif e[0] == "t":
                 out.append(("t", e[1], e[2], e[3], False))
-                boxes.append(box(e[1], e[2]))
-            elif e[0] == "a":
-                out.append(("t", e[1], e[2], "middle", False))
                 boxes.append(box(e[1], e[2]))
         for e in self.el:
             if e[0] == "d" and e[2]:
@@ -204,17 +201,32 @@ class Fig:
                 out.append(("t", pos, label, "middle", True))
                 boxes.append(box(pos, label))
         for e in self.el:
+            if e[0] == "a":
+                v, r, a1, a2, s = e[1], e[2], e[3], e[4], e[5]
+                best = None
+                for dr in (0.45, 0.8):
+                    for da in (0, 10, -10, 20, -20):
+                        ang = math.radians((a1 + a2) / 2 + da)
+                        pos = (v[0] + (r + dr) * math.cos(ang), v[1] + (r + dr) * math.sin(ang))
+                        c = cost(box(pos, s), pos, v) + abs(da) * 0.01 + (dr - 0.45)
+                        if best is None or c < best[0]:
+                            best = (c, pos)
+                out.append(("t", best[1], s, "middle", False))
+                boxes.append(box(best[1], s))
+        for e in self.el:
             if e[0] == "m":
                 p, q, s, side = e[1], e[2], e[3], e[4]
                 v = complex(q[0] - p[0], q[1] - p[1])
                 n = 1j * v / abs(v)
                 best = None
-                for t in (0.5, 0.35, 0.65):
+                for t in (0.5, 0.35, 0.65, 0.25, 0.75):
                     for sd in ((1, -1) if side == 0 else (side,)):
                         for ring in (3.3, 4.6, 6.0):
                             r = ring / (k * U)
                             pos = ((p[0] + (q[0] - p[0]) * t) + sd * n.real * r, (p[1] + (q[1] - p[1]) * t) + sd * n.imag * r)
-                            c = cost(box(pos, s), pos, p) + abs(t - 0.5) * 1.5 + (ring - 3.3) * 1.0
+                            mid = (p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t)
+                            inside = math.hypot(pos[0] - cx, pos[1] - cy) < math.hypot(mid[0] - cx, mid[1] - cy)
+                            c = cost(box(pos, s), pos, p) + abs(t - 0.5) * 1.5 + (ring - 3.3) * 1.0 + (0.6 if inside else 0)
                             if best is None or c < best[0]:
                                 best = (c, pos)
                 out.append(("t", best[1], s, "middle", False))
@@ -424,8 +436,6 @@ f.seg(P(0, -3.8), P(0, 3.8), "dash")
 f.seg(P(-4.2, 2), P(4.2, 2), "dash")
 f.seg(P(-4.2, -2), P(4.2, -2), "dash")
 f.circle(S0, 3)
-for z in pts4:
-    f.seg(S0, z, "thin")
 f.seg(Xu[0], Xu[1], "main")
 pt_labels(f, S=S0)
 for z in pts4:
@@ -500,6 +510,7 @@ task(2, "Narýsujte úsečku AB, |AB| = 6 cm. Sestrojte trojúhelník ABC, v ně
       "Rameno protne kružnici právě jednou, úloha má 1 řešení.",
       f"Kontrola: bod C leží asi {cm(bx)} cm vpravo od A a {cm(by)} cm nad přímkou AB. Podle Pythagorovy věty je |BC| = √((6 − {cm(bx)})² + {cm(by)}²) ≈ {cm(BC)} cm."],
      near(abs(C - A), 5) and near(angle(B, A, C), 50) and near(BC, math.sqrt(36 + 25 - 60 * math.cos(math.radians(50)))) and cm(BC) == "4,7"
+     and len([h for h in line_circ(A, unit(50), A, 5) if ((h - A) * unit(-50)).real > 0]) == 1
      and cm(math.hypot(6 - bx, by)) == cm(BC) and (bx, by) == (3.2, 3.8), f)
 
 # 7. USU
@@ -613,7 +624,6 @@ f.dot(S, "S", (0.0, -0.7))
 f.dim(A, Cl, f"{cm(leg1)} cm")
 f.dim(Cl, B, f"{cm(leg2)} cm")
 f.dim(P(Cl.real, 0), Cl, "4,8 cm")
-f.text(P(11.2, 4.8), "r", "start")
 task(2, "Sestrojte všechny pravoúhlé trojúhelníky ABC s přeponou AB, |AB| = 10 cm, a výškou 4,8 cm na přeponu AB, v nichž bod C leží nad přímkou AB. "
         "Kolik řešení má úloha? Změřte délky obou odvěsen.",
      f"2 řešení (shodné trojúhelníky souměrné podle osy úsečky AB). Kontrola: odvěsny {cm(leg1)} cm a {cm(leg2)} cm.",
@@ -690,7 +700,7 @@ task(2, "Narýsujte úsečku AB, |AB| = 7 cm. Sestrojte trojúhelník ABC, v ně
 
 # ================================================================ Náročnější
 # 13. Ssu: dvě řešení
-A, B = P(0, 0), P(6, 0)
+A, B = P(0, 0), P(8, 0)
 u = unit(180 - 30)  # rameno úhlu ABC (30°) nad přímkou AB
 hits = line_circ(B, u, A, 5)
 assert len(hits) == 2
@@ -698,30 +708,30 @@ Cf, Cn = sorted(hits, key=lambda z: -abs(z - B))
 assert above(Cf, Cn) and all(near(angle(A, B, z), 30) and near(abs(z - A), 5) for z in hits)
 BCf, BCn = abs(Cf - B), abs(Cn - B)
 dA = dist_line(A, B, B + u)
-pe = math.sqrt(36 - 9)
+pe = math.sqrt(64 - 16)
 f = Fig()
 f.c = (A + B + Cf) / 3
 f.circle(A, 5)
-f.seg(B, B + 10.2 * u, "dash")
+f.seg(B, B + 10.4 * u, "dash")
 f.poly([A, B, Cf])
 f.seg(A, Cn, "main")
 f.amark(B, Cf, A, 1.3, "30°")
 pt_labels(f, A=A, B=B, C=Cf, C_=Cn)
-f.dim(A, B, "6 cm")
+f.dim(A, B, "8 cm")
 f.dim(B, Cf, f"{cm(BCf)} cm")
 f.dim(B, Cn, f"{cm(BCn)} cm")
 f.dim(A, Cf, "5 cm")
-task(3, "Narýsujte úsečku AB, |AB| = 6 cm. Sestrojte všechny trojúhelníky ABC, v nichž velikost úhlu ABC je 30°, |AC| = 5 cm a bod C leží nad přímkou AB. "
+task(3, "Narýsujte úsečku AB, |AB| = 8 cm. Sestrojte všechny trojúhelníky ABC, v nichž velikost úhlu ABC je 30°, |AC| = 5 cm a bod C leží nad přímkou AB. "
         "Kolik řešení má úloha? U každého řešení změřte délku strany BC.",
      f"2 řešení. Kontrola: |BC| ≈ {cm(BCf)} cm (bod C) a |BC′| ≈ {cm(BCn)} cm (bod C′).",
      ["Rozbor: bod C leží na rameni úhlu 30° s vrcholem B a zároveň na kružnici k (A; 5 cm). Hledáme všechny průsečíky ramene s kružnicí.",
-      "Narýsujeme úsečku AB, |AB| = 6 cm. Při bodě B sestrojíme nad přímkou AB úhel 30° (polovina úhlu 60°) a jeho rameno narýsujeme dostatečně dlouhé, aspoň 10 cm.",
+      "Narýsujeme úsečku AB, |AB| = 8 cm. Při bodě B sestrojíme nad přímkou AB úhel 30° (polovina úhlu 60°) a jeho rameno narýsujeme dostatečně dlouhé, aspoň 10 cm.",
       "Narýsujeme kružnici k (A; 5 cm).",
-      "Vzdálenost bodu A od ramene je 6 : 2 = 3 cm (v pravoúhlém trojúhelníku s úhlem 30° je protilehlá odvěsna poloviční oproti přeponě). To je méně než 5 cm, proto kružnice protne rameno ve dvou bodech C a C′. Úloha má 2 řešení: trojúhelníky ABC a ABC′.",
-      f"Kontrola: pata kolmice z A na rameno je od B vzdálená √(6² − 3²) = √27 ≈ {cm(pe)} cm a polovina tětivy je √(5² − 3²) = 4 cm. Proto |BC| ≈ {cm(pe)} + 4 ≈ {cm(BCf)} cm a |BC′| ≈ {cm(pe)} − 4 ≈ {cm(BCn)} cm."],
-     near(dA, 3) and 3 < 5 < 6 and near(BCf, pe + 4) and near(BCn, pe - 4) and (cm(BCf), cm(BCn)) == ("9,2", "1,2")
-     and sorted(round(5 * math.sin(math.radians(180 - 30 - cang)) / 0.5, 6) for cang in (math.degrees(math.asin(0.6)), 180 - math.degrees(math.asin(0.6))))
-     == sorted([round(BCf, 6), round(BCn, 6)]) and cm(pe + 4) == cm(BCf) and cm(pe - 4) == cm(BCn), f)
+      "Vzdálenost bodu A od ramene je 8 : 2 = 4 cm (v pravoúhlém trojúhelníku s úhlem 30° je protilehlá odvěsna poloviční oproti přeponě). To je méně než 5 cm, proto kružnice protne rameno ve dvou bodech C a C′. Úloha má 2 řešení: trojúhelníky ABC a ABC′.",
+      f"Kontrola: pata kolmice z A na rameno je od B vzdálená √(8² − 4²) = √48 ≈ {cm(pe)} cm a polovina tětivy je √(5² − 4²) = 3 cm. Proto |BC| ≈ {cm(pe)} + 3 ≈ {cm(BCf)} cm a |BC′| ≈ {cm(pe)} − 3 ≈ {cm(BCn)} cm."],
+     near(dA, 4) and 4 < 5 < 8 and near(BCf, pe + 3) and near(BCn, pe - 3) and (cm(BCf), cm(BCn)) == ("9,9", "3,9")
+     and sorted(round(5 * math.sin(math.radians(180 - 30 - cang)) / 0.5, 6) for cang in (math.degrees(math.asin(0.8)), 180 - math.degrees(math.asin(0.8))))
+     == sorted([round(BCf, 6), round(BCn, 6)]) and cm(pe + 3) == cm(BCf) and cm(pe - 3) == cm(BCn), f)
 
 # 14. Lichoběžník
 A, B = P(0, 0), P(8, 0)
@@ -792,7 +802,7 @@ task(3, "Sestrojte čtyřúhelník ABCD, v němž |AB| = 6 cm, |BC| = 5 cm, |CD|
       "Narýsujeme úsečku AC, |AC| = 7 cm.",
       "Bod B je průsečík oblouků k (A; 6 cm) a l (C; 5 cm) na jedné straně přímky AC.",
       "Bod D je průsečík oblouků m (A; 3 cm) a n (C; 6 cm) na opačné straně přímky AC.",
-      "Spojíme A, B, C, D. Obě trojúhelníkové nerovnosti platí (6 + 5 > 7 a 3 + 6 > 7) a strana bodů B, D je určena, úloha má 1 řešení.",
+      "Spojíme A, B, C, D. Obě trojúhelníkové nerovnosti platí (6 + 5 > 7 a 3 + 6 > 7). Body B a D mají podle zadání ležet na opačných stranách přímky AC, proto má úloha 1 řešení.",
       f"Kontrola: vzdálenost bodů B a D vychází asi {cm(BD)} cm."],
      near(abs(Bq - A), 6) and near(abs(Bq - Cc), 5) and near(abs(D - A), 3) and near(abs(D - Cc), 6) and Bq.imag > 0 > D.imag
      and 0 < xc < 7 and near(BD, math.hypot((36 + 49 - 25) / 14 - (9 + 49 - 36) / 14, math.sqrt(36 - ((36 + 49 - 25) / 14) ** 2) + math.sqrt(9 - ((9 + 49 - 36) / 14) ** 2))) and cm(BD) == "7,3", f)
@@ -822,7 +832,7 @@ task(3, "Rozhodněte, zda existuje trojúhelník ABC, v němž |AB| = 7 cm, veli
       "Narýsujeme úsečku AB, |AB| = 7 cm, při bodě B nad přímkou AB úhel 40° (úhloměrem) a jeho rameno. Narýsujeme kružnici k (A; 3 cm).",
       "Z bodu A spustíme kolmici na přímku BC a změříme její délku. Vyjde asi 4,5 cm.",
       "Nejbližší bod přímky BC je od A vzdálený 4,5 cm, tedy víc než poloměr 3 cm. Kružnice k přímku BC vůbec neprotne, úloha má 0 řešení.",
-      f"Kontrola: v pravoúhlém trojúhelníku s přeponou |AB| = 7 cm a úhlem 40° při B vychází protilehlá odvěsna asi {cm(dd)} cm."],
+      f"Kontrola pro rodiče: výpočet 7 · sin 40° ≈ {cm(dd)} cm měření potvrzuje (sinus se u zkoušky nepočítá, k řešení ho žák nepotřebuje)."],
      hits == [] and near(dd, 7 * math.sin(math.radians(40))) and cm(dd) == "4,5" and dd > 3 and near(abs(foot_pt - A), dd), f)
 
 # ---------------------------------------------------------------- Úvodní test (2 úlohy tématu)

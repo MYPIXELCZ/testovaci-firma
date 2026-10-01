@@ -368,7 +368,6 @@ T.task(2, "Prázdné akvárium tvaru kvádru má dno o rozměrech 50 cm a 40 cm.
        (hladina, dolit) == (15, 40) and F(dno * (vyska2 - hladina), 1000) == dolit, space=4)
 
 a, b, c, x = 10, 6, 4, 4
-soucet = lambda s1, s2: s1 + s2  # noqa: E731
 ploch = lambda p, q, r_: 2 * (p * q + p * r_ + q * r_)  # noqa: E731
 rozdily = {ploch(x, b, c) + ploch(a - x, b, c) - ploch(a, b, c) for x in (1, 2, 3, 4, 5, 7)}  # poloha řezu nehraje roli
 vox = block(a, b, c)
