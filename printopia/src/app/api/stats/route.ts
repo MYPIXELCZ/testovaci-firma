@@ -1,4 +1,5 @@
 import { FEEDBACK, type FeedbackKey } from "@/lib/metrics";
+import { listOrders } from "@/lib/orders";
 import { storage } from "@/lib/storage";
 
 // Souhrn testu poptávky (plan/prijimacky.md, oddíl 4). Chráněno klíčem STATS_KEY, bez osobních údajů.
@@ -25,6 +26,17 @@ export async function GET(req: Request) {
   for (const item of await storage.list("leads/")) {
     const lead = JSON.parse((await storage.read(item.pathname)) ?? "{}");
     if (lead.src !== "selftest") roles[lead.role ?? "?"] = (roles[lead.role ?? "?"] ?? 0) + 1;
+  }
+
+  // Objednávky a platby podle zdroje (bez osobních údajů, testovací se nepočítají)
+  const orders = { created: {} as Record<string, number>, paid: {} as Record<string, number>, revenue: 0 };
+  for (const o of (await listOrders()).filter((x) => !x.test)) {
+    const k = o.src || "direct";
+    orders.created[k] = (orders.created[k] ?? 0) + 1;
+    if (o.status === "paid") {
+      orders.paid[k] = (orders.paid[k] ?? 0) + 1;
+      orders.revenue += o.amount;
+    }
   }
 
   // 2) Trychtýř z anonymních událostí: počítáme návštěvy (pv), které daný krok udělaly aspoň jednou
@@ -57,6 +69,7 @@ export async function GET(req: Request) {
   }
 
   // 3) Automatické závěry pro úvodní stránku (kde lidé odpadají)
+  const sum = (o?: Record<string, number>) => Object.values(o ?? {}).reduce((a, b) => a + b, 0);
   const h = byPage.home ?? empty();
   const findings: string[] = [];
   if (h.view < 30) findings.push(`Málo dat: ${h.view} návštěv úvodní stránky, závěry až od 30.`);
@@ -65,14 +78,18 @@ export async function GET(req: Request) {
     if (pct(h.scroll50, h.view)! < 30) findings.push("Málokdo dočte do poloviny: slabý začátek stránky (nadpis, úvod).");
     if (pct(h.cta_buy, h.view)! < 2 && pct(h.cta_sample, h.view)! < 5) findings.push("Skoro nikdo neklikne na Koupit ani na ukázku: nabídka nezaujala.");
     if (h.form_start > 0 && pct(h.form_submit, h.form_start)! < 50) findings.push("Lidé začnou vyplňovat formulář a nedokončí ho: formulář odrazuje (souhlasy, role).");
+    const [created, paid] = [sum(orders.created), sum(orders.paid)];
+    if (created > 0 && pct(paid, created)! < 60) findings.push(`Objednají, ale nezaplatí (${paid} z ${created}): zkontrolovat QR platbu a e-mail s platebními údaji.`);
+    const k = byPage.koupit;
+    if (k && k.view >= 10 && pct(k.form_submit, k.view)! < 20) findings.push("Na stránce objednávky skoro nikdo neodešle formulář: cena nebo formulář odrazují.");
     const top = Object.entries(feedback).sort((a, b) => b[1] - a[1])[0];
     if (top) findings.push(`Nejčastější důvod z ankety: ${top[0]} (${top[1]}×).`);
   }
 
-  const sum = (o?: Record<string, number>) => Object.values(o ?? {}).reduce((a, b) => a + b, 0);
   return Response.json({
     days: [...days].sort(),
     server: { visits: counts.visit ?? {}, buyClicks: counts.buy_click ?? {}, leads: sum(counts.lead), leadsByRole: roles },
+    orders,
     funnel: { byPage, bySrc, byDevice },
     rates: {
       homeToBuyClick: pct(h.cta_buy, h.view),

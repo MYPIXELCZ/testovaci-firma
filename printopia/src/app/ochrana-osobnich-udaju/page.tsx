@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { COMPANY, CONTACT } from "@/lib/config";
+import { COMPANY, CONTACT, UNPAID_RETENTION_DAYS } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Ochrana osobních údajů" };
 
 export default function Privacy() {
   return (
-    <section>
-      <div className="wrap narrow">
+    <section className="hero">
+      <div className="wrap narrow legal">
         <h1>Ochrana osobních údajů</h1>
         <p className="muted">Platí od 1. 10. 2026.</p>
 
@@ -16,20 +16,29 @@ export default function Privacy() {
           <a href={`mailto:${CONTACT}`}>{CONTACT}</a>.
         </p>
 
-        <h2>Jaké údaje a proč</h2>
-        <p>
-          Když nám necháte e-mail (u ukázky zdarma nebo u upozornění na spuštění), uložíme si ho spolu s datem, s tím,
-          zda jste rodič, žák, nebo učitel, a odkud jste na web přišli (například z reklamy). E-mail použijeme jen k tomu, abychom vám dali vědět, že
-          je kompletní sada k dispozici, případně se slevou, kterou jsme slíbili. Pošleme nejvýše dva e-maily. Právním
-          základem je váš souhlas (čl. 6 odst. 1 písm. a) GDPR). Formulář je určen dospělým a žákům od 15 let,
-          e-maily dětí mladších 15 let vědomě nesbíráme.
-        </p>
-
-        <h2>Jak dlouho</h2>
-        <p>
-          Nejdéle do 31. 12. 2026, pak e-maily smažeme. Pokud se rozhodneme sadu nevydat, smažeme je do 30 dnů od
-          tohoto rozhodnutí. Dřív je smažeme, kdykoli o to požádáte.
-        </p>
+        <h2>Jaké údaje, proč a jak dlouho</h2>
+        <ul>
+          <li>
+            <strong>Vyřízení objednávky:</strong> e-mail, jméno a příjmení, údaje o objednávce a platbě a odkud jste na web
+            přišli (například z reklamy). Právním základem je plnění smlouvy. Nezaplacené objednávky mažeme po{" "}
+            {UNPAID_RETENTION_DAYS} dnech.
+          </li>
+          <li>
+            <strong>Účetnictví:</strong> doklady o zaplacení uchováváme po dobu, kterou ukládají účetní a daňové předpisy
+            (nejvýše 10 let). Právním základem je plnění právní povinnosti.
+          </li>
+          <li>
+            <strong>Reklamace a právní nároky:</strong> údaje o objednávce uchováváme po dobu promlčecích lhůt, obvykle 3 roky
+            od nákupu. Právním základem je oprávněný zájem.
+          </li>
+          <li>
+            <strong>Ukázka zdarma a tipy k přípravě:</strong> když nám u ukázky necháte e-mail, uložíme ho s datem, s tím, zda
+            jste rodič, žák, nebo učitel, a odkud jste přišli. Budeme vám posílat tipy k přípravě na přijímačky a nabídky
+            Printopie, nejvýše dvakrát měsíčně. Právním základem je váš souhlas, který můžete kdykoli odvolat. E-maily
+            smažeme nejpozději 30. 6. 2027, po přijímačkách. Formulář je určen dospělým a žákům od 15 let, e-maily dětí
+            mladších 15 let vědomě nesbíráme.
+          </li>
+        </ul>
 
         <h2>Kdo k údajům má přístup</h2>
         <p>

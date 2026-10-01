@@ -6,7 +6,7 @@ import MathText from "@/components/MathText";
 import Beacon from "@/components/Beacon";
 import Feedback from "@/components/Feedback";
 import { TOPICS } from "@/content/temata";
-import { LAUNCH_DATE, PRICE } from "@/lib/config";
+import { PRICE } from "@/lib/config";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => Object.keys(TOPICS).map((slug) => ({ slug }));
@@ -51,7 +51,7 @@ export default async function TopicPage({ params }: PageProps<"/[slug]">) {
             source="ukazka"
             src={topic.slug.replace("-prijimacky", "")}
             button="Stáhnout PDF zdarma"
-            consentText={`Souhlasím se zasláním upozornění, až bude kompletní sada k dispozici (${LAUNCH_DATE}).`}
+            consentText="Souhlasím se zasíláním tipů k přípravě na přijímačky a nabídek Printopie (nejvýše dvakrát měsíčně)."
             done="Děkujeme! PDF je připravené ke stažení."
           />
         </div>
@@ -63,7 +63,7 @@ export default async function TopicPage({ params }: PageProps<"/[slug]">) {
           {Object.values(TOPICS).filter((o) => o.slug !== topic.slug).map((o) => (
             <span key={o.slug}>, <Link href={`/${o.slug}`}>{o.h1.split(" na ")[0].toLowerCase()}</Link></span>
           ))}
-          . Kompletní sadu všech 12 témat za {PRICE} Kč připravujeme, <Link href="/">podívejte se, co v ní bude</Link>.
+          . Kompletní sada všech 12 témat k tisku stojí {PRICE} Kč, <Link href="/">podívejte se, co v ní je</Link>.
         </p>
       </div>
     </section>

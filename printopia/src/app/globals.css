@@ -154,3 +154,30 @@ ol.topics { grid-template-columns: repeat(4, 1fr); }
   .compare td { padding: 12px; }
 }
 @media (max-width: 560px) { ol.topics { grid-template-columns: 1fr; } }
+
+/* Objednávka a platba */
+.field label { display: block; font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; }
+.field input[type="email"], .field input[type="text"] { width: 100%; font: inherit; padding: 13px 14px; border-radius: 10px; border: 1.5px solid var(--line); background: #fff; color: var(--ink); }
+.field input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-light); }
+.field .small { margin: 6px 0 0; }
+.summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 20px; background: var(--blue-light); border-radius: 12px; margin-bottom: 28px; }
+.summary strong { font-family: var(--serif); font-size: 1.4rem; font-weight: 500; white-space: nowrap; }
+.pay { display: grid; grid-template-columns: 240px 1fr; gap: 32px; align-items: start; margin-top: 32px; }
+.qr { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+.qr svg { display: block; width: 100%; height: auto; }
+.pay-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+.pay .pay-table { margin-top: 0; }
+.pay-table td { padding: 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.pay-table td:first-child { color: var(--muted); width: 45%; }
+.pay-table td:last-child { font-weight: 600; }
+.status { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: 0.9rem; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); animation: pulse 1.6s infinite; }
+@keyframes pulse { 50% { opacity: 0.3; } }
+.downloads { list-style: none; padding: 0; display: grid; gap: 10px; margin: 16px 0 32px; }
+.downloads li { display: grid; gap: 2px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; }
+.downloads a { font-weight: 600; }
+.legal h2 { font-size: 1.4rem; margin-top: 2em; }
+.legal ol, .legal ul { padding-left: 1.3em; }
+.legal li { margin-bottom: 0.5em; }
+@media (max-width: 640px) { .pay { grid-template-columns: 1fr; } .qr { max-width: 260px; } }
+@media print { .header, .footer, .no-print, .sticky-cta { display: none; } body { background: #fff; padding: 0; } }

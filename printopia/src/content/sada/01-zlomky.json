@@ -1,0 +1,274 @@
+{
+ "num": 1,
+ "slug": "zlomky",
+ "title": "Zlomky a desetinná čísla",
+ "intro": "Zlomky jsou na přijímačkách skoro každý rok, samostatně i uvnitř rovnic a slovních úloh. Počítejte bez kalkulačky a výsledek vždy zkraťte na základní tvar.",
+ "tips": [
+  "Před sčítáním a odčítáním převeďte zlomky na společného jmenovatele (nejmenší společný násobek).",
+  "Dělit zlomkem znamená násobit převrácenou hodnotou: a/b : c/d = a/b · d/c.",
+  "Smíšené číslo převeďte na zlomek: 2 1/3 = 7/3. Desetinné číslo na zlomek: 0,25 = 1/4.",
+  "U složeného zlomku spočítejte zvlášť čitatel a jmenovatel, pak je vydělte.",
+  "Pořadí operací: závorky, pak násobení a dělení, nakonec sčítání a odčítání."
+ ],
+ "example": {
+  "text": "Vypočtěte a výsledek zapište v základním tvaru: 3/4 − 1/6 · 3/2",
+  "steps": [
+   "Nejdřív násobení: 1/6 · 3/2 = 3/12 = 1/4.",
+   "Pak odčítání: 3/4 − 1/4 = 2/4.",
+   "Zkrátíme dvěma: 2/4 = 1/2."
+  ],
+  "answer": "1/2"
+ },
+ "tasks": [
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Vypočtěte: 5/6 − 3/8",
+   "options": null,
+   "answer": "11/24",
+   "steps": [
+    "Společný jmenovatel čísel 6 a 8 je 24.",
+    "5/6 = 20/24, 3/8 = 9/24.",
+    "20/24 − 9/24 = 11/24."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Vypočtěte a výsledek zkraťte: 4/9 · 15/8",
+   "options": null,
+   "answer": "5/6",
+   "steps": [
+    "Před násobením krátíme křížem: 4 a 8 dělíme 4, 9 a 15 dělíme 3.",
+    "Dostaneme 1/3 · 5/2.",
+    "1/3 · 5/2 = 5/6."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Vypočtěte: 7/10 : 14/15",
+   "options": null,
+   "answer": "3/4",
+   "steps": [
+    "Dělení zlomkem nahradíme násobením převrácenou hodnotou: 7/10 · 15/14.",
+    "Krátíme: 7 a 14 sedmi, 15 a 10 pěti: 1/2 · 3/2.",
+    "1/2 · 3/2 = 3/4."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Zapište desetinné číslo 1,25 jako zlomek v základním tvaru a jako smíšené číslo.",
+   "options": null,
+   "answer": "5/4 = 1 1/4",
+   "steps": [
+    "1,25 = 125/100.",
+    "Zkrátíme 25: 125/100 = 5/4.",
+    "5/4 = 4/4 + 1/4 = 1 1/4."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 1,
+   "kind": "choice",
+   "text": "Které z čísel je největší?",
+   "options": [
+    "3/5",
+    "0,58",
+    "4/7",
+    "5/9",
+    "0,56"
+   ],
+   "answer": "A",
+   "steps": [
+    "Převedeme zlomky na desetinná čísla: 3/5 = 0,6; 4/7 ≈ 0,571; 5/9 ≈ 0,556.",
+    "Porovnáme: 0,6 > 0,58 > 0,571 > 0,56 > 0,556.",
+    "Největší je 3/5, možnost A."
+   ],
+   "figure": null,
+   "space": 1
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Vypočtěte: 2 1/3 · 3/14 − 1/4",
+   "options": null,
+   "answer": "1/4",
+   "steps": [
+    "Smíšené číslo převedeme: 2 1/3 = 7/3.",
+    "7/3 · 3/14 = 21/42 = 1/2.",
+    "1/2 − 1/4 = 2/4 − 1/4 = 1/4."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Vypočtěte složený zlomek: (3/4 + 5/6) / (5/3 − 1/2)",
+   "options": null,
+   "answer": "19/14",
+   "steps": [
+    "Čitatel: 3/4 + 5/6 = 9/12 + 10/12 = 19/12.",
+    "Jmenovatel: 5/3 − 1/2 = 10/6 − 3/6 = 7/6.",
+    "19/12 : 7/6 = 19/12 · 6/7 = 114/84 = 19/14."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Vypočtěte a výsledek zapište zlomkem v základním tvaru: 1,5 · 2/3 + 0,25 : 1/2",
+   "options": null,
+   "answer": "3/2",
+   "steps": [
+    "Desetinná čísla na zlomky: 1,5 = 3/2 a 0,25 = 1/4.",
+    "Násobení: 3/2 · 2/3 = 1.",
+    "Dělení: 1/4 : 1/2 = 1/4 · 2 = 1/2.",
+    "Součet: 1 + 1/2 = 3/2."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Řešte rovnici: 2/3 · x + 1/4 = 7/12",
+   "options": null,
+   "answer": "x = 1/2",
+   "steps": [
+    "Odečteme 1/4: 2/3 · x = 7/12 − 3/12 = 4/12 = 1/3.",
+    "Vydělíme 2/3: x = 1/3 · 3/2 = 1/2.",
+    "Zkouška: 2/3 · 1/2 + 1/4 = 1/3 + 1/4 = 4/12 + 3/12 = 7/12. ✓"
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "yesno",
+   "text": "Platí tato tvrzení?",
+   "options": [
+    "2/5 + 1/5 = 3/10",
+    "3/4 : 3/8 = 2",
+    "Třetina z šesti je 2."
+   ],
+   "answer": "NE, ANO, ANO",
+   "steps": [
+    "2/5 + 1/5 = 3/5, ne 3/10. Sčítáme jen čitatele, jmenovatel zůstává. Tvrzení neplatí.",
+    "3/4 : 3/8 = 3/4 · 8/3 = 24/12 = 2. Platí.",
+    "1/3 · 6 = 6/3 = 2. Platí."
+   ],
+   "figure": null,
+   "space": 1
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Tablet stál 4 800 Kč. V akci ho prodávali za 5/8 původní ceny. O kolik korun zlevnil?",
+   "options": null,
+   "answer": "o 1 800 Kč",
+   "steps": [
+    "Akční cena: 5/8 · 4 800 = 3 000 Kč.",
+    "Sleva: 4 800 − 3 000 = 1 800 Kč.",
+    "Jinak: zlevnil o 3/8 ceny, 3/8 · 4 800 = 1 800 Kč."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Ve třídě si 2/5 žáků vybralo výlet do hor, 1/4 žáků výlet k vodě a zbylých 21 žáků muzeum. Kolik žáků vybíralo?",
+   "options": null,
+   "answer": "60 žáků",
+   "steps": [
+    "Hory a voda dohromady: 2/5 + 1/4 = 8/20 + 5/20 = 13/20 žáků.",
+    "Na muzeum zbývá 1 − 13/20 = 7/20 žáků, to je 21 žáků.",
+    "1/20 žáků … 21 : 7 = 3 žáci, celá třída 20 · 3 = 60 žáků.",
+    "Zkouška: 2/5 ze 60 = 24, 1/4 ze 60 = 15, 24 + 15 + 21 = 60. ✓"
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Bazén napustí první přívod za 4 hodiny, druhý za 6 hodin. Odtok ho vypustí za 12 hodin. Za jak dlouho se bazén naplní, když jsou otevřené oba přívody i odtok?",
+   "options": null,
+   "answer": "za 3 hodiny",
+   "steps": [
+    "Za hodinu napustí první přívod 1/4 bazénu, druhý 1/6 bazénu, odtok vypustí 1/12.",
+    "Za hodinu přibude 1/4 + 1/6 − 1/12 = 3/12 + 2/12 − 1/12 = 4/12 = 1/3 bazénu.",
+    "Celý bazén se naplní za 3 hodiny."
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Vypočtěte: (1/2 − 1/3) : (1/3 − 1/4) − 4/5 · (1 + 1/4)",
+   "options": null,
+   "answer": "1",
+   "steps": [
+    "První závorka: 1/2 − 1/3 = 3/6 − 2/6 = 1/6.",
+    "Druhá závorka: 1/3 − 1/4 = 4/12 − 3/12 = 1/12.",
+    "Podíl: 1/6 : 1/12 = 1/6 · 12 = 2.",
+    "Součin: 4/5 · 5/4 = 1.",
+    "Rozdíl: 2 − 1 = 1."
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Řešte rovnici: x/2 + 1/4 = 5/8 · x",
+   "options": null,
+   "answer": "x = 2",
+   "steps": [
+    "Odečteme x/2 od obou stran: 1/4 = 5/8 · x − 4/8 · x = 1/8 · x.",
+    "Vynásobíme osmi: x = 2.",
+    "Zkouška: 2/2 + 1/4 = 5/4 a 5/8 · 2 = 10/8 = 5/4. ✓"
+   ],
+   "figure": null,
+   "space": 4
+  }
+ ],
+ "diagnostic": [
+  {
+   "kind": "open",
+   "text": "Vypočtěte: 5/12 + 3/8 − 1/6",
+   "options": null,
+   "answer": "5/8",
+   "steps": [
+    "Společný jmenovatel čísel 12, 8 a 6 je 24.",
+    "10/24 + 9/24 − 4/24 = 15/24.",
+    "Zkrátíme třemi: 15/24 = 5/8."
+   ],
+   "figure": null
+  },
+  {
+   "kind": "open",
+   "text": "Vypočtěte: (2/3 − 1/4) : (1 + 1/4)",
+   "options": null,
+   "answer": "1/3",
+   "steps": [
+    "Čitatel: 2/3 − 1/4 = 8/12 − 3/12 = 5/12.",
+    "Jmenovatel: 1 + 1/4 = 5/4.",
+    "5/12 : 5/4 = 5/12 · 4/5 = 20/60 = 1/3."
+   ],
+   "figure": null
+  }
+ ]
+}

@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Pracovní listy se servírují jen přes /stahnout/[id] po zaplacení, proto leží v private/ a ne v public/.
+  outputFileTracingIncludes: {
+    "/stahnout/*": ["./private/**/*"],
+  },
   async headers() {
     return [
       {

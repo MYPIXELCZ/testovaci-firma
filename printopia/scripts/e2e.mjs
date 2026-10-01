@@ -1,14 +1,43 @@
 // E2E test testovací stránky: build musí proběhnout předem (npm run test:e2e).
 import { spawn, spawnSync } from "node:child_process";
 import { mkdtempSync, readdirSync, readFileSync } from "node:fs";
+import http from "node:http";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
 const PORT = 3200;
 const BASE = `http://localhost:${PORT}`;
 const store = mkdtempSync(path.join(tmpdir(), "printopia-"));
+
+// Falešné Fio API a Resend pro nákup
+const MOCK = 3209;
+const payments = [];
+const emails = [];
+const mock = http.createServer((req, res) => {
+  if (req.url.startsWith("/fio/periods/")) {
+    const transaction = payments.map((p, i) => ({
+      column22: { value: p.id }, column0: { value: p.date }, column1: { value: p.amount },
+      column14: { value: "CZK" }, column5: p.vs ? { value: p.vs } : null,
+    }));
+    res.setHeader("Content-Type", "application/json");
+    return res.end(JSON.stringify({ accountStatement: { transactionList: { transaction } } }));
+  }
+  if (req.url === "/emails" && req.method === "POST") {
+    let body = "";
+    req.on("data", (c) => (body += c));
+    return req.on("end", () => { emails.push(JSON.parse(body)); res.end("{}"); });
+  }
+  res.statusCode = 404;
+  res.end();
+});
+await new Promise((r) => mock.listen(MOCK, r));
+
 const app = spawn("npx", ["next", "start", "-p", String(PORT)], {
-  env: { ...process.env, LOCAL_STORE_DIR: store, BLOB_READ_WRITE_TOKEN: "", VERCEL: "", STATS_KEY: "tajne" },
+  env: {
+    ...process.env, LOCAL_STORE_DIR: store, BLOB_READ_WRITE_TOKEN: "", VERCEL: "", STATS_KEY: "tajne",
+    SALES_OPEN: "1", FIO_TOKEN: "test", FIO_API_BASE: `http://localhost:${MOCK}/fio`, RESEND_API_KEY: "test",
+    RESEND_API_URL: `http://localhost:${MOCK}/emails`, CRON_SECRET: "cron-tajne", SITE_URL: `http://localhost:${PORT}`,
+  },
   stdio: ["ignore", "pipe", "pipe"],
   detached: true,
 });
@@ -40,8 +69,8 @@ try {
   check(home.includes("/koupit?src=sklik"), "zdroj návštěvy se předává do Koupit");
   const pdf = await fetch(`${BASE}/ukazka-zlomky.pdf`);
   check(pdf.ok && pdf.headers.get("content-type")?.includes("pdf"), "ukázka PDF ke stažení");
-  const buy = await (await get("/koupit?src=sklik")).text();
-  check(buy.includes("Sadu spouštíme") && buy.includes("279"), "stránka Koupit (spuštění + sleva)");
+  const buy = (await (await get("/koupit?src=sklik")).text()).replaceAll("<!-- -->", "");
+  check(buy.includes("Objednat s povinností platby") && buy.includes("349 Kč") && buy.includes("obchodními podmínkami"), "stránka Koupit je objednávka");
   check((await fetch(`${BASE}/ochrana-osobnich-udaju`)).ok, "ochrana osobních údajů");
   const zl = await (await fetch(`${BASE}/zlomky-prijimacky`)).text();
   check(zl.includes("Zlomky na přijímačky") && zl.includes("240 stran"), "stránka Zlomky s příklady a řešením");
@@ -99,13 +128,51 @@ try {
   check(st.findings[0].startsWith("Málo dat"), "závěry: při málo datech to řekne");
   const home2 = await (await get("/")).text();
   check(home2.includes("zatím drží od objednání") && home2.includes('data-track="cta_buy"'), "úvodní stránka má anketu a měřená tlačítka");
+  // Nákup: objednávka → QR → platba (falešné Fio) → cron → e-mail → stažení → doklad
+  const cron = (auth = "Bearer cron-tajne") => fetch(`${BASE}/api/cron/fio`, { headers: { authorization: auth } });
+  const today = new Date().toISOString().slice(0, 10) + "+0200";
+  const order = async (body) => fetch(`${BASE}/api/orders`, { method: "POST", headers: { "Content-Type": "application/json", ...UA }, body: JSON.stringify(body) });
+  check((await order({ email: "rodic@example.cz", name: "Jana Nová", terms: false })).status === 400, "objednávka bez souhlasu s podmínkami neprojde");
+  const created = await (await order({ email: "Rodic@Example.cz", name: "Jana Nová", terms: true, src: "sklik" })).json();
+  const oid = created.id;
+  const opage = await (await get(`/objednavka/${oid}`)).text();
+  const vs = /Variabilní symbol<\/td><td>(\d+)</.exec(opage)?.[1] ?? "";
+  check(/^8\d{9}$/.test(vs) && opage.includes("<svg") && opage.includes("2202343801/2010"), `stránka objednávky: QR, účet a VS 8xxxxxxxxx (${vs})`);
+  await new Promise((r) => setTimeout(r, 400));
+  check(emails.some((e) => e.to === "rodic@example.cz" && e.subject.includes(vs)), "e-mail s platebními údaji odešel");
+  check((await fetch(`${BASE}/stahnout/${oid}?soubor=zlomky`, { redirect: "manual" })).status === 303, "stažení před zaplacením přesměruje");
+  check((await cron("Bearer spatne")).status === 401, "cron bez tajemství vrací 401");
+  payments.push({ id: 5001, vs: "2610011234", amount: 349, date: today }); // platba anoberu: printopia ji nehlásí
+  payments.push({ id: 5002, vs, amount: 100, date: today });
+  let cr = await (await cron()).json();
+  check(cr.underpaid.includes(vs) && cr.paid.length === 0 && cr.orphans === 0, "nedoplatek se nespáruje, cizí platba se nehlásí");
+  payments.length = 0;
+  payments.push({ id: 5003, vs, amount: 349, date: today }, { id: 5004, vs: "8" + vs.slice(1, 7) + "999", amount: 349, date: today });
+  cr = await (await cron()).json();
+  check(cr.paid.includes(vs) && cr.orphans === 1, "platba se spárovala, platba s naším VS bez objednávky se nahlásila");
+  await new Promise((r) => setTimeout(r, 400));
+  const delivery = emails.find((e) => e.to === "rodic@example.cz" && e.subject.includes("sada"));
+  check(Boolean(delivery?.html.includes(`/objednavka/${oid}`) && delivery?.html.includes(`Doklad o zaplacení č. ${vs}`)), "doručovací e-mail s odkazem a dokladem");
+  check(emails.filter((e) => e.to === "printopia@mypixel.cz" && e.subject.includes("Zaplaceno")).length === 1, "firma dostala upozornění na platbu");
+  const paidPage = (await (await get(`/objednavka/${oid}`)).text()).replaceAll("<!-- -->", "");
+  check(paidPage.includes("Zaplaceno") && paidPage.includes(`/stahnout/${oid}?soubor=zlomky`), "po zaplacení stránka nabízí listy ke stažení");
+  const dl = await fetch(`${BASE}/stahnout/${oid}?soubor=zlomky`);
+  check(dl.ok && dl.headers.get("content-type") === "application/pdf" && (await dl.arrayBuffer()).byteLength > 10000, "pracovní list se stáhne jako PDF");
+  check((await fetch(`${BASE}/stahnout/${oid}?soubor=../../etc/passwd`, { redirect: "manual" })).status === 303, "neznámý soubor se nestáhne");
+  check((await (await get(`/doklad/${oid}`)).text()).replaceAll("<!-- -->", "").includes(`Doklad o zaplacení č. ${vs}`), "doklad o zaplacení");
+  check((await fetch(`${BASE}/ukazka-zlomky.pdf`)).ok && !(await fetch(`${BASE}/sada/01-zlomky.pdf`)).ok, "placené listy nejsou veřejně v public/");
+  const st2 = await (await fetch(`${BASE}/api/stats`, { headers: { "x-stats-key": "tajne" } })).json();
+  check(st2.orders.created.sklik === 1 && st2.orders.paid.sklik === 1 && st2.orders.revenue === 349, "souhrn: objednávky a tržby podle zdroje");
+  check((await (await get("/obchodni-podminky")).text()).includes("printopia.cz"), "obchodní podmínky");
+
   // Vizuální a textová kontrola (FAILS.md 2026-10-01 02:02 a 02:05): šířka 1340 + 80 px, mobil, překryvy, z-index, texty.
-  const pages = "/,/koupit,/zlomky-prijimacky,/procenta-prijimacky,/jak-se-pripravit-na-prijimacky,/ochrana-osobnich-udaju";
+  const pages = `/,/koupit,/obchodni-podminky,/objednavka/${oid},/zlomky-prijimacky,/procenta-prijimacky,/jak-se-pripravit-na-prijimacky,/ochrana-osobnich-udaju`;
   const viz = spawnSync("node", ["../tools/vizualni-kontrola.mjs", BASE, pages, process.env.VIZ_DIR ?? path.join(store, "viz")], { encoding: "utf8" });
   console.log(viz.stdout.trim());
   check(viz.status === 0, "vizuální a textová kontrola stránek");
 } finally {
   process.kill(-app.pid);
+  mock.close();
 }
 console.log(failed ? `\n${failed} kontrol selhalo` : "\nVšechny kontroly prošly");
 process.exit(failed ? 1 : 0);

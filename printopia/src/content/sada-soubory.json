@@ -1,0 +1,20 @@
+[
+ {
+  "slug": "uvodni-test",
+  "file": "00-uvodni-test.pdf",
+  "title": "Úvodní test",
+  "desc": "2 úloh, ukáže, čím začít"
+ },
+ {
+  "slug": "zlomky",
+  "file": "01-zlomky.pdf",
+  "title": "1. Zlomky a desetinná čísla",
+  "desc": "15 úloh s postupy"
+ },
+ {
+  "slug": "plan",
+  "file": "99-plan-procvicovani.pdf",
+  "title": "Plán procvičování",
+  "desc": "5 týdnů, jedno téma týdně"
+ }
+]

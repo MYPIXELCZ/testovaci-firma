@@ -10,7 +10,7 @@ import MathText from "@/components/MathText";
 import StickyCta from "@/components/StickyCta";
 import foto from "@/content/foto.json";
 import ukazka from "@/content/ukazka.json";
-import { LAUNCH_DATE, PRICE } from "@/lib/config";
+import { PRICE } from "@/lib/config";
 import { track } from "@/lib/track";
 
 // Cílová skupina (plan/prijimacky.md 1b): hledají deváťáci, platí rodiče i žáci 15+ (měří test).
@@ -182,7 +182,7 @@ export default async function Home({ searchParams }: Props) {
                 source="ukazka"
                 src={src}
                 button="Stáhnout ukázku"
-                consentText={`Souhlasím se zasláním upozornění, až bude kompletní sada k dispozici (${LAUNCH_DATE}).`}
+                consentText="Souhlasím se zasíláním tipů k přípravě na přijímačky a nabídek Printopie (nejvýše dvakrát měsíčně)."
                 done="Děkujeme! Ukázka je připravená ke stažení."
               />
             </div>
@@ -197,8 +197,10 @@ export default async function Home({ searchParams }: Props) {
           <div>
             <h2>Časté otázky</h2>
             <dl className="faq">
-              <dt>Kdy bude kompletní sada?</dt>
-              <dd>{LAUNCH_DATE}, takže do zkoušky 12. dubna 2027 zbývá dost času na všechna témata.</dd>
+              <dt>Jak sadu dostanu?</dt>
+              <dd>Hned po zaplacení. QR kód naskenujete v bankovní aplikaci, platby párujeme automaticky a odkaz ke stažení přijde e-mailem, u okamžité platby obvykle do 10 minut.</dd>
+              <dt>Co v sadě je?</dt>
+              <dd>Úvodní test, který ukáže slabá témata, 12 tematických listů k tisku s řešeným příkladem a postupy u každé úlohy a plán procvičování do zkoušky.</dd>
               <dt>Pro koho je?</dt>
               <dd>Pro žáky 9. tříd, kteří skládají jednotnou přijímací zkoušku na čtyřleté obory s maturitou.</dd>
               <dt>Je to oficiální materiál?</dt>

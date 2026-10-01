@@ -62,8 +62,8 @@ export default function PreparePage() {
           najdete zdarma na webu <a href="https://prijimacky.cermat.cz/" rel="noopener">CERMAT</a>.
         </p>
         <p className="muted small">
-          Připravujeme sady úloh k tisku podle témat s postupem u každé úlohy a plánem do zkoušky.{" "}
-          <Link href="/">Podívejte se, co v nich bude</Link>.
+          Sada Printopia: úvodní test, 12 témat k tisku s postupem u každé úlohy a plán do zkoušky.{" "}
+          <Link href="/">Podívejte se, co v ní je</Link>.
         </p>
 
         <div style={{ marginTop: 32 }}><Feedback /></div>

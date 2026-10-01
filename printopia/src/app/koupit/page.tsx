@@ -1,39 +1,42 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { after } from "next/server";
-import LeadForm from "@/components/LeadForm";
 import Beacon from "@/components/Beacon";
 import { track } from "@/lib/track";
-import { LAUNCH_DATE, LAUNCH_PRICE, PRICE } from "@/lib/config";
+import { CONTACT, PRODUCT, SALES_OPEN, TEST_PRICE, isInternalHost } from "@/lib/config";
+import { FILES } from "@/content/sada";
+import OrderForm from "./OrderForm";
 
-export const metadata: Metadata = { title: "Koupit sadu", robots: { index: false } };
+export const metadata: Metadata = { title: "Objednávka", robots: { index: false } };
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
 
 export default async function Buy({ searchParams }: Props) {
   const sp = await searchParams;
   const src = String(sp.src ?? "").slice(0, 40).replace(/[^\w.-]/g, "");
-  const ua = (await headers()).get("user-agent");
+  const h = await headers();
+  const ua = h.get("user-agent");
+  const test = isInternalHost(h.get("host"));
   after(() => track("buy_click", src, ua));
   return (
     <section className="hero">
       <Beacon page="koupit" />
       <div className="wrap narrow">
-        <p className="eyebrow">Přijímačky z matiky po tématech</p>
-        <h1>Sadu spouštíme {LAUNCH_DATE}</h1>
-        <p className="lead">
-          Děkujeme za zájem! Kompletní sadu zatím připravujeme a nic si teď neplatíte. Nechte nám e-mail a v den spuštění
-          vám pošleme odkaz se slevou 20 %: <strong>{LAUNCH_PRICE} Kč</strong> místo {PRICE} Kč.
-        </p>
-        <div className="box" style={{ marginTop: 28 }}>
-          <LeadForm
-            source="koupit"
-            src={src}
-            button="Chci upozornění se slevou"
-            consentText={`Souhlasím se zasláním upozornění a slevy, až bude sada k dispozici (${LAUNCH_DATE}).`}
-            done="Hotovo! V den spuštění vám napíšeme. Mezitím si můžete stáhnout ukázku zdarma na úvodní stránce."
-          />
+        <h1>Objednávka</h1>
+        <div className="summary">
+          <span>
+            {PRODUCT.name}
+            <br />
+            <span className="muted small">{FILES.length} pracovních listů v PDF k tisku, ke stažení hned po zaplacení</span>
+          </span>
+          <strong>{test ? TEST_PRICE : PRODUCT.price} Kč</strong>
         </div>
+        {test && <p className="error">Testovací objednávka (jen pro tým): cena {TEST_PRICE} Kč.</p>}
+        {SALES_OPEN || test ? (
+          <OrderForm src={src} />
+        ) : (
+          <p>Prodej právě spouštíme. Napište nám na <a href={`mailto:${CONTACT}`}>{CONTACT}</a> a pošleme vám odkaz, jakmile to půjde.</p>
+        )}
       </div>
     </section>
   );

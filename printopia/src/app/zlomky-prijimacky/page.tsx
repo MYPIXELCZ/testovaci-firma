@@ -5,7 +5,7 @@ import MathText from "@/components/MathText";
 import Beacon from "@/components/Beacon";
 import Feedback from "@/components/Feedback";
 import ukazka from "@/content/ukazka.json";
-import { LAUNCH_DATE, PRICE } from "@/lib/config";
+import { PRICE } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Zlomky na přijímačky: příklady s postupem řešení",
@@ -55,7 +55,7 @@ export default function FractionsPage() {
             source="ukazka"
             src="zlomky"
             button="Stáhnout PDF zdarma"
-            consentText={`Souhlasím se zasláním upozornění, až bude kompletní sada k dispozici (${LAUNCH_DATE}).`}
+            consentText="Souhlasím se zasíláním tipů k přípravě na přijímačky a nabídek Printopie (nejvýše dvakrát měsíčně)."
             done="Děkujeme! PDF je připravené ke stažení."
           />
         </div>
@@ -64,8 +64,8 @@ export default function FractionsPage() {
 
         <p style={{ marginTop: 32 }}>
           Další témata: <Link href="/procenta-prijimacky">procenta</Link>, <Link href="/rovnice-prijimacky">rovnice</Link>, <Link href="/slovni-ulohy-prijimacky">slovní úlohy</Link>.
-          Kompletní sadu všech 12 témat přijímaček z matematiky za {PRICE} Kč připravujeme.{" "}
-          <Link href="/">Podívejte se, co v ní bude</Link>.
+          Kompletní sada všech 12 témat přijímaček z matematiky k tisku stojí {PRICE} Kč.{" "}
+          <Link href="/">Podívejte se, co v ní je</Link>.
         </p>
       </div>
     </section>
