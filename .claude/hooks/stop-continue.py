@@ -15,9 +15,19 @@ ids = [l.strip() for l in open(main, encoding="utf-8") if l.strip() and not l.st
 remote = os.environ.get("CLAUDE_CODE_REMOTE_SESSION_ID", "")
 if not any(i == data.get("session_id") or (remote and remote.endswith(i)) for i in ids):
     sys.exit(0)
+# Další krok z plan/akce.md (první řádek ve stavu „další“ nebo „research“): čekání na nepravděpodobné není práce (FAILS.md 2026-10-01 17:17).
+nxt = ""
+akce = os.path.join(os.environ.get("CLAUDE_PROJECT_DIR") or os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "plan", "akce.md")
+if os.path.exists(akce):
+    for line in open(akce, encoding="utf-8"):
+        cols = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cols) >= 5 and cols[3] in ("další", "research"):
+            nxt = f" Další krok z plan/akce.md: #{cols[0]} {cols[1]}: {cols[4]}"
+            break
 print(json.dumps({
     "decision": "block",
     "reason": ("Kontrola před koncem tahu (FAILS.md): 1) Je naplánovaný send_later za 1 hodinu? Pokud ne, naplánuj ho (delay_minutes 60). "
                "2) Zbývá neblokovaná práce s perspektivou (i když od Ondřeje chybí informace)? Pokud ano, pokračuj v ní. "
+               "3) Čekáš na událost, která nastane v následujících hodinách/dnech s pravděpodobností pod ~20 %? To není čekání, ale chybějící akce: udělej další krok z plan/akce.md nebo ji doplň." + nxt + " "
                "Tah ukonči jen tehdy, když je připomínka naplánovaná a vše ostatní čeká na Ondřeje."),
 }, ensure_ascii=False))
