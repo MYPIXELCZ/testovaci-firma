@@ -1,0 +1,77 @@
+{
+  "slug": "uhly-a-trojuhelniky-prijimacky",
+  "title": "Úhly a trojúhelníky na přijímačky: příklady s postupem řešení",
+  "h1": "Úhly a trojúhelníky na přijímačky: příklady s postupem",
+  "description": "6 příkladů ve stylu přijímaček z matematiky (vedlejší, vrcholové a střídavé úhly, součet úhlů a rovnoramenný trojúhelník). S postupem řešení krok za krokem.",
+  "lead": "Úhly se v přijímačkách počítají v geometrických úlohách i ve výběru z možností A–E. Pomůže pečlivý náčrt. Tady je 6 příkladů z naší sady. Nejdřív počítejte sami, postup si rozbalte až potom.",
+  "tips": [
+    "Vedlejší úhly dávají dohromady 180°, vrcholové úhly jsou stejně velké. U rovnoběžek jsou souhlasné i střídavé úhly stejné, kdežto úhly vnitřní jednostranné (tvar písmene C) dávají dohromady 180°. Rovnoběžnost smíte použít jen tehdy, když ji zadání uvádí.",
+    "Součet vnitřních úhlů je v trojúhelníku 180° a ve čtyřúhelníku 360°. Vnější úhel trojúhelníku se rovná součtu dvou vnitřních úhlů, které k němu nepřiléhají.",
+    "Rovnoramenný trojúhelník má stejné úhly při základně, rovnostranný má všechny úhly 60°. Stejné strany hledejte i skryté (například dva poloměry téže kružnice).",
+    "Výška vede z vrcholu kolmo k protější straně, těžnice do jejího středu. Těžnice rozdělí trojúhelník na dva trojúhelníky se stejným obsahem, v rovnoramenném trojúhelníku je výška k základně zároveň těžnicí."
+  ],
+  "tasks": [
+    {
+      "topic": "Základ",
+      "text": "Dva úhly trojúhelníku mají velikosti 38° a 52°. Vypočtěte velikost třetího úhlu a rozhodněte, zda je trojúhelník ostroúhlý, pravoúhlý, nebo tupoúhlý.",
+      "answer": "90°, trojúhelník je pravoúhlý",
+      "steps": [
+        "Součet úhlů v trojúhelníku je 180°: 180° − 38° − 52° = 90°.",
+        "Jeden z úhlů je pravý, trojúhelník je proto pravoúhlý."
+      ]
+    },
+    {
+      "topic": "Základ",
+      "text": "Převeďte: a) 2° 15′ na minuty, b) 200′ na stupně a minuty, c) 3,5° na stupně a minuty.",
+      "answer": "a) 135′, b) 3° 20′, c) 3° 30′",
+      "steps": [
+        "Platí 1° = 60′.",
+        "a) 2 · 60′ + 15′ = 135′.",
+        "b) 200 : 60 = 3 se zbytkem 20, tedy 3° 20′.",
+        "c) 0,5° = 30′, tedy 3,5° = 3° 30′."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Dva vedlejší úhly jsou v poměru 4 : 5. Vypočtěte jejich velikosti. Uveďte celý postup.",
+      "answer": "80° a 100°",
+      "steps": [
+        "Vedlejší úhly mají dohromady 180°. Poměr 4 : 5 znamená 4 + 5 = 9 stejných dílů.",
+        "Jeden díl: 180° : 9 = 20°.",
+        "Menší úhel: 4 · 20° = 80°, větší úhel: 5 · 20° = 100°.",
+        "Zkouška: 80° + 100° = 180° a 80 : 100 = 4 : 5."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Úhel při vrcholu rovnoramenného trojúhelníku je trojnásobkem úhlu při jeho základně. Vypočtěte velikosti všech tří úhlů tohoto trojúhelníku. Uveďte celý postup.",
+      "answer": "36°, 36°, 108°",
+      "steps": [
+        "Úhel při základně označíme x, druhý úhel při základně má také velikost x, úhel při vrcholu je 3x.",
+        "x + x + 3x = 180°, 5x = 180°, x = 36°.",
+        "Úhly mají velikosti 36°, 36° a 3 · 36° = 108°.",
+        "Zkouška: 36° + 36° + 108° = 180°."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Vypočtěte a výsledky zapište ve stupních a minutách: a) 48° 35′ + 27° 40′, b) velikost úhlu vedlejšího k úhlu 124° 18′, c) velikost poloviny úhlu 75° 20′.",
+      "answer": "a) 76° 15′, b) 55° 42′, c) 37° 40′",
+      "steps": [
+        "a) 48° + 27° = 75° a 35′ + 40′ = 75′ = 1° 15′, celkem 76° 15′.",
+        "b) 180° − 124° 18′ = 179° 60′ − 124° 18′ = 55° 42′.",
+        "c) 75° 20′ = 4 520′, polovina je 2 260′ = 37° 40′. Jinak: 75° 20′ = 74° 80′, polovina je 37° 40′."
+      ]
+    },
+    {
+      "topic": "Náročnější",
+      "text": "Dvě strany trojúhelníku mají délky 5 cm a 9 cm. Délka třetí strany je v centimetrech vyjádřena celým číslem. Kolik různých délek třetí strany je možných?",
+      "answer": "9 délek (od 5 cm do 13 cm)",
+      "steps": [
+        "Trojúhelníková nerovnost: x + 5 > 9, tedy x > 4, a 5 + 9 > x, tedy x < 14. Nerovnost 9 + x > 5 platí vždy.",
+        "Celá čísla větší než 4 a menší než 14 jsou 5, 6, …, 13.",
+        "Počet: 13 − 5 + 1 = 9. Délky 4 cm a 14 cm nejsou možné, protože by trojúhelník splynul s úsečkou."
+      ]
+    }
+  ]
+}

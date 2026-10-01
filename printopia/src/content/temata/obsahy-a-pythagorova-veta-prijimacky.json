@@ -1,0 +1,77 @@
+{
+  "slug": "obsahy-a-pythagorova-veta-prijimacky",
+  "title": "Obvody, obsahy, kruh a Pythagorova věta na přijímačky: příklady",
+  "h1": "Obvody, obsahy a Pythagorova věta na přijímačky: příklady",
+  "description": "6 příkladů ve stylu přijímaček z matematiky (obvod a obsah rovinných útvarů, kruh a Pythagorova věta). S postupem řešení krok za krokem.",
+  "lead": "Obvody a obsahy patří k nejčastějším geometrickým úlohám. U zkoušky je u kruhu uvedené π, ostatní vzorce znát musíte. Tady je 6 příkladů z naší sady. Nejdřív počítejte sami, postup si rozbalte až potom.",
+  "tips": [
+    "Obvod je délka čáry kolem obrazce (v cm, m), obsah je velikost plochy uvnitř (v cm², m²). Před počítáním si podtrhněte, co zadání žádá a v jakých jednotkách.",
+    "Vzorce: čtverec S = a², obdélník S = a · b, rovnoběžník S = a · v, trojúhelník S = a · v : 2, lichoběžník S = (a + c) · v : 2. Výška je kolmá k základně, často není stranou obrazce a do obvodu nepatří.",
+    "Kruh: o = 2 · π · r, S = π · r². Pozor na záměnu poloměru a průměru. Za π dosazujte hodnotu uvedenou v zadání (3,14 nebo 22/7; zlomek se hodí, když je poloměr násobkem sedmi). Výseč je část kruhu (například čtvrtina nebo třetina), mezikruží je rozdíl dvou kruhů: S = π · (R² − r²), ne π · (R − r)².",
+    "Pythagorova věta: v pravoúhlém trojúhelníku platí c² = a² + b², kde c je přepona (leží proti pravému úhlu). Odvěsnu spočtete odečtením: a² = c² − b². Hodí se znát trojice 3, 4, 5; 5, 12, 13; 8, 15, 17; 7, 24, 25 a jejich násobky (například 6, 8, 10)."
+  ],
+  "tasks": [
+    {
+      "topic": "Základ",
+      "text": "Čtverec má obvod 36 cm. Vypočtěte jeho obsah.",
+      "answer": "81 cm²",
+      "steps": [
+        "Čtverec má čtyři stejné strany: a = 36 : 4 = 9 cm.",
+        "Obsah: S = a² = 9² = 81 cm²."
+      ]
+    },
+    {
+      "topic": "Základ",
+      "text": "Převeďte: a) 3,5 m² na cm², b) 2 400 m² na hektary, c) 45 000 cm² na m².",
+      "answer": "a) 35 000 cm², b) 0,24 ha, c) 4,5 m²",
+      "steps": [
+        "1 m² = 100 · 100 = 10 000 cm², 1 ha = 10 000 m².",
+        "a) 3,5 · 10 000 = 35 000 cm².",
+        "b) 2 400 : 10 000 = 0,24 ha.",
+        "c) 45 000 : 10 000 = 4,5 m²."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Mezikruží je omezené dvěma soustřednými kružnicemi o poloměrech 10 cm a 5 cm. Vypočtěte jeho obsah (použijte π ≈ 3,14). Uveďte celý postup.",
+      "answer": "235,5 cm²",
+      "steps": [
+        "Obsah velkého kruhu: S₁ = π · 10² = 3,14 · 100 = 314 cm².",
+        "Obsah malého kruhu: S₂ = π · 5² = 3,14 · 25 = 78,5 cm².",
+        "Mezikruží: 314 − 78,5 = 235,5 cm². Stejně: π · (10² − 5²) = 3,14 · 75 = 235,5 cm².",
+        "Pozor: výpočet π · (10 − 5)² dává 78,5 cm², což je chybný výsledek (to je obsah malého kruhu)."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Pole má tvar pravoúhlého trojúhelníku s odvěsnami 600 m a 800 m. Vypočtěte a) délku plotu kolem celého pole, b) obsah pole v hektarech.",
+      "answer": "a) 2 400 m, b) 24 ha",
+      "steps": [
+        "Přepona: c² = 600² + 800² = 360 000 + 640 000 = 1 000 000, c = 1 000 m (200násobek trojice 3, 4, 5).",
+        "Plot: 600 + 800 + 1 000 = 2 400 m.",
+        "Obsah: S = 600 · 800 : 2 = 240 000 m².",
+        "1 ha = 10 000 m², tedy 240 000 m² = 24 ha."
+      ]
+    },
+    {
+      "topic": "Náročnější",
+      "text": "Rovnoramenný trojúhelník má obvod 50 cm a základnu 16 cm. Vypočtěte jeho obsah. Uveďte celý postup.",
+      "answer": "120 cm²",
+      "steps": [
+        "Ramena: (50 − 16) : 2 = 17 cm.",
+        "Výška na základnu ji půlí, polovina základny je 8 cm: v² = 17² − 8² = 289 − 64 = 225, v = 15 cm (trojice 8, 15, 17).",
+        "Obsah: S = 16 · 15 : 2 = 120 cm²."
+      ]
+    },
+    {
+      "topic": "Základ",
+      "text": "Kruh má průměr 20 cm. Vypočtěte jeho obvod a obsah (použijte π ≈ 3,14).",
+      "answer": "o = 62,8 cm, S = 314 cm²",
+      "steps": [
+        "Poloměr je poloviční než průměr: r = 20 : 2 = 10 cm.",
+        "Obvod: o = 2 · π · r = 2 · 3,14 · 10 = 62,8 cm.",
+        "Obsah: S = π · r² = 3,14 · 10² = 3,14 · 100 = 314 cm²."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "slug": "konstrukcni-ulohy-prijimacky",
+  "title": "Konstrukční úlohy na přijímačky: příklady s postupem řešení",
+  "h1": "Konstrukční úlohy na přijímačky: příklady s postupem",
+  "description": "6 příkladů ve stylu přijímaček z matematiky (konstrukce trojúhelníků a čtyřúhelníků, osa úsečky a úhlu, množiny bodů). S postupem řešení krok za krokem.",
+  "lead": "Konstrukce jsou za 5 až 6 bodů z 50, ale úspěšnost je kolem 24 % a třetina žáků je vůbec nezkusí. Přitom stačí základní kroky. Tady je 6 příkladů z naší sady. Nejdřív počítejte sami, postup si rozbalte až potom.",
+  "tips": [
+    "Nejdřív náčrt a rozbor (do sešitu): nakreslete hotový útvar odhadem, označte dané prvky a hledejte neznámý bod jako průsečík dvou množin bodů.",
+    "Množiny bodů: body dané vzdálenosti od bodu S tvoří kružnici, body dané vzdálenosti od přímky p dvě rovnoběžky s p, body stejně vzdálené od A a B osu úsečky AB, body stejně vzdálené od ramen úhlu osu úhlu. Z bodů Thaletovy kružnice (průměr AB) je úsečka AB vidět pod pravým úhlem.",
+    "Osa úsečky: z obou krajních bodů narýsujte oblouky stejného poloměru, většího než polovina úsečky, a spojte jejich průsečíky. Osa úhlu: narýsujte oblouk se středem ve vrcholu, z jeho průsečíků s rameny dva oblouky stejného poloměru a jejich průsečík spojte s vrcholem.",
+    "Kolmici a rovnoběžku sestrojíte trojúhelníkem s ryskou nebo kružítkem. Úhly 90°, 60°, 45° a 30° lze sestrojit bez úhloměru (osa úsečky, rovnostranný trojúhelník, osa úhlu)."
+  ],
+  "tasks": [
+    {
+      "topic": "Základ",
+      "text": "Narýsujte úsečku AB délky 7 cm a sestrojte její osu o. Najděte všechny body C, které leží na ose o a mají od bodu A vzdálenost 5 cm. Kolik takových bodů je? Změřte vzdálenost kteréhokoli z nich od středu S úsečky AB.",
+      "answer": "2 body (jeden nad a jeden pod přímkou AB). Kontrola: |SC| ≈ 3,6 cm.",
+      "steps": [
+        "Rozbor: osa o je množina bodů stejně vzdálených od A a B. Body vzdálené 5 cm od A leží na kružnici k (A; 5 cm). Hledané body jsou průsečíky osy o a kružnice k.",
+        "Narýsujeme úsečku AB, |AB| = 7 cm. Z bodů A a B narýsujeme oblouky o stejném poloměru, větším než polovina úsečky AB (třeba 4,5 cm). Jejich průsečíky spojíme: vznikne osa o a její průsečík s AB je střed S.",
+        "Kružítkem narýsujeme kružnici k (A; 5 cm).",
+        "Kružnice k protne osu o ve dvou bodech C a C′, protože |AS| = 3,5 cm je menší než poloměr 5 cm. Úloha má 2 řešení.",
+        "Kontrola: v pravoúhlém trojúhelníku ASC je |SC| = √(5² − 3,5²) = √12,75 ≈ 3,6 cm. Také platí |BC| = |AC| = 5 cm."
+      ]
+    },
+    {
+      "topic": "Základ",
+      "text": "Narýsujte vodorovnou úsečku AB, |AB| = 6 cm. Sestrojte trojúhelník ABC, v němž |AC| = 5 cm, |BC| = 4,5 cm a bod C leží nad přímkou AB. Kolik řešení má úloha? Změřte vzdálenost bodu C od přímky AB (výšku na stranu AB).",
+      "answer": "1 řešení. Kontrola: výška na stranu AB ≈ 3,7 cm.",
+      "steps": [
+        "Rozbor: bod C je od A vzdálený 5 cm a od B 4,5 cm, leží tedy na kružnici k (A; 5 cm) a na kružnici l (B; 4,5 cm).",
+        "Narýsujeme úsečku AB, |AB| = 6 cm. Pak kružítkem narýsujeme oblouky k (A; 5 cm) a l (B; 4,5 cm). Jejich průsečík nad přímkou AB je bod C.",
+        "Trojúhelník lze sestrojit, protože součet dvou kratších stran je větší než nejdelší strana (5 + 4,5 > 6). Kružnice se protnou ve dvou bodech, nad přímkou AB je jen jeden. Úloha má 1 řešení.",
+        "Kontrola: kolmice z bodu C dopadne na AB asi 3,4 cm od bodu A a výška vychází asi 3,7 cm."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Narýsujte úsečku AB, |AB| = 6 cm. Sestrojte trojúhelník ABC, v němž |AC| = 5 cm, velikost úhlu BAC je 50° a bod C leží nad přímkou AB. Změřte délku strany BC.",
+      "answer": "1 řešení. Kontrola: |BC| ≈ 4,7 cm.",
+      "steps": [
+        "Rozbor: bod C leží na rameni úhlu BAC (velikost 50°) a na kružnici k (A; 5 cm). Stačí tedy na rameni odměřit od A vzdálenost 5 cm.",
+        "Narýsujeme úsečku AB, |AB| = 6 cm. Úhloměrem sestrojíme při bodě A úhel 50° a narýsujeme jeho rameno nad přímkou AB.",
+        "Kružítkem narýsujeme kružnici k (A; 5 cm). Její průsečík s ramenem je bod C. Spojíme B s C.",
+        "Rameno protne kružnici právě jednou, úloha má 1 řešení.",
+        "Kontrola: bod C leží asi 3,2 cm vpravo od A a 3,8 cm nad přímkou AB. Podle Pythagorovy věty je |BC| = √((6 − 3,2)² + 3,8²) ≈ 4,7 cm."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Narýsujte úsečku AB, |AB| = 7 cm. Sestrojte trojúhelník ABC, v němž velikost úhlu BAC je 45°, velikost úhlu ABC je 60° a bod C leží nad přímkou AB. Změřte délky stran AC a BC.",
+      "answer": "1 řešení. Kontrola: |AC| ≈ 6,3 cm, |BC| ≈ 5,1 cm.",
+      "steps": [
+        "Rozbor: bod C leží na rameni úhlu 45° s vrcholem A a zároveň na rameni úhlu 60° s vrcholem B. Je to průsečík těchto dvou polopřímek.",
+        "Narýsujeme úsečku AB, |AB| = 7 cm.",
+        "Při bodě A sestrojíme nad přímkou AB úhel 45° (úhloměrem nebo jako polovinu pravého úhlu) a při bodě B úhel 60°.",
+        "Průsečík volných ramen je bod C. Součet úhlů 45° + 60° je menší než 180°, polopřímky se proto protnou právě jednou. Úloha má 1 řešení.",
+        "Kontrola: velikost úhlu při bodě C je 180° − 45° − 60° = 75°. Měřením vyjde |AC| ≈ 6,3 cm a |BC| ≈ 5,1 cm."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Sestrojte čtverec ABCD, jehož úhlopříčka AC má délku 5 cm. Změřte délku strany čtverce.",
+      "answer": "1 řešení (čtverec je určen jednoznačně, záměna B a D dává shodný čtverec). Kontrola: strana ≈ 3,5 cm.",
+      "steps": [
+        "Rozbor: úhlopříčky čtverce jsou stejně dlouhé, navzájem kolmé a půlí se. Vrcholy B a D proto leží na ose úhlopříčky AC a jsou od jejího středu S vzdálené 2,5 cm (polovina úhlopříčky).",
+        "Narýsujeme úsečku AC, |AC| = 5 cm, její osu a střed S.",
+        "Kružnice k (S; 2,5 cm) protne osu ve dvou bodech B a D. (Kružnice prochází i body A a C.)",
+        "Spojíme A, B, C, D. Čtverec je určen jednoznačně (záměna B a D dává shodný čtverec), úloha má 1 řešení.",
+        "Kontrola: v pravoúhlém trojúhelníku ASB je |SA| = |SB| = 2,5 cm, takže |AB|² = 2,5² + 2,5² = 12,5 a |AB| = √12,5 ≈ 3,5 cm."
+      ]
+    },
+    {
+      "topic": "Náročnější",
+      "text": "Narýsujte úsečku AB, |AB| = 8 cm. Sestrojte všechny trojúhelníky ABC, v nichž velikost úhlu ABC je 30°, |AC| = 5 cm a bod C leží nad přímkou AB. Kolik řešení má úloha? U každého řešení změřte délku strany BC.",
+      "answer": "2 řešení. Kontrola: |BC| ≈ 9,9 cm (bod C) a |BC′| ≈ 3,9 cm (bod C′).",
+      "steps": [
+        "Rozbor: bod C leží na rameni úhlu 30° s vrcholem B a zároveň na kružnici k (A; 5 cm). Hledáme všechny průsečíky ramene s kružnicí.",
+        "Narýsujeme úsečku AB, |AB| = 8 cm. Při bodě B sestrojíme nad přímkou AB úhel 30° (polovina úhlu 60°). Jeho rameno narýsujeme dostatečně dlouhé, aspoň 10 cm.",
+        "Narýsujeme kružnici k (A; 5 cm).",
+        "Vzdálenost bodu A od ramene je 8 : 2 = 4 cm (v pravoúhlém trojúhelníku s úhlem 30° je protilehlá odvěsna poloviční oproti přeponě). To je méně než 5 cm, proto kružnice protne rameno ve dvou bodech C a C′. Úloha má 2 řešení: trojúhelníky ABC a ABC′.",
+        "Kontrola: pata kolmice z A na rameno je od B vzdálená √(8² − 4²) = √48 ≈ 6,9 cm a polovina tětivy je √(5² − 4²) = 3 cm. Proto |BC| ≈ 6,9 + 3 ≈ 9,9 cm a |BC′| ≈ 6,9 − 3 ≈ 3,9 cm. Oba průsečíky leží na rameni, protože 6,9 > 3."
+      ]
+    }
+  ]
+}

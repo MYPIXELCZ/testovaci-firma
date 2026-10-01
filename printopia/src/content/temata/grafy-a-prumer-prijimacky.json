@@ -1,0 +1,70 @@
+{
+  "slug": "grafy-a-prumer-prijimacky",
+  "title": "Grafy, tabulky a průměr na přijímačky: příklady s postupem",
+  "h1": "Grafy, tabulky a průměr na přijímačky: příklady s postupem",
+  "description": "5 příkladů ve stylu přijímaček z matematiky (čtení z grafů, aritmetický průměr, medián a souřadnice bodů). S postupem řešení krok za krokem.",
+  "lead": "Úloha 11 u přijímaček je svazek tří tvrzení ANO/NE ke grafu nebo tabulce. Procvičte si práci s daty. Tady je 5 příkladů z naší sady. Nejdřív počítejte sami, postup si rozbalte až potom.",
+  "tips": [
+    "Než začnete počítat, přečtěte název grafu, popisky os a jednotky. Zjistěte, kolik odpovídá jeden dílek stupnice: jedna čára mřížky nemusí znamenat 1.",
+    "Aritmetický průměr = součet všech hodnot : jejich počet. Chybějící hodnotu najdete ze součtu: součet = průměr · počet hodnot. Průměr dvou skupin různé velikosti není průměrem jejich průměrů: sečtěte hodnoty v obou skupinách a vydělte počtem všech hodnot.",
+    "Medián je prostřední hodnota ze seřazených čísel (u sudého počtu hodnot průměr dvou prostředních). Modus je nejčastější hodnota. Nejčastější chyba: medián vybraný z neseřazených čísel.",
+    "Kruhový diagram: celý kruh je 100 % a 360°, tedy 1 % je 3,6°. Čtvrtina kruhu je 25 % a 90°."
+  ],
+  "tasks": [
+    {
+      "topic": "Základ",
+      "text": "Je dáno sedm čísel: 9, 1, 5, 9, 7, 2, 9. Určete jejich aritmetický průměr, medián a modus.",
+      "answer": "průměr 6, medián 7, modus 9",
+      "steps": [
+        "Součet: 9 + 1 + 5 + 9 + 7 + 2 + 9 = 42, průměr 42 : 7 = 6.",
+        "Seřazená čísla: 1, 2, 5, 7, 9, 9, 9. Prostřední (čtvrté) číslo je 7, medián je 7.",
+        "Nejčastěji se opakuje číslo 9 (třikrát), modus je 9."
+      ]
+    },
+    {
+      "topic": "Základ",
+      "text": "Funkce je dána předpisem y = 2x + 3. a) Vypočtěte hodnotu y pro x = 5. b) Určete hodnotu x, pro kterou je y = 15. c) Leží bod M[−2; −1] na grafu této funkce?",
+      "answer": "a) 13; b) x = 6; c) ano",
+      "steps": [
+        "a) Dosadíme x = 5: y = 2 · 5 + 3 = 13.",
+        "b) Řešíme 2x + 3 = 15, tedy 2x = 12 a x = 6.",
+        "c) Dosadíme x = −2: y = 2 · (−2) + 3 = −4 + 3 = −1. Souřadnice y bodu M je −1, bod na grafu leží."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Cyklista ujel během čtyř dnů postupně 52 km, 60 km, 48 km a 64 km. Kolik kilometrů musí ujet pátý den, aby jeho průměr za všech pět dnů byl 58 km denně?",
+      "answer": "66 km",
+      "steps": [
+        "Součet za pět dnů musí být 5 · 58 = 290 km.",
+        "Za první čtyři dny: 52 + 60 + 48 + 64 = 224 km.",
+        "Pátý den: 290 − 224 = 66 km.",
+        "Zkouška: (224 + 66) : 5 = 290 : 5 = 58 km. ✓"
+      ]
+    },
+    {
+      "topic": "Náročnější",
+      "text": "Ve třídě je 12 dívek a 18 chlapců. V písemce získaly dívky průměrně 20 bodů a chlapci průměrně 15 bodů. Jaký byl průměr bodů celé třídy?",
+      "answer": "17 bodů",
+      "steps": [
+        "Dívky získaly dohromady 12 · 20 = 240 bodů.",
+        "Chlapci získali dohromady 18 · 15 = 270 bodů.",
+        "Celá třída má 12 + 18 = 30 žáků a 240 + 270 = 510 bodů.",
+        "Průměr: 510 : 30 = 17 bodů.",
+        "Průměr 17,5 (průměr čísel 20 a 15) by byl chybný: chlapců je víc než dívek, výsledek proto musí být blíž k 15."
+      ]
+    },
+    {
+      "topic": "Náročnější",
+      "text": "Pět přirozených čísel má tyto vlastnosti: jejich aritmetický průměr je 8, medián je 7, modus je 6 a největší z nich je dvojnásobkem nejmenšího. Určete všech pět čísel.",
+      "answer": "6, 6, 7, 9, 12",
+      "steps": [
+        "Součet čísel je 5 · 8 = 40. Medián je prostřední číslo po seřazení, třetí číslo je tedy 7.",
+        "Modus 6 znamená, že se číslo 6 vyskytuje aspoň dvakrát. Protože 6 je menší než medián 7, jsou obě šestky mezi dvěma nejmenšími čísly: 6, 6, 7, …",
+        "Největší číslo je 2 · 6 = 12, takže řada je 6, 6, 7, ?, 12.",
+        "Čtvrté číslo: 40 − (6 + 6 + 7 + 12) = 40 − 31 = 9.",
+        "Zkouška: 6, 6, 7, 9, 12 má součet 40, medián 7, modus 6 a 12 = 2 · 6. ✓"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "slug": "telesa-objem-povrch-prijimacky",
+  "title": "Tělesa, objem a povrch na přijímačky: příklady s postupem řešení",
+  "h1": "Tělesa: objem a povrch na přijímačky, příklady s postupem",
+  "description": "6 příkladů ve stylu přijímaček z matematiky (objem a povrch krychle, kvádru, hranolu a válce, převody jednotek a hladina vody). S postupem řešení krok za krokem.",
+  "lead": "Tělesa jsou skoro v každém testu a úspěšnost je jen kolem 28 %. Žáci si pletou povrch s pláštěm a chybují v jednotkách. Tady je 6 příkladů z naší sady. Nejdřív počítejte sami, postup si rozbalte až potom.",
+  "tips": [
+    "Vzorce na objem a povrch v testu nejsou uvedeny, musíte je znát. Pamatujte: objem hranolu i válce je V = obsah podstavy · výška, povrch kvádru S = 2 · (ab + bc + ac).",
+    "Povrch je součet obsahů všech stěn, plášť jen součet obsahů bočních stěn (bez podstav). U válce (r je poloměr podstavy, v výška) platí: plášť = 2 · π · r · v, povrch = 2 · π · r² + 2 · π · r · v.",
+    "Jednotky: 1 l = 1 dm³ = 1 000 cm³, 1 m³ = 1 000 dm³ = 1 000 l. Před výpočtem převeďte všechny rozměry na stejnou jednotku.",
+    "Poloměr je polovina průměru: při průměru 10 cm počítejte s r = 5 cm. Používejte π = 3,14 a nejdřív spočtěte r²."
+  ],
+  "tasks": [
+    {
+      "topic": "Základ",
+      "text": "Vypočtěte objem a povrch krychle s hranou 5 cm.",
+      "answer": "V = 125 cm³, S = 150 cm²",
+      "steps": [
+        "Objem krychle: V = a · a · a = 5 · 5 · 5 = 125 cm³.",
+        "Povrch tvoří 6 shodných čtverců o straně 5 cm. Obsah jednoho čtverce je 5 · 5 = 25 cm².",
+        "Povrch: S = 6 · 25 = 150 cm²."
+      ]
+    },
+    {
+      "topic": "Základ",
+      "text": "Převeďte jednotky: a) 3,5 dm³ = … cm³, b) 2 400 cm³ = … l, c) 0,6 m³ = … l, d) 1 500 l = … m³.",
+      "answer": "a) 3 500 cm³, b) 2,4 l, c) 600 l, d) 1,5 m³",
+      "steps": [
+        "a) 1 dm³ = 1 000 cm³, takže 3,5 · 1 000 = 3 500 cm³.",
+        "b) 1 l = 1 000 cm³, takže 2 400 : 1 000 = 2,4 l.",
+        "c) 1 m³ = 1 000 dm³ = 1 000 l, takže 0,6 · 1 000 = 600 l.",
+        "d) 1 500 l = 1 500 dm³, 1 m³ = 1 000 dm³, takže 1 500 : 1 000 = 1,5 m³."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Podstava kvádru má rozměry 12 cm a 5 cm, objem kvádru je 480 cm³. Vypočtěte výšku kvádru a jeho povrch. Uveďte celý postup.",
+      "answer": "v = 8 cm, S = 392 cm²",
+      "steps": [
+        "Objem kvádru: V = a · b · c, tedy 480 = 12 · 5 · c = 60 · c.",
+        "Výška: c = 480 : 60 = 8 cm.",
+        "Obsahy stěn: 12 · 5 = 60 cm², 12 · 8 = 96 cm² a 5 · 8 = 40 cm².",
+        "Povrch: S = 2 · (60 + 96 + 40) = 2 · 196 = 392 cm²."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Prázdné akvárium tvaru kvádru má dno o rozměrech 50 cm a 40 cm. Nalijeme do něj 30 litrů vody. a) Do jaké výšky voda sahá? b) Kolik litrů vody musíme ještě dolít, aby voda sahala do výšky 35 cm?",
+      "answer": "a) 15 cm, b) 40 l",
+      "steps": [
+        "Obsah dna: 50 · 40 = 2 000 cm². Objem vody: 30 l = 30 000 cm³.",
+        "a) Výška hladiny je objem vody dělený obsahem dna: 30 000 : 2 000 = 15 cm.",
+        "b) Do výšky 35 cm je potřeba 2 000 · 35 = 70 000 cm³ = 70 l.",
+        "Dolít musíme 70 − 30 = 40 l. Jiný postup: hladina musí vystoupit o 35 − 15 = 20 cm, tedy 2 000 · 20 = 40 000 cm³ = 40 l."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Do kvádrové krabice je těsně uloženo 24 míčů o poloměru 5 cm: 4 míče v řadě, 3 řady vedle sebe a 2 vrstvy nad sebou. Míče se navzájem dotýkají i stěn krabice. a) Jaké rozměry má krabice? b) Jaký je její vnitřní objem v litrech?",
+      "answer": "a) 40 cm, 30 cm a 20 cm, b) 24 l",
+      "steps": [
+        "Pozor: poloměr míče je 5 cm, tedy jeho průměr je 10 cm. V řadě vedle sebe zabere každý míč 10 cm.",
+        "a) Délka: 4 · 10 = 40 cm, šířka: 3 · 10 = 30 cm, výška: 2 · 10 = 20 cm.",
+        "b) Objem: V = 40 · 30 · 20 = 24 000 cm³ = 24 dm³ = 24 l."
+      ]
+    },
+    {
+      "topic": "Náročnější",
+      "text": "Nádoba tvaru kvádru má dno o rozměrech 25 cm a 16 cm a výšku 30 cm. Voda v ní sahá do výšky 12 cm. Do vody úplně ponoříme kovovou krychli o hraně 10 cm (voda nepřeteče). O kolik centimetrů vystoupí hladina?",
+      "answer": "o 2,5 cm",
+      "steps": [
+        "Krychle vytlačí tolik vody, jaký je její objem: 10 · 10 · 10 = 1 000 cm³.",
+        "Obsah dna nádoby: 25 · 16 = 400 cm². Hladina vystoupí o x cm. Objem přibylé vrstvy vody je 400 · x cm³ a rovná se objemu krychle: 400 · x = 1 000.",
+        "x = 1 000 : 400 = 2,5 cm.",
+        "Kontrola: hladina je nyní ve výšce 12 + 2,5 = 14,5 cm. To je víc než 10 cm (krychle je celá pod vodou) a méně než 30 cm (voda nepřeteče)."
+      ]
+    }
+  ]
+}

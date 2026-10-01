@@ -174,9 +174,14 @@ try {
   const st2 = await (await fetch(`${BASE}/api/stats`, { headers: { "x-stats-key": "tajne" } })).json();
   check(st2.orders.created.sklik === 1 && st2.orders.paid.sklik === 1 && st2.orders.revenue === 349, "souhrn: objednávky a tržby podle zdroje");
   check((await (await get("/obchodni-podminky")).text()).includes("printopia.cz"), "obchodní podmínky");
+  const sm2 = await (await fetch(`${BASE}/sitemap.xml`)).text();
+  const temata = readdirSync(new URL("../src/content/temata/", import.meta.url)).filter((f) => f.endsWith(".json"));
+  check(temata.length >= 11 && temata.every((f) => sm2.includes(`/${f.replace(".json", "")}`)), `všechny tematické stránky (${temata.length}) jsou v sitemapě`);
+  const tp = (await (await get("/uhly-a-trojuhelniky-prijimacky")).text()).replaceAll("<!-- -->", "");
+  check(tp.includes("Úhly a trojúhelníky na přijímačky") && tp.includes("Zobrazit postup a výsledek") && tp.includes("Kompletní sada"), "tematická stránka z obsahu sady");
 
   // Vizuální a textová kontrola (FAILS.md 2026-10-01 02:02 a 02:05): šířka 1340 + 80 px, mobil, překryvy, z-index, texty.
-  const pages = `/,/koupit,/obchodni-podminky,/objednavka/${oid},/zlomky-prijimacky,/procenta-prijimacky,/jak-se-pripravit-na-prijimacky,/ochrana-osobnich-udaju`;
+  const pages = `/,/koupit,/obchodni-podminky,/objednavka/${oid},/zlomky-prijimacky,/procenta-prijimacky,/telesa-objem-povrch-prijimacky,/konstrukcni-ulohy-prijimacky,/jak-se-pripravit-na-prijimacky,/ochrana-osobnich-udaju`;
   const viz = spawnSync("node", ["../tools/vizualni-kontrola.mjs", BASE, pages, process.env.VIZ_DIR ?? path.join(store, "viz")], { encoding: "utf8" });
   console.log(viz.stdout.trim());
   check(viz.status === 0, "vizuální a textová kontrola stránek");

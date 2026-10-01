@@ -1,0 +1,80 @@
+{
+  "slug": "pomer-a-umernost-prijimacky",
+  "title": "Poměr, úměrnost, pohyb a práce na přijímačky: příklady s postupem",
+  "h1": "Poměr a úměrnost na přijímačky: příklady s postupem",
+  "description": "6 příkladů ve stylu přijímaček z matematiky (poměr, trojčlenka, měřítko, rychlost a společná práce). S postupem řešení krok za krokem.",
+  "lead": "Poměr, úměrnost, rychlost a společná práce se v přijímačkách objevují v krátkých úlohách i uvnitř slovních úloh. Tady je 6 příkladů z naší sady. Nejdřív počítejte sami, postup si rozbalte až potom.",
+  "tips": [
+    "Poměr 3 : 5 se krátí a rozšiřuje jako zlomek (6 : 10 je totéž co 3 : 5). Při dělení v poměru 3 : 5 sečtěte díly (3 + 5 = 8), spočítejte jeden díl a vynásobte jím počty dílů. Stejně se počítají směsi: poměr 2 : 3 znamená 2 díly jedné složky a 3 díly druhé.",
+    "Přímá úměrnost: kolikrát víc, tolikrát víc (víc kilogramů, vyšší cena). Nepřímá úměrnost: kolikrát víc, tolikrát méně (víc pracovníků, méně dní). Před počítáním se vždy zeptejte, jestli se veličiny mění stejným, nebo opačným směrem.",
+    "Trojčlenka: nejdřív spočítejte hodnotu pro jednu jednotku (1 kg, 1 pracovník), pak pro požadované množství. U nepřímé úměrnosti zůstává stálý součin, např. počet pracovníků · počet dní.",
+    "Měřítko 1 : 50 000 znamená, že 1 cm na mapě odpovídá 50 000 cm = 500 m ve skutečnosti. Převádějte jednotky: 1 km = 100 000 cm. Délky z mapy násobte číslem 50 000, obsahy jeho druhou mocninou (50 000²)."
+  ],
+  "tasks": [
+    {
+      "topic": "Základ",
+      "text": "Zapište v základním tvaru poměr 45 cm : 1,5 m.",
+      "answer": "3 : 10",
+      "steps": [
+        "Obě délky převedeme na stejnou jednotku: 1,5 m = 150 cm, poměr je 45 : 150.",
+        "Zkrátíme číslem 15: 45 : 150 = 3 : 10."
+      ]
+    },
+    {
+      "topic": "Základ",
+      "text": "Dva brigádníci si rozdělí odměnu 1 200 Kč v poměru svých odpracovaných hodin 3 : 5. Kolik korun dostane první a kolik druhý?",
+      "answer": "450 Kč a 750 Kč",
+      "steps": [
+        "Dílů je dohromady 3 + 5 = 8.",
+        "Jeden díl je 1 200 : 8 = 150 Kč.",
+        "První dostane 3 · 150 = 450 Kč, druhý 5 · 150 = 750 Kč.",
+        "Zkouška: 450 + 750 = 1 200 Kč. ✓"
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Obvod trojúhelníku je 60 cm. Délky jeho stran jsou v poměru 3 : 4 : 5. Určete délky všech tří stran.",
+      "answer": "15 cm, 20 cm, 25 cm",
+      "steps": [
+        "Dílů je dohromady 3 + 4 + 5 = 12.",
+        "Jeden díl je 60 : 12 = 5 cm.",
+        "Strany: 3 · 5 = 15 cm, 4 · 5 = 20 cm, 5 · 5 = 25 cm.",
+        "Zkouška: 15 + 20 + 25 = 60 cm. ✓"
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Cyklista vyjel v 9:40 a do cíle vzdáleného 30 km dojel ve 12:10. Jakou stálou rychlostí jel?",
+      "answer": "12 km/h",
+      "steps": [
+        "Doba jízdy: od 9:40 do 10:00 je 20 minut, od 10:00 do 12:00 jsou 2 hodiny a do 12:10 ještě 10 minut. Celkem 20 + 120 + 10 = 150 minut = 2 hodiny 30 minut.",
+        "2 h 30 min = 2 1/2 h = 5/2 h.",
+        "Rychlost = dráha : čas = 30 : 5/2 = 30 · 2/5 = 12 km/h.",
+        "Zkouška: 12 km/h · 5/2 h = 30 km. ✓"
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Jeden pracovník by sám vymaloval byt za 10 dní, druhý sám za 15 dní. Za kolik dní ho vymalují společně?",
+      "answer": "za 6 dní",
+      "steps": [
+        "První vymaluje za den 1/10 bytu, druhý 1/15 bytu.",
+        "Společně za den: 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6 bytu.",
+        "Celý byt (to je 1) vymalují za 1 : 1/6 = 6 dní.",
+        "Pozor: čas společné práce není průměr časů. Průměr (10 + 15) : 2 = 12,5 dne je víc než 10 dní, které potřebuje sám rychlejší pracovník, společně to tedy musí jít rychleji."
+      ]
+    },
+    {
+      "topic": "Náročnější",
+      "text": "První pracovník by sám vyklidil sklep za 12 hodin, druhý sám za 4 hodiny. Prvních 2 hodiny pracuje jen první pracovník, potom se k němu přidá druhý. Za kolik hodin od začátku bude sklep vyklizený?",
+      "answer": "za 4,5 hodiny (4 hodiny 30 minut)",
+      "steps": [
+        "První vyklidí za hodinu 1/12 sklepa, druhý 1/4 sklepa.",
+        "Za první 2 hodiny sám vyklidí 2 · 1/12 = 1/6 sklepa, zbývá 1 − 1/6 = 5/6.",
+        "Společně vyklidí za hodinu 1/12 + 1/4 = 1/12 + 3/12 = 4/12 = 1/3 sklepa.",
+        "Zbylých 5/6 vyklidí za 5/6 : 1/3 = 5/6 · 3 = 5/2 h = 2,5 h.",
+        "Celkem 2 + 2,5 = 4,5 h, tedy 4 hodiny 30 minut."
+      ]
+    }
+  ]
+}

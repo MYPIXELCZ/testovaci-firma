@@ -1,0 +1,76 @@
+{
+  "slug": "vzory-a-usudek-prijimacky",
+  "title": "Úsudek a vzory na přijímačky: nestandardní úlohy s postupem",
+  "h1": "Úsudek a vzory na přijímačky: nestandardní úlohy s postupem",
+  "description": "6 příkladů ve stylu přijímaček z matematiky (číselné řady, vzory z obrazců, logické úlohy a kombinatorika). S postupem řešení krok za krokem.",
+  "lead": "Poslední úloha testu bývá nestandardní a řeší ji jen asi 14 % žáků. Zkuste si, jak se k takovým úlohám přistupuje. Tady je 6 příkladů z naší sady. Nejdřív počítejte sami, postup si rozbalte až potom.",
+  "tips": [
+    "Prvních pár členů si zapište do tabulky (číslo kroku, počet). Teprve potom hledejte pravidlo a ověřte ho na všech zapsaných členech, ne jen na posledním.",
+    "Stejné rozdíly mezi sousedními členy znamenají, že se pořád přičítá totéž číslo (posloupnost 3, 7, 11, 15, … je 4n − 1). Rostou-li samy rozdíly, jde o vzor typu schody nebo čtvercová síť.",
+    "Vzor, který se stále opakuje (korálky, dny v týdnu), řešte zbytkem po dělení (délka skupiny je 4): 50 : 4 = 12 a zbytek 2, takže 50. člen je druhý ve skupině.",
+    "Při počítání možností je vypisujte uspořádaně (podle prvního kroku nebo podle abecedy). Nic nevynechejte a nic nepočítejte dvakrát."
+  ],
+  "tasks": [
+    {
+      "topic": "Základ",
+      "text": "Doplňte do každé řady další dva členy. a) 7, 12, 17, 22, …; b) 3, 6, 12, 24, …",
+      "answer": "a) 27, 32; b) 48, 96",
+      "steps": [
+        "a) Každý člen je o 5 větší než předchozí: 22 + 5 = 27 a 27 + 5 = 32.",
+        "b) Každý člen je dvojnásobkem předchozího: 24 · 2 = 48 a 48 · 2 = 96."
+      ]
+    },
+    {
+      "topic": "Základ",
+      "text": "Čtyři žáci (Adam, Bára, Cyril a Dana) běželi závod. Adam doběhl před Bárou. Cyril doběhl hned za Bárou, takže mezi nimi nikdo nedoběhl. Dana nedoběhla poslední a doběhla později než Adam. V jakém pořadí doběhli?",
+      "answer": "Adam, Dana, Bára, Cyril",
+      "steps": [
+        "Adam je před Bárou a Cyril je hned za Bárou, takže pořadí těchto tří je Adam, Bára, Cyril (Adam nemusí být hned před Bárou).",
+        "Dana je až po Adamovi, takže nemůže být první. Poslední také není, proto je buď druhá, nebo třetí.",
+        "Kdyby Dana byla třetí, stála by mezi Bárou a Cyrilem, ale ti jdou hned za sebou. Dana je tedy druhá.",
+        "Pořadí: Adam, Dana, Bára, Cyril."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Jana, Karel, Lucie a Martin chodí každý do jiného z těchto kroužků: šachy, tanec, florbal a plavání. Jana nechodí na tanec ani na plavání. Karel nechodí na šachy ani na tanec. Lucie nechodí na plavání ani na florbal. Martin nechodí na florbal ani na šachy. Na tanec chodí dívka. Kdo chodí do kterého kroužku?",
+      "answer": "Jana šachy, Karel florbal, Lucie tanec, Martin plavání",
+      "steps": [
+        "Martin nechodí na florbal ani na šachy, chodí tedy na tanec, nebo na plavání. Na tanec chodí dívka, takže Martin chodí na plavání.",
+        "Karel může jen na florbal nebo na plavání, plavání už je obsazené, Karel chodí na florbal.",
+        "Zbývají šachy a tanec pro Janu a Lucii. Jana nechodí na tanec, takže Jana chodí na šachy a Lucie na tanec.",
+        "Zkouška: Jana (šachy), Karel (florbal), Lucie (tanec) i Martin (plavání) splňují všechny podmínky ze zadání. ✓"
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Na ostrově žijí poctivci, kteří vždy mluví pravdu, a lháři, kteří vždy lžou. Karel a Lucie jsou obyvatelé ostrova. Karel řekne: „Aspoň jeden z nás dvou je lhář.“ Kdo z nich je poctivec a kdo lhář?",
+      "answer": "Karel je poctivec, Lucie je lhářka",
+      "steps": [
+        "Předpokládejme, že Karel je lhář. Pak je jeho věta nepravdivá, tedy nikdo z nich není lhář. To odporuje předpokladu, že Karel je lhář.",
+        "Karel je tedy poctivec a jeho věta je pravdivá: aspoň jeden z nich je lhář.",
+        "Karel lhář není, proto je lhářkou Lucie."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Z číslic 1, 2, 3 a 4 vytváříme dvouciferná čísla, ve kterých se číslice neopakují (například 13, ale ne 22). a) Kolik takových čísel je? b) Kolik z nich je větších než 23?",
+      "answer": "a) 12 čísel; b) 7 čísel",
+      "steps": [
+        "Čísla vypíšeme podle první číslice: 12, 13, 14, 21, 23, 24, 31, 32, 34, 41, 42, 43.",
+        "a) Je jich 12. Kontrola: první číslici vybereme 4 způsoby, druhou už jen 3 způsoby, 4 · 3 = 12.",
+        "b) Větší než 23 jsou: 24, 31, 32, 34, 41, 42, 43, to je 7 čísel."
+      ]
+    },
+    {
+      "topic": "Náročnější",
+      "text": "Chodník široký 2 dlaždice a dlouhý 6 dlaždic chceme vydláždit obdélníkovými dlaždicemi 1 × 2, které můžeme klást vodorovně i svisle. Všechny dlaždice jsou stejné; dvě vydláždění jsou různá, jestliže aspoň jedna dlaždice leží jinak. Kolika způsoby lze chodník vydláždit?",
+      "answer": "13 způsobů",
+      "steps": [
+        "Označíme p(n) počet vydláždění chodníku 2 × n. Pro krátké chodníky je spočítáme: p(1) = 1 (jedna svislá dlaždice), p(2) = 2 (dvě svislé, nebo dvě vodorovné nad sebou).",
+        "Na začátku chodníku leží buď svislá dlaždice (zbývá chodník 2 × (n − 1)), nebo dvě vodorovné nad sebou (zbývá chodník 2 × (n − 2)). Proto p(n) = p(n − 1) + p(n − 2).",
+        "p(3) = 2 + 1 = 3, p(4) = 3 + 2 = 5, p(5) = 5 + 3 = 8, p(6) = 8 + 5 = 13."
+      ]
+    }
+  ]
+}

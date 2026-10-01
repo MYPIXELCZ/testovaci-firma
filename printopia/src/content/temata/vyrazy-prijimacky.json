@@ -1,0 +1,76 @@
+{
+  "slug": "vyrazy-prijimacky",
+  "title": "Výrazy a mnohočleny na přijímačky: příklady s postupem řešení",
+  "h1": "Výrazy a mnohočleny na přijímačky: příklady s postupem",
+  "description": "6 příkladů ve stylu přijímaček z matematiky (úprava výrazů, roznásobení, vzorce (a ± b)² a a² − b², vytýkání a dosazení). S postupem řešení krok za krokem.",
+  "lead": "Úprava výrazů je v přijímačkách z matematiky v úloze 3, kde se jedna část píše s postupem a každá chyba stojí bod. Tady je 6 příkladů z naší sady. Nejdřív počítejte sami, postup si rozbalte až potom.",
+  "tips": [
+    "Minus před závorkou změní znaménka všech členů v závorce: 5 − (x − 2) = 5 − x + 2.",
+    "(a + b)² není a² + b², chybí prostřední člen. Správně: (a + b)² = a² + 2ab + b²; (a − b)² = a² − 2ab + b².",
+    "Rozdíl druhých mocnin (rozdíl čtverců) se rozkládá na součin: a² − b² = (a − b)(a + b). Součet a² + b² se takto rozložit nedá. Vzorce jsou u zkoušky uvedeny na poslední straně sešitu, ale žák musí sám poznat, kdy je použít.",
+    "Sčítat a odčítat lze jen podobné členy (stejná proměnná ve stejné mocnině): 3a² + 2a² = 5a², ale 3a² + 2a nelze sloučit. Při násobení jednočlenů násobte zvlášť čísla a zvlášť proměnné: 3a · 2a = 6a²."
+  ],
+  "tasks": [
+    {
+      "topic": "Základ",
+      "text": "Upravte a zapište v základním tvaru: (5x² − 3x + 1) − (2x² − x − 4)",
+      "answer": "3x² − 2x + 5",
+      "steps": [
+        "Minus před druhou závorkou změní znaménka všech jejích členů: 5x² − 3x + 1 − 2x² + x + 4.",
+        "Sečteme podobné členy: členy s x²: 5 − 2 = 3, členy s x: −3 + 1 = −2, čísla: 1 + 4 = 5.",
+        "Výsledek: 3x² − 2x + 5."
+      ]
+    },
+    {
+      "topic": "Základ",
+      "text": "Upravte a zapište v základním tvaru: 2a · 3a − 5a · a + a",
+      "answer": "a² + a",
+      "steps": [
+        "Vynásobíme jednočleny: 2a · 3a = 6a² a 5a · a = 5a².",
+        "6a² − 5a² + a = a² + a. Člen a se s a² nesloučí, protože nemá stejnou mocninu."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Umocněte a zapište v základním tvaru: (2a − 3b)²",
+      "answer": "4a² − 12ab + 9b²",
+      "steps": [
+        "Druhá mocnina rozdílu je druhá mocnina prvního členu, minus dvojnásobek součinu obou členů, plus druhá mocnina druhého členu. Tady je první člen 2a a druhý 3b.",
+        "(2a)² = 4a², 2 · 2a · 3b = 12ab, (3b)² = 9b².",
+        "(2a − 3b)² = 4a² − 12ab + 9b²."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Upravte a zapište v základním tvaru: (3x + 5)(3x − 5) − (x − 2)²",
+      "answer": "8x² + 4x − 29",
+      "steps": [
+        "První součin je rozdíl čtverců: (3x + 5)(3x − 5) = (3x)² − 5² = 9x² − 25.",
+        "Druhou mocninu rozepíšeme podle vzorce: (x − 2)² = x² − 4x + 4.",
+        "Odčítáme celou závorku, proto změníme znaménka: 9x² − 25 − x² + 4x − 4.",
+        "Sečteme podobné členy: 8x² + 4x − 29."
+      ]
+    },
+    {
+      "topic": "Jako u zkoušky",
+      "text": "Vytkněte před závorku největší možný společný činitel: 6x² − 15x",
+      "answer": "3x(2x − 5)",
+      "steps": [
+        "Největší společný dělitel čísel 6 a 15 je 3. Proměnná x je v obou členech (x² a x), vytkneme ji v nižší mocnině, tedy jedno x. Společný činitel je 3x.",
+        "6x² = 3x · 2x a 15x = 3x · 5.",
+        "6x² − 15x = 3x(2x − 5).",
+        "Zkouška roznásobením: 3x · 2x − 3x · 5 = 6x² − 15x. ✓"
+      ]
+    },
+    {
+      "topic": "Náročnější",
+      "text": "Vypočtěte bez kalkulačky pomocí vzorce: 103² − 97²",
+      "answer": "1 200",
+      "steps": [
+        "Použijeme rozdíl čtverců a² − b² = (a − b)(a + b).",
+        "103² − 97² = (103 − 97)(103 + 97) = 6 · 200.",
+        "6 · 200 = 1 200."
+      ]
+    }
+  ]
+}
