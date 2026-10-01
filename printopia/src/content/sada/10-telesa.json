@@ -5,7 +5,7 @@
  "intro": "Tělesa (krychle, kvádr, hranol, válec) se v testu objevují téměř každý rok, ale úspěšnost je jen kolem 28 %: žáci si pletou povrch s pláštěm a chybují v jednotkách. U jehlanu a kužele stačí tělesa poznat, u koule znát vztah poloměru a průměru.",
  "tips": [
   "Vzorce na objem a povrch v testu nejsou uvedeny, musíte je znát. Pamatujte: objem hranolu i válce je V = obsah podstavy · výška, povrch kvádru S = 2 · (ab + bc + ac).",
-  "Povrch je součet obsahů všech stěn, plášť jen obsahů bočních stěn (bez podstav). U válce (r je poloměr podstavy, v výška) platí: plášť = 2 · π · r · v, povrch = 2 · π · r² + 2 · π · r · v.",
+  "Povrch je součet obsahů všech stěn, plášť jen součet obsahů bočních stěn (bez podstav). U válce (r je poloměr podstavy, v výška) platí: plášť = 2 · π · r · v, povrch = 2 · π · r² + 2 · π · r · v.",
   "Jednotky: 1 l = 1 dm³ = 1 000 cm³, 1 m³ = 1 000 dm³ = 1 000 l. Před výpočtem převeďte všechny rozměry na stejnou jednotku.",
   "Poloměr je polovina průměru: při průměru 10 cm počítejte s r = 5 cm. Používejte π = 3,14 a nejdřív spočtěte r².",
   "Zvětšíte-li všechny rozměry tělesa na dvojnásobek, povrch se zvětší čtyřikrát a objem osmkrát, ne dvakrát.",
@@ -135,7 +135,7 @@
    "steps": [
     "Obsah podstavy: 8 · 3 : 2 = 12 cm².",
     "Objem: V = 12 · 10 = 120 cm³.",
-    "Obvod podstavy: 5 + 5 + 8 = 18 cm. Plášť tvoří tři obdélníky s výškou 10 cm, jeho obsah je 18 · 10 = 180 cm².",
+    "Obvod podstavy: 5 + 5 + 8 = 18 cm. Plášť tvoří tři obdélníky s výškou 10 cm, jejich šířky dávají dohromady obvod podstavy. Obsah pláště: 18 · 10 = 180 cm².",
     "Povrch: S = 2 · 12 + 180 = 204 cm²."
    ],
    "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 122 79\" font-family=\"Inter,Arial\"><polyline points=\"37.9,32.5 117.9,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"2.5 1.8\"/><polyline points=\"2.5,67.9 37.9,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"117.9,32.5 77.9,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"82.5,67.9 117.9,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"77.9,2.5 37.9,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"42.5,37.9 77.9,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"2.5,67.9 82.5,67.9 42.5,37.9\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"42.5,67.9 42.5,37.9\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.39\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"2.5 1.8\"/><text x=\"44.0\" y=\"53.9\" dy=\".35em\" text-anchor=\"start\" font-family=\"Inter,Arial\" font-size=\"5.7\" fill=\"#1c2230\">3 cm</text><text x=\"42.5\" y=\"73.4\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"5.7\" fill=\"#1c2230\">8 cm</text><text x=\"18.0\" y=\"47.4\" dy=\".35em\" text-anchor=\"end\" font-family=\"Inter,Arial\" font-size=\"5.7\" fill=\"#1c2230\">5 cm</text><text x=\"103.2\" y=\"55.2\" dy=\".35em\" text-anchor=\"start\" font-family=\"Inter,Arial\" font-size=\"5.7\" fill=\"#1c2230\">10 cm</text></svg>",

@@ -230,7 +230,7 @@ T = Topic(10, "telesa", "Tělesa: objem a povrch",
           "Tělesa (krychle, kvádr, hranol, válec) se v testu objevují téměř každý rok, ale úspěšnost je jen kolem 28 %: žáci si pletou povrch s pláštěm "
           "a chybují v jednotkách. U jehlanu a kužele stačí tělesa poznat, u koule znát vztah poloměru a průměru.",
           ["Vzorce na objem a povrch v testu nejsou uvedeny, musíte je znát. Pamatujte: objem hranolu i válce je V = obsah podstavy · výška, povrch kvádru S = 2 · (ab + bc + ac).",
-           "Povrch je součet obsahů všech stěn, plášť jen obsahů bočních stěn (bez podstav). U válce (r je poloměr podstavy, v výška) platí: plášť = 2 · π · r · v, povrch = 2 · π · r² + 2 · π · r · v.",
+           "Povrch je součet obsahů všech stěn, plášť jen součet obsahů bočních stěn (bez podstav). U válce (r je poloměr podstavy, v výška) platí: plášť = 2 · π · r · v, povrch = 2 · π · r² + 2 · π · r · v.",
            "Jednotky: 1 l = 1 dm³ = 1 000 cm³, 1 m³ = 1 000 dm³ = 1 000 l. Před výpočtem převeďte všechny rozměry na stejnou jednotku.",
            "Poloměr je polovina průměru: při průměru 10 cm počítejte s r = 5 cm. Používejte π = 3,14 a nejdřív spočtěte r².",
            "Zvětšíte-li všechny rozměry tělesa na dvojnásobek, povrch se zvětší čtyřikrát a objem osmkrát, ne dvakrát.",
@@ -337,7 +337,7 @@ T.task(2, "Podstavou kolmého hranolu je rovnoramenný trojúhelník se základn
        f"V = {cz(V4)} cm³, S = {cz(S4)} cm²",
        ["Obsah podstavy: 8 · 3 : 2 = 12 cm².",
         "Objem: V = 12 · 10 = 120 cm³.",
-        "Obvod podstavy: 5 + 5 + 8 = 18 cm. Plášť tvoří tři obdélníky s výškou 10 cm, jeho obsah je 18 · 10 = 180 cm².",
+        "Obvod podstavy: 5 + 5 + 8 = 18 cm. Plášť tvoří tři obdélníky s výškou 10 cm, jejich šířky dávají dohromady obvod podstavy. Obsah pláště: 18 · 10 = 180 cm².",
         "Povrch: S = 2 · 12 + 180 = 204 cm²."],
        (V4, S4) == (120, 204) and same(area(tri), 12) and same(perim(tri), 18) and same(math.dist(tri[0], tri[2]), ram),
        figure=fig_hranol_trojuhelnik(zakl, vt, ram, hh), space=4)
