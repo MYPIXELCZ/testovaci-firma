@@ -175,6 +175,12 @@ try {
   const st2 = await (await fetch(`${BASE}/api/stats`, { headers: { "x-stats-key": "tajne" } })).json();
   check(st2.orders.created.sklik === 1 && st2.orders.paid.sklik === 1 && st2.orders.revenue === 349, "souhrn: objednávky a tržby podle zdroje");
   check((await (await get("/obchodni-podminky")).text()).includes("printopia.cz"), "obchodní podmínky");
+  // Přehled pro majitele: jen na chráněné adrese *.vercel.app, na veřejné doméně 404
+  const asHost = (host) => new Promise((resolve) => http.get({ host: "localhost", port: PORT, path: "/prehled", headers: { host, ...UA } }, (res) => {
+    let t = ""; res.on("data", (c) => (t += c)); res.on("end", () => resolve({ status: res.statusCode, text: t }));
+  }));
+  const [pub, internal] = [await asHost("printopia.cz"), await asHost("printopia-x-mypixelcz.vercel.app")];
+  check(pub.status === 404 && internal.status === 200 && internal.text.replaceAll("<!-- -->", "").includes("Přehled Printopie"), "přehled /prehled je jen na *.vercel.app");
   const sm2 = await (await fetch(`${BASE}/sitemap.xml`)).text();
   const temata = readdirSync(new URL("../src/content/temata/", import.meta.url)).filter((f) => f.endsWith(".json"));
   check(temata.length >= 11 && temata.every((f) => sm2.includes(`/${f.replace(".json", "")}`)), `všechny tematické stránky (${temata.length}) jsou v sitemapě`);

@@ -21,7 +21,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="header">
           <div className="wrap">
             <Link href="/" className="logo" aria-label="Printopia – úvod">Printopia<span>.</span></Link>
-            <Link href="/#ukazka" className="small">Ukázka zdarma</Link>
+            <nav className="header-nav" aria-label="Hlavní">
+              <Link href="/#ukazka" className="btn btn-ghost btn-small header-sample">Ukázka zdarma</Link>
+              <Link href="/koupit" className="btn btn-yellow btn-small" data-track="cta_buy">Koupit sadu</Link>
+            </nav>
           </div>
         </header>
         <main>{children}</main>
