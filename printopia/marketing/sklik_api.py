@@ -130,7 +130,7 @@ camp_id = call("campaigns.create", user, [{
 }])["campaignIds"][0]
 out = {"campaignId": camp_id, "groups": {}}
 for name, g in spec["groups"].items():
-    gid = call("groups.create", user, [{"campaignId": camp_id, "name": name, "cpc": spec["maxCpcCzk"] * 100}])["groupIds"][0]
+    gid = call("groups.create", user, [{"campaignId": camp_id, "name": name, "cpc": g.get("cpc", spec["maxCpcCzk"]) * 100}])["groupIds"][0]
     kw = call("keywords.create", user, [{"groupId": gid, "name": k, "matchType": "phrase"} for k in g["keywords"]])
     ads = call("ads.create", user, [{
         "groupId": gid, "adType": "eta", "headline1": a["h"][0], "headline2": a["h"][1], "headline3": a["h"][2],

@@ -55,6 +55,22 @@ GROUPS = {
              "path": ["slovní úlohy", "matematika"]},
         ],
     },
+    # Jediné dotazy s reálným objemem (plan/hledanost-printopia.md): „cermat testy“ na podzim 1,1 až 1,4 tis. měsíčně, ve špičce 4 tis., CPC 1,3 Kč.
+    # Hledají je často lidé, kteří chtějí testy zdarma, proto nižší max. CPC a vylučující slova pdf, stažení, řešení. Název zkoušky jen v klíčovém slově, ne v textu reklamy.
+    "Testy": {
+        "cpc": 3,
+        "keywords": ["cermat testy", "cermat přijímačky"],
+        "ads": [
+            {"h": ["Testy na přijímačky z matiky", "Pro rodiče deváťáků", "Sada 12 témat za 349 Kč"],
+             "d": ["Úvodní test ukáže slabá témata, pak 12 sad k tisku s postupem řešení u každé úlohy.",
+                   "Pro rodiče deváťáků. Zaplatíte převodem, soubory máte hned. 14 dní na vrácení peněz."],
+             "path": ["testy", "přijímačky"]},
+            {"h": ["Procvičování před přijímačkami", "Úlohy k tisku s postupem", "Pro rodiče deváťáků"],
+             "d": ["Úlohy po tématech: zlomky, procenta, rovnice, geometrie. U každé úlohy postup řešení.",
+                   "Pro rodiče: jednorázově 349 Kč, bez předplatného. Soubory hned po zaplacení."],
+             "path": ["procvičování", "matematika"]},
+        ],
+    },
 }
 
 # Vylučující slova (volná negativní shoda na úrovni kampaně). Každé slovo s diakritikou dostane i variantu bez ní.
@@ -63,7 +79,7 @@ _NEGATIVE = [
     "maturita", "maturitní", "vš", "vysoká", "vysoké", "osmileté", "osmiletá", "víceleté", "šestileté", "6leté", "8leté",
     "5.třída", "7.třída", "5 třída", "7 třída", "policejní", "zdravotnická", "angličtina", "čeština", "jazyk", "čj",
     "výsledky", "termín", "přihláška", "2024", "2025", "klíč", "doučování", "kurz", "lektor", "zdarma", "online",
-    "nanečisto", "nečisto", "scio", "blesk", "taktik", "robin", "youtube",
+    "nanečisto", "nečisto", "pdf", "stažení", "řešení", "odpovědi", "archiv", "scio", "blesk", "taktik", "robin", "youtube",
     "brno", "praha", "plzeň", "ostrava", "olomouc", "kladno", "pardubice", "hradec", "budějovice", "mělník",
 ]
 
