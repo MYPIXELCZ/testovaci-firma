@@ -14,3 +14,8 @@ V každém probuzení udělat aspoň jeden krok z nejvyšší akce a přehodnoti
 | 5 | B2B licence sady doučovacím centrům a učitelům (kontakt přes formulář webu, ne hromadný e-mail) | 5–10 % | čeká na Ondřeje | Právní riziko (zákon 480/2004 §7): Ondřej rozhodne |
 | 6 | Sklik skupina „Testy“ (cermat testy, cermat přijímačky) | ~5 % | běží | Sledovat `sklik_api.py --stats` |
 | 7 | SEO tematické stránky Printopie a články anoberu | <3 % | běží | Search Console (Ondřej ověří), IndexNow hotovo |
+
+## Rozhodovací pravidla (aby se nečekalo naslepo)
+- **Zboží.cz:** odhad první proklik do 2026-10-02 12:00 asi 35 %, první objednávka do týdne asi 5 až 8 %. Pokud do 2026-10-02 12:00 nebude žádné zobrazení v kampani Nákupy ani proklik, implementovat akci #3 (druhá položka feedu „Úvodní test + plán“ za 79 Kč, nejdřív po úpravě VOP ke schválení Ondřejem) a prověřit zařazení do kategorie Elektronické knihy (1721, levnější CPC, méně konkurence).
+- **Do 2026-10-04:** pokud je nad 20 zobrazení a 0 prokliků, zkontrolovat cenu proti mediánu 211 Kč a obrázek; úpravy ceny a textů vždy s přehodnocením reklam ve Skliku (texty mají cenu 349 Kč).
+- **Celkový výhled:** do ledna žádný další kredit. Další nový zdroj návštěv jen s číslem z Googlu (Keyword Planner) nebo na Ondřejovo rozhodnutí o soukromé reklamě.
