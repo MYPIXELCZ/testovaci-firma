@@ -65,13 +65,13 @@ Všechny navštíveny 2026-10-01.
 
 **Rozšíření.** Odkazy: text max. 25 znaků, každý na jinou URL (stejná URL se zobrazí jen jednou), zobrazí se 2–6 Odkazů. Popisky: max. 25 znaků, zadat alespoň 4, zobrazí se max. 4 (zdroj 13). Proklik na Odkaz stojí stejně jako na reklamu. V API: `sitelinks.create`, a když chybí `url`, vznikne Popisek (zdroje 13, 21). Jak je přiřadit ke kampani, ověřit v dokumentaci Draku.
 
-**Čas a zařízení.** Úpravy dělat až podle dat, ne odhadem (zdroj 14: „Úprava nabídek dle výkonu“). Časové plánování vypíná optimalizaci denního rozpočtu, která jinak rozkládá výdej přes celý den (zdroje 4, 6). Bez dat ho proto nezapínat. Zařízení: multiplikátor −100 % až +300 %, jen podle výkonu (zdroj 7). 80 % návštěvníků Seznamu chodí z mobilu (zdroj 19).
+**Čas a zařízení.** Úpravy dělat až podle dat, ne odhadem (zdroj 14: „Úprava nabídek dle výkonu“). Časové plánování vypíná optimalizaci denního rozpočtu, která jinak rozkládá výdej přes celý den (zdroje 4, 6). Bez dat ho proto nezapínat. Zařízení: multiplikátor v procentech, −100 % zařízení vypne. Nastavovat jen podle výkonu (zdroj 7). 80 % návštěvníků Seznamu chodí z mobilu (zdroj 19).
 
 **CPC.** Ve stejné aukci rozhoduje max. CPC a koeficient kvality (relevance slova k dotazu, CTR), vyšší CTR znamená nižší skutečnou cenu (zdroj 20). Při omezeném rozpočtu snížit CPC, aby kampaň běžela celý den a prokliky byly levnější (zdroje 4, 26). Po 7 dnech zkontrolovat ztracená zobrazení (rozpočet / pořadí) a sloupec Kvalita 1–10 (zdroje 4, 14, 20).
 
-**Schvalování a zamítnutí.** Nejčastější důvody: chybí údaje o provozovateli na webu (IČO, adresa, e-mail), neověřitelná nebo podmíněná cena či „zdarma“, nefunkční URL, obsah reklamy neodpovídá stránce, atypická zkratka, text bez smyslu, formální chyby (zdroje 9, 10, 11). Po spuštění zkontrolovat zamítnuté reklamy (zdroj 14). Podpora Skliku odpovídá do 2 hodin (zdroj 11).
+**Schvalování a zamítnutí.** Nejčastější důvody: chybí údaje o provozovateli na webu (IČO, adresa, e-mail), neověřitelná nebo podmíněná cena či „zdarma“, nefunkční URL, obsah reklamy neodpovídá stránce, atypická zkratka, text bez smyslu, formální chyby (zdroje 9, 10, 11). Po spuštění zkontrolovat zamítnuté reklamy (zdroj 14). Podpora Skliku uvádí, že 95 % dotazů vyřeší do 2 hodin (zdroj 11).
 
-**Měření konverzí, retargeting, cookies.** Konverzní i retargetingový kód má povinný parametr `consent`. Bez souhlasu (0) Seznam zpracuje hit anonymně a použije ho jen k modelování (zdroj 15). Modelování potřebuje aspoň jednotky konverzí a prokliků denně, u malých účtů je přínos malý (zdroj 16). Kód s `consent: 0` se může spouštět i bez cookie lišty, kódem se souhlasem (1) až po souhlasu (zdroj 17). Retargeting potřebuje souhlas s cookies, tedy cookie lištu (zdroje 15, 17). Alternativa bez cookies, kterou už máme: vlastní anonymní trychtýř a do cílové URL dynamické proměnné `{keywordId}`, `{creative}`, `{network}` (zdroj 18). Tak jde trychtýř rozdělit po klíčových slovech a reklamách bez osobních údajů.
+**Měření konverzí, retargeting, cookies.** Konverzní i retargetingový kód má povinný parametr `consent`. Bez souhlasu (0) Seznam zpracuje hit anonymně a použije ho jen k modelování (zdroj 15). Modelování potřebuje aspoň jednotky konverzí a prokliků denně, u malých účtů je přínos malý (zdroj 16). Sklik doporučuje spouštět konverzní kód i bez souhlasu (s `consent: 0`) a s `consent: 1` až po udělení souhlasu (zdroj 17). Retargeting potřebuje souhlas s cookies, tedy cookie lištu (zdroje 15, 17). Alternativa bez cookies, kterou už máme: vlastní anonymní trychtýř a do cílové URL dynamické proměnné `{keywordId}`, `{creative}`, `{network}` (zdroj 18). Tak jde trychtýř rozdělit po klíčových slovech a reklamách bez osobních údajů.
 
 **Jak dlouho a s kolika kliky vyhodnocovat.** Sklik check list: den 1 schválení, do 7 dnů report dotazů, vylučující slova, mírné úpravy CPC a omezený rozpočet, do 14 dnů nulová zobrazení, slova s nízkým CTR a A/B test reklam, od 30 dnů pravidelný report (zdroj 14). Statistika (vlastní výpočet, Wilsonův 95% interval): 4 kliknutí na „Koupit“ z 80 návštěv (5 %) znamenají interval 2,0–12,2 %, 1 z 80 interval 0,2–6,7 %. **Při 80 návštěvách nejde spolehlivě rozlišit 2 % od 5 %.** K tomu je potřeba zhruba 190 návštěv (jednostranný test, α = 0,05, síla 80 %). A/B test dvou reklam při desítkách prokliků nic neprokáže, Sklik je beztak střídá sám („bayesovský bandita“, zdroj 8).
 
@@ -99,7 +99,7 @@ Stav podle `printopia/marketing/sklik.py` a `sklik_api.py` (kampaň 7984059, ses
 
 | Bod | Stav | Návrh |
 |---|---|---|
-| Cílová skupina, oslovení rodiče | OK (hlavička, `assert`, „Pro rodiče deváťáků“, „Dítěti nejdou zlomky?“) | Rozšířit `assert` na každou reklamu zvlášť (inzerát 2 má rodiče jen v popisku) a přidat zakázané výzvy dětem. |
+| Cílová skupina, oslovení rodiče | OK (hlavička, `assert`, „Pro rodiče deváťáků“, „Dítěti nejdou zlomky?“) | Rozšířit `assert` na každou reklamu zvlášť a hlídat jen T1, T2 a P1. Nápověda mezi částmi reklamy uvádí jen Titulek 1, 2 a Popisek 1, takže T3 a P2 (`headline3`, `description2`) se nemusí zobrazit (ověřit v náhledu). Přidat zakázané výzvy dětem. |
 | Typ kampaně, síť | OK (`fulltext`, jen vyhledávání) | Vyloučit Sbazar, Sauto a Zboží přes `excludedSearchServices` (ID z `campaigns.listSearchServices`). |
 | Typ shody | OK (frázová, žádná volná) | Frázová shoda v Skliku je široká (tvary, pořadí, synonyma), proto jsou klíčová vylučující slova. |
 | Duplicitní slova | Chybí kontrola | „přijímačky matematika procvičování“ je pokrytá slovem „procvičování na přijímačky“, vyřadit. |
@@ -108,7 +108,7 @@ Stav podle `printopia/marketing/sklik.py` a `sklik_api.py` (kampaň 7984059, ses
 | Vylučující slova | Nedostatečné | Opravit chyby (viz níže) a doplnit podle reálných dotazů. |
 | Texty reklam | Částečně OK | „Ukázka zdarma ke stažení“ a „Stáhněte si zdarma ukázku 8 úloh“ jsou podmíněné e-mailem a **povinným** souhlasem s upozorněním. To odporuje pravidlu Skliku („zdarma“ musí být nepodmíněné) a láká hledače věcí zdarma, což zkresluje test nákupu. „Pro rodiče deváťáků“ je v inzerátu 1 dvakrát (titulek i popisek). Chybí cena, Cesty a třetí reklama. |
 | Rozšíření | Chybí | 4 Popisky a 4–5 Odkazů (níže). |
-| Rozpočet a CPC | 30 Kč/den, 6 Kč = poměr 5 : 1 (doporučeno 100 : 1) | Reklama se ukáže jen na část dotazů. Pokud po 3 dnech hlásí ztracená zobrazení z rozpočtu a pozice je dobrá, snížit CPC na 4 Kč: ze 400 Kč pak vyjde asi 100 prokliků místo asi 67. Celkový rozpočet nenastavovat pod denní. |
+| Rozpočet a CPC | 30 Kč/den, 6 Kč = poměr 5 : 1 (doporučeno 100 : 1) | Reklama se ukáže jen na část dotazů. Pokud po 3 dnech hlásí ztracená zobrazení z rozpočtu a pozice je dobrá, snížit CPC na 4 Kč: ze 400 Kč pak vyjde až asi 100 prokliků místo asi 67 (při ceně rovné max. CPC). Celkový rozpočet nenastavovat pod denní. |
 | Čas, zařízení, region | Výchozí (celý den, všechna zařízení, celá ČR) | OK, produkt je celostátní. Upravovat až podle reportu (zařízení, hodina) po zhruba 50 proklicích. |
 | Měření | Částečně | `utm_source=sklik` funguje jen při vypnutém autotaggingu. `vyhodnoceni.py` počítá jen `home:sklik`, takže prokliky přes Odkazy na tematické stránky by se nezapočítaly. Přidat `&utm_term={keywordId}&utm_content={creative}`, ukládat v trychtýři a vyhodnocovat po slovech a reklamách. Konverzní kód Skliku teď nenasazovat: při našem objemu nic nepřidá a vložení skriptu třetí strany by vyžadovalo úpravu zásad (právo = Ondřej). |
 | Vstupní stránka | OK (200, 0,6 s, provozovatel a IČO v patičce, zásady ochrany osobních údajů, mobil) | Tlačítko „Koupit sadu za 349 Kč“ vede na produkt, který vyjde až 15. 11. Datum je jen v FAQ. Uvést „vychází 15. 11.“ i u tlačítka, jinak hrozí výtka, že je stránka klamavá (zdroj 9). **Právní riziko pro Ondřeje:** stažení ukázky vyžaduje souhlas se zasíláním upozornění, takže jde o podmiňování souhlasu (GDPR čl. 7 odst. 4). Bezpečnější je udělat souhlas nepovinný. |
@@ -122,8 +122,8 @@ NEGATIVE_ADD = [
   # jiná zkouška, škola nebo ročník („příprava na přijímačky na víceleté gymnázium“, „7.třída“, „přijímačky na vysoké školy 2027“)
   "maturitní", "maturitni", "vs", "vysoke", "víceleté", "vicelete", "šestileté", "sestilete", "8leté", "8lete",
   "6leté", "6lete", "5.třída", "7.třída", "zdravotnická", "zdravotnicka",
-  # jiný předmět („přijímačky český jazyk 2027“, „testy z čj na přijímačky“)
-  "český jazyk", "cesky jazyk", "čj", "cj", "jazyk",
+  # jiný předmět („přijímačky český jazyk 2027“, „testy z čj na přijímačky“); „jazyk“ pokryje „český jazyk“
+  "jazyk", "čj", "cj",
   # úřední informace, ne příprava („přijímací zkoušky na střední školy 2027 termíny“ 64, „kdy budou přijímací zkoušky“)
   "termin", "kdy", "přihláška", "prihlaska", "vysledky",
   # staré testy a klíče („cermat testy z minulých let“, „cermat testy 2024 ke stažení“)
@@ -132,14 +132,14 @@ NEGATIVE_ADD = [
   "doučování", "doucovani", "kurz", "lektor", "brno", "praha", "plzeň", "plzen", "ostrava", "olomouc", "kladno",
   "pardubice", "hradec", "budějovice", "budejovice", "mělník", "melnik",
   # zdarma, online a akce jiných („přijímačky pdf zdarma“, „přijímačky online“ 18, „přijímačky nanečisto 2027“ 45, „prijimacky.blesk.cz“ 36)
-  "zdarma", "online", "nanečisto", "nanecisto", "nečisto", "necisto", "scio", "blesk", "taktik", "pohoda", "robin", "youtube",
+  "zdarma", "online", "nanečisto", "nanecisto", "nečisto", "necisto", "scio", "blesk", "taktik", "pohoda", "pohode", "robin", "youtube",
 ]
 # SLEDOVAT v reportu dotazů, nevylučovat hned (mohou být i rodiče): "cermat", "testy", "pdf", "ke stažení", "k vytištění", "2026"
 ```
 „2026“ zatím nevylučovat: část lidí tím myslí školní rok 2026/27.
 
 **Návrh textů (délky ověřené):**
-- Sestava A, reklama 1: T1 „Přijímačky: matika po tématech“, T2 „Pro rodiče deváťáků“, T3 „Postup u každé úlohy“, P1 „Úlohy k tisku na jednotnou přijímací zkoušku, u každé postup řešení krok za krokem.“, P2 „Sada 12 témat za 349 Kč vychází 15. 11. Příklady s postupem si projděte zdarma.“ (na úvodu jsou zdarma bez podmínky 2 úlohy a odkazy na tematické stránky), Cesty „přijímačky“ / „matematika“.
+- Sestava A, reklama 1: T1 „Přijímačky: matika po tématech“, T2 „Pro rodiče deváťáků“, P1 „Sada 12 témat za 349 Kč vychází 15. 11. Příklady s postupem si projděte zdarma.“ (na úvodu jsou bez podmínky 2 úlohy zdarma a odkazy na tematické stránky), T3 „Postup u každé úlohy“, P2 „Úlohy k tisku na jednotnou přijímací zkoušku, u každé postup řešení krok za krokem.“, Cesty „přijímačky“ / „matematika“. Hlavní sdělení patří do T1, T2 a P1.
 - Sestava A, reklama 2: T1 „Příprava na přijímačky: matika“, T2 „Víte, co dítěti nejde?“, T3 „Sada 12 témat za 349 Kč“, P1 „Úvodní test ukáže slabá témata, plán rozvrhne přípravu do zkoušky 12. dubna.“
 - Sestava B: T1 „Zlomky, procenta, rovnice“, T2 „Přijímačky z matiky s postupem“, P1 „Pro rodiče deváťáků: příklady po tématech k tisku, u každé úlohy postup řešení.“
 - Popisky: „Postup u každé úlohy“, „PDF k tisku“, „14 dní na vrácení peněz“, „Bez předplatného“, „Jednorázově 349 Kč“.
