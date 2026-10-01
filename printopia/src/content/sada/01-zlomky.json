@@ -1,23 +1,25 @@
 {
  "num": 1,
  "slug": "zlomky",
- "title": "Zlomky a desetinná čísla",
- "intro": "Zlomky jsou na přijímačkách skoro každý rok, samostatně i uvnitř rovnic a slovních úloh. Počítejte bez kalkulačky a výsledek vždy zkraťte na základní tvar.",
+ "title": "Zlomky, desetinná čísla, mocniny a odmocniny",
+ "intro": "Číselné výrazy se zlomky, desetinnými čísly, mocninami a odmocninami jsou u zkoušky každý rok, hlavně v úloze 2, a zlomky se vracejí i v rovnicích a slovních úlohách. Počítejte bez kalkulačky a výsledek vždy zkraťte na základní tvar.",
  "tips": [
   "Před sčítáním a odčítáním převeďte zlomky na společného jmenovatele (nejmenší společný násobek).",
   "Dělit zlomkem znamená násobit převrácenou hodnotou: a/b : c/d = a/b · d/c.",
   "Smíšené číslo převeďte na zlomek: 2 1/3 = 7/3. Desetinné číslo na zlomek: 0,25 = 1/4.",
-  "U složeného zlomku spočítejte zvlášť čitatel a jmenovatel, pak je vydělte.",
-  "Pořadí operací: závorky, pak násobení a dělení, nakonec sčítání a odčítání."
+  "Pořadí operací: nejdřív závorky, mocniny a odmocniny, pak násobení a dělení, nakonec sčítání a odčítání. U složeného zlomku spočítejte zvlášť čitatel a jmenovatel, pak je vydělte.",
+  "Pozor na znaménka: (−3)² = 9, ale −3² = −9, a lichá mocnina záporného čísla je záporná: (−2)³ = −8. Záporný exponent znamená převrácenou hodnotu: 2⁻³ = 1/8 a (2/3)⁻² = 9/4. Dále 5⁰ = 1 a 10⁻² = 0,01.",
+  "Odmocnina je nezáporné číslo, jehož druhá mocnina je číslo pod odmocninou: √49 = 7. Druhé mocniny čísel 11 až 20 máte u zkoušky na poslední straně sešitu (17² = 289, tedy √289 = 17). Odmocnina ze součtu není součet odmocnin: √(9 + 16) = 5, ne 3 + 4. Součin odmocnit smíte: √(4 · 25) = 2 · 5."
  ],
  "example": {
-  "text": "Vypočtěte a výsledek zapište v základním tvaru: 3/4 − 1/6 · 3/2",
+  "text": "Vypočtěte a výsledek zapište v základním tvaru: (−2)³ + 3² · 5/6 − √81 : 6",
   "steps": [
-   "Nejdřív násobení: 1/6 · 3/2 = 3/12 = 1/4.",
-   "Pak odčítání: 3/4 − 1/4 = 2/4.",
-   "Zkrátíme dvěma: 2/4 = 1/2."
+   "Nejdřív mocniny a odmocnina: (−2)³ = −8, 3² = 9 a √81 = 9.",
+   "Pak násobení a dělení: 9 · 5/6 = 45/6 = 15/2 a 9 : 6 = 9/6 = 3/2.",
+   "Zbývá sčítání a odčítání: −8 + 15/2 − 3/2 = −8 + 12/2 = −8 + 6.",
+   "−8 + 6 = −2."
   ],
-  "answer": "1/2"
+  "answer": "−2"
  },
  "tasks": [
   {
@@ -30,20 +32,6 @@
     "Společný jmenovatel čísel 6 a 8 je 24.",
     "5/6 = 20/24, 3/8 = 9/24.",
     "20/24 − 9/24 = 11/24."
-   ],
-   "figure": null,
-   "space": 3
-  },
-  {
-   "level": 1,
-   "kind": "open",
-   "text": "Vypočtěte a výsledek zkraťte: 4/9 · 15/8",
-   "options": null,
-   "answer": "5/6",
-   "steps": [
-    "Před násobením krátíme křížem: 4 a 8 dělíme 4, 9 a 15 dělíme 3.",
-    "Dostaneme 1/3 · 5/2.",
-    "1/3 · 5/2 = 5/6."
    ],
    "figure": null,
    "space": 3
@@ -75,6 +63,20 @@
    ],
    "figure": null,
    "space": 3
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Vypočtěte: √81 − 2³ + (−3)²",
+   "options": null,
+   "answer": "10",
+   "steps": [
+    "Odmocnina: √81 = 9, protože 9² = 81.",
+    "Mocniny: 2³ = 2 · 2 · 2 = 8 a (−3)² = (−3) · (−3) = 9. Záporné číslo v závorce se umocňuje celé.",
+    "9 − 8 + 9 = 10."
+   ],
+   "figure": null,
+   "space": 2
   },
   {
    "level": 1,
@@ -142,13 +144,29 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Řešte rovnici: 2/3 · x + 1/4 = 7/12",
+   "text": "Vypočtěte a výsledek zapište v základním tvaru: 2⁻³ + (1/2)⁻² − 5⁰",
    "options": null,
-   "answer": "x = 1/2",
+   "answer": "25/8",
    "steps": [
-    "Odečteme 1/4: 2/3 · x = 7/12 − 3/12 = 4/12 = 1/3.",
-    "Vydělíme 2/3: x = 1/3 · 3/2 = 1/2.",
-    "Zkouška: 2/3 · 1/2 + 1/4 = 1/3 + 1/4 = 4/12 + 3/12 = 7/12. ✓"
+    "Záporný exponent znamená převrácenou hodnotu: 2⁻³ = 1/2³ = 1/8.",
+    "(1/2)⁻² je převrácený zlomek na druhou: 2² = 4.",
+    "Nultá mocnina je 1: 5⁰ = 1.",
+    "1/8 + 4 − 1 = 1/8 + 3 = 1/8 + 24/8 = 25/8."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Vypočtěte a výsledek zapište jako desetinné číslo: (2,5 · 10²) · (4 · 10⁻³) + 0,3²",
+   "options": null,
+   "answer": "1,09",
+   "steps": [
+    "10² = 100 a 10⁻³ = 1/1 000 = 0,001.",
+    "2,5 · 10² = 250 a 4 · 10⁻³ = 0,004, tedy 250 · 0,004 = 1.",
+    "0,3² = 0,3 · 0,3 = 0,09 (ne 0,9).",
+    "1 + 0,09 = 1,09."
    ],
    "figure": null,
    "space": 3
@@ -174,13 +192,13 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Tablet stál 4 800 Kč. V akci ho prodávali za 5/8 původní ceny. O kolik korun zlevnil?",
+   "text": "Řešte rovnici: 2/3 · x + 1/4 = 7/12",
    "options": null,
-   "answer": "o 1 800 Kč",
+   "answer": "x = 1/2",
    "steps": [
-    "Akční cena: 5/8 · 4 800 = 3 000 Kč.",
-    "Sleva: 4 800 − 3 000 = 1 800 Kč.",
-    "Jinak: zlevnil o 3/8 ceny, 3/8 · 4 800 = 1 800 Kč."
+    "Odečteme 1/4: 2/3 · x = 7/12 − 3/12 = 4/12 = 1/3.",
+    "Vydělíme 2/3: x = 1/3 · 3/2 = 1/2.",
+    "Zkouška: 2/3 · 1/2 + 1/4 = 1/3 + 1/4 = 4/12 + 3/12 = 7/12. ✓"
    ],
    "figure": null,
    "space": 3
@@ -196,20 +214,6 @@
     "Na muzeum zbývá 1 − 13/20 = 7/20 žáků, to je 21 žáků.",
     "1/20 žáků … 21 : 7 = 3 žáci, celá třída 20 · 3 = 60 žáků.",
     "Zkouška: 2/5 ze 60 = 24, 1/4 ze 60 = 15, 24 + 15 + 21 = 60. ✓"
-   ],
-   "figure": null,
-   "space": 4
-  },
-  {
-   "level": 3,
-   "kind": "open",
-   "text": "Bazén napustí první přívod za 4 hodiny, druhý za 6 hodin. Odtok ho vypustí za 12 hodin. Za jak dlouho se bazén naplní, když jsou otevřené oba přívody i odtok?",
-   "options": null,
-   "answer": "za 3 hodiny",
-   "steps": [
-    "Za hodinu napustí první přívod 1/4 bazénu, druhý 1/6 bazénu, odtok vypustí 1/12.",
-    "Za hodinu přibude 1/4 + 1/6 − 1/12 = 3/12 + 2/12 − 1/12 = 4/12 = 1/3 bazénu.",
-    "Celý bazén se naplní za 3 hodiny."
    ],
    "figure": null,
    "space": 4
@@ -233,13 +237,30 @@
   {
    "level": 3,
    "kind": "open",
-   "text": "Řešte rovnici: x/2 + 1/4 = 5/8 · x",
+   "text": "Vypočtěte a výsledek zapište v základním tvaru: (√(25/16) − (2/3)⁻¹) : (−1/2)³",
    "options": null,
-   "answer": "x = 2",
+   "answer": "2",
    "steps": [
-    "Odečteme x/2 od obou stran: 1/4 = 5/8 · x − 4/8 · x = 1/8 · x.",
-    "Vynásobíme osmi: x = 2.",
-    "Zkouška: 2/2 + 1/4 = 5/4 a 5/8 · 2 = 10/8 = 5/4. ✓"
+    "Odmocnina ze zlomku: √(25/16) = 5/4, protože (5/4)² = 25/16.",
+    "Záporný exponent: (2/3)⁻¹ = 3/2.",
+    "První závorka: 5/4 − 3/2 = 5/4 − 6/4 = −1/4.",
+    "Druhá závorka: (−1/2)³ = −1/8, lichá mocnina záporného čísla je záporná.",
+    "(−1/4) : (−1/8) = (−1/4) · (−8) = 2."
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Obdélníková zahrada má rozměry 8 m a 18 m. Majitel ji chce upravit na čtvercovou zahradu o stejném obsahu a celou ji oplotit. Metr plotu stojí 450 Kč. Kolik korun ušetří oproti oplocení původní obdélníkové zahrady?",
+   "options": null,
+   "answer": "1 800 Kč",
+   "steps": [
+    "Obsah obdélníkové zahrady: 8 · 18 = 144 m².",
+    "Čtverec o obsahu 144 m² má stranu √144 = 12 m.",
+    "Obvod obdélníku: 2 · (8 + 18) = 52 m. Obvod čtverce: 4 · 12 = 48 m.",
+    "Plotu je o 52 − 48 = 4 m méně, tedy 4 · 450 = 1 800 Kč."
    ],
    "figure": null,
    "space": 4
@@ -247,14 +268,20 @@
  ],
  "diagnostic": [
   {
-   "kind": "open",
-   "text": "Vypočtěte: 5/12 + 3/8 − 1/6",
-   "options": null,
-   "answer": "5/8",
+   "kind": "choice",
+   "text": "Kolik je √(13² − 5²)?",
+   "options": [
+    "8",
+    "72",
+    "12",
+    "144",
+    "−12"
+   ],
+   "answer": "C",
    "steps": [
-    "Společný jmenovatel čísel 12, 8 a 6 je 24.",
-    "10/24 + 9/24 − 4/24 = 15/24.",
-    "Zkrátíme třemi: 15/24 = 5/8."
+    "Nejdřív mocniny pod odmocninou: 13² = 169 a 5² = 25, rozdíl 169 − 25 = 144.",
+    "√144 = 12, protože 12² = 144.",
+    "Pozor: odmocnina se s mocninou nezruší po částech. 13 − 5 = 8 je chyba (A), 144 je zapomenutá odmocnina (D)."
    ],
    "figure": null
   },

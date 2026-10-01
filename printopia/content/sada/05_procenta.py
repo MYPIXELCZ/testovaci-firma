@@ -20,14 +20,14 @@ T = Topic(5, "procenta", "Procenta",
           "Procenta patří k nejbodovanějším tématům zkoušky: procentová bývá úloha 15 s přiřazováním a procenta se vracejí "
           "i ve výběru A–E a ve slovních úlohách. Rozhoduje, zda správně určíte základ, tedy to, k čemu se procenta vztahují.",
           ["Nejdřív určete základ (100 %): je to původní hodnota nebo celek, ke kterému se část či změna vztahuje. "
-           "Při druhé změně v řadě je základem už nová hodnota po změně první.",
+           "Při dvou změnách po sobě je základem druhé změny už hodnota po první změně.",
            "Procenta převádějte na desetinná čísla: 35 % = 0,35, 5 % = 0,05, 125 % = 1,25. Část z celku se pak počítá násobením, "
            "celek (základ) dělením: je-li 15 % rovno 90, je 1 % rovno 90 : 15 = 6 a 100 % je 600.",
            "Zdražení o 20 % znamená násobit číslem 1,2, zlevnění o 20 % číslem 0,8. Opakované změny se násobí, nesčítají: "
            "dvě zdražení o 20 % dají 1,2 · 1,2 = 1,44, tedy zdražení o 44 %, ne o 40 %. Zdražení a zlevnění o stejné procento se "
            "neruší, protože každá změna má jiný základ: po zlevnění o 20 % vrátí cenu zpět až zdražení o 25 %.",
-           "Otázky „o kolik procent je A větší než B“ a „o kolik procent je B menší než A“ mají různé výsledky, protože se dělí "
-           "pokaždé jiným základem, a to tím, s čím porovnáváme (číslo za slovem „než“).",
+           "Otázky „o kolik procent je A větší než B“ a „o kolik procent je B menší než A“ mají různé výsledky, protože základem je "
+           "pokaždé jiné číslo: to, s čím porovnáváme (v otázce stojí za slovem „než“).",
            "Jednoduchý úrok za rok = jistina · úroková sazba. Za část roku se násobí zlomkem roku (3 měsíce = 3/12 roku). "
            "Promile je tisícina: 1 ‰ = 0,001 = 0,1 %.",
            "Koncentrace roztoku nebo směsi je podíl hmotnosti složky a hmotnosti celku. Při přidání vody se množství rozpuštěné látky "
@@ -76,7 +76,7 @@ T.task(1, "Mořská voda obsahuje průměrně 35 ‰ (promile) soli. Kolik gram�
 
 # ---------------------------------------------------------------- Jako u zkoušky
 r = 8000 * F(80, 100) * F(90, 100)
-T.task(2, "Mobilní telefon stál 8 000 Kč. Nejdřív zlevnil o 20 %, potom byla jeho snížená cena zlevněna ještě o 10 %. "
+T.task(2, "Mobilní telefon stál 8 000 Kč. Nejdřív zlevnil o 20 %, potom se jeho nová cena snížila ještě o 10 %. "
           "Kolik stojí po obou slevách a o kolik procent původní ceny zlevnil celkem?",
        f"{cz(r)} Kč, celkem o 28 %",
        ["Po první slevě zbývá 80 % ceny: 8 000 · 0,8 = 6 400 Kč.",
@@ -99,7 +99,7 @@ T.task(2, "Na školní charitativní sbírce se v září vybralo 1 600 Kč a v 
        a == 25 and b == 20 and F(400, 1600) == F(1, 4) and F(400, 2000) == F(1, 5), space=3)
 
 r = 50000 * F(3, 100) * F(4, 12)
-T.task(2, "Na spořicí účet bylo uloženo 50 000 Kč s úrokem 3 % ročně. Úrok se počítá jednoduše (úroky se neúročí) a daň "
+T.task(2, "Na spořicí účet bylo uloženo 50 000 Kč s úrokem 3 % ročně. Úrok se počítá jednoduše, tedy bez úročení úroků, a daň "
           "z úroků nepočítejte. Kolik korun úroku vklad přinese za 4 měsíce?", f"{cz(r)} Kč",
        ["Úrok za celý rok: 3 % z 50 000 Kč = 0,03 · 50 000 = 1 500 Kč.", "4 měsíce jsou 4/12 = 1/3 roku.",
         "Úrok za 4 měsíce: 1 500 : 3 = 500 Kč."],
