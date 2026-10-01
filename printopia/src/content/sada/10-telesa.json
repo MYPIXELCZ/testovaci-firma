@@ -1,0 +1,305 @@
+{
+ "num": 10,
+ "slug": "telesa",
+ "title": "Tělesa: objem a povrch",
+ "intro": "Tělesa (krychle, kvádr, hranol, válec) jsou v testu téměř každý rok, ale úspěšnost je jen kolem 28 %: žáci si pletou povrch s pláštěm a chybují v jednotkách. Jehlan a kužel stačí poznat, u koule znát poloměr a průměr.",
+ "tips": [
+  "Vzorce na objem a povrch v testu nejsou. Pamatujte: objem hranolu i válce je obsah podstavy · výška, povrch kvádru S = 2 · (ab + bc + ac).",
+  "Povrch je součet obsahů všech stěn, plášť jen stěn bočních (bez podstav). U válce: plášť 2 · π · r · v, povrch 2 · π · r² + 2 · π · r · v.",
+  "Jednotky: 1 l = 1 dm³ = 1 000 cm³, 1 m³ = 1 000 dm³ = 1 000 l. Před výpočtem převeďte všechny rozměry na stejnou jednotku.",
+  "Poloměr je polovina průměru: u „průměru 10 cm“ počítejte s r = 5 cm. Používejte π = 3,14 a nejdřív spočtěte r².",
+  "Zvětšíte-li všechny hrany tělesa dvakrát, povrch se zvětší čtyřikrát a objem osmkrát, ne dvakrát.",
+  "Odebráním krychličky z rohu tělesa se povrch nezmění, odebráním z hrany nebo ze středu stěny se zvětší."
+ ],
+ "example": {
+  "text": "Kolmý hranol má podstavu tvaru pravoúhlého trojúhelníku s odvěsnami 3 cm a 4 cm a přeponou 5 cm. Výška hranolu je 10 cm. Vypočtěte objem a povrch hranolu.",
+  "steps": [
+   "Obsah podstavy: 3 · 4 : 2 = 6 cm². Objem je obsah podstavy krát výška hranolu: V = 6 · 10 = 60 cm³.",
+   "Plášť tvoří tři obdélníky s výškou 10 cm, jejich šířky jsou strany podstavy. Obvod podstavy: 3 + 4 + 5 = 12 cm, plášť: 12 · 10 = 120 cm².",
+   "Povrch je plášť a dvě podstavy: S = 120 + 2 · 6 = 132 cm²."
+  ],
+  "answer": "V = 60 cm³, S = 132 cm²"
+ },
+ "tasks": [
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Vypočtěte objem a povrch krychle s hranou 5 cm.",
+   "options": null,
+   "answer": "V = 125 cm³, S = 150 cm²",
+   "steps": [
+    "Objem krychle: V = a · a · a = 5 · 5 · 5 = 125 cm³.",
+    "Povrch tvoří 6 shodných čtverců o straně 5 cm. Obsah jednoho čtverce je 5 · 5 = 25 cm².",
+    "Povrch: S = 6 · 25 = 150 cm²."
+   ],
+   "figure": null,
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Kvádr má rozměry 8 cm, 5 cm a 3 cm (obrázek). Vypočtěte jeho objem a povrch.",
+   "options": null,
+   "answer": "V = 120 cm³, S = 158 cm²",
+   "steps": [
+    "Objem: V = 8 · 5 · 3 = 120 cm³.",
+    "Kvádr má tři dvojice shodných stěn: 8 · 5 = 40 cm², 8 · 3 = 24 cm² a 5 · 3 = 15 cm².",
+    "Povrch: S = 2 · (40 + 24 + 15) = 2 · 79 = 158 cm²."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 126 62\" font-family=\"Inter,Arial\"><polyline points=\"35.8,32.5 115.8,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.71\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"2.6 1.8\"/><polyline points=\"18.2,50.2 35.8,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.71\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"2.6 1.8\"/><polyline points=\"115.8,32.5 115.8,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.71\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"98.2,50.2 115.8,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.71\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"115.8,2.5 35.8,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.71\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"98.2,20.2 115.8,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.71\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"35.8,2.5 35.8,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.71\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"2.6 1.8\"/><polyline points=\"18.2,20.2 35.8,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.71\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"18.2,50.2 98.2,50.2 98.2,20.2 18.2,20.2\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.71\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><text x=\"58.2\" y=\"55.7\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"5.9\" fill=\"#1c2230\">8 cm</text><text x=\"15.7\" y=\"35.2\" dy=\".35em\" text-anchor=\"end\" font-family=\"Inter,Arial\" font-size=\"5.9\" fill=\"#1c2230\">3 cm</text><text x=\"110.0\" y=\"46.3\" dy=\".35em\" text-anchor=\"start\" font-family=\"Inter,Arial\" font-size=\"5.9\" fill=\"#1c2230\">5 cm</text></svg>",
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Převeďte jednotky: a) 3,5 dm³ = … cm³, b) 2 400 cm³ = … l, c) 0,6 m³ = … l, d) 1 500 l = … m³.",
+   "options": null,
+   "answer": "a) 3 500 cm³, b) 2,4 l, c) 600 l, d) 1,5 m³",
+   "steps": [
+    "a) 1 dm³ = 1 000 cm³, takže 3,5 · 1 000 = 3 500 cm³.",
+    "b) 1 l = 1 000 cm³, takže 2 400 : 1 000 = 2,4 l.",
+    "c) 1 m³ = 1 000 dm³ = 1 000 l, takže 0,6 · 1 000 = 600 l.",
+    "d) 1 500 l = 1 500 dm³, 1 m³ = 1 000 dm³, takže 1 500 : 1 000 = 1,5 m³."
+   ],
+   "figure": null,
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Akvárium tvaru kvádru má dno o rozměrech 60 cm a 30 cm a výšku 40 cm. Kolik litrů vody se do něj vejde, když je zcela plné?",
+   "options": null,
+   "answer": "72 l",
+   "steps": [
+    "Objem akvária: V = 60 · 30 · 40 = 72 000 cm³.",
+    "1 l = 1 000 cm³, proto 72 000 : 1 000 = 72 l.",
+    "Jinak: 6 dm · 3 dm · 4 dm = 72 dm³ = 72 l."
+   ],
+   "figure": null,
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "yesno",
+   "text": "Platí tato tvrzení o tělesech?",
+   "options": [
+    "Čtyřboký jehlan má 5 hran.",
+    "Kvádr má 12 hran a 8 vrcholů.",
+    "Trojboký hranol má 5 stěn."
+   ],
+   "answer": "NE, ANO, ANO",
+   "steps": [
+    "Čtyřboký jehlan má 4 hrany podstavy a 4 boční hrany, dohromady 8 hran, ne 5. Tvrzení neplatí (5 je počet jeho stěn).",
+    "Kvádr má 4 hrany dole, 4 nahoře a 4 svislé, dohromady 12 hran. Vrcholů má 4 + 4 = 8. Platí.",
+    "Trojboký hranol má dvě podstavy (trojúhelníky) a tři boční stěny (obdélníky), dohromady 5 stěn. Platí."
+   ],
+   "figure": null,
+   "space": 1
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Kvádr má podstavu s rozměry 12 cm a 5 cm a objem 480 cm³. Vypočtěte výšku kvádru a jeho povrch. Uveďte celý postup.",
+   "options": null,
+   "answer": "v = 8 cm, S = 392 cm²",
+   "steps": [
+    "Objem kvádru: V = a · b · c, tedy 480 = 12 · 5 · c = 60 · c.",
+    "Výška: c = 480 : 60 = 8 cm.",
+    "Obsahy stěn: 12 · 5 = 60 cm², 12 · 8 = 96 cm² a 5 · 8 = 40 cm².",
+    "Povrch: S = 2 · (60 + 96 + 40) = 2 · 196 = 392 cm²."
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Válec má průměr podstavy 10 cm a výšku 10 cm (obrázek). Vypočtěte objem, obsah pláště a povrch válce. Použijte π = 3,14.",
+   "options": null,
+   "answer": "V = 785 cm³, plášť 314 cm², S = 471 cm²",
+   "steps": [
+    "Poloměr je polovina průměru: r = 10 : 2 = 5 cm.",
+    "Obsah podstavy: π · r² = 3,14 · 25 = 78,5 cm². Objem: V = 78,5 · 10 = 785 cm³.",
+    "Plášť je obdélník s výškou 10 cm a šířkou rovnou obvodu podstavy: 2 · π · r = 2 · 3,14 · 5 = 31,4 cm. Obsah pláště: 31,4 · 10 = 314 cm².",
+    "Povrch tvoří dvě podstavy a plášť: S = 2 · 78,5 + 314 = 157 + 314 = 471 cm²."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 137 149\" font-family=\"Inter,Arial\"><polyline points=\"2.5,131.2 2.5,31.2\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"1.24\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"102.5,131.2 102.5,31.2\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"1.24\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"102.5,31.2 102.2,29.6 101.4,28.0 100.1,26.5 98.2,25.1 95.8,23.7 93.0,22.3 89.7,21.1 86.0,20.0 81.9,19.0 77.5,18.2 72.8,17.5 68.0,16.9 62.9,16.5 57.7,16.2 52.5,16.2 47.3,16.2 42.1,16.5 37.0,16.9 32.2,17.5 27.5,18.2 23.1,19.0 19.0,20.0 15.3,21.1 12.0,22.3 9.2,23.7 6.8,25.1 4.9,26.5 3.6,28.0 2.8,29.6 2.5,31.2 2.8,32.7 3.6,34.3 4.9,35.8 6.8,37.3 9.2,38.7 12.0,40.0 15.3,41.2 19.0,42.3 23.1,43.3 27.5,44.1 32.2,44.9 37.0,45.4 42.1,45.8 47.3,46.1 52.5,46.2 57.7,46.1 62.9,45.8 68.0,45.4 72.8,44.9 77.5,44.1 81.9,43.3 86.0,42.3 89.7,41.2 93.0,40.0 95.8,38.7 98.2,37.3 100.1,35.8 101.4,34.3 102.2,32.7 102.5,31.2\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"1.24\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"2.5,131.2 2.8,132.7 3.6,134.3 4.9,135.8 6.8,137.3 9.2,138.7 12.0,140.0 15.3,141.2 19.0,142.3 23.1,143.3 27.5,144.1 32.2,144.9 37.0,145.4 42.1,145.8 47.3,146.1 52.5,146.2 57.7,146.1 62.9,145.8 68.0,145.4 72.8,144.9 77.5,144.1 81.9,143.3 86.0,142.3 89.7,141.2 93.0,140.0 95.8,138.7 98.2,137.3 100.1,135.8 101.4,134.3 102.2,132.7 102.5,131.2\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"1.24\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"102.5,131.2 102.2,129.6 101.4,128.0 100.1,126.5 98.2,125.1 95.8,123.7 93.0,122.3 89.7,121.1 86.0,120.0 81.9,119.0 77.5,118.2 72.8,117.5 68.0,116.9 62.9,116.5 57.7,116.2 52.5,116.2 47.3,116.2 42.1,116.5 37.0,116.9 32.2,117.5 27.5,118.2 23.1,119.0 19.0,120.0 15.3,121.1 12.0,122.3 9.2,123.7 6.8,125.1 4.9,126.5 3.6,128.0 2.8,129.6 2.5,131.2\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"1.24\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"4.6 3.2\"/><polyline points=\"2.5,31.2 102.5,31.2\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.71\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"4.6 3.2\"/><text x=\"52.5\" y=\"8.7\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"10.3\" fill=\"#1c2230\">10 cm</text><text x=\"105.5\" y=\"81.2\" dy=\".35em\" text-anchor=\"start\" font-family=\"Inter,Arial\" font-size=\"10.3\" fill=\"#1c2230\">10 cm</text></svg>",
+   "space": 4
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Podstavou kolmého hranolu je rovnoramenný trojúhelník se základnou 8 cm, rameny 5 cm a výškou na základnu 3 cm. Výška hranolu je 10 cm (obrázek). Vypočtěte objem a povrch hranolu.",
+   "options": null,
+   "answer": "V = 120 cm³, S = 204 cm²",
+   "steps": [
+    "Obsah podstavy: 8 · 3 : 2 = 12 cm².",
+    "Objem: V = 12 · 10 = 120 cm³.",
+    "Obvod podstavy: 5 + 5 + 8 = 18 cm. Plášť tvoří tři obdélníky s výškou 10 cm: 18 · 10 = 180 cm².",
+    "Povrch: S = 2 · 12 + 180 = 204 cm²."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 122 79\" font-family=\"Inter,Arial\"><polyline points=\"37.9,32.5 117.9,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"2.5 1.8\"/><polyline points=\"2.5,67.9 37.9,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"117.9,32.5 77.9,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"82.5,67.9 117.9,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"77.9,2.5 37.9,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"42.5,37.9 77.9,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"2.5,67.9 82.5,67.9 42.5,37.9\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.69\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"42.5,67.9 42.5,37.9\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.39\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"2.5 1.8\"/><text x=\"44.0\" y=\"53.9\" dy=\".35em\" text-anchor=\"start\" font-family=\"Inter,Arial\" font-size=\"5.7\" fill=\"#1c2230\">3 cm</text><text x=\"42.5\" y=\"73.4\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"5.7\" fill=\"#1c2230\">8 cm</text><text x=\"18.0\" y=\"47.4\" dy=\".35em\" text-anchor=\"end\" font-family=\"Inter,Arial\" font-size=\"5.7\" fill=\"#1c2230\">5 cm</text><text x=\"103.2\" y=\"55.2\" dy=\".35em\" text-anchor=\"start\" font-family=\"Inter,Arial\" font-size=\"5.7\" fill=\"#1c2230\">10 cm</text></svg>",
+   "space": 4
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Obrázek ukazuje síť kvádru. Vypočtěte objem a povrch kvádru.",
+   "options": null,
+   "answer": "V = 24 cm³, S = 52 cm²",
+   "steps": [
+    "Z obrázku: hrany kvádru mají délky 4 cm, 3 cm a 2 cm.",
+    "Objem: V = 4 · 3 · 2 = 24 cm³.",
+    "Povrch je obsah celé sítě. Dvě stěny mají 4 · 3 = 12 cm², dvě 4 · 2 = 8 cm² a dvě 3 · 2 = 6 cm².",
+    "Povrch: S = 2 · (12 + 8 + 6) = 52 cm²."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 106 115\" font-family=\"Inter,Arial\"><polygon points=\"22.5,62.3 62.5,62.3 62.5,32.3 22.5,32.3\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.96\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"2.5,62.3 22.5,62.3 22.5,32.3 2.5,32.3\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.96\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"62.5,62.3 82.5,62.3 82.5,32.3 62.5,32.3\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.96\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"22.5,32.3 62.5,32.3 62.5,12.3 22.5,12.3\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.96\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"22.5,82.3 62.5,82.3 62.5,62.3 22.5,62.3\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.96\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"22.5,112.3 62.5,112.3 62.5,82.3 22.5,82.3\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.96\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><text x=\"42.5\" y=\"7.3\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"7.9\" fill=\"#1c2230\">4 cm</text><text x=\"85.5\" y=\"47.3\" dy=\".35em\" text-anchor=\"start\" font-family=\"Inter,Arial\" font-size=\"7.9\" fill=\"#1c2230\">3 cm</text><text x=\"12.5\" y=\"67.3\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"7.9\" fill=\"#1c2230\">2 cm</text></svg>",
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Prázdné akvárium tvaru kvádru má dno o rozměrech 50 cm a 40 cm. Nalijeme do něj 30 litrů vody. a) Do jaké výšky voda sahá? b) Kolik litrů vody musíme ještě dolít, aby voda sahala do výšky 35 cm?",
+   "options": null,
+   "answer": "a) 15 cm, b) 40 l",
+   "steps": [
+    "Obsah dna: 50 · 40 = 2 000 cm². Objem vody: 30 l = 30 000 cm³.",
+    "a) Výška hladiny je objem vody dělený obsahem dna: 30 000 : 2 000 = 15 cm.",
+    "b) Do výšky 35 cm je potřeba 2 000 · 35 = 70 000 cm³ = 70 l.",
+    "Dolít musíme 70 − 30 = 40 l. Jinak: hladina musí vystoupit o 35 − 15 = 20 cm, tedy 2 000 · 20 = 40 000 cm³ = 40 l."
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 2,
+   "kind": "choice",
+   "text": "Kvádr o rozměrech 10 cm, 6 cm a 4 cm rozřízneme jedním rovným řezem rovnoběžným se stěnou o rozměrech 6 cm a 4 cm (obrázek). Vzniknou dva menší kvádry. O kolik cm² je součet povrchů obou menších kvádrů větší než povrch původního kvádru?",
+   "options": [
+    "0 cm²",
+    "24 cm²",
+    "48 cm²",
+    "60 cm²",
+    "120 cm²"
+   ],
+   "answer": "C",
+   "steps": [
+    "Každý ze dvou menších kvádrů má jednu novou stěnu, která vznikla řezem. Je to obdélník o rozměrech 6 cm a 4 cm.",
+    "Obsah jedné nové stěny: 6 · 4 = 24 cm². Obě nové stěny: 2 · 24 = 48 cm².",
+    "Ostatní stěny jsou jen části původních stěn, jejich obsah se nezměnil. Součet povrchů je tedy o 48 cm² větší, na poloze řezu nezáleží. Správně je C."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 153 76\" font-family=\"Inter,Arial\"><polyline points=\"42.3,42.5 142.3,42.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.86\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"3.2 2.2\"/><polyline points=\"21.1,63.7 42.3,42.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.86\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"3.2 2.2\"/><polyline points=\"142.3,42.5 142.3,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.86\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"121.1,63.7 142.3,42.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.86\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"142.3,2.5 42.3,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.86\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"121.1,23.7 142.3,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.86\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"42.3,2.5 42.3,42.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.86\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"3.2 2.2\"/><polyline points=\"21.1,23.7 42.3,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.86\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"21.1,63.7 121.1,63.7 121.1,23.7 21.1,23.7\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.86\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"61.1,63.7 82.3,42.5 82.3,2.5 61.1,23.7\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"0.49\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"3.2 2.2\"/><text x=\"71.1\" y=\"69.2\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"7.2\" fill=\"#1c2230\">10 cm</text><text x=\"18.6\" y=\"43.7\" dy=\".35em\" text-anchor=\"end\" font-family=\"Inter,Arial\" font-size=\"7.2\" fill=\"#1c2230\">4 cm</text><text x=\"134.7\" y=\"58.1\" dy=\".35em\" text-anchor=\"start\" font-family=\"Inter,Arial\" font-size=\"7.2\" fill=\"#1c2230\">6 cm</text></svg>",
+   "space": 2
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Do kvádrové krabice se vejde právě 24 míčů o poloměru 5 cm: 4 míče v řadě, 3 řady vedle sebe a 2 vrstvy nad sebou. Míče se dotýkají sebe navzájem i stěn krabice. a) Jaké rozměry má krabice? b) Kolik litrů je její vnitřní objem?",
+   "options": null,
+   "answer": "a) 40 cm, 30 cm, 20 cm, b) 24 l",
+   "steps": [
+    "Pozor: poloměr míče je 5 cm, tedy jeho průměr je 10 cm. V řadě vedle sebe zabere každý míč 10 cm.",
+    "a) Délka: 4 · 10 = 40 cm, šířka: 3 · 10 = 30 cm, výška: 2 · 10 = 20 cm.",
+    "b) Objem: V = 40 · 30 · 20 = 24 000 cm³ = 24 dm³ = 24 l."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Podstavou kolmého hranolu je rovnoramenný lichoběžník se základnami 12 cm a 4 cm a výškou 3 cm. Výška hranolu je 7 cm (obrázek). Vypočtěte objem a povrch hranolu.",
+   "options": null,
+   "answer": "V = 168 cm³, S = 230 cm²",
+   "steps": [
+    "Obsah podstavy: (12 + 4) : 2 · 3 = 24 cm². Objem: V = 24 · 7 = 168 cm³.",
+    "Délku ramene spočteme Pythagorovou větou. Základny se liší o 12 − 4 = 8 cm, na každé straně vyčnívá 4 cm.",
+    "Rameno: √(4² + 3²) = √25 = 5 cm.",
+    "Obvod podstavy: 12 + 4 + 5 + 5 = 26 cm. Plášť: 26 · 7 = 182 cm².",
+    "Povrch: S = 2 · 24 + 182 = 230 cm²."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 157 70\" font-family=\"Inter,Arial\"><polyline points=\"27.2,32.5 147.2,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.89\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"3.3 2.3\"/><polyline points=\"2.5,57.2 27.2,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.89\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"147.2,32.5 107.2,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.89\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"122.5,57.2 147.2,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.89\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"107.2,2.5 67.2,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.89\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"82.5,27.2 107.2,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.89\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"67.2,2.5 27.2,32.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.89\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"42.5,27.2 67.2,2.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.89\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polygon points=\"2.5,57.2 122.5,57.2 82.5,27.2 42.5,27.2\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.89\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><polyline points=\"42.5,57.2 42.5,27.2\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"0.51\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"3.3 2.3\"/><text x=\"44.5\" y=\"44.7\" dy=\".35em\" text-anchor=\"start\" font-family=\"Inter,Arial\" font-size=\"7.3\" fill=\"#1c2230\">3 cm</text><text x=\"67.5\" y=\"21.2\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"7.3\" fill=\"#1c2230\">4 cm</text><text x=\"62.5\" y=\"62.7\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"7.3\" fill=\"#1c2230\">12 cm</text><text x=\"137.9\" y=\"49.9\" dy=\".35em\" text-anchor=\"start\" font-family=\"Inter,Arial\" font-size=\"7.3\" fill=\"#1c2230\">7 cm</text></svg>",
+   "space": 5
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Nádoba tvaru kvádru má dno o rozměrech 25 cm a 16 cm a výšku 30 cm. Voda v ní sahá do výšky 12 cm. Do vody celou ponoříme kovovou krychli o hraně 10 cm (voda nepřeteče). O kolik centimetrů vystoupí hladina?",
+   "options": null,
+   "answer": "o 2,5 cm",
+   "steps": [
+    "Krychle vytlačí tolik vody, jaký je její objem: 10 · 10 · 10 = 1 000 cm³.",
+    "Obsah dna nádoby: 25 · 16 = 400 cm². Objem 1 000 cm³ rozložený na dně 400 cm² zvedne hladinu o x: 400 · x = 1 000.",
+    "x = 1 000 : 400 = 2,5 cm.",
+    "Kontrola: hladina je nyní ve výšce 12 + 2,5 = 14,5 cm. To je víc než 10 cm (krychle je celá pod vodou) a méně než 30 cm (voda nepřeteče)."
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Velkou krychli o hraně 4 cm slepíme z 64 malých krychliček o hraně 1 cm. Celý povrch velké krychle natřeme barvou a krychli potom rozebereme zpět na malé krychličky. Kolik malých krychliček má natřené a) právě dvě stěny, b) žádnou stěnu?",
+   "options": null,
+   "answer": "a) 24, b) 8",
+   "steps": [
+    "Natřené stěny mají jen krychličky při povrchu velké krychle. Dvě natřené stěny mají krychličky na hranách velké krychle, které nejsou v rozích.",
+    "a) Velká krychle má 12 hran. Na každé je 4 krychličky, dvě z nich jsou v rozích, zbývají 2. Celkem 12 · 2 = 24.",
+    "b) Žádnou natřenou stěnu mají krychličky uvnitř. Po odebrání vnější vrstvy z každé strany zbude krychle 2 · 2 · 2 = 8 krychliček.",
+    "Kontrola: 8 rohových (tři stěny) + 24 (dvě) + 6 · 4 = 24 (jedna) + 8 (žádná) = 64. ✓"
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 3,
+   "kind": "yesno",
+   "text": "Z krychle o hraně 3 cm, slepené z 27 krychliček o hraně 1 cm, vždy odebereme jednu krychličku a povrch tělesa porovnáme s povrchem původní krychle. Platí tato tvrzení?",
+   "options": [
+    "Odebereme-li krychličku z rohu, povrch se nezmění.",
+    "Odebereme-li krychličku uprostřed hrany (ne z rohu), povrch se zvětší o 2 cm².",
+    "Odebereme-li krychličku uprostřed stěny, povrch se zvětší o 2 cm²."
+   ],
+   "answer": "ANO, ANO, NE",
+   "steps": [
+    "Povrch původní krychle je 6 · 9 = 54 cm².",
+    "Odebereme-li krychličku z rohu, zmizí 3 čtverce z povrchu a 3 nové stěny se odkryjí. Povrch se nezmění. Platí.",
+    "Krychlička uprostřed hrany (ne z rohu) má na povrchu 2 stěny a odkryjí se 4 nové. Povrch se zvětší o 4 − 2 = 2 cm². Platí.",
+    "Krychlička uprostřed stěny má na povrchu 1 stěnu a odkryje se 5 nových. Povrch se zvětší o 5 − 1 = 4 cm², ne o 2 cm². Tvrzení neplatí."
+   ],
+   "figure": null,
+   "space": 1
+  }
+ ],
+ "diagnostic": [
+  {
+   "kind": "choice",
+   "text": "Hranu krychle zdvojnásobíme. Kolikrát se zvětší její objem?",
+   "options": [
+    "2krát",
+    "4krát",
+    "6krát",
+    "8krát",
+    "9krát"
+   ],
+   "answer": "D",
+   "steps": [
+    "Původní hrana a, objem a · a · a. Nová hrana 2a, objem 2a · 2a · 2a = 8 · a · a · a.",
+    "Objem se zvětší 8krát. (Povrch by se zvětšil 4krát.)"
+   ],
+   "figure": null
+  },
+  {
+   "kind": "open",
+   "text": "Plechová nádoba bez víka má tvar válce s průměrem 20 cm a výškou 5 cm. Kolik cm² plechu je na ni potřeba (spoje zanedbejte)? Použijte π = 3,14.",
+   "options": null,
+   "answer": "628 cm²",
+   "steps": [
+    "Poloměr: r = 20 : 2 = 10 cm. Dno: π · r² = 3,14 · 100 = 314 cm².",
+    "Plášť: 2 · π · r · v = 2 · 3,14 · 10 · 5 = 314 cm². Víko nepočítáme.",
+    "Plech: 314 + 314 = 628 cm²."
+   ],
+   "figure": null
+  }
+ ]
+}
