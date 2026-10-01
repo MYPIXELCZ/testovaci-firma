@@ -13,7 +13,7 @@ type Props = { searchParams: Promise<Record<string, string | string[] | undefine
 
 export default async function Buy({ searchParams }: Props) {
   const sp = await searchParams;
-  const src = String(sp.src ?? "").slice(0, 40).replace(/[^\w.-]/g, "");
+  const src = String(sp.src ?? sp.utm_source ?? "").slice(0, 40).replace(/[^\w.-]/g, "");
   const h = await headers();
   const ua = h.get("user-agent");
   const test = isInternalHost(h.get("host"));

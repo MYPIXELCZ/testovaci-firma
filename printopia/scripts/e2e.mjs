@@ -198,6 +198,7 @@ try {
   const offerRes = await fetch(offerUrl, { redirect: "manual" });
   const offerHtml = await offerRes.text();
   check(offerRes.status === 200 && /^[\x20-\x7e]+$/.test(offerUrl) && offerHtml.includes("349"), "feed: URL nabídky je přímá objednávka bez přesměrování a bez diakritiky");
+  check(/src\\?":\\?"zbozi/.test(offerHtml), "feed: zdroj návštěvy utm_source=zbozi se předá do objednávky (měření kanálu)");
   const robotsTxt = await (await fetch(`${BASE}/robots.txt`)).text();
   check(!/Disallow: \/koupit/.test(robotsTxt), "robots.txt nezakazuje /koupit (Zboží.cz musí nabídku ověřit)");
   const imgRes = await fetch(`${BASE}/zbozi-sada.png`);
