@@ -26,7 +26,8 @@ for t in topics:
         errors.append(f"{t['slug']}: {n} úloh (má být 14–18)")
     if len(t["diagnostic"]) != 2:
         errors.append(f"{t['slug']}: úvodní test má {len(t['diagnostic'])} úloh (má být 2)")
-    texts = [t["example"]["text"]] + [x["text"] for x in t["tasks"]] + [x["text"] for x in t["diagnostic"]]
+    # U ano/ne a výběru je zadání text + možnosti (stejný úvod „Platí tato tvrzení?“ je v pořádku).
+    texts = [t["example"]["text"]] + [x["text"] + "|" + "|".join(x.get("options") or []) for x in t["tasks"] + t["diagnostic"]]
     for x in texts:
         if x in seen:
             errors.append(f"Duplicitní zadání v {t['slug']} a {seen[x]}: {x[:60]}")

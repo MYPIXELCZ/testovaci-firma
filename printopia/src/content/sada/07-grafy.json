@@ -1,0 +1,321 @@
+{
+ "num": 7,
+ "slug": "grafy",
+ "title": "Grafy, tabulky a průměr",
+ "intro": "Práce s grafem, tabulkou nebo průměrem se objevuje skoro v každém testu, nejčastěji jako úloha 11 se třemi tvrzeními ANO/NE. Jsou to „levné“ body: stačí pozorně číst a počítat jednoduše.",
+ "tips": [
+  "Než začnete počítat, přečtěte název grafu, popisky os a jednotky. Zjistěte, kolik odpovídá jeden dílek stupnice: čáry v mřížce nemusí znamenat 1.",
+  "Aritmetický průměr = součet všech hodnot : jejich počet. Chybějící hodnotu najdete ze součtu: součet = průměr · počet hodnot. Průměry různě velkých skupin nesčítejte a nedělte dvěma, počítejte vážený průměr.",
+  "Medián je prostřední hodnota až po seřazení podle velikosti (u sudého počtu průměr dvou prostředních). Modus je nejčastější hodnota. Nejčastější chyba: medián vybraný z neseřazených čísel.",
+  "Kruhový diagram: celý kruh je 100 % a 360°, tedy 1 % je 3,6°. Čtvrtina kruhu je 25 % a 90°.",
+  "U tvrzení ANO/NE ověřte každé zvlášť a přesně podle grafu. Pozor na slova „dvakrát víc“, „o třetinu víc“, „nejméně“, „celkem“.",
+  "Souřadnice bodu se píší [x; y]: nejdřív vodorovně, pak svisle. U lineární závislosti y = kx + q je q hodnota y pro x = 0 a k říká, o kolik se y změní, když x vzroste o 1."
+ ],
+ "example": {
+  "text": "V písemce dopadly známky takto: jedničku dostalo 5 žáků, dvojku 8 žáků, trojku 6 žáků a čtyřku 1 žák. Vypočtěte průměrnou známku a určete medián známek.",
+  "steps": [
+   "Počet žáků: 5 + 8 + 6 + 1 = 20.",
+   "Součet všech známek: 1 · 5 + 2 · 8 + 3 · 6 + 4 · 1 = 5 + 16 + 18 + 4 = 43.",
+   "Průměr: 43 : 20 = 2,15.",
+   "Medián: známek je 20, prostřední jsou 10. a 11. v pořadí. Jedničky jsou na místech 1 až 5, dvojky na místech 6 až 13.",
+   "Obě prostřední známky jsou dvojky, medián je tedy 2."
+  ],
+  "answer": "průměr 2,15; medián 2"
+ },
+ "tasks": [
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Sloupcový graf ukazuje, kolik knih si čtenáři školní knihovny vypůjčili v jednotlivých dnech jednoho týdne. a) Kolik knih bylo vypůjčeno za celý týden? b) O kolik knih víc si čtenáři půjčili v pátek než ve středu?",
+   "options": null,
+   "answer": "a) 100 knih; b) o 10 knih",
+   "steps": [
+    "Z grafu přečteme: pondělí 15, úterý 25, středa 20, čtvrtek 10, pátek 30 knih.",
+    "a) Za týden: 15 + 25 + 20 + 10 + 30 = 100 knih.",
+    "b) Pátek − středa: 30 − 20 = 10 knih."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 168\" font-family=\"Inter,Arial\" font-size=\"10\"><line x1=\"30.0\" y1=\"138.0\" x2=\"242.0\" y2=\"138.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"141.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">0</text><line x1=\"30.0\" y1=\"118.0\" x2=\"242.0\" y2=\"118.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"121.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">5</text><line x1=\"30.0\" y1=\"98.0\" x2=\"242.0\" y2=\"98.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"101.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">10</text><line x1=\"30.0\" y1=\"78.0\" x2=\"242.0\" y2=\"78.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"81.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">15</text><line x1=\"30.0\" y1=\"58.0\" x2=\"242.0\" y2=\"58.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"61.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">20</text><line x1=\"30.0\" y1=\"38.0\" x2=\"242.0\" y2=\"38.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"41.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">25</text><line x1=\"30.0\" y1=\"18.0\" x2=\"242.0\" y2=\"18.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"21.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">30</text><text x=\"2.0\" y=\"10.0\" font-size=\"9.5\" text-anchor=\"start\" fill=\"#1c2230\">počet knih</text><rect x=\"39.3\" y=\"78.0\" width=\"23.7\" height=\"60.0\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"51.2\" y=\"149.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">po</text><rect x=\"81.7\" y=\"38.0\" width=\"23.7\" height=\"100.0\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"93.6\" y=\"149.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">út</text><rect x=\"124.1\" y=\"58.0\" width=\"23.7\" height=\"80.0\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"136.0\" y=\"149.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">st</text><rect x=\"166.5\" y=\"98.0\" width=\"23.7\" height=\"40.0\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"178.4\" y=\"149.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">čt</text><rect x=\"208.9\" y=\"18.0\" width=\"23.7\" height=\"120.0\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"220.8\" y=\"149.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">pá</text><line x1=\"30.0\" y1=\"18.0\" x2=\"30.0\" y2=\"138.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"30.0\" y1=\"138.0\" x2=\"242.0\" y2=\"138.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/></svg>",
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Je dáno sedm čísel: 9, 1, 5, 9, 7, 2, 9. Určete jejich aritmetický průměr, medián a modus.",
+   "options": null,
+   "answer": "průměr 6, medián 7, modus 9",
+   "steps": [
+    "Součet: 9 + 1 + 5 + 9 + 7 + 2 + 9 = 42, průměr 42 : 7 = 6.",
+    "Seřazená čísla: 1, 2, 5, 7, 9, 9, 9. Prostřední (čtvrté) číslo je 7, medián je 7.",
+    "Nejčastěji se opakuje číslo 9 (třikrát), modus je 9."
+   ],
+   "figure": null,
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Určete souřadnice bodů A, B, C a D zakreslených v soustavě souřadnic.",
+   "options": null,
+   "answer": "A[2; 3], B[−3; 1], C[−1; −2], D[4; −3]",
+   "steps": [
+    "Souřadnice čteme jako [x; y]: nejdřív vodorovně od svislé osy, pak svisle od vodorovné osy.",
+    "A: 2 doprava, 3 nahoru, tedy A[2; 3]. B: 3 doleva, 1 nahoru, tedy B[−3; 1].",
+    "C: 1 doleva, 2 dolů, tedy C[−1; −2]. D: 4 doprava, 3 dolů, tedy D[4; −3]."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 168\" font-family=\"Inter,Arial\" font-size=\"10\"><line x1=\"34.0\" y1=\"156.0\" x2=\"34.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"52.0\" y1=\"156.0\" x2=\"52.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"70.0\" y1=\"156.0\" x2=\"70.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"88.0\" y1=\"156.0\" x2=\"88.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"106.0\" y1=\"156.0\" x2=\"106.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"124.0\" y1=\"156.0\" x2=\"124.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"142.0\" y1=\"156.0\" x2=\"142.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"160.0\" y1=\"156.0\" x2=\"160.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"178.0\" y1=\"156.0\" x2=\"178.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"196.0\" y1=\"156.0\" x2=\"196.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"214.0\" y1=\"156.0\" x2=\"214.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"34.0\" y1=\"156.0\" x2=\"214.0\" y2=\"156.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"34.0\" y1=\"138.0\" x2=\"214.0\" y2=\"138.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"34.0\" y1=\"120.0\" x2=\"214.0\" y2=\"120.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"34.0\" y1=\"102.0\" x2=\"214.0\" y2=\"102.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"34.0\" y1=\"84.0\" x2=\"214.0\" y2=\"84.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"34.0\" y1=\"66.0\" x2=\"214.0\" y2=\"66.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"34.0\" y1=\"48.0\" x2=\"214.0\" y2=\"48.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"34.0\" y1=\"30.0\" x2=\"214.0\" y2=\"30.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"34.0\" y1=\"12.0\" x2=\"214.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"30.0\" y1=\"84.0\" x2=\"223.0\" y2=\"84.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"124.0\" y1=\"160.0\" x2=\"124.0\" y2=\"4.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><polygon points=\"226.0,84.0 219.0,81.4 219.0,86.6\" fill=\"#1c2230\"/><polygon points=\"124.0,1.0 121.4,8.0 126.6,8.0\" fill=\"#1c2230\"/><text x=\"223.0\" y=\"95.0\" font-size=\"10\" text-anchor=\"middle\" fill=\"#1c2230\">x</text><text x=\"132.0\" y=\"7.0\" font-size=\"10\" text-anchor=\"middle\" fill=\"#1c2230\">y</text><line x1=\"34.0\" y1=\"82.0\" x2=\"34.0\" y2=\"86.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"34.0\" y=\"95.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−5</text><line x1=\"52.0\" y1=\"82.0\" x2=\"52.0\" y2=\"86.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"52.0\" y=\"95.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−4</text><line x1=\"70.0\" y1=\"82.0\" x2=\"70.0\" y2=\"86.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"70.0\" y=\"95.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−3</text><line x1=\"88.0\" y1=\"82.0\" x2=\"88.0\" y2=\"86.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"88.0\" y=\"95.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−2</text><line x1=\"106.0\" y1=\"82.0\" x2=\"106.0\" y2=\"86.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"106.0\" y=\"95.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−1</text><line x1=\"142.0\" y1=\"82.0\" x2=\"142.0\" y2=\"86.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"142.0\" y=\"95.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">1</text><line x1=\"160.0\" y1=\"82.0\" x2=\"160.0\" y2=\"86.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"160.0\" y=\"95.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">2</text><line x1=\"178.0\" y1=\"82.0\" x2=\"178.0\" y2=\"86.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"178.0\" y=\"95.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">3</text><line x1=\"196.0\" y1=\"82.0\" x2=\"196.0\" y2=\"86.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"196.0\" y=\"95.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">4</text><line x1=\"214.0\" y1=\"82.0\" x2=\"214.0\" y2=\"86.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"214.0\" y=\"95.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">5</text><line x1=\"122.0\" y1=\"156.0\" x2=\"126.0\" y2=\"156.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"120.0\" y=\"159.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">−4</text><line x1=\"122.0\" y1=\"138.0\" x2=\"126.0\" y2=\"138.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"120.0\" y=\"141.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">−3</text><line x1=\"122.0\" y1=\"120.0\" x2=\"126.0\" y2=\"120.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"120.0\" y=\"123.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">−2</text><line x1=\"122.0\" y1=\"102.0\" x2=\"126.0\" y2=\"102.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"120.0\" y=\"105.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">−1</text><line x1=\"122.0\" y1=\"66.0\" x2=\"126.0\" y2=\"66.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"120.0\" y=\"69.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">1</text><line x1=\"122.0\" y1=\"48.0\" x2=\"126.0\" y2=\"48.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"120.0\" y=\"51.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">2</text><line x1=\"122.0\" y1=\"30.0\" x2=\"126.0\" y2=\"30.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"120.0\" y=\"33.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">3</text><line x1=\"122.0\" y1=\"12.0\" x2=\"126.0\" y2=\"12.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"120.0\" y=\"15.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">4</text><text x=\"120.0\" y=\"95.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">0</text><circle cx=\"160.0\" cy=\"30.0\" r=\"2.4\" fill=\"#1c2230\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"165.0\" y=\"25.0\" font-size=\"10.5\" text-anchor=\"start\" fill=\"#1c2230\">A</text><circle cx=\"70.0\" cy=\"66.0\" r=\"2.4\" fill=\"#1c2230\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"65.0\" y=\"61.0\" font-size=\"10.5\" text-anchor=\"end\" fill=\"#1c2230\">B</text><circle cx=\"106.0\" cy=\"120.0\" r=\"2.4\" fill=\"#1c2230\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"101.0\" y=\"131.0\" font-size=\"10.5\" text-anchor=\"end\" fill=\"#1c2230\">C</text><circle cx=\"196.0\" cy=\"138.0\" r=\"2.4\" fill=\"#1c2230\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"201.0\" y=\"149.0\" font-size=\"10.5\" text-anchor=\"start\" fill=\"#1c2230\">D</text></svg>",
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "choice",
+   "text": "Kruhový diagram ukazuje, které jídlo si vybralo 240 žáků ve školní jídelně. Kolik žáků si vybralo těstoviny?",
+   "options": [
+    "8",
+    "30",
+    "48",
+    "72",
+    "168"
+   ],
+   "answer": "D",
+   "steps": [
+    "Těstoviny si vybralo 30 % žáků.",
+    "30 % z 240 = 240 : 100 · 30 = 2,4 · 30 = 72 žáků.",
+    "Číslo 30 je procento, ne počet žáků. Číslo 48 jsou saláty (20 %), 168 žáků si vybralo něco jiného než těstoviny."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 168\" font-family=\"Inter,Arial\" font-size=\"10\"><path d=\"M124,84 L124.0,36.0 A48,48 0 0 1 162.8,112.2 Z\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"172.1\" y=\"58.5\" font-size=\"10\" text-anchor=\"start\" fill=\"#1c2230\">guláš</text><text x=\"172.1\" y=\"69.5\" font-size=\"10\" text-anchor=\"start\" fill=\"#1c2230\">35 %</text><path d=\"M124,84 L162.8,112.2 A48,48 0 0 1 85.2,112.2 Z\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"124.0\" y=\"147.0\" font-size=\"10\" text-anchor=\"middle\" fill=\"#1c2230\">těstoviny</text><text x=\"124.0\" y=\"157.0\" font-size=\"10\" text-anchor=\"middle\" fill=\"#1c2230\">30 %</text><path d=\"M124,84 L85.2,112.2 A48,48 0 0 1 78.3,69.2 Z\" fill=\"#fbe9b7\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"70.7\" y=\"91.4\" font-size=\"10\" text-anchor=\"end\" fill=\"#1c2230\">ryba</text><text x=\"70.7\" y=\"102.4\" font-size=\"10\" text-anchor=\"end\" fill=\"#1c2230\">15 %</text><path d=\"M124,84 L78.3,69.2 A48,48 0 0 1 124.0,36.0 Z\" fill=\"#c4cfee\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"92.3\" y=\"29.3\" font-size=\"10\" text-anchor=\"end\" fill=\"#1c2230\">saláty</text><text x=\"92.3\" y=\"39.3\" font-size=\"10\" text-anchor=\"end\" fill=\"#1c2230\">20 %</text></svg>",
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Funkce je dána předpisem y = 2x + 3. a) Vypočtěte y pro x = 5. b) Určete x, pro které je y = 15. c) Leží bod M[−2; −1] na grafu této funkce?",
+   "options": null,
+   "answer": "a) 13; b) x = 6; c) ano",
+   "steps": [
+    "a) Dosadíme x = 5: y = 2 · 5 + 3 = 13.",
+    "b) Řešíme 2x + 3 = 15, tedy 2x = 12 a x = 6.",
+    "c) Dosadíme x = −2: y = 2 · (−2) + 3 = −4 + 3 = −1. Souřadnice y bodu M je −1, bod na grafu leží."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Spojnicový graf ukazuje teplotu venku, která se měřila v 6, 9, 12, 15 a 18 hodin. a) O kolik stupňů Celsia byla nejvyšší naměřená teplota vyšší než nejnižší? b) Jaká byla průměrná teplota z těchto pěti měření?",
+   "options": null,
+   "answer": "a) o 12 °C; b) 14 °C",
+   "steps": [
+    "Z grafu přečteme teploty: 8 °C, 12 °C, 18 °C, 20 °C, 12 °C.",
+    "a) Nejvyšší je 20 °C, nejnižší 8 °C: 20 − 8 = 12 °C.",
+    "b) Součet: 8 + 12 + 18 + 20 + 12 = 70. Průměr: 70 : 5 = 14 °C."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 168\" font-family=\"Inter,Arial\" font-size=\"10\"><line x1=\"30.0\" y1=\"142.0\" x2=\"240.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"145.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">0</text><line x1=\"30.0\" y1=\"131.7\" x2=\"240.0\" y2=\"131.7\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"30.0\" y1=\"121.3\" x2=\"240.0\" y2=\"121.3\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"124.6\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">4</text><line x1=\"30.0\" y1=\"111.0\" x2=\"240.0\" y2=\"111.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"30.0\" y1=\"100.7\" x2=\"240.0\" y2=\"100.7\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"104.0\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">8</text><line x1=\"30.0\" y1=\"90.3\" x2=\"240.0\" y2=\"90.3\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"30.0\" y1=\"80.0\" x2=\"240.0\" y2=\"80.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"83.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">12</text><line x1=\"30.0\" y1=\"69.7\" x2=\"240.0\" y2=\"69.7\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"30.0\" y1=\"59.3\" x2=\"240.0\" y2=\"59.3\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"62.6\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">16</text><line x1=\"30.0\" y1=\"49.0\" x2=\"240.0\" y2=\"49.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"30.0\" y1=\"38.7\" x2=\"240.0\" y2=\"38.7\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"42.0\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">20</text><line x1=\"30.0\" y1=\"28.3\" x2=\"240.0\" y2=\"28.3\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"30.0\" y1=\"18.0\" x2=\"240.0\" y2=\"18.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"21.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">24</text><line x1=\"30.0\" y1=\"18.0\" x2=\"30.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"65.0\" y1=\"18.0\" x2=\"65.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"65.0\" y=\"153.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">6</text><line x1=\"100.0\" y1=\"18.0\" x2=\"100.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"100.0\" y=\"153.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">9</text><line x1=\"135.0\" y1=\"18.0\" x2=\"135.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"135.0\" y=\"153.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">12</text><line x1=\"170.0\" y1=\"18.0\" x2=\"170.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"170.0\" y=\"153.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">15</text><line x1=\"205.0\" y1=\"18.0\" x2=\"205.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"205.0\" y=\"153.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">18</text><line x1=\"240.0\" y1=\"18.0\" x2=\"240.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"2.0\" y=\"10.0\" font-size=\"9.5\" text-anchor=\"start\" fill=\"#1c2230\">teplota (°C)</text><text x=\"240.0\" y=\"164.0\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">čas (h)</text><polyline points=\"65.0,100.7 100.0,80.0 135.0,49.0 170.0,38.7 205.0,80.0\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><circle cx=\"65.0\" cy=\"100.7\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"100.0\" cy=\"80.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"135.0\" cy=\"49.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"170.0\" cy=\"38.7\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"205.0\" cy=\"80.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><line x1=\"30.0\" y1=\"18.0\" x2=\"30.0\" y2=\"142.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"30.0\" y1=\"142.0\" x2=\"240.0\" y2=\"142.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/></svg>",
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "yesno",
+   "text": "Sloupcový graf ukazuje, kolik žáků chodí do jednotlivých sportovních kroužků. Každý žák chodí nejvýše do jednoho kroužku. Platí tato tvrzení?",
+   "options": [
+    "Do florbalu chodí o třetinu víc žáků než do volejbalu.",
+    "Do atletiky chodí dvakrát víc žáků než do stolního tenisu.",
+    "Do plavání chodí polovina počtu žáků z florbalu."
+   ],
+   "answer": "ANO, NE, ANO",
+   "steps": [
+    "Z grafu: florbal 16, volejbal 12, plavání 8, atletika 10, stolní tenis 6 žáků.",
+    "Florbal má o 4 žáky víc než volejbal. Třetina z 12 je 4, tvrzení platí.",
+    "Dvakrát víc než stolní tenis (6) by bylo 12 žáků, atletika jich má 10. Tvrzení neplatí.",
+    "Polovina z 16 žáků florbalu je 8, přesně tolik chodí do plavání. Tvrzení platí."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 168\" font-family=\"Inter,Arial\" font-size=\"10\"><line x1=\"30.0\" y1=\"138.0\" x2=\"242.0\" y2=\"138.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"141.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">0</text><line x1=\"30.0\" y1=\"124.7\" x2=\"242.0\" y2=\"124.7\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"128.0\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">2</text><line x1=\"30.0\" y1=\"111.3\" x2=\"242.0\" y2=\"111.3\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"114.6\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">4</text><line x1=\"30.0\" y1=\"98.0\" x2=\"242.0\" y2=\"98.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"101.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">6</text><line x1=\"30.0\" y1=\"84.7\" x2=\"242.0\" y2=\"84.7\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"88.0\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">8</text><line x1=\"30.0\" y1=\"71.3\" x2=\"242.0\" y2=\"71.3\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"74.6\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">10</text><line x1=\"30.0\" y1=\"58.0\" x2=\"242.0\" y2=\"58.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"61.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">12</text><line x1=\"30.0\" y1=\"44.7\" x2=\"242.0\" y2=\"44.7\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"48.0\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">14</text><line x1=\"30.0\" y1=\"31.3\" x2=\"242.0\" y2=\"31.3\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"34.6\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">16</text><line x1=\"30.0\" y1=\"18.0\" x2=\"242.0\" y2=\"18.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"21.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">18</text><text x=\"2.0\" y=\"10.0\" font-size=\"9.5\" text-anchor=\"start\" fill=\"#1c2230\">počet žáků</text><rect x=\"39.3\" y=\"31.3\" width=\"23.7\" height=\"106.7\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"51.2\" y=\"149.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">florbal</text><rect x=\"81.7\" y=\"58.0\" width=\"23.7\" height=\"80.0\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"93.6\" y=\"149.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">volejbal</text><rect x=\"124.1\" y=\"84.7\" width=\"23.7\" height=\"53.3\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"136.0\" y=\"149.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">plavání</text><rect x=\"166.5\" y=\"71.3\" width=\"23.7\" height=\"66.7\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"178.4\" y=\"149.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">atletika</text><rect x=\"208.9\" y=\"98.0\" width=\"23.7\" height=\"40.0\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"220.8\" y=\"149.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">stolní</text><text x=\"220.8\" y=\"159.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">tenis</text><line x1=\"30.0\" y1=\"18.0\" x2=\"30.0\" y2=\"138.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"30.0\" y1=\"138.0\" x2=\"242.0\" y2=\"138.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/></svg>",
+   "space": 1
+  },
+  {
+   "level": 2,
+   "kind": "yesno",
+   "text": "Kruhový diagram ukazuje, jak do školy dojíždí 120 žáků. Velikost každé výseče je vyznačena středovým úhlem. Platí tato tvrzení?",
+   "options": [
+    "Autobusem dojíždí 48 žáků.",
+    "Autem jezdí o 6 žáků víc než na kole.",
+    "Pěšky chodí třetina všech žáků."
+   ],
+   "answer": "ANO, ANO, NE",
+   "steps": [
+    "Celý kruh je 360° a představuje 120 žáků, 1° tedy odpovídá 120 : 360 = 1/3 žáka.",
+    "Autobus: 144° → 144 : 3 = 48 žáků. Tvrzení platí.",
+    "Auto: 72° → 24 žáků, kolo: 54° → 18 žáků. Rozdíl je 24 − 18 = 6 žáků. Tvrzení platí.",
+    "Pěšky chodí 90° → 30 žáků. Třetina ze 120 žáků je 40, tvrzení neplatí (90° je čtvrtina kruhu)."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 168\" font-family=\"Inter,Arial\" font-size=\"10\"><path d=\"M124,84 L124.0,36.0 A48,48 0 0 1 152.2,122.8 Z\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"175.4\" y=\"66.3\" font-size=\"10\" text-anchor=\"start\" fill=\"#1c2230\">autobus</text><text x=\"175.4\" y=\"77.3\" font-size=\"10\" text-anchor=\"start\" fill=\"#1c2230\">144°</text><path d=\"M124,84 L152.2,122.8 A48,48 0 0 1 85.2,112.2 Z\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"115.6\" y=\"146.3\" font-size=\"10\" text-anchor=\"middle\" fill=\"#1c2230\">pěšky</text><text x=\"115.6\" y=\"156.3\" font-size=\"10\" text-anchor=\"middle\" fill=\"#1c2230\">90°</text><path d=\"M124,84 L85.2,112.2 A48,48 0 0 1 85.2,55.8 Z\" fill=\"#fbe9b7\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"70.0\" y=\"83.0\" font-size=\"10\" text-anchor=\"end\" fill=\"#1c2230\">auto</text><text x=\"70.0\" y=\"94.0\" font-size=\"10\" text-anchor=\"end\" fill=\"#1c2230\">72°</text><path d=\"M124,84 L85.2,55.8 A48,48 0 0 1 124.0,36.0 Z\" fill=\"#c4cfee\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"99.5\" y=\"24.9\" font-size=\"10\" text-anchor=\"end\" fill=\"#1c2230\">kolo</text><text x=\"99.5\" y=\"34.9\" font-size=\"10\" text-anchor=\"end\" fill=\"#1c2230\">54°</text></svg>",
+   "space": 1
+  },
+  {
+   "level": 2,
+   "kind": "yesno",
+   "text": "Tabulka ukazuje, kolik stojí půjčení kola v půjčovně podle počtu hodin. Platí tato tvrzení?",
+   "options": [
+    "Každá další hodina zdraží půjčení o 80 Kč.",
+    "Za 5 hodin by půjčení stálo 320 Kč.",
+    "Při půjčení na 4 hodiny vychází průměrně 60 Kč za hodinu."
+   ],
+   "answer": "NE, ANO, NE",
+   "steps": [
+    "Ceny rostou o 140 − 80 = 60, 200 − 140 = 60, 260 − 200 = 60 Kč. Každá další hodina zdraží půjčení o 60 Kč, ne o 80 Kč. Tvrzení neplatí.",
+    "Za 5 hodin: 260 + 60 = 320 Kč. Tvrzení platí.",
+    "Průměrná cena za hodinu při 4 hodinách: 260 : 4 = 65 Kč, ne 60 Kč. Tvrzení neplatí."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 46\" font-family=\"Inter,Arial\" font-size=\"10\"><rect x=\"2\" y=\"2\" width=\"92\" height=\"20\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"48.0\" y=\"15.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"#1c2230\">doba půjčení (h)</text><rect x=\"94\" y=\"2\" width=\"34\" height=\"20\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"111.0\" y=\"15.5\" font-size=\"10.5\" text-anchor=\"middle\" fill=\"#1c2230\">1</text><rect x=\"128\" y=\"2\" width=\"34\" height=\"20\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"145.0\" y=\"15.5\" font-size=\"10.5\" text-anchor=\"middle\" fill=\"#1c2230\">2</text><rect x=\"162\" y=\"2\" width=\"34\" height=\"20\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"179.0\" y=\"15.5\" font-size=\"10.5\" text-anchor=\"middle\" fill=\"#1c2230\">3</text><rect x=\"196\" y=\"2\" width=\"34\" height=\"20\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"213.0\" y=\"15.5\" font-size=\"10.5\" text-anchor=\"middle\" fill=\"#1c2230\">4</text><rect x=\"2\" y=\"22\" width=\"92\" height=\"20\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"48.0\" y=\"35.5\" font-size=\"10\" text-anchor=\"middle\" fill=\"#1c2230\">cena (Kč)</text><rect x=\"94\" y=\"22\" width=\"34\" height=\"20\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"111.0\" y=\"35.5\" font-size=\"10.5\" text-anchor=\"middle\" fill=\"#1c2230\">80</text><rect x=\"128\" y=\"22\" width=\"34\" height=\"20\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"145.0\" y=\"35.5\" font-size=\"10.5\" text-anchor=\"middle\" fill=\"#1c2230\">140</text><rect x=\"162\" y=\"22\" width=\"34\" height=\"20\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"179.0\" y=\"35.5\" font-size=\"10.5\" text-anchor=\"middle\" fill=\"#1c2230\">200</text><rect x=\"196\" y=\"22\" width=\"34\" height=\"20\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"213.0\" y=\"35.5\" font-size=\"10.5\" text-anchor=\"middle\" fill=\"#1c2230\">260</text></svg>",
+   "space": 1
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Cyklista ujel za čtyři dny 52 km, 60 km, 48 km a 64 km. Kolik kilometrů musí ujet pátý den, aby byl průměr za všech pět dnů 58 km denně?",
+   "options": null,
+   "answer": "66 km",
+   "steps": [
+    "Součet za pět dnů musí být 5 · 58 = 290 km.",
+    "Za první čtyři dny: 52 + 60 + 48 + 64 = 224 km.",
+    "Pátý den: 290 − 224 = 66 km.",
+    "Zkouška: (224 + 66) : 5 = 290 : 5 = 58 km. ✓"
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Body A, B a C v soustavě souřadnic jsou tři vrcholy obdélníku ABCD. Jedna jednotka na osách odpovídá 1 cm. Určete souřadnice bodu D a vypočtěte obvod a obsah obdélníku ABCD.",
+   "options": null,
+   "answer": "D[−5; 4]; obvod 14 cm; obsah 12 cm²",
+   "steps": [
+    "Z obrázku: A[−5; 1], B[−1; 1], C[−1; 4]. Strana AB je vodorovná, strana BC svislá.",
+    "Bod D leží nad bodem A ve výšce bodu C, tedy D[−5; 4].",
+    "Délky stran: AB = −1 − (−5) = 4 cm, BC = 4 − 1 = 3 cm.",
+    "Obvod: 2 · (4 + 3) = 14 cm, obsah: 4 · 3 = 12 cm²."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 168\" font-family=\"Inter,Arial\" font-size=\"10\"><line x1=\"44.0\" y1=\"144.0\" x2=\"44.0\" y2=\"24.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"64.0\" y1=\"144.0\" x2=\"64.0\" y2=\"24.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"84.0\" y1=\"144.0\" x2=\"84.0\" y2=\"24.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"104.0\" y1=\"144.0\" x2=\"104.0\" y2=\"24.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"124.0\" y1=\"144.0\" x2=\"124.0\" y2=\"24.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"144.0\" y1=\"144.0\" x2=\"144.0\" y2=\"24.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"164.0\" y1=\"144.0\" x2=\"164.0\" y2=\"24.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"184.0\" y1=\"144.0\" x2=\"184.0\" y2=\"24.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"204.0\" y1=\"144.0\" x2=\"204.0\" y2=\"24.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"44.0\" y1=\"144.0\" x2=\"204.0\" y2=\"144.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"44.0\" y1=\"124.0\" x2=\"204.0\" y2=\"124.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"44.0\" y1=\"104.0\" x2=\"204.0\" y2=\"104.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"44.0\" y1=\"84.0\" x2=\"204.0\" y2=\"84.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"44.0\" y1=\"64.0\" x2=\"204.0\" y2=\"64.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"44.0\" y1=\"44.0\" x2=\"204.0\" y2=\"44.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"44.0\" y1=\"24.0\" x2=\"204.0\" y2=\"24.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"40.0\" y1=\"124.0\" x2=\"213.0\" y2=\"124.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"164.0\" y1=\"148.0\" x2=\"164.0\" y2=\"16.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><polygon points=\"216.0,124.0 209.0,121.4 209.0,126.6\" fill=\"#1c2230\"/><polygon points=\"164.0,13.0 161.4,20.0 166.6,20.0\" fill=\"#1c2230\"/><text x=\"213.0\" y=\"135.0\" font-size=\"10\" text-anchor=\"middle\" fill=\"#1c2230\">x</text><text x=\"172.0\" y=\"19.0\" font-size=\"10\" text-anchor=\"middle\" fill=\"#1c2230\">y</text><line x1=\"44.0\" y1=\"122.0\" x2=\"44.0\" y2=\"126.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"44.0\" y=\"135.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−6</text><line x1=\"64.0\" y1=\"122.0\" x2=\"64.0\" y2=\"126.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"64.0\" y=\"135.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−5</text><line x1=\"84.0\" y1=\"122.0\" x2=\"84.0\" y2=\"126.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"84.0\" y=\"135.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−4</text><line x1=\"104.0\" y1=\"122.0\" x2=\"104.0\" y2=\"126.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"104.0\" y=\"135.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−3</text><line x1=\"124.0\" y1=\"122.0\" x2=\"124.0\" y2=\"126.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"124.0\" y=\"135.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−2</text><line x1=\"144.0\" y1=\"122.0\" x2=\"144.0\" y2=\"126.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"144.0\" y=\"135.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−1</text><line x1=\"184.0\" y1=\"122.0\" x2=\"184.0\" y2=\"126.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"184.0\" y=\"135.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">1</text><line x1=\"204.0\" y1=\"122.0\" x2=\"204.0\" y2=\"126.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"204.0\" y=\"135.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">2</text><line x1=\"162.0\" y1=\"144.0\" x2=\"166.0\" y2=\"144.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"160.0\" y=\"147.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">−1</text><line x1=\"162.0\" y1=\"104.0\" x2=\"166.0\" y2=\"104.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"160.0\" y=\"107.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">1</text><line x1=\"162.0\" y1=\"84.0\" x2=\"166.0\" y2=\"84.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"160.0\" y=\"87.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">2</text><line x1=\"162.0\" y1=\"64.0\" x2=\"166.0\" y2=\"64.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"160.0\" y=\"67.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">3</text><line x1=\"162.0\" y1=\"44.0\" x2=\"166.0\" y2=\"44.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"160.0\" y=\"47.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">4</text><line x1=\"162.0\" y1=\"24.0\" x2=\"166.0\" y2=\"24.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"160.0\" y=\"27.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">5</text><text x=\"160.0\" y=\"135.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">0</text><line x1=\"64.0\" y1=\"104.0\" x2=\"144.0\" y2=\"104.0\" stroke=\"#1c2230\" stroke-width=\"1.6\"/><line x1=\"144.0\" y1=\"104.0\" x2=\"144.0\" y2=\"44.0\" stroke=\"#1c2230\" stroke-width=\"1.6\"/><circle cx=\"64.0\" cy=\"104.0\" r=\"2.4\" fill=\"#1c2230\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"59.0\" y=\"116.0\" font-size=\"10.5\" text-anchor=\"end\" fill=\"#1c2230\">A</text><circle cx=\"144.0\" cy=\"104.0\" r=\"2.4\" fill=\"#1c2230\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"139.0\" y=\"117.0\" font-size=\"10.5\" text-anchor=\"end\" fill=\"#1c2230\">B</text><circle cx=\"144.0\" cy=\"44.0\" r=\"2.4\" fill=\"#1c2230\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"139.0\" y=\"42.0\" font-size=\"10.5\" text-anchor=\"end\" fill=\"#1c2230\">C</text></svg>",
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "choice",
+   "text": "Pro lineární funkci y = kx + q platí: pro x = 1 je y = 5 a pro x = 4 je y = 14. Která rovnice vyjadřuje tuto funkci?",
+   "options": [
+    "y = 5x",
+    "y = 2x + 3",
+    "y = 3x + 2",
+    "y = 3x + 5",
+    "y = 4x + 1"
+   ],
+   "answer": "C",
+   "steps": [
+    "Z rozdílu hodnot určíme k: k = (14 − 5) : (4 − 1) = 9 : 3 = 3.",
+    "Dosadíme x = 1 a y = 5: 5 = 3 · 1 + q, tedy q = 2. Rovnice je y = 3x + 2.",
+    "Ostatní možnosti vyhovují nejvýše jednomu bodu: y = 5x, y = 2x + 3 i y = 4x + 1 dají pro x = 1 správně 5, ale pro x = 4 vyjde 20, 11 a 17. Možnost y = 3x + 5 nevyhovuje ani prvnímu bodu (pro x = 1 vyjde 8)."
+   ],
+   "figure": null,
+   "space": 2
+  },
+  {
+   "level": 3,
+   "kind": "yesno",
+   "text": "Graf ukazuje vzdálenost cyklisty od domova podle času od vyjetí. Platí tato tvrzení?",
+   "options": [
+    "Cyklista se cestou zastavil na hodinu.",
+    "Nejdál od domova byl 35 km.",
+    "Na zpáteční cestě jel stejnou rychlostí jako v první hodině."
+   ],
+   "answer": "NE, ANO, ANO",
+   "steps": [
+    "Vodorovná část grafu od 1 h do 1,5 h znamená stání na místě. Cyklista stál půl hodiny, ne hodinu. Tvrzení neplatí.",
+    "Nejvyšší bod grafu je v čase 2,5 h a leží ve vzdálenosti 35 km od domova. Tvrzení platí.",
+    "První hodina: 20 km za 1 h, tedy 20 km/h. Zpět (od 2,5 h do 4 h) se vzdálenost zmenšila z 35 km na 5 km, to je 30 km za 1,5 h, tedy 20 km/h.",
+    "Rychlosti jsou stejné, tvrzení platí."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 168\" font-family=\"Inter,Arial\" font-size=\"10\"><line x1=\"30.0\" y1=\"142.0\" x2=\"238.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"145.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">0</text><line x1=\"30.0\" y1=\"126.5\" x2=\"238.0\" y2=\"126.5\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"30.0\" y1=\"111.0\" x2=\"238.0\" y2=\"111.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"114.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">10</text><line x1=\"30.0\" y1=\"95.5\" x2=\"238.0\" y2=\"95.5\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"30.0\" y1=\"80.0\" x2=\"238.0\" y2=\"80.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"83.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">20</text><line x1=\"30.0\" y1=\"64.5\" x2=\"238.0\" y2=\"64.5\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"30.0\" y1=\"49.0\" x2=\"238.0\" y2=\"49.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"52.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">30</text><line x1=\"30.0\" y1=\"33.5\" x2=\"238.0\" y2=\"33.5\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"30.0\" y1=\"18.0\" x2=\"238.0\" y2=\"18.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"26.0\" y=\"21.3\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">40</text><line x1=\"30.0\" y1=\"18.0\" x2=\"30.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"30.0\" y=\"153.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">0</text><line x1=\"56.0\" y1=\"18.0\" x2=\"56.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"82.0\" y1=\"18.0\" x2=\"82.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"82.0\" y=\"153.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">1</text><line x1=\"108.0\" y1=\"18.0\" x2=\"108.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"134.0\" y1=\"18.0\" x2=\"134.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"134.0\" y=\"153.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">2</text><line x1=\"160.0\" y1=\"18.0\" x2=\"160.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"186.0\" y1=\"18.0\" x2=\"186.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"186.0\" y=\"153.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">3</text><line x1=\"212.0\" y1=\"18.0\" x2=\"212.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"238.0\" y1=\"18.0\" x2=\"238.0\" y2=\"142.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><text x=\"238.0\" y=\"153.0\" font-size=\"9.5\" text-anchor=\"middle\" fill=\"#1c2230\">4</text><text x=\"2.0\" y=\"10.0\" font-size=\"9.5\" text-anchor=\"start\" fill=\"#1c2230\">vzdálenost od domova (km)</text><text x=\"238.0\" y=\"164.0\" font-size=\"9.5\" text-anchor=\"end\" fill=\"#1c2230\">čas (h)</text><polyline points=\"30.0,142.0 82.0,80.0 108.0,80.0 160.0,33.5 238.0,126.5\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><circle cx=\"30.0\" cy=\"142.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"82.0\" cy=\"80.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"108.0\" cy=\"80.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"160.0\" cy=\"33.5\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"238.0\" cy=\"126.5\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><line x1=\"30.0\" y1=\"18.0\" x2=\"30.0\" y2=\"142.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"30.0\" y1=\"142.0\" x2=\"238.0\" y2=\"142.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/></svg>",
+   "space": 1
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Přímka na obrázku je grafem lineární funkce y = kx + q. Body A a B leží v průsečících mřížky. a) Určete čísla k a q. b) Pro jakou hodnotu x je y = 15?",
+   "options": null,
+   "answer": "a) k = 2, q = −3 (y = 2x − 3); b) x = 9",
+   "steps": [
+    "Z obrázku: A[1; −1], B[3; 3].",
+    "k = (3 − (−1)) : (3 − 1) = 4 : 2 = 2.",
+    "Dosadíme bod B do y = 2x + q: 3 = 2 · 3 + q, tedy q = −3. Funkce je y = 2x − 3.",
+    "Řešíme 2x − 3 = 15, tedy 2x = 18 a x = 9."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 168\" font-family=\"Inter,Arial\" font-size=\"10\"><line x1=\"68.0\" y1=\"156.0\" x2=\"68.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"84.0\" y1=\"156.0\" x2=\"84.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"100.0\" y1=\"156.0\" x2=\"100.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"116.0\" y1=\"156.0\" x2=\"116.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"132.0\" y1=\"156.0\" x2=\"132.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"148.0\" y1=\"156.0\" x2=\"148.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"164.0\" y1=\"156.0\" x2=\"164.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"180.0\" y1=\"156.0\" x2=\"180.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"68.0\" y1=\"156.0\" x2=\"180.0\" y2=\"156.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"68.0\" y1=\"140.0\" x2=\"180.0\" y2=\"140.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"68.0\" y1=\"124.0\" x2=\"180.0\" y2=\"124.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"68.0\" y1=\"108.0\" x2=\"180.0\" y2=\"108.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"68.0\" y1=\"92.0\" x2=\"180.0\" y2=\"92.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"68.0\" y1=\"76.0\" x2=\"180.0\" y2=\"76.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"68.0\" y1=\"60.0\" x2=\"180.0\" y2=\"60.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"68.0\" y1=\"44.0\" x2=\"180.0\" y2=\"44.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"68.0\" y1=\"28.0\" x2=\"180.0\" y2=\"28.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"68.0\" y1=\"12.0\" x2=\"180.0\" y2=\"12.0\" stroke=\"#c9ccd4\" stroke-width=\"0.6\"/><line x1=\"64.0\" y1=\"108.0\" x2=\"189.0\" y2=\"108.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"100.0\" y1=\"160.0\" x2=\"100.0\" y2=\"4.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><polygon points=\"192.0,108.0 185.0,105.4 185.0,110.6\" fill=\"#1c2230\"/><polygon points=\"100.0,1.0 97.4,8.0 102.6,8.0\" fill=\"#1c2230\"/><text x=\"189.0\" y=\"119.0\" font-size=\"10\" text-anchor=\"middle\" fill=\"#1c2230\">x</text><text x=\"108.0\" y=\"7.0\" font-size=\"10\" text-anchor=\"middle\" fill=\"#1c2230\">y</text><line x1=\"68.0\" y1=\"106.0\" x2=\"68.0\" y2=\"110.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"68.0\" y=\"119.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−2</text><line x1=\"84.0\" y1=\"106.0\" x2=\"84.0\" y2=\"110.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"84.0\" y=\"119.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">−1</text><line x1=\"116.0\" y1=\"106.0\" x2=\"116.0\" y2=\"110.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"116.0\" y=\"119.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">1</text><line x1=\"132.0\" y1=\"106.0\" x2=\"132.0\" y2=\"110.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"132.0\" y=\"119.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">2</text><line x1=\"148.0\" y1=\"106.0\" x2=\"148.0\" y2=\"110.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"148.0\" y=\"119.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">3</text><line x1=\"164.0\" y1=\"106.0\" x2=\"164.0\" y2=\"110.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"164.0\" y=\"119.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">4</text><line x1=\"180.0\" y1=\"106.0\" x2=\"180.0\" y2=\"110.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"180.0\" y=\"119.0\" font-size=\"8.5\" text-anchor=\"middle\" fill=\"#1c2230\">5</text><line x1=\"98.0\" y1=\"156.0\" x2=\"102.0\" y2=\"156.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"96.0\" y=\"159.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">−3</text><line x1=\"98.0\" y1=\"140.0\" x2=\"102.0\" y2=\"140.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"96.0\" y=\"143.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">−2</text><line x1=\"98.0\" y1=\"124.0\" x2=\"102.0\" y2=\"124.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"96.0\" y=\"127.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">−1</text><line x1=\"98.0\" y1=\"92.0\" x2=\"102.0\" y2=\"92.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"96.0\" y=\"95.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">1</text><line x1=\"98.0\" y1=\"76.0\" x2=\"102.0\" y2=\"76.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"96.0\" y=\"79.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">2</text><line x1=\"98.0\" y1=\"60.0\" x2=\"102.0\" y2=\"60.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"96.0\" y=\"63.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">3</text><line x1=\"98.0\" y1=\"44.0\" x2=\"102.0\" y2=\"44.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"96.0\" y=\"47.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">4</text><line x1=\"98.0\" y1=\"28.0\" x2=\"102.0\" y2=\"28.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"96.0\" y=\"31.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">5</text><line x1=\"98.0\" y1=\"12.0\" x2=\"102.0\" y2=\"12.0\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"96.0\" y=\"15.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">6</text><text x=\"96.0\" y=\"119.0\" font-size=\"8.5\" text-anchor=\"end\" fill=\"#1c2230\">0</text><line x1=\"96.0\" y1=\"164.0\" x2=\"172.0\" y2=\"12.0\" stroke=\"#1c2230\" stroke-width=\"1.6\"/><circle cx=\"116.0\" cy=\"124.0\" r=\"2.4\" fill=\"#1c2230\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"121.0\" y=\"135.0\" font-size=\"10.5\" text-anchor=\"start\" fill=\"#1c2230\">A</text><circle cx=\"148.0\" cy=\"60.0\" r=\"2.4\" fill=\"#1c2230\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"143.0\" y=\"56.0\" font-size=\"10.5\" text-anchor=\"end\" fill=\"#1c2230\">B</text></svg>",
+   "space": 3
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Ve třídě je 12 dívek a 18 chlapců. Z písemky měly dívky průměrně 20 bodů a chlapci průměrně 15 bodů. Jaký je průměr bodů celé třídy?",
+   "options": null,
+   "answer": "17 bodů",
+   "steps": [
+    "Dívky získaly dohromady 12 · 20 = 240 bodů.",
+    "Chlapci získali dohromady 18 · 15 = 270 bodů.",
+    "Celá třída má 12 + 18 = 30 žáků a 240 + 270 = 510 bodů.",
+    "Průměr: 510 : 30 = 17 bodů.",
+    "Chybný je průměr 17,5 (průměr čísel 20 a 15): chlapců je víc než dívek, výsledek proto musí být blíž k 15."
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Pět přirozených čísel má tyto vlastnosti: jejich aritmetický průměr je 8, medián je 7, modus je 6 a největší z nich je dvakrát větší než nejmenší. Určete všech pět čísel.",
+   "options": null,
+   "answer": "6, 6, 7, 9, 12",
+   "steps": [
+    "Součet čísel je 5 · 8 = 40. Medián je prostřední číslo po seřazení, třetí číslo je tedy 7.",
+    "Modus 6 znamená, že se 6 vyskytuje aspoň dvakrát. Protože 6 < 7, jsou dvě šestky nejmenší čísla: 6, 6, 7, …",
+    "Největší číslo je 2 · 6 = 12, takže řada je 6, 6, 7, ?, 12.",
+    "Čtvrté číslo: 40 − (6 + 6 + 7 + 12) = 40 − 31 = 9.",
+    "Zkouška: 6, 6, 7, 9, 12 má součet 40, medián 7, modus 6 a 12 = 2 · 6. ✓"
+   ],
+   "figure": null,
+   "space": 4
+  }
+ ],
+ "diagnostic": [
+  {
+   "kind": "choice",
+   "text": "Kruhový diagram ukazuje, jak do školy dojíždí 150 žáků. Výseč „kolo“ má středový úhel 72°. Kolik žáků jezdí do školy na kole?",
+   "options": [
+    "20",
+    "30",
+    "72",
+    "78",
+    "108"
+   ],
+   "answer": "B",
+   "steps": [
+    "Celý kruh má 360°, výseč 72° je tedy 72 : 360 = 1/5 kruhu, to je 20 %.",
+    "1/5 ze 150 žáků je 150 : 5 = 30 žáků.",
+    "Číslo 72 je úhel, ne počet žáků. Číslo 108 by byla chybná představa „72 % ze 150“, číslo 20 je procento."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 168\" font-family=\"Inter,Arial\" font-size=\"10\"><path d=\"M124,84 L124.0,36.0 A48,48 0 0 1 169.7,69.2 Z\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"155.7\" y=\"29.3\" font-size=\"10\" text-anchor=\"start\" fill=\"#1c2230\">kolo</text><text x=\"155.7\" y=\"39.3\" font-size=\"10\" text-anchor=\"start\" fill=\"#1c2230\">72°</text><path d=\"M124,84 L169.7,69.2 A48,48 0 0 1 138.8,129.7 Z\" fill=\"#dbe4fb\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"172.1\" y=\"107.5\" font-size=\"10\" text-anchor=\"start\" fill=\"#1c2230\">pěšky</text><text x=\"172.1\" y=\"118.5\" font-size=\"10\" text-anchor=\"start\" fill=\"#1c2230\"></text><path d=\"M124,84 L138.8,129.7 A48,48 0 0 1 85.2,55.8 Z\" fill=\"#fbe9b7\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"80.3\" y=\"114.7\" font-size=\"10\" text-anchor=\"end\" fill=\"#1c2230\">autobus</text><text x=\"80.3\" y=\"125.7\" font-size=\"10\" text-anchor=\"end\" fill=\"#1c2230\"></text><path d=\"M124,84 L85.2,55.8 A48,48 0 0 1 124.0,36.0 Z\" fill=\"#c4cfee\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"99.5\" y=\"24.9\" font-size=\"10\" text-anchor=\"end\" fill=\"#1c2230\">auto</text><text x=\"99.5\" y=\"34.9\" font-size=\"10\" text-anchor=\"end\" fill=\"#1c2230\"></text></svg>"
+  },
+  {
+   "kind": "open",
+   "text": "Určete aritmetický průměr a medián čísel 17, 4, 9, 12, 4, 20, 8, 14.",
+   "options": null,
+   "answer": "průměr 11, medián 10,5",
+   "steps": [
+    "Součet: 17 + 4 + 9 + 12 + 4 + 20 + 8 + 14 = 88, průměr 88 : 8 = 11.",
+    "Seřazená čísla: 4, 4, 8, 9, 12, 14, 17, 20. Čísel je osm, prostřední jsou čtvrté a páté: 9 a 12.",
+    "Medián: (9 + 12) : 2 = 10,5."
+   ],
+   "figure": null
+  }
+ ]
+}

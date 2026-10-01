@@ -3,18 +3,72 @@
   "slug": "uvodni-test",
   "file": "00-uvodni-test.pdf",
   "title": "Úvodní test",
-  "desc": "2 úloh, ukáže, čím začít"
+  "desc": "20 úloh, ukáže, čím začít"
  },
  {
   "slug": "zlomky",
   "file": "01-zlomky.pdf",
-  "title": "1. Zlomky a desetinná čísla",
-  "desc": "15 úloh s postupy"
+  "title": "1. Zlomky, desetinná čísla, mocniny a odmocniny",
+  "desc": "16 úloh s postupy"
+ },
+ {
+  "slug": "vyrazy",
+  "file": "02-vyrazy.pdf",
+  "title": "2. Výrazy a mnohočleny",
+  "desc": "16 úloh s postupy"
+ },
+ {
+  "slug": "rovnice",
+  "file": "03-rovnice.pdf",
+  "title": "3. Lineární rovnice a soustavy",
+  "desc": "16 úloh s postupy"
+ },
+ {
+  "slug": "slovni",
+  "file": "04-slovni.pdf",
+  "title": "4. Slovní úlohy řešené rovnicí",
+  "desc": "16 úloh s postupy"
+ },
+ {
+  "slug": "procenta",
+  "file": "05-procenta.pdf",
+  "title": "5. Procenta",
+  "desc": "16 úloh s postupy"
+ },
+ {
+  "slug": "umernost",
+  "file": "06-umernost.pdf",
+  "title": "6. Poměr a úměrnost",
+  "desc": "16 úloh s postupy"
+ },
+ {
+  "slug": "grafy",
+  "file": "07-grafy.pdf",
+  "title": "7. Grafy, tabulky a průměr",
+  "desc": "16 úloh s postupy"
+ },
+ {
+  "slug": "uhly",
+  "file": "08-uhly.pdf",
+  "title": "8. Úhly a trojúhelníky",
+  "desc": "16 úloh s postupy"
+ },
+ {
+  "slug": "obsahy",
+  "file": "09-obsahy.pdf",
+  "title": "9. Obvody, obsahy, kruh a Pythagorova věta",
+  "desc": "16 úloh s postupy"
+ },
+ {
+  "slug": "vzory",
+  "file": "12-vzory.pdf",
+  "title": "12. Úsudek a vzory",
+  "desc": "16 úloh s postupy"
  },
  {
   "slug": "plan",
   "file": "99-plan-procvicovani.pdf",
   "title": "Plán procvičování",
-  "desc": "5 týdnů, jedno téma týdně"
+  "desc": "16 týdnů, jedno téma týdně"
  }
 ]

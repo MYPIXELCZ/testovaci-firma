@@ -1,0 +1,323 @@
+{
+ "num": 3,
+ "slug": "rovnice",
+ "title": "Lineární rovnice a soustavy",
+ "intro": "Lineární rovnice a soustava dvou rovnic jsou úlohou 4 jednotné zkoušky a hodnotí se podle zapsaného postupu, bez postupu nejsou body. Pište každý krok na samostatný řádek a výsledek vždy dopočítejte do konce.",
+ "tips": [
+  "Rovnici se zlomky vynásobte společným jmenovatelem všech členů, i těch bez zlomku. Při násobení šesti se číslo 3 změní na 18, nezůstane 3.",
+  "Minus před závorkou změní znaménko u každého členu v ní: 7 − 2 · (x − 1) = 7 − 2x + 2. Nejčastější chyba je nevynásobit druhý člen závorky.",
+  "Dvě závorky násobte „každý člen s každým“: (x + 3) · (x − 2) = x² − 2x + 3x − 6 = x² + x − 6. Když se členy s x² na obou stranách zruší, zbude lineární rovnice.",
+  "Členy převádějte na druhou stranu se změněným znaménkem a poslední krok vždy dopište (z 3x = 15 až x = 5). Nedokončený poslední krok stojí bod. Správnost ověřte dosazením do původní rovnice.",
+  "Vyjde-li nepravdivá rovnost (např. 6 = 5), rovnice nemá řešení. Vyjde-li vždy pravdivá rovnost (např. 0 = 0), vyhovuje každé číslo a řešení je nekonečně mnoho.",
+  "U soustavy najděte obě neznámé a zapište je jako x = …, y = …, chybějící druhá neznámá stojí body. Sčítací metoda: rovnice vynásobte tak, aby se u jedné neznámé objevila opačná čísla (např. 2y a −2y), a sečtěte je. Dosazovací metoda: z jedné rovnice vyjádřete neznámou a dosaďte ji do druhé."
+ ],
+ "example": {
+  "text": "Řešte rovnici a zapište celý postup: 3 · (x − 2) − x/2 = 1/4 · (3x + 18)",
+  "steps": [
+   "Roznásobíme závorky: 3x − 6 − 1/2 · x = 3/4 · x + 9/2.",
+   "Vynásobíme všechny členy čtyřmi, aby zmizely zlomky: 12x − 24 − 2x = 3x + 18.",
+   "Sloučíme členy s x na levé straně: 10x − 24 = 3x + 18.",
+   "Členy s x převedeme doleva, čísla doprava a změníme jim znaménka: 10x − 3x = 18 + 24, tedy 7x = 42.",
+   "Vydělíme sedmi: x = 6.",
+   "Zkouška: L = 3 · 4 − 3 = 9, P = 1/4 · 36 = 9. ✓"
+  ],
+  "answer": "x = 6"
+ },
+ "tasks": [
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Řešte rovnici: 5x − 7 = 2x + 8",
+   "options": null,
+   "answer": "x = 5",
+   "steps": [
+    "Členy s x převedeme doleva, čísla doprava a změníme jim znaménka: 5x − 2x = 8 + 7.",
+    "Sloučíme: 3x = 15.",
+    "Vydělíme třemi: x = 5.",
+    "Zkouška: L = 5 · 5 − 7 = 18, P = 2 · 5 + 8 = 18. ✓"
+   ],
+   "figure": null,
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Řešte rovnici: 4 · (x − 3) = 2x + 6",
+   "options": null,
+   "answer": "x = 9",
+   "steps": [
+    "Roznásobíme závorku: 4x − 12 = 2x + 6.",
+    "Členy s x doleva, čísla doprava: 4x − 2x = 6 + 12, tedy 2x = 18.",
+    "Vydělíme dvěma: x = 9.",
+    "Zkouška: L = 4 · (9 − 3) = 24, P = 2 · 9 + 6 = 24. ✓"
+   ],
+   "figure": null,
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Řešte rovnici: 2/5 · x − 3 = 1",
+   "options": null,
+   "answer": "x = 10",
+   "steps": [
+    "Vynásobíme všechny členy pěti (i číslo −3 a číslo 1): 2x − 15 = 5.",
+    "Přičteme 15: 2x = 20.",
+    "Vydělíme dvěma: x = 10.",
+    "Zkouška: L = 2/5 · 10 − 3 = 4 − 3 = 1 = P. ✓"
+   ],
+   "figure": null,
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "choice",
+   "text": "Které číslo je řešením rovnice 3 · (x + 2) = 5x − 4?",
+   "options": [
+    "x = 1",
+    "x = 3",
+    "x = 5",
+    "x = 10",
+    "x = −1"
+   ],
+   "answer": "C",
+   "steps": [
+    "Roznásobíme závorku: 3x + 6 = 5x − 4.",
+    "Členy převedeme: 6 + 4 = 5x − 3x, tedy 10 = 2x.",
+    "x = 5, správná je možnost C.",
+    "Ostatní možnosti jsou typické chyby: 3 (zapomenuté vynásobení čísla 2 trojkou), 1 (špatné znaménko u čísla 4), −1 (špatné znaménko u čísla 6), 10 (nedokončený poslední krok, chybí dělení dvěma)."
+   ],
+   "figure": null,
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Řešte rovnici: 7 − 2 · (x − 1) = 3",
+   "options": null,
+   "answer": "x = 3",
+   "steps": [
+    "Roznásobíme závorku, minus před ní změní obě znaménka: 7 − 2x + 2 = 3.",
+    "Sloučíme čísla: 9 − 2x = 3.",
+    "Odečteme 9: −2x = −6.",
+    "Vydělíme číslem −2: x = 3.",
+    "Zkouška: L = 7 − 2 · (3 − 1) = 7 − 4 = 3 = P. ✓"
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Řešte rovnici a uveďte celý postup: x/4 − 2 = x/6 + 1/3",
+   "options": null,
+   "answer": "x = 28",
+   "steps": [
+    "Nejmenší společný násobek jmenovatelů 4, 6 a 3 je 12. Vynásobíme dvanácti všechny členy: 3x − 24 = 2x + 4.",
+    "Členy s x doleva, čísla doprava: 3x − 2x = 4 + 24.",
+    "Sloučíme: x = 28.",
+    "Zkouška: L = 28/4 − 2 = 7 − 2 = 5, P = 28/6 + 1/3 = 14/3 + 1/3 = 5. ✓"
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Řešte rovnici a uveďte celý postup: 3/4 · (x − 2) = 1/2 · (x + 1) + 1",
+   "options": null,
+   "answer": "x = 12",
+   "steps": [
+    "Vynásobíme všechny členy čtyřmi (i číslo 1): 3 · (x − 2) = 2 · (x + 1) + 4.",
+    "Roznásobíme závorky: 3x − 6 = 2x + 2 + 4.",
+    "Sloučíme: 3x − 6 = 2x + 6.",
+    "Členy s x doleva, čísla doprava: 3x − 2x = 6 + 6, tedy x = 12.",
+    "Zkouška: L = 3/4 · 10 = 15/2, P = 1/2 · 13 + 1 = 15/2. ✓"
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Řešte soustavu rovnic dosazovací metodou a uveďte celý postup: (I) x = 3y − 4, (II) 2x − y = 7",
+   "options": null,
+   "answer": "x = 5, y = 3",
+   "steps": [
+    "Z rovnice (I) dosadíme za x do rovnice (II): 2 · (3y − 4) − y = 7.",
+    "Roznásobíme a sloučíme: 6y − 8 − y = 7, tedy 5y = 15.",
+    "Vydělíme pěti: y = 3.",
+    "Dopočítáme x z rovnice (I): x = 3 · 3 − 4 = 5.",
+    "Zkouška: (I) 3 · 3 − 4 = 5 ✓, (II) 2 · 5 − 3 = 7 ✓."
+   ],
+   "figure": null,
+   "space": 5
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Řešte soustavu rovnic sčítací metodou a uveďte celý postup: (I) 2x + y = 11, (II) 3x − 2y = 6",
+   "options": null,
+   "answer": "x = 4, y = 3",
+   "steps": [
+    "Rovnici (I) vynásobíme dvěma, aby u y byla čísla 2y a −2y: 4x + 2y = 22.",
+    "Sečteme s rovnicí (II), neznámá y se zruší: 7x = 28.",
+    "Vydělíme sedmi: x = 4.",
+    "Dosadíme do rovnice (I): 2 · 4 + y = 11, tedy y = 3.",
+    "Zkouška: (II) 3 · 4 − 2 · 3 = 12 − 6 = 6 ✓."
+   ],
+   "figure": null,
+   "space": 5
+  },
+  {
+   "level": 2,
+   "kind": "choice",
+   "text": "Která dvojice čísel je řešením soustavy rovnic (I) x + y = 8, (II) 3x − y = 4?",
+   "options": [
+    "x = 5, y = 3",
+    "x = 2, y = 2",
+    "x = 4, y = 4",
+    "x = 3, y = 5",
+    "x = 4, y = 8"
+   ],
+   "answer": "D",
+   "steps": [
+    "Rovnice sečteme: 4x = 12, tedy x = 3.",
+    "Z rovnice (I): y = 8 − 3 = 5. Řešení je x = 3, y = 5, možnost D.",
+    "Zkouška: (I) 3 + 5 = 8 ✓, (II) 3 · 3 − 5 = 4 ✓.",
+    "Ostatní možnosti splňují vždy jen jednu rovnici: A a C jen rovnici (I), B a E jen rovnici (II). Proto je nutné dosadit do obou rovnic."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "yesno",
+   "text": "Rozhodněte, zda tvrzení platí.",
+   "options": [
+    "Rovnice 3 · (x + 2) = 3x + 5 nemá žádné řešení.",
+    "Rovnice 2 · (x − 4) = 2x − 8 má právě jedno řešení.",
+    "Číslo 2 je řešením rovnice 2x + 3 = x + 5."
+   ],
+   "answer": "ANO, NE, ANO",
+   "steps": [
+    "Rovnice 3 · (x + 2) = 3x + 5 vede na 3x + 6 = 3x + 5, tedy 6 = 5. To neplatí pro žádné x, rovnice nemá řešení. Tvrzení platí.",
+    "Rovnice 2 · (x − 4) = 2x − 8 vede na 2x − 8 = 2x − 8, což platí pro každé x. Rovnice má nekonečně mnoho řešení, ne jedno. Tvrzení neplatí.",
+    "Dosadíme x = 2 do rovnice 2x + 3 = x + 5: L = 2 · 2 + 3 = 7, P = 2 + 5 = 7. Tvrzení platí."
+   ],
+   "figure": null,
+   "space": 1
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Řešte rovnici s desetinnými čísly a uveďte celý postup: 0,2x + 1,5 = 0,5x − 0,3",
+   "options": null,
+   "answer": "x = 6",
+   "steps": [
+    "Vynásobíme všechny členy deseti, aby zmizely desetinné čárky: 2x + 15 = 5x − 3.",
+    "Členy s x doprava, čísla doleva: 15 + 3 = 5x − 2x.",
+    "Sloučíme: 18 = 3x.",
+    "Vydělíme třemi: x = 6.",
+    "Zkouška: L = 0,2 · 6 + 1,5 = 1,2 + 1,5 = 2,7, P = 0,5 · 6 − 0,3 = 3 − 0,3 = 2,7. ✓"
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Řešte rovnici a uveďte celý postup: (x + 3) · (x − 2) − x · (x + 4) = 6",
+   "options": null,
+   "answer": "x = −4",
+   "steps": [
+    "Každý člen první závorky vynásobíme každým členem druhé: (x + 3) · (x − 2) = x² − 2x + 3x − 6 = x² + x − 6. Také x · (x + 4) = x² + 4x.",
+    "Dosadíme a minus před závorkou změní znaménka: x² + x − 6 − (x² + 4x) = 6, tedy x² + x − 6 − x² − 4x = 6.",
+    "Členy s x² se zruší: −3x − 6 = 6.",
+    "Přičteme 6: −3x = 12, tedy x = −4.",
+    "Zkouška: L = (−4 + 3) · (−4 − 2) − (−4) · (−4 + 4) = (−1) · (−6) − 0 = 6 = P. ✓"
+   ],
+   "figure": null,
+   "space": 5
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Řešte soustavu rovnic a uveďte celý postup: (I) x/2 + y/3 = 6, (II) y = 2x − 3",
+   "options": null,
+   "answer": "x = 6, y = 9",
+   "steps": [
+    "Rovnici (I) vynásobíme šesti: 3x + 2y = 36.",
+    "Za y dosadíme z rovnice (II): 3x + 2 · (2x − 3) = 36.",
+    "Roznásobíme a sloučíme: 3x + 4x − 6 = 36, tedy 7x − 6 = 36.",
+    "Přičteme 6: 7x = 42, x = 6.",
+    "Dopočítáme y z rovnice (II): y = 2 · 6 − 3 = 9.",
+    "Zkouška: (I) 6/2 + 9/3 = 3 + 3 = 6 ✓, (II) 2 · 6 − 3 = 9 ✓."
+   ],
+   "figure": null,
+   "space": 6
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Řešte rovnici a uveďte celý postup: 2/3 · (x − 4) − 1/2 · (x − 6) = 1/4 · x + 1",
+   "options": null,
+   "answer": "x = −8",
+   "steps": [
+    "Roznásobíme závorky, minus před druhou změní znaménka obou členů: 2/3 · x − 8/3 − 1/2 · x + 3 = 1/4 · x + 1.",
+    "Vynásobíme všechny členy dvanácti: 8x − 32 − 6x + 36 = 3x + 12.",
+    "Sloučíme: 2x + 4 = 3x + 12.",
+    "Členy s x doleva, čísla doprava: 2x − 3x = 12 − 4, tedy −x = 8.",
+    "Vynásobíme číslem −1: x = −8.",
+    "Zkouška: L = 2/3 · (−12) − 1/2 · (−14) = −8 + 7 = −1, P = 1/4 · (−8) + 1 = −2 + 1 = −1. ✓"
+   ],
+   "figure": null,
+   "space": 6
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Řešte soustavu rovnic a uveďte celý postup: (I) 3 · (x − 1) − 2y = 4, (II) 2x + 3 · (y + 1) = 25",
+   "options": null,
+   "answer": "x = 5, y = 4",
+   "steps": [
+    "Roznásobíme závorky a upravíme: (I) 3x − 2y = 7, (II) 2x + 3y = 22.",
+    "Sčítací metoda: (I) vynásobíme třemi a (II) dvěma, aby u y byla čísla −6y a 6y: 9x − 6y = 21 a 4x + 6y = 44.",
+    "Rovnice sečteme: 13x = 65, tedy x = 5.",
+    "Dosadíme do rovnice 2x + 3y = 22: 10 + 3y = 22, tedy 3y = 12 a y = 4.",
+    "Zkouška v původních rovnicích: (I) 3 · (5 − 1) − 2 · 4 = 12 − 8 = 4 ✓, (II) 2 · 5 + 3 · (4 + 1) = 10 + 15 = 25 ✓."
+   ],
+   "figure": null,
+   "space": 7
+  }
+ ],
+ "diagnostic": [
+  {
+   "kind": "open",
+   "text": "Řešte rovnici a uveďte celý postup: x/3 + 1/2 = 5/6 · x − 1",
+   "options": null,
+   "answer": "x = 3",
+   "steps": [
+    "Vynásobíme všechny členy šesti: 2x + 3 = 5x − 6.",
+    "Členy s x doprava, čísla doleva: 3 + 6 = 5x − 2x, tedy 9 = 3x.",
+    "Vydělíme třemi: x = 3.",
+    "Zkouška: L = 3/3 + 1/2 = 3/2, P = 5/6 · 3 − 1 = 5/2 − 1 = 3/2. ✓"
+   ],
+   "figure": null
+  },
+  {
+   "kind": "open",
+   "text": "Řešte soustavu rovnic a uveďte celý postup: (I) x + y = 9, (II) 3x − 2y = 2",
+   "options": null,
+   "answer": "x = 4, y = 5",
+   "steps": [
+    "Z rovnice (I) vyjádříme y: y = 9 − x.",
+    "Dosadíme do rovnice (II): 3x − 2 · (9 − x) = 2.",
+    "Roznásobíme a sloučíme: 3x − 18 + 2x = 2, tedy 5x − 18 = 2, 5x = 20.",
+    "Vydělíme pěti: x = 4. Pak y = 9 − 4 = 5.",
+    "Zkouška: (I) 4 + 5 = 9 ✓, (II) 3 · 4 − 2 · 5 = 12 − 10 = 2 ✓."
+   ],
+   "figure": null
+  }
+ ]
+}

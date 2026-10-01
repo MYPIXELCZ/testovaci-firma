@@ -1,0 +1,297 @@
+{
+ "num": 9,
+ "slug": "obsahy",
+ "title": "Obvody, obsahy, kruh a Pythagorova věta",
+ "intro": "Obvody a obsahy jsou v testu každý rok, často ve složeném obrazci nebo spolu s kruhem. Pythagorova věta se většinou skrývá uvnitř jiné úlohy: přepona, úhlopříčka obdélníku nebo výška rovnoramenného trojúhelníku.",
+ "tips": [
+  "Obvod je délka čáry kolem obrazce (v cm, m), obsah je plocha uvnitř (v cm², m²). Před počítáním si podtrhněte, co se po vás chce.",
+  "Vzorce: čtverec S = a², obdélník S = a · b, rovnoběžník S = a · v, trojúhelník S = a · v : 2, lichoběžník S = (a + c) · v : 2. Výška je kolmá k základně, často není stranou obrazce a do obvodu nepatří.",
+  "Kruh: o = 2 · π · r, S = π · r². Pozor na záměnu poloměru a průměru. Dosazuje se π ≈ 3,14, nebo 22/7, když je poloměr násobkem sedmi. Výseč je část kruhu (čtvrtina, třetina…), mezikruží je rozdíl dvou kruhů: S = π · (R² − r²), ne π · (R − r)².",
+  "Pythagorova věta: v pravoúhlém trojúhelníku platí c² = a² + b², kde c je přepona (leží proti pravému úhlu). Odvěsnu spočtete odečtením: a² = c² − b². Často se opakují trojice 3, 4, 5; 5, 12, 13; 8, 15, 17; 7, 24, 25 a jejich násobky (6, 8, 10 a podobně).",
+  "Převody obsahu: 1 m² = 10 000 cm², 1 a = 100 m², 1 ha = 10 000 m². Typická chyba je násobit stovkou místo deseti tisíci.",
+  "Složený obrazec rozdělte na jednoduché části, nebo od většího obrazce odečtěte vyříznutou část. Do obvodu patří jen vnější čára obrazce, společné hranice částí se nepočítají."
+ ],
+ "example": {
+  "text": "Obdélníkový pozemek má obvod 68 m a jednu stranu dlouhou 24 m. Vypočtěte jeho obsah a délku úhlopříčky.",
+  "steps": [
+   "Polovina obvodu je 68 : 2 = 34 m, druhá strana je tedy 34 − 24 = 10 m.",
+   "Obsah: S = 24 · 10 = 240 m².",
+   "Úhlopříčka u je přepona pravoúhlého trojúhelníku s odvěsnami 24 m a 10 m: u² = 24² + 10² = 576 + 100 = 676.",
+   "u = √676 = 26 m (trojice 5, 12, 13 zvětšená dvakrát)."
+  ],
+  "answer": "S = 240 m², u = 26 m"
+ },
+ "tasks": [
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Čtverec má obvod 36 cm. Vypočtěte jeho obsah.",
+   "options": null,
+   "answer": "81 cm²",
+   "steps": [
+    "Čtverec má čtyři stejné strany: a = 36 : 4 = 9 cm.",
+    "Obsah: S = a² = 9² = 81 cm²."
+   ],
+   "figure": null,
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Pravoúhlý trojúhelník ABC má pravý úhel při vrcholu C a odvěsny AC = 9 cm a BC = 12 cm. Vypočtěte délku přepony AB a obvod trojúhelníku.",
+   "options": null,
+   "answer": "AB = 15 cm, obvod 36 cm",
+   "steps": [
+    "Pythagorova věta: c² = 9² + 12² = 81 + 144 = 225.",
+    "c = √225 = 15 cm (trojice 3, 4, 5 zvětšená třikrát).",
+    "Obvod: 9 + 12 + 15 = 36 cm."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 208 150\" width=\"52mm\" height=\"37.5mm\"><polygon points=\"52.00,27.00 184.00,126.00 52.00,126.00\" fill=\"#e3e9f7\" stroke=\"#1c2230\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><polyline points=\"61.00,126.00 61.00,117.00 52.00,117.00\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"1.2\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><text x=\"30.00\" y=\"76.50\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">9 cm</text><text x=\"118.00\" y=\"138.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">12 cm</text><text x=\"45.90\" y=\"17.85\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">A</text><text x=\"194.30\" y=\"129.86\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">B</text><text x=\"43.20\" y=\"132.60\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">C</text></svg>",
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Převeďte: a) 3,5 m² na cm², b) 2 400 m² na hektary, c) 45 000 cm² na m².",
+   "options": null,
+   "answer": "a) 35 000 cm², b) 0,24 ha, c) 4,5 m²",
+   "steps": [
+    "1 m² = 100 · 100 = 10 000 cm², 1 ha = 10 000 m².",
+    "a) 3,5 · 10 000 = 35 000 cm².",
+    "b) 2 400 : 10 000 = 0,24 ha.",
+    "c) 45 000 : 10 000 = 4,5 m²."
+   ],
+   "figure": null,
+   "space": 2
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Kruh má průměr 20 cm. Vypočtěte jeho obvod a obsah (použijte π ≈ 3,14).",
+   "options": null,
+   "answer": "o = 62,8 cm, S = 314 cm²",
+   "steps": [
+    "Poloměr je poloviční než průměr: r = 20 : 2 = 10 cm.",
+    "Obvod: o = 2 · π · r = 2 · 3,14 · 10 = 62,8 cm.",
+    "Obsah: S = π · r² = 3,14 · 10² = 3,14 · 100 = 314 cm²."
+   ],
+   "figure": null,
+   "space": 3
+  },
+  {
+   "level": 1,
+   "kind": "open",
+   "text": "Rovnoběžník ABCD má strany AB = 15 cm a AD = 13 cm. Výška na stranu AB je 12 cm (viz obrázek). Vypočtěte obsah a obvod rovnoběžníku.",
+   "options": null,
+   "answer": "S = 180 cm², o = 56 cm",
+   "steps": [
+    "Obsah rovnoběžníku: S = a · v = 15 · 12 = 180 cm².",
+    "Obvod: o = 2 · (15 + 13) = 56 cm.",
+    "Pozor: výška 12 cm není stranou rovnoběžníku, do obvodu nepatří."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 228 150\" width=\"57mm\" height=\"37.5mm\"><polygon points=\"24.00,130.00 159.00,130.00 204.00,22.00 69.00,22.00\" fill=\"#e3e9f7\" stroke=\"#1c2230\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"69.00\" y1=\"22.00\" x2=\"69.00\" y2=\"130.00\" stroke=\"#1c2230\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><polyline points=\"77.00,130.00 77.00,122.00 69.00,122.00\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"1.2\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><text x=\"91.50\" y=\"141.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">15 cm</text><text x=\"26.19\" y=\"67.54\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">13 cm</text><text x=\"94.00\" y=\"76.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">12 cm</text><text x=\"14.57\" y=\"135.66\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">A</text><text x=\"166.04\" y=\"138.45\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">B</text><text x=\"213.43\" y=\"16.34\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">C</text><text x=\"61.96\" y=\"13.55\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">D</text></svg>",
+   "space": 2
+  },
+  {
+   "level": 2,
+   "kind": "choice",
+   "text": "Strana čtverce se zdvojnásobí. Kolikrát se zvětší jeho obsah?",
+   "options": [
+    "2krát",
+    "3krát",
+    "4krát",
+    "6krát",
+    "8krát"
+   ],
+   "answer": "C (4krát)",
+   "steps": [
+    "Původní strana a, původní obsah a². Nová strana 2a, nový obsah (2a)² = 4a².",
+    "Ověření na čísle: a = 3 cm má obsah 9 cm², strana 6 cm má obsah 36 cm², 36 : 9 = 4.",
+    "Zdvojnásobí se obvod, ale obsah se zvětší čtyřikrát."
+   ],
+   "figure": null,
+   "space": 1
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Rovnoramenný lichoběžník ABCD má základny AB = 22 cm a CD = 10 cm a ramena AD = BC = 10 cm. Vypočtěte jeho výšku a obsah.",
+   "options": null,
+   "answer": "v = 8 cm, S = 128 cm²",
+   "steps": [
+    "Výškou z vrcholů C a D vznikne obdélník a dva shodné pravoúhlé trojúhelníky. Kratší odvěsna každého z nich je (22 − 10) : 2 = 6 cm.",
+    "Rameno je přepona: v² = 10² − 6² = 100 − 36 = 64, v = 8 cm (trojice 6, 8, 10).",
+    "Obsah: S = (a + c) · v : 2 = (22 + 10) · 8 : 2 = 128 cm²."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 228 114\" width=\"57mm\" height=\"28.5mm\"><polygon points=\"26.00,92.00 202.00,92.00 154.00,28.00 74.00,28.00\" fill=\"#e3e9f7\" stroke=\"#1c2230\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"74.00\" y1=\"28.00\" x2=\"74.00\" y2=\"92.00\" stroke=\"#1c2230\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><polyline points=\"82.00,92.00 82.00,84.00 74.00,84.00\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"1.2\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><text x=\"114.00\" y=\"103.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">22 cm</text><text x=\"114.00\" y=\"17.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">10 cm</text><text x=\"32.40\" y=\"46.80\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">10 cm</text><text x=\"195.60\" y=\"46.80\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">10 cm</text><text x=\"83.00\" y=\"60.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">v</text><text x=\"16.60\" y=\"95.42\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">A</text><text x=\"211.40\" y=\"95.42\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">B</text><text x=\"161.81\" y=\"21.75\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">C</text><text x=\"66.19\" y=\"21.75\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">D</text></svg>",
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Rovnoramenný trojúhelník ABC má základnu AB = 10 cm a ramena AC = BC = 13 cm. Vypočtěte jeho výšku na základnu a obsah. Uveďte celý postup.",
+   "options": null,
+   "answer": "v = 12 cm, S = 60 cm²",
+   "steps": [
+    "Výška na základnu ji půlí: polovina základny je 10 : 2 = 5 cm.",
+    "Pythagorova věta v pravoúhlém trojúhelníku s přeponou 13 cm: v² = 13² − 5² = 169 − 25 = 144, v = 12 cm.",
+    "Obsah: S = a · v : 2 = 10 · 12 : 2 = 60 cm²."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 172 150\" width=\"43mm\" height=\"37.5mm\"><polygon points=\"40.00,130.00 130.00,130.00 85.00,22.00\" fill=\"#e3e9f7\" stroke=\"#1c2230\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"85.00\" y1=\"22.00\" x2=\"85.00\" y2=\"130.00\" stroke=\"#1c2230\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><polyline points=\"93.00,130.00 93.00,122.00 85.00,122.00\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"1.2\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><text x=\"85.00\" y=\"141.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">10 cm</text><text x=\"42.19\" y=\"67.54\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">13 cm</text><text x=\"127.81\" y=\"67.54\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">13 cm</text><text x=\"94.00\" y=\"85.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">v</text><text x=\"32.19\" y=\"136.25\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">A</text><text x=\"137.81\" y=\"136.25\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">B</text><text x=\"85.00\" y=\"12.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"14\" fill=\"#1c2230\" stroke=\"none\">C</text></svg>",
+   "space": 4
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Mezikruží je omezené dvěma soustřednými kružnicemi o poloměrech 10 cm a 5 cm. Vypočtěte jeho obsah (použijte π ≈ 3,14). Uveďte celý postup.",
+   "options": null,
+   "answer": "235,5 cm²",
+   "steps": [
+    "Obsah velkého kruhu: S₁ = π · 10² = 3,14 · 100 = 314 cm².",
+    "Obsah malého kruhu: S₂ = π · 5² = 3,14 · 25 = 78,5 cm².",
+    "Mezikruží: 314 − 78,5 = 235,5 cm². Stejně: π · (10² − 5²) = 3,14 · 75 = 235,5 cm².",
+    "Pozor: π · (10 − 5)² = 78,5 cm² je špatně, to je obsah malého kruhu."
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Obrazec má tvar čtvrtiny kruhu o poloměru 14 cm (viz obrázek). Vypočtěte jeho obsah a obvod (použijte π ≈ 22/7).",
+   "options": null,
+   "answer": "S = 154 cm², o = 50 cm",
+   "steps": [
+    "Celý kruh: S = π · r² = 22/7 · 14² = 22/7 · 196 = 616 cm². Čtvrtina: 616 : 4 = 154 cm².",
+    "Oblouk je čtvrtina obvodu kruhu: 2 · 22/7 · 14 = 88 cm, 88 : 4 = 22 cm.",
+    "Obvod obrazce tvoří oblouk a dva poloměry: 22 + 14 + 14 = 50 cm."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 182 144\" width=\"45.5mm\" height=\"36mm\"><path d=\"M 52.00 122.00 L 164.00 122.00 A 112.00 112.00 0 0 0 52.00 10.00 Z\" fill=\"#e3e9f7\" stroke=\"#1c2230\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><polyline points=\"61.00,122.00 61.00,113.00 52.00,113.00\" fill=\"none\" stroke=\"#1c2230\" stroke-width=\"1.2\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><text x=\"108.00\" y=\"134.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">14 cm</text><text x=\"30.00\" y=\"66.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">14 cm</text><text x=\"44.00\" y=\"132.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">O</text></svg>",
+   "space": 3
+  },
+  {
+   "level": 2,
+   "kind": "yesno",
+   "text": "Platí tato tvrzení?",
+   "options": [
+    "Každý obdélník s obvodem 24 cm má obsah 35 cm².",
+    "Trojúhelník o stranách 6 cm, 8 cm a 10 cm je pravoúhlý.",
+    "Obsah 0,5 m² je 5 000 cm²."
+   ],
+   "answer": "NE, ANO, ANO",
+   "steps": [
+    "Obvod 24 cm má například obdélník 5 × 7 (obsah 35 cm²), ale i čtverec 6 × 6 (obsah 36 cm²) nebo obdélník 4 × 8 (obsah 32 cm²). Tvrzení neplatí.",
+    "6² + 8² = 36 + 64 = 100 = 10². Podle obrácené Pythagorovy věty je trojúhelník pravoúhlý. Platí.",
+    "1 m² = 10 000 cm², takže 0,5 m² = 0,5 · 10 000 = 5 000 cm². Platí."
+   ],
+   "figure": null,
+   "space": 1
+  },
+  {
+   "level": 2,
+   "kind": "open",
+   "text": "Pole má tvar pravoúhlého trojúhelníku s odvěsnami 600 m a 800 m. Vypočtěte a) délku plotu kolem celého pole, b) obsah pole v hektarech.",
+   "options": null,
+   "answer": "a) 2 400 m, b) 24 ha",
+   "steps": [
+    "Přepona: c² = 600² + 800² = 360 000 + 640 000 = 1 000 000, c = 1 000 m (trojice 3, 4, 5 zvětšená 200krát).",
+    "Plot: 600 + 800 + 1 000 = 2 400 m.",
+    "Obsah: S = 600 · 800 : 2 = 240 000 m².",
+    "1 ha = 10 000 m², tedy 240 000 m² = 24 ha."
+   ],
+   "figure": null,
+   "space": 4
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Obrazec na obrázku má všechny úhly pravé, rozměry jsou v centimetrech. Vypočtěte jeho obvod a obsah.",
+   "options": null,
+   "answer": "o = 42 cm, S = 93 cm²",
+   "steps": [
+    "Chybějící strany: pravá svislá strana má 9 − 3 = 6 cm, vodorovná strana v zářezu má 12 − 7 = 5 cm.",
+    "Obvod: 12 + 6 + 5 + 3 + 7 + 9 = 42 cm (stejně jako obvod obdélníku 12 × 9).",
+    "Obsah: obdélník 12 · 9 = 108 cm² bez zářezu 5 · 3 = 15 cm² je 93 cm².",
+    "Jinak: dolní obdélník 12 · 6 = 72 cm² a horní obdélník 7 · 3 = 21 cm², dohromady 93 cm²."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 226 166\" width=\"56.5mm\" height=\"41.5mm\"><polygon points=\"44.00,146.00 212.00,146.00 212.00,62.00 142.00,62.00 142.00,20.00 44.00,20.00\" fill=\"#e3e9f7\" stroke=\"#1c2230\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><text x=\"128.00\" y=\"157.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">12 cm</text><text x=\"22.00\" y=\"83.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">9 cm</text><text x=\"93.00\" y=\"9.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">7 cm</text><text x=\"163.00\" y=\"41.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">3 cm</text></svg>",
+   "space": 3
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Okno má tvar obdélníku zakončeného nahoře půlkruhem (viz obrázek). Šířka okna je 14 dm, výška obdélníkové části je 10 dm a průměr půlkruhu je roven šířce okna. Vypočtěte obsah okna a délku jeho obvodu (použijte π ≈ 22/7).",
+   "options": null,
+   "answer": "S = 217 dm², o = 56 dm",
+   "steps": [
+    "Obdélníková část: 14 · 10 = 140 dm².",
+    "Půlkruh má poloměr 14 : 2 = 7 dm, jeho obsah je 22/7 · 7² : 2 = 22 · 7 : 2 = 77 dm².",
+    "Obsah okna: 140 + 77 = 217 dm².",
+    "Obvod: dvě svislé strany 2 · 10 = 20 dm, spodní strana 14 dm a oblouk půlkruhu 22/7 · 7 = 22 dm, dohromady 56 dm. Horní strana obdélníku do obvodu nepatří."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 172 162\" width=\"43mm\" height=\"40.5mm\"><path d=\"M 44.00 142.00 L 156.00 142.00 L 156.00 62.00 A 56.00 56.00 0 0 0 44.00 62.00 Z\" fill=\"#e3e9f7\" stroke=\"#1c2230\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><line x1=\"44.00\" y1=\"62.00\" x2=\"156.00\" y2=\"62.00\" stroke=\"#1c2230\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><text x=\"100.00\" y=\"153.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">14 dm</text><text x=\"22.00\" y=\"102.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">10 dm</text></svg>",
+   "space": 3
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Do čtverce o straně 10 cm je vepsán kruh, který se dotýká všech čtyř stran. Vypočtěte obsah vybarvené části obrázku (použijte π ≈ 3,14).",
+   "options": null,
+   "answer": "21,5 cm²",
+   "steps": [
+    "Průměr kruhu je roven straně čtverce, d = 10 cm, takže r = 5 cm.",
+    "Obsah kruhu: π · r² = 3,14 · 25 = 78,5 cm².",
+    "Obsah čtverce: 10 · 10 = 100 cm².",
+    "Vybarvená část: 100 − 78,5 = 21,5 cm²."
+   ],
+   "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 178 168\" width=\"44.5mm\" height=\"42mm\"><polygon points=\"26.00,146.00 166.00,146.00 166.00,6.00 26.00,6.00\" fill=\"#b9c4de\" stroke=\"#1c2230\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/><circle cx=\"96.00\" cy=\"76.00\" r=\"70.00\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1.6\"/><text x=\"96.00\" y=\"158.00\" dy=\".35em\" text-anchor=\"middle\" font-family=\"Inter,Arial\" font-size=\"13\" fill=\"#1c2230\" stroke=\"none\">10 cm</text></svg>",
+   "space": 3
+  },
+  {
+   "level": 3,
+   "kind": "open",
+   "text": "Rovnoramenný trojúhelník má obvod 50 cm a základnu 16 cm. Vypočtěte jeho obsah. Uveďte celý postup.",
+   "options": null,
+   "answer": "120 cm²",
+   "steps": [
+    "Ramena: (50 − 16) : 2 = 17 cm.",
+    "Výška na základnu ji půlí, polovina základny je 8 cm: v² = 17² − 8² = 289 − 64 = 225, v = 15 cm (trojice 8, 15, 17).",
+    "Obsah: S = 16 · 15 : 2 = 120 cm²."
+   ],
+   "figure": null,
+   "space": 4
+  }
+ ],
+ "diagnostic": [
+  {
+   "kind": "open",
+   "text": "Obdélník ABCD má stranu AB = 7 cm a úhlopříčku AC = 25 cm. Vypočtěte jeho obsah.",
+   "options": null,
+   "answer": "168 cm²",
+   "steps": [
+    "Trojúhelník ABC je pravoúhlý s pravým úhlem při vrcholu B a přeponou AC.",
+    "BC² = 25² − 7² = 625 − 49 = 576, BC = 24 cm (trojice 7, 24, 25).",
+    "Obsah: S = 7 · 24 = 168 cm²."
+   ],
+   "figure": null
+  },
+  {
+   "kind": "choice",
+   "text": "Obvod kruhu je 62,8 cm. Jaký je obsah kruhu (použijte π ≈ 3,14)?",
+   "options": [
+    "31,4 cm²",
+    "100 cm²",
+    "314 cm²",
+    "628 cm²",
+    "1 256 cm²"
+   ],
+   "answer": "C (314 cm²)",
+   "steps": [
+    "Z obvodu o = 2 · π · r vyjde r = 62,8 : (2 · 3,14) = 62,8 : 6,28 = 10 cm.",
+    "Obsah: S = π · r² = 3,14 · 10² = 314 cm².",
+    "Chybné možnosti: 31,4 = π · r, 100 = r², 628 = 2 · π · r², 1 256 = π · d²."
+   ],
+   "figure": null
+  }
+ ]
+}

@@ -17,7 +17,9 @@ const font = (f) => `data:font/woff2;base64,${readFileSync(new URL(`public/fonts
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 // Zlomky „a/b“ sázíme nad sebou (i se záporným čitatelem); „/“ mezi závorkami necháváme jako lomítko.
 // Proměnné jen a–d, n, x, y, aby se jednotky jako km/h nebo m/s nesázely jako zlomek.
-const math = (s) => esc(s).replace(/(?<![\p{L}\d,])(−?(?:\d+(?:,\d+)?|[a-dnxy]))\/(\d+(?:,\d+)?|[a-dnxy])(?![\p{L}\d(])/gu, '<span class="fr"><span>$1</span><span>$2</span></span>');
+// Česká typografie: číslo + jednotka, tisíce a jednopísmenné předložky se na konci řádku nerozdělí (nezlomitelná mezera).
+const nbsp = (s) => s.replace(/(\d) (?=[\p{L}%‰°\d])/gu, "$1\u00a0").replace(/(^|[\s(>])([kKsSvVzZoOuUaAiI]) (?=\S)/g, "$1$2\u00a0");
+const math = (s) => nbsp(esc(s)).replace(/(?<![\p{L}\d,])(−?(?:\d+(?:,\d+)?|[a-dnxy]))\/(\d+(?:,\d+)?|[a-dnxy])(?![\p{L}\d(])/gu, '<span class="fr"><span>$1</span><span>$2</span></span>');
 
 const CSS = `
 @font-face{font-family:F;src:url(${font("fraunces-latin-wght-normal.woff2")});font-weight:100 900}
@@ -110,7 +112,7 @@ async function pdf(file, title, body) {
     const nums = items.map((t, i) => (t.topic === d ? i + 1 : 0)).filter(Boolean);
     return `<tr><td>${d.num}. ${esc(d.title)}</td><td>${nums.join(" a ")}</td><td class="box">☐ ☐</td><td class="box">☐ nejdřív</td></tr>`;
   }).join("");
-  const body = `<header><div><h1>Úvodní test</h1><div class="sub">${items.length} úloh, 2 z každého tématu · asi 60 minut · vyhodnocení a postupy na konci</div></div><div class="logo">Printopia<span>.</span></div></header>
+  const body = `<header><div><h1>Úvodní test</h1><div class="sub">${items.length} úloh, 2 z každého tématu · asi ${Math.round(items.length * 3.5 / 10) * 10} minut, klidně na dvakrát · vyhodnocení a postupy na konci</div></div><div class="logo">Printopia<span>.</span></div></header>
 <div class="intro">Počítejte bez kalkulačky a bez nápovědy, jako u zkoušky. Úlohu, kterou nevíte, přeskočte, nehádejte. Test neslouží ke známkování: ukáže, která témata procvičit nejdřív.</div>
 ${qs}
 <div class="break"></div><div class="stop">Vyhodnocení a řešení · až po dopočítání testu</div>
