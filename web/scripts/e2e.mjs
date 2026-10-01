@@ -205,13 +205,23 @@ try {
   check(same.slice(0, 3).every((x) => x === 200) && same[3] === 429, `4. objednávka na stejný e-mail za den odmítnuta (${same.join(",")})`);
   check(fioCalls >= 4, `Fio API voláno (${fioCalls}×)`);
 
-  // 10b) Výpadek Fio API se nahlásí firmě jednou denně
+  // 10b) Výpadek Fio API se nahlásí firmě až po třech chybách v řadě a jen jednou denně
+  const fioAlerts = () => toOwner().filter((e) => e.subject.includes("Párování plateb nefunguje")).length;
   fioDown = true;
   const down = await cron();
   await cron();
-  fioDown = false;
   check(down.status === 502, "cron při chybě Fio vrací 502");
-  check(toOwner().filter((e) => e.subject.includes("Párování plateb nefunguje")).length === 1, "výpadek Fio nahlášen firmě jednou");
+  check(fioAlerts() === 0, "jednotlivé chyby Fio se firmě nehlásí");
+  fioDown = false;
+  await cron(); // úspěch vynuluje počítadlo
+  fioDown = true;
+  await cron();
+  await cron();
+  check(fioAlerts() === 0, "po úspěchu se počítá znovu od nuly (2 chyby nehlásí)");
+  await cron();
+  await cron();
+  fioDown = false;
+  check(fioAlerts() === 1, "výpadek Fio (3 chyby po sobě) nahlášen firmě jednou");
 
   // 11) Nastavení: uložení tokenu Fio přes stránku (lokálně povoleno, na produkci jen *.vercel.app)
   await page.goto(`${base}/nastaveni`);

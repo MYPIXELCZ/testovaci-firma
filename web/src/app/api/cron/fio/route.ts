@@ -9,6 +9,9 @@ import { getSecret } from "@/lib/secrets";
 
 export const maxDuration = 60;
 
+const FIO_FAILS = "alerts/fio-fails"; // počet chyb Fio API po sobě, po úspěchu se maže
+const FIO_ALERT_AFTER = 3;
+
 /** Náš VS má tvar RRMMDDxxxx s platným datem v posledních 60 dnech. Firemní účet přijímá i jiné platby. */
 function looksLikeOurVs(vs: string) {
   const m = /^(\d{2})(\d{2})(\d{2})\d{4}$/.exec(vs);
@@ -54,20 +57,29 @@ export async function GET(req: Request) {
     try {
       payments = await incomingPayments();
     } catch (e) {
-      // Nejčastěji vypršený nebo zrušený token. Upozornit firmu nejvýš jednou denně.
+      // Jednotlivé selhání sítě je běžné (bankovní API nebo Vercel na pár sekund vypadne), proto se firmě píše až po třech chybách
+      // v řadě (~15 min), nejvýš jednou denně. Limit 30 s (409) se nepočítá, to není porucha.
       const msg = e instanceof Error ? e.message : String(e);
       console.error("[cron] Fio API selhalo:", msg);
-      const marker = `alerts/fio-${new Date().toISOString().slice(0, 10)}`;
-      if (!msg.includes("409") && !msg.includes("30 s") && !(await storage.exists(marker))) {
-        await notifyOwner("Párování plateb nefunguje", [
-          `Fio API vrací chybu: ${msg}`,
-          "Nejspíš vypršel token. Vytvořte nový (Fio internetbanking → Nastavení → API, jen pro čtení) a vložte ho na https://anoberu-mypixelcz.vercel.app/nastaveni.",
-          "Do té doby se zaplacené objednávky neodešlou automaticky.",
-        ]).catch(() => undefined);
-        await storage.write(marker, msg, { overwrite: true });
+      if (!msg.includes("409") && !msg.includes("30 s")) {
+        const fails = Number((await storage.read(FIO_FAILS).catch(() => null)) ?? 0) + 1;
+        await storage.write(FIO_FAILS, String(fails), { overwrite: true }).catch(() => undefined);
+        const marker = `alerts/fio-${new Date().toISOString().slice(0, 10)}`;
+        if (fails >= FIO_ALERT_AFTER && !(await storage.exists(marker))) {
+          const network = /fetch failed|timeout|ECONN|ENOTFOUND/i.test(msg);
+          await notifyOwner("Párování plateb nefunguje", [
+            `Fio API vrací chybu: ${msg} (${fails}× po sobě)`,
+            network
+              ? "Vypadá to na výpadek spojení s bankou. Obvykle se spraví samo, další pokus běží každých 5 minut."
+              : "Nejspíš vypršel token. Vytvořte nový (Fio internetbanking → Nastavení → API, jen pro čtení) a vložte ho na https://anoberu-mypixelcz.vercel.app/nastaveni.",
+            "Do té doby se zaplacené objednávky neodešlou automaticky.",
+          ]).catch(() => undefined);
+          await storage.write(marker, msg, { overwrite: true });
+        }
       }
       return Response.json({ ...result, error: "fio" }, { status: 502 });
     }
+    if (await storage.exists(FIO_FAILS)) await storage.remove([FIO_FAILS]).catch(() => undefined);
     const matched = new Set<string>();
 
     for (const p of pending) {
