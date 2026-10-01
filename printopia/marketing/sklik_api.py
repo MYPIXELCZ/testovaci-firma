@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Zakládá a řídí kampaň ze sklik.py přes API Sklik Drak. Idempotentní: existující kampaň nezakládá znovu.
 
-    SKLIK_TOKEN=… python3 printopia/marketing/sklik_api.py [--status | --pause | --resume | --report | --rebuild | --sitelinks]
+    SKLIK_TOKEN=… python3 printopia/marketing/sklik_api.py [--status | --pause | --resume | --report | --rebuild | --sitelinks | --ads]
 
 Bez parametru založí kampaň POZASTAVENOU (spustí ji až --resume po schválení reklam, dobití kreditu a nasazení webu).
 Token je jen v env (Vercel projekt printopia, SKLIK_TOKEN), nikdy v repozitáři.
@@ -23,7 +23,7 @@ CAMPAIGN_PREFIX = "Printopia – prodej přijímačky"  # Sklik nepustí ani ná
 CAMPAIGN = f"{CAMPAIGN_PREFIX} {datetime.now(ZoneInfo('Europe/Prague')):%Y-%m-%d %H:%M}"
 OLD_CAMPAIGN = "Printopia – test přijímačky"  # první verze (kredit 0, nikdy nespuštěná), při založení nové se odstraní
 
-changing = not {"--status", "--pause", "--report"} & set(sys.argv)
+changing = not {"--status", "--pause", "--report", "--ads"} & set(sys.argv)
 if changing:
     postupy = Path(__file__).resolve().parents[2] / "plan/postupy/sklik.md"
     text = postupy.read_text(encoding="utf-8") if postupy.exists() else ""
@@ -85,6 +85,11 @@ if existing:
         print("nový stav:", status)
     if "--sitelinks" in sys.argv:
         print("odkazy a popisky přiřazeny:", attach_sitelinks(existing["id"]))
+    if "--ads" in sys.argv:  # stav schválení reklam (adStatus nastavuje Sklik)
+        ads = call("ads.list", user, {"campaign": {"ids": [existing["id"]]}, "isDeleted": False},
+                   {"offset": 0, "limit": 100, "displayColumns": ["id", "adStatus", "creative1"]}).get("ads", [])
+        for a in ads:
+            print(f"  reklama {a['id']}: {a.get('adStatus')} – {a.get('creative1')}")
     if "--report" in sys.argv:
         print(json.dumps(existing, ensure_ascii=False))
     sys.exit(0)
