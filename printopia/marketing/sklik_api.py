@@ -100,10 +100,11 @@ if existing:
         rid = call("campaigns.createReport", user, {"dateFrom": day, "dateTo": day}, {"statGranularity": "total", "includeCurrentDayStats": True})["reportId"]
         rows = call("campaigns.readReport", user, rid, {"offset": 0, "limit": 100, "allowEmptyStatistics": True,
                                                        "displayColumns": ["id", "impressions", "clicks", "totalMoney"]})["report"]
+        names = {c["id"]: c["name"] for c in camps}  # jen neodstraněné kampaně (vyhledávání i Nákupy/Zboží.cz)
         for r in rows:
-            if r["id"] == existing["id"]:
+            if r["id"] in names:
                 st = r["stats"][0]
-                print(f"dnes: zobrazení {st['impressions']}, kliky {st['clicks']}, útrata {st['totalMoney'] / 100} Kč")
+                print(f"dnes {names[r['id']][:40]}: zobrazení {st['impressions']}, kliky {st['clicks']}, útrata {st['totalMoney'] / 100} Kč")
     if "--report" in sys.argv:
         print(json.dumps(existing, ensure_ascii=False))
     sys.exit(0)
