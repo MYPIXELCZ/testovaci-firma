@@ -89,12 +89,13 @@ def cm(x) -> str:
 # ------------------------------------------------------------------ obrázek hotové konstrukce (SVG do klíče)
 class Fig:
     """Kresba v centimetrech (y nahoru). Měřítko SVG se zvolí tak, aby po zmenšení na 62 × 42 mm měl text 2,8 mm.
-    Styly čar: main (výsledek), thin (pomocné úsečky), aux (kružnice, oblouky, přímky), dash (přerušovaně)."""
+    Styly čar: main (výsledek), thin (pomocné úsečky), aux (kružnice, oblouky, přímky), dash (přerušovaně).
+    Popisky bodů a délek se umísťují automaticky tam, kde nepřekrývají čáry ani jiné popisky."""
     U = 10
 
     def __init__(self):
         self.el = []
-        self.c = None  # střed, od kterého se odsazují popisky bodů
+        self.c = None  # střed kresby, od kterého se popisky raději odsazují směrem ven
 
     @staticmethod
     def xy(p):
@@ -120,13 +121,14 @@ class Fig:
         self.arc(c, r, a - span / 2, a + span / 2, st)
 
     def dot(self, p, label=None, d=None):
+        """Bod s popiskem; d = pevné odsazení popisku v cm (jinak automaticky)."""
         self.el.append(("d", self.xy(p), label, d))
 
     def text(self, p, s, anchor="middle"):
         self.el.append(("t", self.xy(p), s, anchor))
 
-    def dim(self, p, q, s, side=1):
-        """Popisek délky u úsečky pq: na straně vlevo (side = 1) nebo vpravo (−1) od směru p → q."""
+    def dim(self, p, q, s, side=0):
+        """Popisek délky u úsečky pq; side = 1 vlevo od směru p → q, −1 vpravo, 0 automaticky."""
         self.el.append(("m", self.xy(p), self.xy(q), s, side))
 
     def rmark(self, v, p1, p2, s=0.4):
@@ -140,52 +142,100 @@ class Fig:
         a2 = a1 + (a2 - a1) % 360
         self.arc(v, r, a1, a2, "thin")
         if s:
-            self.el.append(("a", self.xy(v + (r + 0.3) * unit((a1 + a2) / 2)), s, self.xy(v), (a1 + a2) / 2))
+            self.el.append(("a", self.xy(v + (r + 0.35) * unit((a1 + a2) / 2)), s))
+
+    # ---- automatické umístění popisků
+    def _samples(self):
+        pts = []
+        for e in self.el:
+            if e[0] == "l":
+                for (x0, y0), (x1, y1) in zip(e[1], e[1][1:]):
+                    n = max(1, int(math.hypot(x1 - x0, y1 - y0) / 0.1))
+                    pts += [(x0 + (x1 - x0) * i / n, y0 + (y1 - y0) * i / n) for i in range(n + 1)]
+            elif e[0] == "d":
+                pts += [e[1]] * 6  # bod popisek nepřekrývá
+        return pts
 
     def _resolve(self, k, fs):
-        """Převede popisky na pevné polohy při daném měřítku k (mm na jednotku) a velikosti písma fs."""
-        U, out = self.U, []
+        """Převede popisky na pevné polohy při měřítku k (mm na jednotku) a velikosti písma fs (jednotek)."""
+        U = self.U
         cx, cy = self.xy(self.c) if self.c is not None else (0.0, 0.0)
+        samples = self._samples()
+        boxes, out = [], []
+
+        def box(pos, s):
+            w, h = 0.58 * fs * len(s) / U, 1.15 * fs / U
+            return (pos[0] - w / 2, pos[1] - h / 2, pos[0] + w / 2, pos[1] + h / 2)
+
+        def cost(b, pos, base):
+            x0, y0, x1, y1 = b[0] - 0.06, b[1] - 0.06, b[2] + 0.06, b[3] + 0.06
+            pen = sum(1 for (x, y) in samples if x0 <= x <= x1 and y0 <= y <= y1)
+            for o in boxes:
+                if b[0] < o[2] and o[0] < b[2] and b[1] < o[3] and o[1] < b[3]:
+                    pen += 40
+            return pen + 0.3 * math.hypot(pos[0] - base[0], pos[1] - base[1]) / (3.0 / (k * U)) * 0 + 0.02 * (-math.hypot(pos[0] - cx, pos[1] - cy))
+
         for e in self.el:
             if e[0] == "l":
                 out.append(("l", e[1], e[2]))
             elif e[0] == "d":
-                p, label, d = e[1], e[2], e[3]
-                out.append(("d", p))
-                if label:
-                    if d is None:
-                        v = complex(p[0] - cx, p[1] - cy)
-                        v = v / abs(v) if abs(v) > 1e-9 else 1j
-                        d = (v.real * 3.4 / (k * U), v.imag * 3.4 / (k * U))
-                    out.append(("t", (p[0] + d[0], p[1] + d[1]), label, "middle", True))
+                out.append(("d", e[1]))
             elif e[0] == "t":
                 out.append(("t", e[1], e[2], e[3], False))
-            elif e[0] == "m":
-                p, q, s, side = e[1], e[2], e[3], e[4]
-                v = complex(q[0] - p[0], q[1] - p[1])
-                n = 1j * v / abs(v) * side
-                off = 3.0 / (k * U)
-                out.append(("t", ((p[0] + q[0]) / 2 + n.real * off, (p[1] + q[1]) / 2 + n.imag * off), s, "middle", False))
+                boxes.append(box(e[1], e[2]))
             elif e[0] == "a":
                 out.append(("t", e[1], e[2], "middle", False))
+                boxes.append(box(e[1], e[2]))
+        for e in self.el:
+            if e[0] == "d" and e[2]:
+                p, label, d = e[1], e[2], e[3]
+                if d is not None:
+                    pos = (p[0] + d[0], p[1] + d[1])
+                else:
+                    best = None
+                    for ring in (3.6, 5.0):
+                        r = ring / (k * U)
+                        for ang in range(0, 360, 30):
+                            pos = (p[0] + r * math.cos(math.radians(ang)), p[1] + r * math.sin(math.radians(ang)))
+                            c = cost(box(pos, label), pos, p) + (ring - 3.6) * 2
+                            if best is None or c < best[0]:
+                                best = (c, pos)
+                    pos = best[1]
+                out.append(("t", pos, label, "middle", True))
+                boxes.append(box(pos, label))
+        for e in self.el:
+            if e[0] == "m":
+                p, q, s, side = e[1], e[2], e[3], e[4]
+                v = complex(q[0] - p[0], q[1] - p[1])
+                n = 1j * v / abs(v)
+                best = None
+                for t in (0.5, 0.35, 0.65):
+                    for sd in ((1, -1) if side == 0 else (side,)):
+                        for ring in (3.3, 4.6, 6.0):
+                            r = ring / (k * U)
+                            pos = ((p[0] + (q[0] - p[0]) * t) + sd * n.real * r, (p[1] + (q[1] - p[1]) * t) + sd * n.imag * r)
+                            c = cost(box(pos, s), pos, p) + abs(t - 0.5) * 1.5 + (ring - 3.3) * 1.0
+                            if best is None or c < best[0]:
+                                best = (c, pos)
+                out.append(("t", best[1], s, "middle", False))
+                boxes.append(box(best[1], s))
         return out
 
     def svg(self, single=False) -> str:
         U, fs, k = self.U, 8.0, 0.4
-        for _ in range(16):
+        for _ in range(10):
             xs, ys = [], []
             for e in self._resolve(k, fs):
                 if e[0] == "t":
-                    w = 0.56 * fs * len(e[2]) / U
-                    x0 = e[1][0] - w / 2
-                    pts = [(x0, e[1][1] - 0.6 * fs / U), (x0 + w, e[1][1] + 0.6 * fs / U)]
+                    w = 0.58 * fs * len(e[2]) / U
+                    pts = [(e[1][0] - w / 2, e[1][1] - 0.6 * fs / U), (e[1][0] + w / 2, e[1][1] + 0.6 * fs / U)]
                 elif e[0] == "d":
                     pts = [e[1]]
                 else:
                     pts = e[1]
                 xs += [p[0] for p in pts]
                 ys += [p[1] for p in pts]
-            x0, x1, y0, y1 = min(xs) - 0.3, max(xs) + 0.3, min(ys) - 0.3, max(ys) + 0.3
+            x0, x1, y0, y1 = min(xs) - 0.2, max(xs) + 0.2, min(ys) - 0.2, max(ys) + 0.2
             W, H = (x1 - x0) * U, (y1 - y0) * U
             k = min(62 / W, 42 / H)
             fs = 2.8 / k
@@ -213,7 +263,7 @@ class Fig:
             if e[0] == "t":
                 x, y = xy(e[1]).split(",")
                 wt = ' font-weight="600"' if e[4] else ""
-                out.append(f'<text x="{x}" y="{y}" dy=".35em" text-anchor="{e[3]}" font-family="Inter,Arial" font-size="{fs:.1f}"{wt} fill="{INK}">{e[2]}</text>')
+                out.append(f'<text x="{x}" y="{y}" dy=".35em" text-anchor="middle" font-family="Inter,Arial" font-size="{fs:.1f}"{wt} fill="{INK}">{e[2]}</text>')
         out.append("</svg>")
         s = "".join(out)
         return s.replace('"', "'") if single else s
@@ -280,9 +330,9 @@ f.seg(S, C2, "main")
 f.rmark(S, B, C1)
 pt_labels(f, A=A, B=B, S=S, C=C1, C_=C2)
 f.text(S + P(0.35, 5.0), "o", "start")
-f.dim(A, C1, "5 cm", -1)
-f.dim(S, C1, f"{cm(SC)} cm", -1)
-f.dim(A, B, "7 cm", 1)
+f.dim(A, C1, "5 cm")
+f.dim(S, C1, f"{cm(SC)} cm")
+f.dim(A, B, "7 cm")
 task(1, "Narýsujte úsečku AB délky 7 cm a sestrojte její osu o. Najděte všechny body C, které leží na ose o a mají od bodu A vzdálenost 5 cm. "
         "Kolik takových bodů je? Změřte vzdálenost bodu C od středu S úsečky AB.",
      f"2 body (jeden nad a jeden pod přímkou AB). Kontrola: |SC| ≈ {cm(SC)} cm.",
@@ -309,10 +359,10 @@ f.arc_at(B, 4.5, C)
 f.seg(C, P(foot, 0), "dash")
 f.rmark(P(foot, 0), B, C)
 pt_labels(f, A=A, B=B, C=C)
-f.dim(A, B, "6 cm", 1)
-f.dim(B, C, "4,5 cm", 1)
-f.dim(C, A, "5 cm", 1)
-f.dim(P(foot, 0), C, f"{cm(v)} cm", -1)
+f.dim(A, B, "6 cm")
+f.dim(B, C, "4,5 cm")
+f.dim(C, A, "5 cm")
+f.dim(P(foot, 0), C, f"{cm(v)} cm")
 task(1, "Narýsujte vodorovnou úsečku AB, |AB| = 6 cm. Sestrojte trojúhelník ABC, v němž |AC| = 5 cm, |BC| = 4,5 cm a bod C leží nad přímkou AB. "
         "Kolik řešení má úloha? Změřte vzdálenost bodu C od přímky AB (výšku na stranu AB).",
      f"1 řešení. Kontrola: výška na stranu AB ≈ {cm(v)} cm.",
@@ -349,7 +399,7 @@ f.rmark(P(X.real, 0), V, X)
 f.amark(V, arm_a, arm_b, 1.2, "60°")
 pt_labels(f, V=V, A=arm_a, B=arm_b, P=Pp, Q=Q, X=X)
 f.text(7.4 * R / abs(R) + P(0.1, 0.3), "o")
-f.dim(P(X.real, 0), X, f"{cm(d1)} cm", -1)
+f.dim(P(X.real, 0), X, f"{cm(d1)} cm")
 task(1, "Sestrojte úhel AVB o velikosti 60° (použijte kružítko, ne úhloměr) a jeho osu o. Na ose najděte bod X, který má od vrcholu V vzdálenost 5 cm. "
         "Změřte vzdálenost bodu X od ramene VA (kolmo k rameni).",
      f"1 řešení. Kontrola: bod X je od každého ramene vzdálený {cm(d1)} cm.",
@@ -381,7 +431,7 @@ pt_labels(f, S=S0)
 for z in pts4:
     f.dot(z, "X" + ("1" if z.real > 0 and z.imag > 0 else "2" if z.real < 0 and z.imag > 0 else "3" if z.real < 0 else "4"))
 f.text(P(4.6, 0.35), "p", "end")
-f.dim(Xu[0], Xu[1], f"{cm(xx)} cm", 1)
+f.dim(Xu[0], Xu[1], f"{cm(xx)} cm")
 f.text(P(4.3, 2.0), "r", "start")
 f.text(P(4.3, -2.0), "r′", "start")
 task(1, "Narýsujte přímku p a na ní bod S. Najděte všechny body X, které mají od bodu S vzdálenost 3 cm a od přímky p vzdálenost 2 cm. "
@@ -412,9 +462,9 @@ f.rmark(S, B, C)
 pt_labels(f, A=A, B=B, C=C)
 f.dot(S, "S", (0.25, -0.65))
 f.text(P(3.35, 4.95), "o", "start")
-f.dim(A, B, "6 cm", 1)
-f.dim(S, C, "4 cm", -1)
-f.dim(A, C, f"{cm(ram)} cm", -1)
+f.dim(A, B, "6 cm")
+f.dim(S, C, "4 cm")
+f.dim(A, C, f"{cm(ram)} cm")
 task(1, "Sestrojte rovnoramenný trojúhelník ABC se základnou AB, |AB| = 6 cm, a výškou na základnu 4 cm (bod C leží nad přímkou AB). Změřte délku ramene AC.",
      f"1 řešení. Kontrola: |AC| = |BC| = {cm(ram)} cm.",
      ["Rozbor: v rovnoramenném trojúhelníku leží vrchol C na ose základny AB. Výška na základnu je 4 cm, takže C je na ose ve vzdálenosti 4 cm od AB.",
@@ -437,9 +487,9 @@ f.arc_at(A, 5, C, 20)
 f.seg(A, 5.8 * unit(50), "dash")
 f.amark(A, B, C, 1.2, "50°")
 pt_labels(f, A=A, B=B, C=C)
-f.dim(A, B, "6 cm", 1)
-f.dim(A, C, "5 cm", -1)
-f.dim(B, C, f"{cm(BC)} cm", 1)
+f.dim(A, B, "6 cm")
+f.dim(A, C, "5 cm")
+f.dim(B, C, f"{cm(BC)} cm")
 bx, by = round(C.real, 1), round(C.imag, 1)
 task(2, "Narýsujte úsečku AB, |AB| = 6 cm. Sestrojte trojúhelník ABC, v němž |AC| = 5 cm, velikost úhlu BAC je 50° a bod C leží nad přímkou AB. "
         "Změřte délku strany BC.",
@@ -465,9 +515,9 @@ f.seg(C, C + 0.9 * (C - B) / abs(C - B), "dash")
 f.amark(A, B, C, 1.3, "45°")
 f.amark(B, C, A, 1.0, "60°")
 pt_labels(f, A=A, B=B, C=C)
-f.dim(A, B, "7 cm", 1)
-f.dim(A, C, f"{cm(AC)} cm", -1)
-f.dim(B, C, f"{cm(BC)} cm", 1)
+f.dim(A, B, "7 cm")
+f.dim(A, C, f"{cm(AC)} cm")
+f.dim(B, C, f"{cm(BC)} cm")
 task(2, "Narýsujte úsečku AB, |AB| = 7 cm. Sestrojte trojúhelník ABC, v němž velikost úhlu BAC je 45°, velikost úhlu ABC je 60° a bod C leží nad přímkou AB. "
         "Změřte délky stran AC a BC.",
      f"1 řešení. Kontrola: |AC| ≈ {cm(AC)} cm, |BC| ≈ {cm(BC)} cm.",
@@ -501,8 +551,8 @@ for X in circ_circ(A, 3, Cc, 3):
 f.rmark(S, Cc, D)
 pt_labels(f, A=A, B=Bq, C=Cc, D=D)
 f.dot(S, "S", (0.3, -0.6))
-f.dim(A, Cc, "5 cm", 1)
-f.dim(A, Bq, f"{cm(side)} cm", 1)
+f.dim(A, Cc, "5 cm")
+f.dim(A, Bq, f"{cm(side)} cm")
 task(2, "Sestrojte čtverec ABCD, jehož úhlopříčka AC má délku 5 cm. Změřte délku strany čtverce.",
      f"1 řešení (čtverec je určen jednoznačně). Kontrola: strana ≈ {cm(side)} cm.",
      ["Rozbor: úhlopříčky čtverce jsou stejně dlouhé, navzájem kolmé a půlí se. Vrcholy B a D proto leží na ose úhlopříčky AC a jsou od jejího středu S vzdálené 2,5 cm (polovina úhlopříčky).",
@@ -527,10 +577,10 @@ f.seg(A, Cp, "thin")
 f.seg(B, D, "thin")
 f.amark(A, B, D, 1.0, "60°")
 pt_labels(f, A=A, B=B, C=Cp, D=D)
-f.dim(A, B, "6 cm", 1)
-f.dim(D, A, "4 cm", 1)
-f.dim(A, Cp, f"{cm(AC)} cm", 1)
-f.dim(B, D, f"{cm(BD)} cm", 1)
+f.dim(A, B, "6 cm")
+f.dim(D, A, "4 cm")
+f.dim(A, Cp, f"{cm(AC)} cm")
+f.dim(B, D, f"{cm(BD)} cm")
 h9 = D.imag
 task(2, "Sestrojte rovnoběžník ABCD, v němž |AB| = 6 cm, |AD| = 4 cm a velikost úhlu DAB je 60°. Změřte délky obou úhlopříček AC a BD.",
      f"1 řešení. Kontrola: |AC| ≈ {cm(AC)} cm, |BD| ≈ {cm(BD)} cm.",
@@ -560,9 +610,9 @@ f.rmark(Cl, A, B)
 f.rmark(P(Cl.real, 0), B, Cl, 0.3)
 pt_labels(f, A=A, B=B, C=Cl, C_=Cr)
 f.dot(S, "S", (0.0, -0.7))
-f.dim(A, Cl, f"{cm(leg1)} cm", -1)
-f.dim(Cl, B, f"{cm(leg2)} cm", -1)
-f.dim(P(Cl.real, 0), Cl, "4,8 cm", 1)
+f.dim(A, Cl, f"{cm(leg1)} cm")
+f.dim(Cl, B, f"{cm(leg2)} cm")
+f.dim(P(Cl.real, 0), Cl, "4,8 cm")
 f.text(P(11.2, 4.8), "r", "start")
 task(2, "Sestrojte všechny pravoúhlé trojúhelníky ABC s přeponou AB, |AB| = 10 cm, a výškou 4,8 cm na přeponu AB, v nichž bod C leží nad přímkou AB. "
         "Kolik řešení má úloha? Změřte délky obou odvěsen.",
@@ -594,9 +644,9 @@ f.arc_at(T0, 4, XL, 26)
 f.rmark(T0, S0, XR)
 pt_labels(f, S=S0, T=T0, X=XR, X_=XL)
 f.text(P(5.4, 3.35), "t", "end")
-f.dim(S0, T0, "3 cm", 1)
-f.dim(T0, XR, "4 cm", 1)
-f.dim(S0, XR, f"{cm(SX)} cm", -1)
+f.dim(S0, T0, "3 cm")
+f.dim(T0, XR, "4 cm")
+f.dim(S0, XR, f"{cm(SX)} cm")
 task(2, "Narýsujte kružnici k se středem S a poloměrem 3 cm a na ní libovolný bod T. Sestrojte tečnu t ke kružnici k v bodě T. "
         "Najděte všechny body X na tečně t, které mají od bodu T vzdálenost 4 cm. Kolik takových bodů je? Změřte vzdálenost |SX|.",
      f"2 body. Kontrola: |SX| = |SX′| = {cm(SX)} cm.",
@@ -621,10 +671,10 @@ f.rmark(P(C.real, 0), B, C)
 f.amark(A, B, C, 1.3, "60°")
 pt_labels(f, A=A, B=B, C=C)
 f.text(P(7.9, 4.0), "r", "start")
-f.dim(A, B, "7 cm", 1)
-f.dim(P(C.real, 0), C, "4 cm", 1)
-f.dim(A, C, f"{cm(AC)} cm", -1)
-f.dim(B, C, f"{cm(BC)} cm", 1)
+f.dim(A, B, "7 cm")
+f.dim(P(C.real, 0), C, "4 cm")
+f.dim(A, C, f"{cm(AC)} cm")
+f.dim(B, C, f"{cm(BC)} cm")
 cx = round(C.real, 1)
 task(2, "Narýsujte úsečku AB, |AB| = 7 cm. Sestrojte trojúhelník ABC, v němž velikost úhlu BAC je 60° a výška na stranu AB je 4 cm (bod C leží nad přímkou AB). "
         "Změřte délky stran AC a BC.",
@@ -657,10 +707,10 @@ f.poly([A, B, Cf])
 f.seg(A, Cn, "main")
 f.amark(B, Cf, A, 1.3, "30°")
 pt_labels(f, A=A, B=B, C=Cf, C_=Cn)
-f.dim(A, B, "6 cm", 1)
-f.dim(B, Cf, f"{cm(BCf)} cm", -1)
-f.dim(B, Cn, f"{cm(BCn)} cm", 1)
-f.dim(A, Cf, "5 cm", -1)
+f.dim(A, B, "6 cm")
+f.dim(B, Cf, f"{cm(BCf)} cm")
+f.dim(B, Cn, f"{cm(BCn)} cm")
+f.dim(A, Cf, "5 cm")
 task(3, "Narýsujte úsečku AB, |AB| = 6 cm. Sestrojte všechny trojúhelníky ABC, v nichž velikost úhlu ABC je 30°, |AC| = 5 cm a bod C leží nad přímkou AB. "
         "Kolik řešení má úloha? U každého řešení změřte délku strany BC.",
      f"2 řešení. Kontrola: |BC| ≈ {cm(BCf)} cm (bod C) a |BC′| ≈ {cm(BCn)} cm (bod C′).",
@@ -692,11 +742,11 @@ f.seg(D, P(D.real, 0), "thin")
 f.rmark(P(D.real, 0), B, D, 0.3)
 pt_labels(f, A=A, B=B, C=Cl, D=D)
 f.dot(E, "E", (0.0, -0.7))
-f.dim(A, B, "8 cm", 1)
-f.dim(Cl, D, "3 cm", 1)
-f.dim(B, Cl, "4 cm", 1)
-f.dim(D, A, "5 cm", 1)
-f.dim(P(D.real, 0), D, f"{cm(vl)} cm", -1)
+f.dim(A, B, "8 cm")
+f.dim(Cl, D, "3 cm")
+f.dim(B, Cl, "4 cm")
+f.dim(D, A, "5 cm")
+f.dim(P(D.real, 0), D, f"{cm(vl)} cm")
 task(3, "Sestrojte lichoběžník ABCD se základnami AB a CD, v němž |AB| = 8 cm, |CD| = 3 cm, |BC| = 4 cm, |AD| = 5 cm a body C, D leží nad přímkou AB. "
         "Změřte výšku lichoběžníku.",
      f"1 řešení. Kontrola: výška ≈ {cm(vl)} cm, úhlopříčka |AC| ≈ {cm(AC)} cm.",
@@ -729,12 +779,12 @@ f.arc_at(Cc, 5, Bq, 20)
 f.arc_at(A, 3, D, 20)
 f.arc_at(Cc, 6, D, 20)
 pt_labels(f, A=A, B=Bq, C=Cc, D=D)
-f.dim(A, Cc, "7 cm", 1)
-f.dim(A, Bq, "6 cm", -1)
-f.dim(Bq, Cc, "5 cm", -1)
-f.dim(Cc, D, "6 cm", -1)
-f.dim(D, A, "3 cm", -1)
-f.dim(Bq, D, f"{cm(BD)} cm", 1)
+f.dim(A, Cc, "7 cm")
+f.dim(A, Bq, "6 cm")
+f.dim(Bq, Cc, "5 cm")
+f.dim(Cc, D, "6 cm")
+f.dim(D, A, "3 cm")
+f.dim(Bq, D, f"{cm(BD)} cm")
 task(3, "Sestrojte čtyřúhelník ABCD, v němž |AB| = 6 cm, |BC| = 5 cm, |CD| = 6 cm, |AD| = 3 cm a úhlopříčka AC má délku 7 cm. "
         "Body B a D leží na opačných stranách přímky AC. Změřte druhou úhlopříčku BD.",
      f"1 řešení. Kontrola: |BD| ≈ {cm(BD)} cm.",
@@ -762,8 +812,8 @@ f.seg(A, foot_pt, "dash")
 f.rmark(foot_pt, A, B, 0.4)
 f.amark(B, A, B + u, 1.2, "40°")
 pt_labels(f, A=A, B=B)
-f.dim(A, B, "7 cm", 1)
-f.dim(A, foot_pt, f"{cm(dd)} cm", 1)
+f.dim(A, B, "7 cm")
+f.dim(A, foot_pt, f"{cm(dd)} cm")
 f.text(A + P(1.55, 1.0), "k", "middle")
 task(3, "Rozhodněte, zda existuje trojúhelník ABC, v němž |AB| = 7 cm, velikost úhlu ABC je 40° a |AC| = 3 cm (bod C leží nad přímkou AB). "
         "Pokud existuje, sestrojte ho. Pokud ne, zdůvodněte to změřením vzdálenosti bodu A od ramene úhlu.",

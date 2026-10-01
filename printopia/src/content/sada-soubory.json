@@ -3,7 +3,7 @@
   "slug": "uvodni-test",
   "file": "00-uvodni-test.pdf",
   "title": "Úvodní test",
-  "desc": "20 úloh, ukáže, čím začít"
+  "desc": "24 úloh, ukáže, čím začít"
  },
  {
   "slug": "zlomky",
@@ -60,6 +60,18 @@
   "desc": "16 úloh s postupy"
  },
  {
+  "slug": "telesa",
+  "file": "10-telesa.pdf",
+  "title": "10. Tělesa: objem a povrch",
+  "desc": "16 úloh s postupy"
+ },
+ {
+  "slug": "konstrukce",
+  "file": "11-konstrukce.pdf",
+  "title": "11. Konstrukční úlohy",
+  "desc": "16 úloh s postupy"
+ },
+ {
   "slug": "vzory",
   "file": "12-vzory.pdf",
   "title": "12. Úsudek a vzory",
@@ -69,6 +81,6 @@
   "slug": "plan",
   "file": "99-plan-procvicovani.pdf",
   "title": "Plán procvičování",
-  "desc": "16 týdnů, jedno téma týdně"
+  "desc": "19 týdnů, jedno téma týdně"
  }
 ]
