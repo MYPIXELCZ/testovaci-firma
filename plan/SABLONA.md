@@ -4,7 +4,8 @@ Povinná šablona (pojistka z FAILS.md). Bez vyplněných oddílů 1–4 se nest
 a Ondřej nekupuje nic (doména, reklama). Každé tvrzení o poptávce musí mít zdroj (odkaz, nástroj, datum).
 
 ## 1. Poptávka (důkazy, ne dojmy)
-- Hledanost klíčových slov: čísla a zdroj (Sklik/Google nástroj, Trends, našeptávač).
+- **Absolutní hledanost (povinné, FAILS.md 2026-10-01 17:00):** `SKLIK_TOKEN=… python3 plan/hledanost.py <projekt> "dotaz" … --navrhy "základ"` zapíše `plan/hledanost-<projekt>.md` (měsíční hledání, špička, CPC, nejsilnější související dotazy). Relativní Trends ani našeptávač nestačí. Do oddílu „## Kapacita trhu“ vyplnit: hledanost × CTR × konverze × cena vs. cíl projektu a závěr stavět / nestavět / nejdřív sonda. Součástí kontroly `plan/kontrola-spusteni.py`.
+- Relativní signály navíc: Trends, našeptávač (co lidé zadávají).
 - Kdo už to prodává a jak se mu daří (počty prodejů, recenze, ceny, tržiště).
 - Sezónnost vůči dnešnímu datu a odhad, kdy přijde první tržba.
 
@@ -14,12 +15,14 @@ a Ondřej nekupuje nic (doména, reklama). Každé tvrzení o poptávce musí m�
 - Omezení: nezletilí (GDPR souhlas v ČR od 15 let, reklama na děti), způsob platby dostupný plátci.
 
 ## 2. Konkurence a proč koupí od nás
+- Konkurenční tabulka: aspoň 5 konkrétních konkurentů (odkaz, cena, počet recenzí nebo prodejů, co mají a my ne) a jak se v placených výsledcích pozicují (živé hledání na search.seznam.cz: `printopia/marketing/serp_check.py` jako vzor).
 - Zdarma alternativy (šablony, aplikace, banky…) a v čem jsme lepší.
 
 ## 3. Ekonomika
 - Cena, odhad ceny za proklik, konverze, cena za zákazníka (CAC) vůči ceně.
 
 ## 4. Test poptávky před stavbou
+- Nejdřív nejmenší možná verze (jedna stránka, jedno téma), ne celá sada. Plná stavba až po čísle hledanosti a prvním signálu poptávky.
 - Co se změří, za kolik, jak dlouho, a kritérium pokračovat / zastavit.
 
 ## 5. Role Ondřeje

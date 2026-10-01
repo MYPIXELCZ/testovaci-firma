@@ -30,6 +30,11 @@ if changing:
     if "## Kontrolní seznam" not in text or "- [ ]" in text:
         raise SystemExit(f"Nejdřív {postupy}: celý kontrolní seznam odškrtnutý (- [x]).")
 
+    vol = Path(__file__).resolve().parents[2] / "plan/hledanost-printopia.md"  # FAILS.md 2026-10-01 17:00: bez absolutní hledanosti se kampaň nemění
+    vt = vol.read_text(encoding="utf-8") if vol.exists() else ""
+    if "## Kapacita trhu" not in vt or "(doplnit" in vt.split("## Kapacita trhu")[1]:
+        raise SystemExit(f"Nejdřív {vol}: absolutní hledanost a vyplněná kapacita trhu (plan/hledanost.py).")
+
 spec = json.loads(subprocess.run([sys.executable, str(Path(__file__).with_name("sklik.py"))],
                                  check=True, capture_output=True, text=True).stdout)
 

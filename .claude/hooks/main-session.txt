@@ -1,0 +1,4 @@
+# Hlavní session „TESTOVACÍ FIRMA“ (jen ta smí mít hodinové kontroly a Stop hook). Jedna hodnota na řádek, řádky s # se ignorují.
+# Shoda: session_id z hooku (lokální UUID) NEBO koncovka CLAUDE_CODE_REMOTE_SESSION_ID (cse_/session_ + tato část).
+a0fbc6c5-b8c8-529f-8888-e973b0fa83d0
+01N4ZDnfkuU5cm6b5gWA3X3Y

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Kontrola před spuštěním projektu (pojistka z FAILS.md): bez metrik a vyhodnocení se nespouští.
+"""Kontrola před spuštěním projektu (pojistka z FAILS.md): bez metrik, vyhodnocení a absolutní hledanosti se nespouští.
 
     python3 plan/kontrola-spusteni.py plan/<projekt>.md <adresář aplikace>
 
@@ -42,6 +42,15 @@ for channel, marker in {"sklik": "sklik.py"}.items():
         t = post.read_text(encoding="utf-8") if post.exists() else ""
         if "## Kontrolní seznam" not in t or "- [ ]" in t:
             missing.append(f"{post}: postupy kanálu {channel} s odškrtnutým kontrolním seznamem")
+# Absolutní hledanost (FAILS.md 2026-10-01 17:00): bez čísel ze Skliku se nestaví ani nespouští.
+vol = next((f for f in (plan.with_name(f"hledanost-{plan.stem}.md"), plan.with_name(f"hledanost-{app.name}.md")) if f.exists()), None)
+if vol is None:
+    missing.append(f"plan/hledanost-{app.name}.md: absolutní hledanost ze Skliku (`SKLIK_TOKEN=… python3 plan/hledanost.py {app.name} \"dotaz\" … --navrhy \"základ\"`)")
+else:
+    vt = vol.read_text(encoding="utf-8")
+    cap = vt.split("## Kapacita trhu")[1] if "## Kapacita trhu" in vt else ""
+    if not cap.strip() or "(doplnit" in cap:
+        missing.append(f"{vol}: oddíl „## Kapacita trhu“ (hledanost × CTR × konverze × cena vs. cíl, závěr) musí být vyplněný")
 if missing:
     sys.exit("CHYBÍ před spuštěním:\n- " + "\n- ".join(missing))
 print("OK: plán i aplikace mají metriky a vyhodnocení.")
