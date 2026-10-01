@@ -34,7 +34,7 @@ export default function BudgetCalculatorPage() {
             Důležité je, aby součet seděl.
           </li>
           <li>
-            <strong>Rezervu nechte v rozpočtu.</strong> Pět procent na nečekané výdaje se téměř vždy použije.
+            <strong>Rezervu neškrtejte.</strong> Pět procent na nečekané výdaje se skoro vždy použije.
           </li>
           <li><strong>Svatební cestu počítejte zvlášť.</strong> Většina párů ji do rozpočtu svatby nezahrnuje.</li>
         </ul>

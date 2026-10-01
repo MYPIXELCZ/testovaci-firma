@@ -1,5 +1,5 @@
 // E2E test testovací stránky: build musí proběhnout předem (npm run test:e2e).
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { mkdtempSync, readdirSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -31,10 +31,11 @@ try {
     await new Promise((r) => setTimeout(r, 500));
   }
   const home = await (await get("/?utm_source=sklik")).text();
-  check(home.includes("Procvičte přesně to téma"), "úvodní stránka");
+  check(home.includes("Procvičte s dítětem přesně to"), "úvodní stránka");
   const flat = home.replaceAll("<!-- -->", "");
-  check(["nahled-postup.webp", "Koupit sadu za 349", "8 úloh zdarma", "14 dnů vrátíme peníze", "Kolik stojí příprava", "Časté otázky", "Kdo za Printopií stojí", "dní do přijímaček"].every((t) => flat.includes(t)),
-    "prodejní stránka má povinné prvky (náhled, cena v CTA, ukázka, záruka, srovnání, FAQ, kdo stojí, odpočet)");
+  check(["nahled-postup.webp", "Koupit sadu za 349", "8 úloh zdarma", "vrátíme peníze", "Kolik stojí příprava", "Časté otázky", "Printopia provozuje", "IČO", "dní do přijímaček"].every((t) => flat.includes(t)),
+    "prodejní stránka má povinné prvky (náhled, cena v CTA, ukázka, záruka, srovnání, FAQ, provozovatel v patičce, odpočet)");
+  check(flat.includes('name="google-site-verification"'), "ověření Search Console je v hlavičce");
   check(home.includes('class="fr"'), "zlomky nad sebou v ukázce");
   check(home.includes("/koupit?src=sklik"), "zdroj návštěvy se předává do Koupit");
   const pdf = await fetch(`${BASE}/ukazka-zlomky.pdf`);
@@ -97,7 +98,12 @@ try {
   check(st.feedback["Je to na mě drahé"] === 1 && st.feedbackTexts[0] === "moc drahé", "anketa: důvod i text");
   check(st.findings[0].startsWith("Málo dat"), "závěry: při málo datech to řekne");
   const home2 = await (await get("/")).text();
-  check(home2.includes("co vás zatím drží od objednání") && home2.includes('data-track="cta_buy"'), "úvodní stránka má anketu a měřená tlačítka");
+  check(home2.includes("zatím drží od objednání") && home2.includes('data-track="cta_buy"'), "úvodní stránka má anketu a měřená tlačítka");
+  // Vizuální a textová kontrola (FAILS.md 2026-10-01 02:02 a 02:05): šířka 1340 + 80 px, mobil, překryvy, z-index, texty.
+  const pages = "/,/koupit,/zlomky-prijimacky,/procenta-prijimacky,/jak-se-pripravit-na-prijimacky,/ochrana-osobnich-udaju";
+  const viz = spawnSync("node", ["../tools/vizualni-kontrola.mjs", BASE, pages, process.env.VIZ_DIR ?? path.join(store, "viz")], { encoding: "utf8" });
+  console.log(viz.stdout.trim());
+  check(viz.status === 0, "vizuální a textová kontrola stránek");
 } finally {
   process.kill(-app.pid);
 }

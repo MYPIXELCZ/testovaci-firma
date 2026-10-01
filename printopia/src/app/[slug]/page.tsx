@@ -63,7 +63,7 @@ export default async function TopicPage({ params }: PageProps<"/[slug]">) {
           {Object.values(TOPICS).filter((o) => o.slug !== topic.slug).map((o) => (
             <span key={o.slug}>, <Link href={`/${o.slug}`}>{o.h1.split(" na ")[0].toLowerCase()}</Link></span>
           ))}
-          . Připravujeme kompletní sadu na všech 12 témat za {PRICE} Kč, <Link href="/">co v ní bude</Link>.
+          . Kompletní sadu všech 12 témat za {PRICE} Kč připravujeme, <Link href="/">podívejte se, co v ní bude</Link>.
         </p>
       </div>
     </section>

@@ -56,14 +56,16 @@ body {
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--sage-dark); }
-h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.15; margin: 0 0 0.5em; letter-spacing: -0.01em; }
+h1, h2, h3 { text-wrap: balance; font-family: var(--serif); font-weight: 500; line-height: 1.15; margin: 0 0 0.5em; letter-spacing: -0.01em; }
 h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); }
 h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); }
 h3 { font-size: 1.25rem; }
 p { margin: 0 0 1em; }
 
-.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
-.narrow { max-width: 720px; }
+.wrap { --pad: 80px; max-width: calc(1340px + 2 * var(--pad)); margin: 0 auto; padding: 0 var(--pad); }
+.narrow { max-width: calc(760px + 2 * var(--pad)); }
+@media (max-width: 1100px) { .wrap { --pad: 40px; } }
+@media (max-width: 640px) { .wrap { --pad: 20px; } }
 .muted { color: var(--muted); }
 .small { font-size: 0.875rem; }
 .accent { color: var(--terra); }
@@ -83,7 +85,7 @@ p { margin: 0 0 1em; }
 .footer ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; flex-wrap: wrap; }
 
 /* Tlačítka */
-.btn {
+.btn { white-space: nowrap;
   display: inline-block; border: 0; cursor: pointer; text-decoration: none; text-align: center;
   background: var(--sage-dark); color: #fff; font: 600 1rem/1 var(--sans);
   padding: 16px 26px; border-radius: 999px; transition: background 0.15s, transform 0.15s;
@@ -134,7 +136,12 @@ section { padding: 72px 0; }
 .checks li { padding-left: 28px; position: relative; margin-bottom: 8px; }
 .checks li::before { content: ""; position: absolute; left: 2px; top: 0.55em; width: 12px; height: 7px; border-left: 2px solid var(--sage-dark); border-bottom: 2px solid var(--sage-dark); transform: rotate(-45deg); }
 
-.price-box { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 40px; text-align: center; max-width: 520px; margin: 0 auto; }
+.price-box { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 40px; text-align: center; }
+.price-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: center; }
+.faq-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: start; }
+.faq-grid > .card { margin-top: 8px; }
+.price-grid > *, .faq-grid > * { min-width: 0; }
+@media (max-width: 900px) { .price-grid, .faq-grid { grid-template-columns: 1fr; gap: 32px; } }
 .price { font-family: var(--serif); font-size: 3.5rem; line-height: 1; margin: 8px 0 4px; }
 .price-box .checks { text-align: left; display: inline-block; margin: 24px 0 28px; }
 
@@ -185,7 +192,7 @@ details p { margin: 12px 0 0; color: var(--muted); }
 }
 
 /* Články */
-.article { max-width: 720px; }
+.article { max-width: calc(760px + 2 * var(--pad)); }
 .article .lead { font-size: 1.15rem; color: var(--muted); }
 .article h2 { font-size: 1.6rem; margin-top: 1.8em; }
 .article ul, .article ol { padding-left: 1.3em; }
@@ -210,7 +217,7 @@ input.text { width: 100%; font: inherit; padding: 11px 13px; border-radius: 10px
 /* Prodejní úvod (plan/design-anoberu.md) */
 .hero-visual { position: relative; }
 .hero-photo { width: 100%; height: auto; border-radius: var(--radius); display: block; box-shadow: 0 24px 60px -24px rgba(43, 42, 40, 0.4); }
-.shot-overlay { position: absolute; width: 58%; left: -10%; bottom: -14%; transform: rotate(-2deg); }
+.shot-overlay { position: absolute; z-index: 1; width: 52%; left: -8%; bottom: -12%; transform: rotate(-2deg); }
 .credit { margin: 8px 0 0; font-size: 0.72rem; color: var(--muted); text-align: right; }
 .credit a { color: inherit; }
 .compare { width: 100%; border-collapse: collapse; margin: 8px 0 10px; background: #fff; border-radius: 14px; overflow: hidden; }
@@ -221,12 +228,16 @@ input.text { width: 100%; font: inherit; padding: 11px 13px; border-radius: 10px
 .guarantee h3 { margin: 0 0 4px; }
 .sticky-cta { display: none; }
 @media (max-width: 900px) {
-  .shot-overlay { width: 50%; left: auto; right: -2%; bottom: -16%; transform: rotate(2deg); }
+  .shot-overlay { width: 46%; left: auto; right: -2%; bottom: -14%; transform: rotate(2deg); }
   .hero-visual { margin-bottom: 40px; }
+  .hero-visual .credit { text-align: left; }
 }
 @media (max-width: 700px) {
-  .sticky-cta { display: block; position: fixed; left: 0; right: 0; bottom: 0; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(250,247,242,0.96); border-top: 1px solid var(--line); z-index: 20; }
+  /* z-index: jediný plovoucí prvek, ukáže se až pod úvodním tlačítkem (StickyCta) */
+  .sticky-cta { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(250,247,242,0.96); border-top: 1px solid var(--line); transform: translateY(110%); visibility: hidden; transition: transform 0.2s, visibility 0.2s; }
+  .sticky-cta.on { transform: none; visibility: visible; }
   .sticky-cta .btn { width: 100%; text-align: center; }
   body { padding-bottom: 72px; }
   .compare td:last-child { display: none; }
+  .compare .num { white-space: normal; }
 }

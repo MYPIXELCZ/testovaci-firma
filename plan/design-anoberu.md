@@ -23,3 +23,13 @@ Datum: 2026-10-01. Doplněno zpětně (pojistka z FAILS.md). Screenshoty jen lok
 - [x] fotka + náhled produktu, nabídka pro plátce (snoubenci), cena v CTA
 - [x] srovnání cen (kategorie), záruka 14 dní, kdo za tím stojí (patička, FAQ), FAQ, sticky CTA
 - [x] screenshoty desktop + mobil
+
+## Texty
+Každý blok odpovídá na otázku snoubenců (hledají, používají i platí). Provozovatel jen v patičce.
+- Úvod: „Pomůže mi to naplánovat svatbu bez chaosu?“ → nadpis, co v tabulce je, cena v tlačítku, jednorázově, 14 dní na vrácení.
+- Jak to funguje: „Jak to dostanu a jak složité je to začít?“
+- Termíny, rozpočet: „Co mi to ohlídá?“ → úkoly s termíny, rozpočet se zálohami.
+- Co v plánovači je: „Co přesně kupuju?“
+- Cena + srovnání: „Proč tohle a ne PDF nebo aplikaci, a co když to nesedne?“
+- Články: „Co mám řešit jako první?“ (zdarma, SEO)
+- FAQ: Google Tabulky, Excel, doručení, platba, vrácení; anketa: proč ne.

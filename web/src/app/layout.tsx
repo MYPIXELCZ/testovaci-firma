@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { COMPANY, INDEXING, PRODUCT, SITE_URL } from "@/lib/config";
+import Nbsp from "@/components/Nbsp";
 import Beacon from "@/components/Beacon";
 import "./globals.css";
 
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </ul>
           </div>
         </footer>
+        <Nbsp />
       </body>
     </html>
   );

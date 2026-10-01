@@ -64,8 +64,8 @@ export default function FractionsPage() {
 
         <p style={{ marginTop: 32 }}>
           Další témata: <Link href="/procenta-prijimacky">procenta</Link>, <Link href="/rovnice-prijimacky">rovnice</Link>, <Link href="/slovni-ulohy-prijimacky">slovní úlohy</Link>.
-          Připravujeme kompletní sadu na všech 12 témat přijímaček z matematiky za {PRICE} Kč.{" "}
-          <Link href="/">Co v ní bude</Link>.
+          Kompletní sadu všech 12 témat přijímaček z matematiky za {PRICE} Kč připravujeme.{" "}
+          <Link href="/">Podívejte se, co v ní bude</Link>.
         </p>
       </div>
     </section>

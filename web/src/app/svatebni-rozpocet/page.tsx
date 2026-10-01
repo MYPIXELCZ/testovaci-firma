@@ -28,8 +28,8 @@ export default function BudgetPage() {
 
         <h2>Orientační rozdělení rozpočtu</h2>
         <p>
-          Tohle rozdělení vychází z běžné praxe českých svateb. Není to pravidlo: když vám záleží na fotkách víc než na
-          výzdobě, klidně ho přesuňte. Důležité je mít rozdělení vůbec nějaké.
+          Rozdělení vychází z běžné praxe českých svateb. Není to pravidlo: když vám záleží víc na fotkách než na
+          výzdobě, peníze klidně přesuňte. Hlavně nějaké rozdělení mějte.
         </p>
         <table className="data-table">
           <thead>
@@ -50,10 +50,10 @@ export default function BudgetPage() {
         <h2>Pět pravidel, díky kterým rozpočet vydrží</h2>
         <ol>
           <li>
-            <strong>Začněte částkou a počtem hostů.</strong> Místo a hostina tvoří největší část rozpočtu a jejich cena roste
-            s každým hostem. Než začnete vybírat, ujasněte si obojí.
+            <strong>Začněte částkou a počtem hostů.</strong> Obojí si ujasněte dřív, než začnete vybírat. Místo a hostina
+            tvoří největší část rozpočtu a jejich cena roste s každým hostem.
           </li>
-          <li><strong>Nechte si rezervu.</strong> Aspoň 5 % na věci, se kterými nikdo nepočítal. Téměř vždy se použije.</li>
+          <li><strong>Nechte si rezervu.</strong> Aspoň 5 % na věci, se kterými nikdo nepočítal. Skoro vždy se použije.</li>
           <li>
             <strong>Oddělte plán od skutečnosti.</strong> Ke každé položce si pište, kolik jste plánovali a kolik to nakonec
             stálo. Hned uvidíte, kde přetahujete, a můžete ubrat jinde.
@@ -63,8 +63,8 @@ export default function BudgetPage() {
             nebo v den D. Mějte přehled, kdy a komu co platíte.
           </li>
           <li>
-            <strong>Domluvte si, kdo co platí.</strong> Pokud přispívají rodiče, řekněte si to na začátku a připište si to
-            ke konkrétním položkám.
+            <strong>Domluvte se, kdo co platí.</strong> Pokud přispívají rodiče, ujasněte si hned na začátku, kolik a na co,
+            a zapište si to ke konkrétním položkám.
           </li>
         </ol>
 

@@ -13,7 +13,7 @@ export default function Feedback() {
   if (done) return <p className="small" style={{ fontWeight: 600 }}>Děkujeme, moc nám to pomůže.</p>;
   return (
     <div className="card">
-      <h3>Pomozte nám: co vás zatím drží od objednání?</h3>
+      <h3>Co vás zatím drží od objednání?</h3>
       <p className="small muted" style={{ marginTop: 0 }}>Anonymně, stačí jedno kliknutí.</p>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
         {(Object.keys(FEEDBACK) as FeedbackKey[]).map((k) => (

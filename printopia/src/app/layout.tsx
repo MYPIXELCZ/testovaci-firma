@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Nbsp from "@/components/Nbsp";
 import { COMPANY, CONTACT, SITE_URL } from "@/lib/config";
 import "./globals.css";
 
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
   description:
     "Sady úloh k tisku na přijímačky z matematiky, rozdělené podle témat. U každé úlohy postup řešení krok za krokem. Ukázka zdarma.",
   openGraph: { type: "website", locale: "cs_CZ", siteName: "Printopia", images: ["/og.png"] },
+  // Ověření Google Search Console (služba https://printopia.cz), NEMAZAT.
+  verification: { google: "yXArGHW_hPXReSbAJc3DLNoeKonICv-sItHJziSSQXc" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -34,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </p>
           </div>
         </footer>
+        <Nbsp />
       </body>
     </html>
   );

@@ -33,3 +33,14 @@ Datum: 2026-10-01. Screenshoty a osnovy stránek pořízeny automaticky (Chromiu
 - [x] srovnání ceny se zdroji, záruka, kdo za tím stojí, FAQ
 - [x] rodiče × deváťáci, bez výzvy dětem ke koupi
 - [x] screenshoty desktop + mobil zkontrolované
+
+## Texty
+Každý blok úvodní stránky odpovídá na otázku plátce (rodiče), u karty pro deváťáky na otázku uživatele. Provozovatel jen v patičce.
+- Úvod: „Pomůže to mému dítěti s tím, co mu nejde?“ → nadpis, 4 přínosy, cena v tlačítku, ukázka zdarma, jednorázově a vrácení peněz.
+- Odpočet: „Stihneme to?“ → dny do zkoušky a čas na téma.
+- Pro rodiče / pro deváťáky: „Zvládnu to, když neumím matiku?“ / „Co z toho mám já?“
+- Dvě úlohy: „Jak vypadají úlohy a postup?“ → vyzkoušet, výsledek až po rozkliknutí.
+- 12 témat: „Co přesně v sadě je?“
+- Cena + záruka: „Kolik to stojí oproti doučování a co když to nesedne?“
+- Ukázka PDF: „Můžu to vyzkoušet na papíře?“
+- FAQ: kdy, pro koho, oficiální?, zaručíte přijetí?; anketa: proč ne.

@@ -41,3 +41,18 @@ Chyby nahlášené Ondřejem ("FAIL: ..."). Každá má příčinu a pojistku, a
 - **Hlášení:** dávej webům (hlavně pokud jsou prodejní) víc péče a dělej si k tomu výzkum. Tohle je slabota. Nezapomeň, že máš k dispozici UNSPLASH
 - **Příčina:** Prodejní stránku jsem stavěl jako „jen testovací“: text a pár karet, bez průzkumu, jak vypadají dobré prodejní stránky v oboru a co na rodiče funguje (fotky, důvěra, záruka, srovnání ceny, jasná nabídka). Vizuál jsem kontroloval jen tím, že se stránka načte.
 - **Pojistka:** Pravidlo v CLAUDE.md: každý prodejní web má před spuštěním designový průzkum `plan/design-<projekt>.md` (rozbor 3–5 konkurenčních a špičkových stránek se screenshoty, prvky, které prodávají, vizuální směr, fotky z Unsplash s licencí) a kontrolní seznam prodejní stránky. Kontrola v kódu: `plan/kontrola-spusteni.py` vyžaduje design průzkum, e2e Printopie ověřuje povinné prvky (fotka, náhled produktu, cena, záruka, kdo za tím stojí, FAQ, CTA nad ohybem). Screenshoty desktop i mobil před každým nasazením.
+
+## 2026-10-01 02:02 (Praha)
+- **Hlášení:** Ověřuj výsledný web vizuálně a dodržuj responzivizu pro mobil, kontroluj Z indexy a na PC používej šířku 1340px + 80px padding ze stran.
+- **Příčina:** Weby jsem kontroloval jen podle HTML a testů funkcí, screenshoty jsem si neprohlížel na všech šířkách. Kontejner měl 980 px, plovoucí náhled na Printopii překrýval popisek fotky a spodní lišta s nákupem na mobilu zakrývala text v úvodu (byla vidět hned, ne až po odscrollování). Na anoberu na 360 px tabulka přetékala do strany.
+- **Pojistka:** `tools/vizualni-kontrola.mjs` (PC 1500, notebook 1280, mobil 390 a 360): přetékání, šířka obsahu ≤ 1340 px s 80px okraji, překryvy plovoucích prvků přes řádky textu, z-index u fixed, screenshoty. Je součástí e2e obou webů, takže bez ní nejde commit. Pravidlo v CLAUDE.md: screenshoty si po každé změně vzhledu prohlédnout. Oba weby: `.wrap` 1340 + 80 px (40 px do 1100 px, 20 px do 640 px), spodní lišta až pod úvodním tlačítkem (`StickyCta`).
+
+## 2026-10-01 02:05 (Praha)
+- **Hlášení:** prověř vždy, zda je vše češtinářsky ok a není nic kostrbaté a že všechny texty na webu jsou pro cílovou skupinu důležité a není tam polévka (například na hero nás nezajímá, kdo web provozuje, to má být v patičce atd..)
+- **Příčina:** Texty jsem psal rychle a bez korektury. Prvky důvěry jsem do úvodu přidával mechanicky („kdo za tím stojí“), místo abych se u každé věty ptal, co z ní plátce má. Proto v úvodu stál provozovatel, jedna informace se opakovala na několika místech a některé formulace byly kostrbaté („téma, které nejde“, „kde se výpočet rozešel“).
+- **Pojistka:** Pravidlo v CLAUDE.md: před nasazením přečíst každý text jako korektor a u každého bloku si odpovědět, na jakou otázku cílové skupiny odpovídá; co neodpovídá, vyhodit. Provozovatel a právní údaje patří jen do patičky a právních stránek. Kontrola v kódu (`tools/vizualni-kontrola.mjs`, součást e2e): úvod bez provozovatele/IČO, žádná věta dvakrát, české uvozovky, pomlčky a výpustky. `Nbsp` v obou webech hlídá jednopísmenné předložky a čísla na konci řádku. Design průzkum `plan/design-<projekt>.md` musí mít oddíl „## Texty“ (blok → otázka cílové skupiny), vyžaduje ho `plan/kontrola-spusteni.py`. Provedeno: korektura úvodu Printopie i anoberu a všech 10 článků anoberu.
+
+## 2026-10-01 02:22 (Praha)
+- **Hlášení:** POKUD NĚCO DĚLÁŠ např. reklamy na skliku, přečti si na internetu nejdřív čeho se vyvarovat a jak co dělat ať to neděláš na slepo
+- **Příčina:** (doplnit)
+- **Pojistka:** (doplnit)

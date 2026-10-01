@@ -15,7 +15,7 @@ const TEMPLATES: [string, string][] = [
   ],
   [
     "Moderní",
-    "Po sedmi letech, dvou stěhováních a jednom psovi jsme se rozhodli to udělat oficiálně.\nBereme se 12. 6. 2027 ve 14:00, Statek Na Kopci, Hřebečníky.\nTereza & Jakub",
+    "Po sedmi letech, dvou stěhováních a jednom psovi to konečně zpečetíme.\nBereme se 12. 6. 2027 ve 14:00, Statek Na Kopci, Hřebečníky.\nTereza & Jakub",
   ],
   ["Krátký", "Tereza a Jakub se berou.\n12. června 2027, 14:00, radnice v Brně"],
   [
@@ -35,8 +35,8 @@ export default function AnnouncementPage() {
         <p className="eyebrow">Plánování svatby</p>
         <h1>Text svatebního oznámení: vzory a co v něm nesmí chybět</h1>
         <p className="lead">
-          Oznámení je pro většinu hostů první věc, kterou ze svatby uvidí. Nemusí být dlouhé, ale musí z něj být jasné kdo,
-          kdy a kde. Níž najdete pět vzorů, které stačí přepsat.
+          Oznámení je pro většinu hostů první věc, kterou ze svatby uvidí. Nemusí být dlouhé, ale musí z něj být jasné, kdo,
+          kdy a kde. Níž najdete pět vzorů, které stačí upravit.
         </p>
 
         <h2>Co musí oznámení obsahovat</h2>
@@ -47,7 +47,8 @@ export default function AnnouncementPage() {
           <li>Případně kontakt nebo termín, do kdy mají hosté odpovědět.</li>
         </ul>
         <p>
-          Místo hostiny, dress code nebo tipy na dary patří spíš na samostatnou pozvánku pro ty, kdo jsou pozvaní i na oslavu.
+          Místo hostiny, doporučené oblečení nebo tipy na dary patří spíš na samostatnou pozvánku pro ty, kdo jsou pozvaní
+          i na oslavu.
         </p>
 
         <h2>Vzory textů</h2>
@@ -68,8 +69,8 @@ export default function AnnouncementPage() {
 
         <h2>Kdy oznámení rozeslat</h2>
         <p>
-          Zhruba tři měsíce před svatbou. Hosté, kteří cestují zdaleka nebo potřebují ubytování, ocení ještě dřívější
-          upozornění, třeba krátké „save the date“ několik měsíců předem.
+          Zhruba tři měsíce před svatbou. Hosté, kteří cestují zdaleka nebo potřebují ubytování, ocení, když se termín
+          dozví dřív, třeba z krátkého „save the date“ několik měsíců předem.
         </p>
 
         <h2>Na co si dát pozor</h2>
@@ -81,7 +82,7 @@ export default function AnnouncementPage() {
 
         <ArticleCta
           title="Kdo už oznámení dostal?"
-          text="V plánovači si u každého hosta značíte, zda mu oznámení odešlo, na co je pozvaný a jak odpověděl. Úkol rozeslat oznámení vám navíc připomene ve správný čas."
+          text="V plánovači si u každého hosta značíte, zda mu oznámení odešlo, na co je pozvaný a jak odpověděl. Úkol „rozeslat oznámení“ se vám navíc ukáže ve správný čas."
         />
       </article>
     </section>

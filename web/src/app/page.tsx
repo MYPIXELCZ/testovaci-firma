@@ -1,4 +1,5 @@
 import Feedback from "@/components/Feedback";
+import StickyCta from "@/components/StickyCta";
 import foto from "@/content/foto.json";
 import Image from "next/image";
 import Link from "next/link";
@@ -69,7 +70,7 @@ export default function Home() {
               i Google Tabulky.
             </p>
             <div className="hero-cta">
-              <Link href="/objednat" className="btn" data-track="cta_buy">Koupit za {PRODUCT.price} Kč</Link>
+              <Link href="/objednat" className="btn" data-track="cta_buy" data-hero-cta>Koupit za {PRODUCT.price} Kč</Link>
               <span className="muted small">Jednorázově · bez předplatného · doručení e‑mailem · 14 dní na vrácení peněz</span>
             </div>
           </div>
@@ -137,7 +138,18 @@ export default function Home() {
       </section>
 
       <section className="band" id="cena">
-        <div className="wrap">
+        <div className="wrap price-grid">
+          <div>
+            <h2>Proč tabulka, a ne PDF nebo aplikace</h2>
+            <table className="compare">
+              <tbody>
+                <tr><td>PDF plánovače k tisku</td><td className="num">120–849 Kč</td><td className="muted small">nic nespočítají, termíny a rozpočet hlídáte sami</td></tr>
+                <tr><td>Svatební aplikace s předplatným</td><td className="num">až 799 Kč ročně</td><td className="muted small">platíte, dokud plánujete</td></tr>
+                <tr className="us"><td><strong>Ano, beru</strong></td><td className="num"><strong>{PRODUCT.price} Kč jednorázově</strong></td><td className="small">termíny, rozpočet, hosté i stoly se počítají samy, v Excelu i Google Tabulkách</td></tr>
+              </tbody>
+            </table>
+            <p className="muted small">Ceny podle veřejných nabídek na českém trhu k 1. 10. 2026.</p>
+          </div>
           <div className="price-box">
             <p className="eyebrow">Jedna cena, všechno uvnitř</p>
             <p className="price">{PRODUCT.price} Kč</p>
@@ -146,7 +158,7 @@ export default function Home() {
               <li>8 propojených listů pro Excel i Google Tabulky</li>
               <li>55 úkolů s termíny podle data svatby</li>
               <li>rozpočet, hosté, stoly, dodavatelé, den D</li>
-              <li>14 dní na vrácení peněz bez udání důvodu</li>
+              <li>když nesedne, do 14 dnů vrátíme peníze</li>
             </ul>
             <div><Link href="/objednat" className="btn" data-track="cta_buy">Koupit plánovač</Link></div>
           </div>
@@ -169,46 +181,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="band">
-        <div className="wrap narrow">
-          <h2>Proč tabulka, a ne PDF nebo aplikace</h2>
-          <table className="compare">
-            <tbody>
-              <tr><td>PDF plánovače k tisku</td><td className="num">120–849 Kč</td><td className="muted small">nic nespočítají, termíny a rozpočet hlídáte sami</td></tr>
-              <tr><td>Svatební aplikace s předplatným</td><td className="num">až 799 Kč ročně</td><td className="muted small">platíte, dokud plánujete</td></tr>
-              <tr className="us"><td><strong>Ano, beru</strong></td><td className="num"><strong>{PRODUCT.price} Kč jednorázově</strong></td><td className="small">termíny, rozpočet, hosté i stoly se počítají samy, v Excelu i Google Tabulkách</td></tr>
-            </tbody>
-          </table>
-          <p className="muted small">Ceny podle veřejných nabídek na českém trhu k 1. 10. 2026.</p>
-          <div className="guarantee">
-            <div>
-              <h3>Nic neriskujete</h3>
-              <p className="muted" style={{ margin: 0 }}>Když vám plánovač nesedne, do 14 dnů vrátíme peníze. Platíte jednou, převodem nebo QR kódem, žádné předplatné ani karta.</p>
-            </div>
+      <section id="otazky">
+        <div className="wrap faq-grid">
+          <div>
+            <h2>Časté otázky</h2>
+            {FAQ.map(([q, a]) => (
+              <details key={q}>
+                <summary>{q}</summary>
+                <p>{a}</p>
+              </details>
+            ))}
           </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="wrap narrow">
           <Feedback />
         </div>
       </section>
-
-      <section id="otazky">
-        <div className="wrap narrow">
-          <h2>Časté otázky</h2>
-          {FAQ.map(([q, a]) => (
-            <details key={q}>
-              <summary>{q}</summary>
-              <p>{a}</p>
-            </details>
-          ))}
-        </div>
-      </section>
-      <div className="sticky-cta">
-        <Link href="/objednat" className="btn" data-track="cta_buy">Koupit plánovač za {PRODUCT.price} Kč</Link>
-      </div>
+      <StickyCta href="/objednat" label={`Koupit plánovač za ${PRODUCT.price} Kč`} />
     </>
   );
 }

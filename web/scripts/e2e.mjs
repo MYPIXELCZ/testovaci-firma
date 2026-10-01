@@ -1,7 +1,7 @@
 // End-to-end test nákupu: objednávka -> QR -> platba (falešné Fio) -> cron -> doručení -> stažení.
 // Spouštění: npm run build && node scripts/e2e.mjs
 // Potřebuje Chromium (CHROMIUM_PATH, výchozí /opt/pw-browsers/...). Nic neposílá ven.
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { readFileSync, rmSync, writeFileSync } from "node:fs";
 import http from "node:http";
 import { chromium } from "playwright-core";
@@ -242,10 +242,15 @@ try {
   check(st.funnel.byType.home.view === 1 && st.funnel.byType.home.cta_buy === 1 && st.funnel.byType.objednat.form_submit === 1, "metriky: trychtýř úvod → objednávka");
   check(st.orders.created >= 1 && st.orders.paid >= 1 && st.feedback["Stačí mi šablona zdarma"] === 1, "metriky: objednávky a důvody z ankety v souhrnu");
   const homeHtml = await (await fetch(BASE_URL, { headers: ua })).text();
-  check(homeHtml.includes("co vás zatím drží od objednání") && homeHtml.includes('data-track="cta_buy"'), "metriky: anketa a měřená tlačítka na úvodu");
+  check(homeHtml.includes("zatím drží od objednání") && homeHtml.includes('data-track="cta_buy"'), "metriky: anketa a měřená tlačítka na úvodu");
   const flat = homeHtml.replaceAll("<!-- -->", "");
   check(["par-planuje", "Koupit za 349", "Proč tabulka, a ne PDF nebo aplikace", "do 14 dnů vrátíme peníze", "Časté otázky", "sticky-cta"].every((t) => flat.includes(t)),
     "prodejní stránka má povinné prvky (fotka, cena v CTA, srovnání, záruka, FAQ, sticky CTA)");
+  // Vizuální a textová kontrola (FAILS.md 2026-10-01 02:02 a 02:05): šířka 1340 + 80 px, mobil, překryvy, z-index, texty.
+  const pages = "/,/objednat,/svatebni-checklist,/svatebni-rozpocet,/kalkulacka-svatebniho-rozpoctu,/podekovani-za-svatebni-dar,/ochrana-osobnich-udaju";
+  const viz = spawnSync("node", ["../tools/vizualni-kontrola.mjs", BASE_URL, pages, process.env.VIZ_DIR ?? `${STORE}viz`], { encoding: "utf8" });
+  console.log(viz.stdout.trim());
+  check(viz.status === 0, "vizuální a textová kontrola stránek");
 } catch (e) {
   failures++;
   console.error(e);

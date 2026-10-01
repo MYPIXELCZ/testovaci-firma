@@ -18,8 +18,8 @@ export default function ChecklistPage() {
         <p className="eyebrow">Plánování svatby</p>
         <h1>Svatební checklist: co zařídit a kdy</h1>
         <p className="lead">
-          Od zásnub po svatební cestu, seřazeno podle toho, kolik času do svatby zbývá. Celkem {planner.tasks.length} úkolů,
-          na které se při přípravách nejčastěji myslí, i těch, na které se zapomíná.
+          Od zásnub po svatební cestu, seřazeno podle toho, kolik času do svatby zbývá. Celkem {planner.tasks.length} úkolů
+          včetně těch, na které se často zapomíná.
         </p>
 
         <p>
@@ -31,7 +31,7 @@ export default function ChecklistPage() {
         <div className="tip">
           <p>
             <strong>Máte na přípravu méně než rok?</strong> Nic se neděje. Nejdřív zajistěte místo, oddávajícího a fotografa,
-            protože ti se vyprodávají nejdřív. Zbytek seznamu doženete postupně.
+            ti bývají obsazení nejdřív. Zbytek seznamu doženete postupně.
           </p>
         </div>
 
@@ -47,12 +47,12 @@ export default function ChecklistPage() {
         <h2>Na co se nejčastěji zapomíná</h2>
         <ul>
           <li>
-            <strong>Dotazník na matrice.</strong> Podává se předem a spolu s doklady. Jaké doklady a v jaké lhůtě chce
-            vaše matrika, si ověřte přímo u ní, liší se to podle místa a situace.
+            <strong>Dotazník na matrice.</strong> Odevzdává se předem spolu s doklady. Které doklady a v jaké lhůtě vaše
+            matrika chce, si ověřte přímo u ní, liší se to podle místa a situace.
           </li>
           <li><strong>Doplatky dodavatelům.</strong> Zálohy se platí měsíce předem, doplatky často v hotovosti v den svatby. Připravte si obálky.</li>
           <li><strong>Nouzová taška.</strong> Jehla a nit, náplasti, léky na bolest hlavy, deodorant, nabíječka.</li>
-          <li><strong>Jídlo pro vás dva.</strong> Novomanželé mají celý den program a často nestihnou sníst ani oběd.</li>
+          <li><strong>Jídlo pro vás dva.</strong> Novomanželé mají program celý den a často se ani pořádně nenajedí.</li>
           <li><strong>Doklady po svatbě.</strong> Pokud měníte příjmení, čekají vás nové doklady a nahlášení změny bance, pojišťovně i zaměstnavateli.</li>
         </ul>
 

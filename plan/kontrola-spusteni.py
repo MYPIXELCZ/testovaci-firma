@@ -26,6 +26,8 @@ missing = [k for k, rx in checks.items() if not re.search(rx, text)]
 design = plan.with_name("design-" + plan.name)
 if not design.exists() or not re.search(r"## Konkurence|## Rozbor", design.read_text(encoding="utf-8")):
     missing.append(f"design průzkum {design} (rozbor konkurence, prvky, vizuální směr)")
+elif not re.search(r"## Texty", design.read_text(encoding="utf-8")):
+    missing.append(f"{design}: oddíl „## Texty“ (každý blok webu → na jakou otázku cílové skupiny odpovídá)")
 code_checks = {
     "aplikace: trychtýř (události návštěvy)": r"funnel|trychtýř",
     "aplikace: anketa „proč ne“": r"[Ff]eedback",
