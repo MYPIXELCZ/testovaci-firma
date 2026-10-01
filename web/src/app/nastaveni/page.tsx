@@ -2,13 +2,32 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { listOrders } from "@/lib/orders";
 import { getSecret, isAdminRequest } from "@/lib/secrets";
+import { storage } from "@/lib/storage";
 import { saveFioToken, saveResendKey } from "./actions";
 import SecretForm from "./SecretForm";
 
 export const metadata: Metadata = { title: "Nastavení", robots: { index: false } };
 
+/** Návštěvy po dnech: jedna návštěva stránky = jedno ID v anonymních událostech (bez robotů a bez osobních údajů). */
+async function traffic() {
+  const seen = new Map<string, { day: string; src: string; page: string }>();
+  for (const item of await storage.list("beacons/")) {
+    const [, day, page, src, , pv] = item.pathname.split("/");
+    if (src !== "selftest") seen.set(pv, { day, src: src || "přímo / vyhledávač", page });
+  }
+  const byDay: Record<string, number> = {};
+  const bySrc: Record<string, number> = {};
+  for (const v of seen.values()) {
+    byDay[v.day] = (byDay[v.day] ?? 0) + 1;
+    bySrc[v.src] = (bySrc[v.src] ?? 0) + 1;
+  }
+  return { total: seen.size, byDay: Object.entries(byDay).sort().slice(-14), bySrc };
+}
+
 export default async function SettingsPage() {
   if (!(await isAdminRequest())) notFound();
+  const visits = await traffic();
+  const today = new Date().toISOString().slice(0, 10);
   const [fio, resend, orders] = await Promise.all([getSecret("FIO_TOKEN"), getSecret("RESEND_API_KEY"), listOrders()]);
   const real = orders.filter((o) => !o.test);
   const paid = real.filter((o) => o.status === "paid");
@@ -21,6 +40,16 @@ export default async function SettingsPage() {
     <section>
       <div className="wrap narrow">
         <h1 style={{ fontSize: "2.2rem" }}>Nastavení</h1>
+
+        <h2 style={{ fontSize: "1.4rem" }}>Návštěvnost</h2>
+        <div className="grid-2" style={{ marginBottom: 16 }}>
+          <div className="card"><h3>{visits.byDay.find(([d]) => d === today)?.[1] ?? 0}</h3><p>návštěv dnes (čas UTC)</p></div>
+          <div className="card"><h3>{visits.total}</h3><p>návštěv celkem od spuštění</p></div>
+        </div>
+        <p className="muted small" style={{ marginBottom: 40 }}>
+          Posledních 14 dní: {visits.byDay.map(([d, v]) => `${Number(d.slice(8, 10))}. ${Number(d.slice(5, 7))}.: ${v}`).join(" · ") || "zatím nic"}.
+          Zdroje: {Object.entries(visits.bySrc).map(([k, v]) => `${k} ${v}`).join(", ") || "zatím nic"}.
+        </p>
 
         <h2 style={{ fontSize: "1.4rem" }}>Prodeje</h2>
         <div className="grid-2" style={{ marginBottom: 16 }}>
