@@ -2,22 +2,22 @@
  "num": 5,
  "slug": "procenta",
  "title": "Procenta",
- "intro": "Procenta patří k nejbodovanějším tématům zkoušky: procentová bývá úloha 15 s přiřazováním a procenta se vracejí i ve výběru A–E a ve slovních úlohách. Rozhoduje, zda správně určíte základ, tedy to, k čemu se procenta vztahují.",
+ "intro": "Procenta patří k nejbodovanějším tématům zkoušky: úloha 15 s přiřazováním bývá procentová a procenta se vracejí také ve výběru A–E i ve slovních úlohách. Rozhoduje, zda správně určíte základ, tedy to, k čemu se procenta vztahují.",
  "tips": [
   "Nejdřív určete základ (100 %): je to původní hodnota nebo celek, ke kterému se část či změna vztahuje. Při dvou změnách po sobě je základem druhé změny už hodnota po první změně.",
   "Procenta převádějte na desetinná čísla: 35 % = 0,35, 5 % = 0,05, 125 % = 1,25. Část z celku se pak počítá násobením, celek (základ) dělením: je-li 15 % rovno 90, je 1 % rovno 90 : 15 = 6 a 100 % je 600.",
   "Zdražení o 20 % znamená násobit číslem 1,2, zlevnění o 20 % číslem 0,8. Opakované změny se násobí, nesčítají: dvě zdražení o 20 % dají 1,2 · 1,2 = 1,44, tedy zdražení o 44 %, ne o 40 %. Zdražení a zlevnění o stejné procento se neruší, protože každá změna má jiný základ: po zlevnění o 20 % vrátí cenu zpět až zdražení o 25 %.",
   "Otázky „o kolik procent je A větší než B“ a „o kolik procent je B menší než A“ mají různé výsledky, protože základem je pokaždé jiné číslo: to, s čím porovnáváme (v otázce stojí za slovem „než“).",
-  "Jednoduchý úrok za rok = jistina · úroková sazba. Za část roku se násobí zlomkem roku (3 měsíce = 3/12 roku). Promile je tisícina: 1 ‰ = 0,001 = 0,1 %.",
-  "Koncentrace roztoku nebo směsi je podíl hmotnosti složky a hmotnosti celku. Při přidání vody se množství rozpuštěné látky nemění, mění se jen celek."
+  "Jednoduchý úrok za rok = jistina · roční úroková sazba. Za část roku se násobí zlomkem roku (3 měsíce = 3/12 roku). Promile (‰) je tisícina: 1 ‰ = 0,001 = 0,1 %.",
+  "Koncentrace roztoku nebo směsi je podíl hmotnosti složky a hmotnosti celého roztoku (směsi). Při přidání vody se množství rozpuštěné látky nemění, mění se jen hmotnost celku."
  ],
  "example": {
-  "text": "Sportovní boty stály 2 000 Kč. Obchod je nejdřív zdražil o 20 % a potom zlevnil o 20 % z nové ceny. Kolik boty stojí nyní a jak se jejich cena změnila oproti původní?",
+  "text": "Sportovní boty stály 2 000 Kč. Obchod je nejdřív zdražil o 20 % a potom zlevnil o 20 % z nové ceny. Kolik boty nyní stojí a jak se jejich cena změnila oproti původní ceně?",
   "steps": [
    "Zdražení o 20 %: cena je 120 % původní, tedy 2 000 · 1,2 = 2 400 Kč.",
    "Zlevnění o 20 % z nové ceny: zbývá 80 % ze 2 400 Kč, tedy 2 400 · 0,8 = 1 920 Kč.",
    "Změna oproti původní ceně: 2 000 − 1 920 = 80 Kč a 80 : 2 000 = 0,04 = 4 %.",
-   "Cena je o 4 % nižší než původní, nevrátila se na 2 000 Kč: druhé procento se počítá z vyššího základu (2 400 Kč)."
+   "Cena je o 4 % nižší než původní a nevrátila se na 2 000 Kč: druhá změna se počítá z vyššího základu (2 400 Kč)."
   ],
   "answer": "1 920 Kč, cena je o 4 % nižší než původní"
  },
@@ -72,7 +72,7 @@
    "options": null,
    "answer": "150 Kč",
    "steps": [
-    "Po zdražení o 25 % je cena 125 % původní ceny, tedy 1,25 násobek.",
+    "Po zdražení o 25 % je cena 125 % původní ceny, tedy 1,25 · původní cena.",
     "1,25 · 120 = 150 Kč.",
     "Jinak: 25 % ze 120 je 30 Kč a 120 + 30 = 150 Kč."
    ],
@@ -97,14 +97,14 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Mobilní telefon stál 8 000 Kč. Nejdřív zlevnil o 20 %, potom se jeho nová cena snížila ještě o 10 %. Kolik stojí po obou slevách a o kolik procent původní ceny zlevnil celkem?",
+   "text": "Mobilní telefon stál 8 000 Kč. Nejdřív zlevnil o 20 %, potom byla jeho nová cena snížena ještě o 10 % (ze zlevněné ceny). Kolik stojí po obou slevách a o kolik procent původní ceny celkem zlevnil?",
    "options": null,
    "answer": "5 760 Kč, celkem o 28 %",
    "steps": [
     "Po první slevě zbývá 80 % ceny: 8 000 · 0,8 = 6 400 Kč.",
     "Druhá sleva se počítá ze 6 400 Kč, zbývá 90 %: 6 400 · 0,9 = 5 760 Kč.",
     "Podíl původní ceny: 5 760 : 8 000 = 0,72 = 72 %, sleva celkem tedy 100 % − 72 % = 28 %.",
-    "Pozor: 20 % + 10 % = 30 % je špatně, druhá sleva vychází z nižší ceny."
+    "Pozor: sečtení 20 % + 10 % = 30 % je chyba, druhá sleva se počítá z nižší ceny."
    ],
    "figure": null,
    "space": 3
@@ -117,9 +117,9 @@
    "answer": "a) o 25 %, b) o 20 %",
    "steps": [
     "Rozdíl: 2 000 − 1 600 = 400 Kč.",
-    "a) Porovnáváme se zářím (číslo za „než“), základem je 1 600 Kč: 400 : 1 600 = 1/4 = 25 %.",
+    "a) Porovnáváme se zářím (stojí za slovem „než“), základem je 1 600 Kč: 400 : 1 600 = 1/4 = 25 %.",
     "b) Porovnáváme s říjnem, základem je 2 000 Kč: 400 : 2 000 = 1/5 = 20 %.",
-    "Výsledky se liší, protože se dělí jiným základem."
+    "Výsledky se liší, protože základ je pokaždé jiný."
    ],
    "figure": null,
    "space": 3
@@ -127,7 +127,7 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Na spořicí účet bylo uloženo 50 000 Kč s úrokem 3 % ročně. Úrok se počítá jednoduše, tedy bez úročení úroků, a daň z úroků nepočítejte. Kolik korun úroku vklad přinese za 4 měsíce?",
+   "text": "Na spořicí účet bylo uloženo 50 000 Kč s úrokem 3 % ročně. Úrok se počítá jednoduše (bez úročení úroků) a daň z úroků nepočítejte. Kolik korun úroku vklad přinese za 4 měsíce?",
    "options": null,
    "answer": "500 Kč",
    "steps": [
@@ -154,7 +154,7 @@
     "Původní cena je základ (100 %), po zdražení je cena 120 % základu.",
     "120 % původní ceny je 360 Kč, tedy 1 % je 360 : 120 = 3 Kč a 100 % je 300 Kč.",
     "Zkouška: 300 · 1,2 = 360. ✓",
-    "Chyby: 288 Kč vznikne odečtením 20 % z nové ceny (360 · 0,8), 340 a 380 odečtením a přičtením 20 Kč místo 20 %, 432 Kč násobením 360 · 1,2."
+    "Chyby: 288 Kč vyjde odečtením 20 % z nové ceny (360 · 0,8), 340 Kč a 380 Kč odečtením, resp. přičtením 20 Kč místo 20 %, 432 Kč násobením 360 · 1,2."
    ],
    "figure": null,
    "space": 3
@@ -164,7 +164,7 @@
    "kind": "yesno",
    "text": "Platí tato tvrzení?",
    "options": [
-    "Když cena stoupne o 50 % a potom klesne o 50 %, vrátí se na původní hodnotu.",
+    "Když cena stoupne o 50 % a potom klesne o 50 % z nové ceny, vrátí se na původní hodnotu.",
     "20 % z 50 je totéž jako 50 % z 20.",
     "Desetinné číslo 0,4 odpovídá 4 %."
    ],
@@ -180,14 +180,14 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Pekárna prodala v pondělí 320 rohlíků. V úterý prodala o 25 % více než v pondělí, ve středu o 25 % méně než v úterý a ve čtvrtek o 25 % méně než v pondělí. Přiřaďte ke každému dni (1–3) počet prodaných rohlíků (A–F): 1. úterý, 2. středa, 3. čtvrtek. Nabídka: A) 240, B) 300, C) 320, D) 345, E) 375, F) 400.",
+   "text": "Pekárna prodala v pondělí 320 rohlíků. V úterý prodala o 25 % více než v pondělí, ve středu o 25 % méně než v úterý a ve čtvrtek o 25 % méně než v pondělí. Přiřaďte ke každému dni (1–3) odpovídající počet prodaných rohlíků (A–F): 1 – úterý, 2 – středa, 3 – čtvrtek. Nabídka: A) 240, B) 300, C) 320, D) 345, E) 375, F) 400.",
    "options": null,
    "answer": "1 – F, 2 – B, 3 – A",
    "steps": [
     "Úterý: o 25 % více než v pondělí, tedy 1,25 · 320 = 400 rohlíků (F).",
     "Středa: o 25 % méně než v úterý, základem je úterý: 0,75 · 400 = 300 rohlíků (B).",
     "Čtvrtek: o 25 % méně než v pondělí, základem je pondělí: 0,75 · 320 = 240 rohlíků (A).",
-    "Ostatní možnosti jsou typické chyby: 320 (C) vyjde, když se zdražení a zlevnění o 25 % „vyruší“, 345 (D) je 320 + 25 a 375 (E) je 400 − 25 (přičtení a odečtení 25 kusů místo 25 %)."
+    "Ostatní možnosti jsou typické chyby: 320 (C) vyjde, když se nárůst a pokles o 25 % „vyruší“, 345 (D) je 320 + 25 a 375 (E) je 400 − 25 (přičtení a odečtení 25 kusů místo 25 %)."
    ],
    "figure": null,
    "space": 3
@@ -195,7 +195,7 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Obchod připravuje směs z 3 kg ořechů a 2 kg rozinek. a) Kolik procent hmotnosti směsi tvoří rozinky? b) Kolik kilogramů rozinek je třeba přidat, aby rozinky tvořily přesně polovinu směsi (ořechů zůstává 3 kg)?",
+   "text": "Obchod míchá směs ze 3 kg ořechů a 2 kg rozinek. a) Kolik procent hmotnosti směsi tvoří rozinky? b) Kolik kilogramů rozinek je třeba přidat, aby rozinky tvořily přesně polovinu směsi (množství ořechů se nemění)?",
    "options": null,
    "answer": "a) 40 %, b) 1 kg",
    "steps": [
@@ -210,7 +210,7 @@
   {
    "level": 3,
    "kind": "open",
-   "text": "Ve 400 g solného roztoku je 6 % soli. a) Kolik gramů soli roztok obsahuje? b) Kolik gramů čisté vody je třeba přidat, aby koncentrace soli klesla na 4 %?",
+   "text": "Ve 400 g solného roztoku je 6 % soli. a) Kolik gramů soli roztok obsahuje? b) Kolik gramů čisté vody je třeba přidat, aby roztok obsahoval jen 4 % soli?",
    "options": null,
    "answer": "a) 24 g, b) 200 g",
    "steps": [
@@ -226,7 +226,7 @@
   {
    "level": 3,
    "kind": "open",
-   "text": "Obchodník koupil zboží, zvýšil jeho cenu o 30 % a potom ji snížil o 20 % z takto zvýšené ceny. Zákazník zaplatil 936 Kč. a) Jaká byla nákupní cena zboží? b) Kolik procent z nákupní ceny obchodník vydělal?",
+   "text": "Obchodník nakoupil zboží, zvýšil jeho nákupní cenu o 30 % a potom tuto zvýšenou cenu snížil o 20 %. Zákazník zaplatil 936 Kč. a) Jaká byla nákupní cena zboží? b) Kolik procent z nákupní ceny obchodník vydělal?",
    "options": null,
    "answer": "a) 900 Kč, b) 4 %",
    "steps": [
@@ -254,7 +254,7 @@
     "Původní strana je a, nová strana je 1,1 · a.",
     "Nový obsah: (1,1 · a)² = 1,21 · a², původní obsah je a².",
     "Nový obsah je 121 % původního, zvětšil se tedy o 21 %. Zkouška pro a = 10: 100 → 121.",
-    "Chyby: 10 % je jen zvětšení strany, 20 % vznikne sečtením 10 % + 10 %, 121 % je nový obsah, ne jeho zvětšení."
+    "Chyby: 10 % je zvětšení strany, 20 % vznikne sečtením 10 % + 10 %, 110 % je nová délka strany a 121 % je nový obsah, ne jeho zvětšení."
    ],
    "figure": null,
    "space": 3

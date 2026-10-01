@@ -2,19 +2,19 @@
  "num": 12,
  "slug": "vzory",
  "title": "Úsudek a vzory",
- "intro": "Úloha 16 je nestandardní: posloupnost obrazců, číselný vzor nebo logická úvaha. Patří k nejhůř řešeným úlohám celého testu a hodně žáků ji vynechá, přitom první podúlohu často vyřešíte prostým zapsáním prvních kroků.",
+ "intro": "Úloha 16 je nestandardní: posloupnost obrazců, číselný vzor nebo logická úvaha. Patří k nejhůř řešeným úlohám celého testu a hodně žáků ji vynechá. První podúlohu přitom často vyřešíte prostým vypsáním prvních kroků.",
  "tips": [
   "Prvních pár členů si zapište do tabulky (číslo kroku, počet). Teprve potom hledejte pravidlo a ověřte ho na všech zapsaných členech, ne jen na posledním.",
-  "Stejné rozdíly mezi sousedními členy znamenají, že se pořád přičítá totéž číslo (3, 7, 11, 15, … je 4n − 1). Rozdíly, které samy rostou, hlásí schody nebo čtvercovou síť.",
-  "Vzor, který se stále opakuje (korále, dny v týdnu), řešte zbytkem po dělení: 50 : 4 = 12 a zbytek 2, tedy druhý člen skupiny.",
+  "Stejné rozdíly mezi sousedními členy znamenají, že se pořád přičítá totéž číslo (posloupnost 3, 7, 11, 15, … je 4n − 1). Rostou-li samy rozdíly, jde o vzor typu schody nebo čtvercová síť.",
+  "Vzor, který se stále opakuje (korálky, dny v týdnu), řešte zbytkem po dělení (délka skupiny je 4): 50 : 4 = 12 a zbytek 2, takže 50. člen je druhý ve skupině.",
   "Při počítání možností je vypisujte uspořádaně (podle prvního kroku nebo podle abecedy). Nic nevynechejte a nic nepočítejte dvakrát.",
-  "U logických úloh vyškrtávejte v tabulce, co nejde. U tvrzení o pravdě předpokládejte, že platí, a hledejte spor.",
-  "Úlohu nevynechávejte: záporné body nejsou a první podúlohu často zvládnete tím, že si prvních pár kroků nakreslíte nebo vypíšete."
+  "U logických úloh vyškrtávejte v tabulce, co nejde. U výroků o pravdě a lži předpokládejte, že výrok platí, a hledejte spor.",
+  "Úlohu nevynechávejte: za špatnou odpověď se body neodečítají a první podúlohu často zvládnete tím, že si prvních pár kroků nakreslíte nebo vypíšete."
  ],
  "example": {
-  "text": "Ze zápalek skládáme řadu čtverců: jeden čtverec je ze 4 zápalek, dva čtverce vedle sebe (se společnou stranou) ze 7 zápalek, tři čtverce ze 10 zápalek. a) Kolik zápalek potřebujeme na 10 čtverců v řadě? b) Kolik čtverců v řadě postavíme ze 100 zápalek?",
+  "text": "Ze zápalek skládáme řadu čtverců: jeden čtverec potřebuje 4 zápalky, dva čtverce vedle sebe (se společnou stranou) 7 zápalek a tři čtverce 10 zápalek. a) Kolik zápalek potřebujeme na 10 čtverců v řadě? b) Kolik čtverců v řadě postavíme ze 100 zápalek?",
   "steps": [
-   "Zapíšeme si členy: 1 čtverec … 4 zápalky, 2 čtverce … 7, 3 čtverce … 10. Každý další čtverec přidá 3 zápalky (tři nové strany).",
+   "Zapíšeme si členy: 1 čtverec → 4 zápalky, 2 čtverce → 7, 3 čtverce → 10. Každý další čtverec přidá 3 zápalky (tři nové strany).",
    "Pro n čtverců tedy potřebujeme 4 + 3 · (n − 1) = 3n + 1 zápalek. Ověříme: n = 3 dává 3 · 3 + 1 = 10. ✓",
    "a) n = 10: 3 · 10 + 1 = 31 zápalek.",
    "b) Řešíme 3n + 1 = 100, tedy 3n = 99 a n = 33 čtverců."
@@ -25,7 +25,7 @@
   {
    "level": 1,
    "kind": "open",
-   "text": "Doplňte v každé řadě další dva členy. a) 7, 12, 17, 22, …; b) 3, 6, 12, 24, …",
+   "text": "Doplňte do každé řady další dva členy. a) 7, 12, 17, 22, …; b) 3, 6, 12, 24, …",
    "options": null,
    "answer": "a) 27, 32; b) 48, 96",
    "steps": [
@@ -42,7 +42,7 @@
    "options": null,
    "answer": "a) 13 zápalek; b) 12 trojúhelníků",
    "steps": [
-    "Zapíšeme: 1 trojúhelník … 3 zápalky, 2 trojúhelníky … 5, 3 trojúhelníky … 7. Každý další trojúhelník přidá 2 zápalky.",
+    "Zapíšeme: 1 trojúhelník → 3 zápalky, 2 trojúhelníky → 5, 3 trojúhelníky → 7. Každý další trojúhelník přidá 2 zápalky.",
     "a) 3, 5, 7, 9, 11, 13: na 6 trojúhelníků je potřeba 13 zápalek.",
     "b) Pro n trojúhelníků je to 2n + 1 zápalek. Řešíme 2n + 1 = 25, tedy 2n = 24 a n = 12.",
     "Zkouška: 2 · 12 + 1 = 25. ✓"
@@ -53,18 +53,18 @@
   {
    "level": 1,
    "kind": "yesno",
-   "text": "Korále navlékáme dokola v tomto pořadí: červený, modrý, modrý, žlutý, červený, modrý, modrý, žlutý a tak dále. Platí tato tvrzení?",
+   "text": "Korálky navlékáme na nit stále dokola v tomto pořadí: červený, modrý, modrý, žlutý, červený, modrý, modrý, žlutý a tak dále. Platí tato tvrzení?",
    "options": [
-    "50. korál je modrý.",
-    "Mezi prvními 50 korály je právě 24 modrých.",
-    "100. korál je žlutý."
+    "50. korálek je modrý.",
+    "Mezi prvními 50 korálky je právě 24 modrých.",
+    "100. korálek je žlutý."
    ],
    "answer": "ANO, NE, ANO",
    "steps": [
-    "Pořadí se opakuje po čtyřech korálech: červený, modrý, modrý, žlutý.",
-    "50 : 4 = 12 a zbytek 2. Po 12 úplných skupinách přijde červený a modrý korál, 50. korál je modrý. Tvrzení platí.",
-    "V 12 skupinách je 12 · 2 = 24 modrých, zbylé dva korály (červený a modrý) přidají ještě jeden: celkem 25. Tvrzení neplatí.",
-    "100 : 4 = 25 beze zbytku, 100. korál je poslední ve skupině, tedy žlutý. Tvrzení platí."
+    "Pořadí se opakuje po čtyřech korálcích: červený, modrý, modrý, žlutý.",
+    "50 : 4 = 12 a zbytek 2. Po 12 úplných skupinách přijde červený a modrý korálek, 50. korálek je tedy modrý. Tvrzení platí.",
+    "Ve 12 skupinách je 12 · 2 = 24 modrých, zbylé dva korálky (červený a modrý) přidají ještě jeden: celkem 25. Tvrzení neplatí.",
+    "100 : 4 = 25 beze zbytku, 100. korálek je poslední ve skupině, tedy žlutý. Tvrzení platí."
    ],
    "figure": null,
    "space": 1
@@ -72,7 +72,7 @@
   {
    "level": 1,
    "kind": "open",
-   "text": "Čtyři žáci, Adam, Bára, Cyril a Dana, běželi závod. Adam doběhl před Bárou. Cyril doběhl hned za Bárou, mezi nimi nikdo nedoběhl. Dana nedoběhla poslední a doběhla později než Adam. V jakém pořadí doběhli?",
+   "text": "Čtyři žáci (Adam, Bára, Cyril a Dana) běželi závod. Adam doběhl před Bárou. Cyril doběhl hned za Bárou, takže mezi nimi nikdo nedoběhl. Dana nedoběhla poslední a doběhla později než Adam. V jakém pořadí doběhli?",
    "options": null,
    "answer": "Adam, Dana, Bára, Cyril",
    "steps": [
@@ -87,12 +87,12 @@
   {
    "level": 1,
    "kind": "open",
-   "text": "Do čtverce 3 × 3 vepište čísla 1 až 9, každé právě jednou, tak aby byl součet čísel v každém řádku, v každém sloupci i na obou úhlopříčkách stejný. Tři čísla už jsou vepsaná. Doplňte ostatní.",
+   "text": "Do čtverce 3 × 3 vepište čísla 1 až 9, každé právě jednou, tak, aby byl součet čísel v každém řádku, v každém sloupci i na obou úhlopříčkách stejný. Tři čísla jsou už vepsaná. Doplňte ostatní.",
    "options": null,
    "answer": "horní řádek 2, 7, 6; střední 9, 5, 1; dolní 4, 3, 8",
    "steps": [
-    "Součet čísel 1 až 9 je 45 a rozdělí se do tří řádků, takže každý řádek (sloupec, úhlopříčka) má součet 45 : 3 = 15.",
-    "Horní řádek: 2 + ? + 6 = 15, uprostřed je 7. Úhlopříčky: 2 + 5 + ? = 15 dává 8 vpravo dole, 6 + 5 + ? = 15 dává 4 vlevo dole.",
+    "Součet čísel 1 až 9 je 45 a rozdělí se do tří řádků, takže každý řádek má součet 45 : 3 = 15. Stejný součet musí mít i sloupce a úhlopříčky.",
+    "Horní řádek: 2 + ? + 6 = 15, uprostřed je tedy 7. Úhlopříčky: 2 + 5 + ? = 15 dává 8 vpravo dole, 6 + 5 + ? = 15 dává 4 vlevo dole.",
     "Levý sloupec: 2 + ? + 4 = 15 dává 9. Pravý sloupec: 6 + ? + 8 = 15 dává 1. Prostřední sloupec: 7 + 5 + ? = 15 dává 3.",
     "Zkouška: střední řádek 9 + 5 + 1 = 15, dolní řádek 4 + 3 + 8 = 15. ✓"
    ],
@@ -106,7 +106,7 @@
    "options": null,
    "answer": "a) 36 čtverečků; b) 10. obrazec",
    "steps": [
-    "Počty čtverečků: 1, 3, 6, 10. Každý další obrazec přidá o jeden čtvereček víc než předchozí: nejdřív 2, pak 3, pak 4, …",
+    "Počty čtverečků: 1, 3, 6, 10. Každý další obrazec přidá o jeden čtvereček víc než předchozí obrazec: nejdřív 2, pak 3, pak 4 čtverečky a tak dále.",
     "a) Pokračujeme: 15, 21, 28, 36. Osmý obrazec má 36 čtverečků (1 + 2 + 3 + … + 8).",
     "b) Devátý obrazec má 36 + 9 = 45 čtverečků, desátý 45 + 10 = 55. První obrazec přes 50 čtverečků je tedy desátý."
    ],
@@ -116,7 +116,7 @@
   {
    "level": 2,
    "kind": "choice",
-   "text": "V posloupnosti 3, 7, 11, 15, … je každý další člen o 4 větší než předchozí. Které z čísel je členem této posloupnosti?",
+   "text": "V posloupnosti 3, 7, 11, 15, … je každý další člen o 4 větší než předchozí. Které z uvedených čísel je členem této posloupnosti?",
    "options": [
     "61",
     "74",
@@ -136,7 +136,7 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Kříže skládáme ze čtverečků: uprostřed je šedý čtvereček a na každé ze čtyř stran rameno z bílých čtverečků (obrázek ukazuje první tři obrazce). a) Kolik čtverečků má 10. obrazec? b) Kolikátý obrazec je z 81 čtverečků?",
+   "text": "Kříže skládáme ze čtverečků: uprostřed je šedý čtvereček a z každé ze čtyř stran k němu přiléhá rameno z bílých čtverečků (obrázek ukazuje první tři obrazce). a) Kolik čtverečků má 10. obrazec? b) Kolikátý obrazec se skládá z 81 čtverečků?",
    "options": null,
    "answer": "a) 41 čtverečků; b) 20. obrazec",
    "steps": [
@@ -151,14 +151,14 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Jana, Karel, Lucie a Martin chodí každý do jiného z kroužků: šachy, tanec, florbal a plavání. Jana nechodí na tanec ani na plavání. Karel nechodí na šachy ani na tanec. Lucie nechodí na plavání ani na florbal. Martin nechodí na florbal ani na šachy. Na tanec chodí dívka. Kdo chodí do kterého kroužku?",
+   "text": "Jana, Karel, Lucie a Martin chodí každý do jiného z těchto kroužků: šachy, tanec, florbal a plavání. Jana nechodí na tanec ani na plavání. Karel nechodí na šachy ani na tanec. Lucie nechodí na plavání ani na florbal. Martin nechodí na florbal ani na šachy. Na tanec chodí dívka. Kdo chodí do kterého kroužku?",
    "options": null,
    "answer": "Jana šachy, Karel florbal, Lucie tanec, Martin plavání",
    "steps": [
     "Martin nechodí na florbal ani na šachy, chodí tedy na tanec, nebo na plavání. Na tanec chodí dívka, takže Martin chodí na plavání.",
     "Karel může jen na florbal nebo na plavání, plavání už je obsazené, Karel chodí na florbal.",
     "Zbývají šachy a tanec pro Janu a Lucii. Jana nechodí na tanec, takže Jana chodí na šachy a Lucie na tanec.",
-    "Zkouška: Jana nechodí na tanec ani na plavání, Lucie nechodí na plavání ani na florbal a na tanec chodí dívka. ✓"
+    "Zkouška: Jana (šachy), Karel (florbal), Lucie (tanec) i Martin (plavání) splňují všechny podmínky ze zadání. ✓"
    ],
    "figure": null,
    "space": 2
@@ -166,13 +166,13 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Na ostrově žijí poctivci, kteří vždy mluví pravdu, a lháři, kteří vždy lžou. Karel a Lucie jsou z ostrova. Karel řekne: „Aspoň jeden z nás dvou je lhář.“ Kdo z nich je poctivec a kdo lhář?",
+   "text": "Na ostrově žijí poctivci, kteří vždy mluví pravdu, a lháři, kteří vždy lžou. Karel a Lucie jsou obyvatelé ostrova. Karel řekne: „Aspoň jeden z nás dvou je lhář.“ Kdo z nich je poctivec a kdo lhář?",
    "options": null,
    "answer": "Karel je poctivec, Lucie je lhářka",
    "steps": [
     "Předpokládejme, že Karel je lhář. Pak je jeho věta nepravdivá, tedy nikdo z nich není lhář. To odporuje předpokladu, že Karel je lhář.",
     "Karel je tedy poctivec a jeho věta je pravdivá: aspoň jeden z nich je lhář.",
-    "Karel lhář není, proto je lhář Lucie."
+    "Karel lhář není, proto je lhářkou Lucie."
    ],
    "figure": null,
    "space": 2
@@ -200,7 +200,7 @@
    "steps": [
     "Do každého bodu vede tolik cest, kolik jich vede z bodu vlevo od něj a z bodu pod ním: počty sčítáme. Po dolním a levém okraji vede do každého bodu jen 1 cesta.",
     "Spodní řada zleva: 1, 1, 1, 1. Střední řada: 1, 2, 3, 4. Horní řada: 1, 3, 6, 10. Do bodu B vede 10 cest.",
-    "b) Z A do C vedou 2 cesty. Z C do B musí mravenec 2× doprava a 1× nahoru, to jsou 3 cesty (NPP, PNP, PPN, kde P je krok doprava a N krok nahoru).",
+    "b) Z A do C vedou 2 cesty. Z C do B musí mravenec 2krát doprava a 1krát nahoru, to jsou 3 cesty (NPP, PNP, PPN, kde P je krok doprava a N krok nahoru).",
     "Přes C vede 2 · 3 = 6 cest."
    ],
    "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 114\" font-family=\"Inter,Arial\" font-size=\"10\"><line x1=\"64.0\" y1=\"94.0\" x2=\"64.0\" y2=\"14.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"104.0\" y1=\"94.0\" x2=\"104.0\" y2=\"14.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"144.0\" y1=\"94.0\" x2=\"144.0\" y2=\"14.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"184.0\" y1=\"94.0\" x2=\"184.0\" y2=\"14.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"64.0\" y1=\"94.0\" x2=\"184.0\" y2=\"94.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"64.0\" y1=\"54.0\" x2=\"184.0\" y2=\"54.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><line x1=\"64.0\" y1=\"14.0\" x2=\"184.0\" y2=\"14.0\" stroke=\"#1c2230\" stroke-width=\"1.2\"/><circle cx=\"64.0\" cy=\"94.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"64.0\" cy=\"54.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"64.0\" cy=\"14.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"104.0\" cy=\"94.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"104.0\" cy=\"54.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"104.0\" cy=\"14.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"144.0\" cy=\"94.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"144.0\" cy=\"54.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"144.0\" cy=\"14.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"184.0\" cy=\"94.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"184.0\" cy=\"54.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"184.0\" cy=\"14.0\" r=\"2.2\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"1\"/><circle cx=\"64.0\" cy=\"94.0\" r=\"3.6\" fill=\"#1c2230\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"55.0\" y=\"107.0\" font-size=\"11\" text-anchor=\"middle\" fill=\"#1c2230\">A</text><circle cx=\"184.0\" cy=\"14.0\" r=\"3.6\" fill=\"#1c2230\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"193.0\" y=\"8.0\" font-size=\"11\" text-anchor=\"middle\" fill=\"#1c2230\">B</text><circle cx=\"104.0\" cy=\"54.0\" r=\"3.6\" fill=\"#1c2230\" stroke=\"#1c2230\" stroke-width=\"1\"/><text x=\"95.0\" y=\"49.0\" font-size=\"11\" text-anchor=\"middle\" fill=\"#1c2230\">C</text></svg>",
@@ -209,7 +209,7 @@
   {
    "level": 3,
    "kind": "open",
-   "text": "Chodník široký 2 dlaždice a dlouhý 6 dlaždic chceme vydláždit dlaždicemi tvaru obdélníku 1 × 2, které můžeme klást vodorovně i svisle. Všechny dlaždice jsou stejné, dvě vydláždění se liší, když aspoň jedna dlaždice leží jinak. Kolika způsoby lze chodník vydláždit?",
+   "text": "Chodník široký 2 dlaždice a dlouhý 6 dlaždic chceme vydláždit obdélníkovými dlaždicemi 1 × 2, které můžeme klást vodorovně i svisle. Všechny dlaždice jsou stejné; dvě vydláždění jsou různá, jestliže aspoň jedna dlaždice leží jinak. Kolika způsoby lze chodník vydláždit?",
    "options": null,
    "answer": "13 způsobů",
    "steps": [
@@ -228,8 +228,8 @@
    "answer": "a) 4 čtverečky; b) 8 čtverečků",
    "steps": [
     "Řádky číslujeme shora, sloupce zleva. Vybarveno je 6 čtverečků: v 1. řádku 1. sloupec, ve 2. řádku 2. a 4. sloupec, ve 3. řádku 1. sloupec, ve 4. řádku 2. sloupec a v 5. řádku 4. sloupec.",
-    "a) Osa o vede 3. sloupcem: protějšek 1. sloupce je 5. sloupec, protějšek 2. sloupce je 4. sloupec. Ve 2. řádku jsou čtverečky už souměrné, v řádcích 1, 3, 4 a 5 chybí protějšek. Přidáme 4 čtverečky.",
-    "b) Osa p vede 3. řádkem: protějšek 1. řádku je 5. řádek, protějšek 2. řádku je 4. řádek. Řádky 2 a 4 jsou po úpravě podle a) stejné, 3. řádek je sám sobě protějškem. V 1. řádku jsou vybarveny sloupce 1 a 5, v 5. řádku sloupce 2 a 4, každý z těchto řádků potřebuje čtverečky druhého: přidáme 2 + 2 = 4 čtverečky.",
+    "a) Osa o vede 3. sloupcem: souměrně k 1. sloupci leží 5. sloupec a souměrně ke 2. sloupci 4. sloupec. Ve 2. řádku jsou čtverečky už souměrné, v řádcích 1, 3, 4 a 5 chybí vždy jeden souměrný čtvereček. Přidáme 4 čtverečky.",
+    "b) Osa p vede 3. řádkem: souměrně k 1. řádku leží 5. řádek a souměrně ke 2. řádku 4. řádek. Řádky 2 a 4 jsou po úpravě podle a) stejné, 3. řádek leží na ose p. V 1. řádku jsou vybarveny sloupce 1 a 5, v 5. řádku sloupce 2 a 4, každý z těchto řádků potřebuje čtverečky druhého: přidáme 2 + 2 = 4 čtverečky.",
     "Celkem přidáme 4 + 4 = 8 čtverečků, výsledný obrazec má 14 čtverečků."
    ],
    "figure": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 248 140\" font-family=\"Inter,Arial\" font-size=\"10\"><rect x=\"69.0\" y=\"14.0\" width=\"22.0\" height=\"22.0\" fill=\"#c4cfee\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"91.0\" y=\"14.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"113.0\" y=\"14.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"135.0\" y=\"14.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"157.0\" y=\"14.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"69.0\" y=\"36.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"91.0\" y=\"36.0\" width=\"22.0\" height=\"22.0\" fill=\"#c4cfee\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"113.0\" y=\"36.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"135.0\" y=\"36.0\" width=\"22.0\" height=\"22.0\" fill=\"#c4cfee\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"157.0\" y=\"36.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"69.0\" y=\"58.0\" width=\"22.0\" height=\"22.0\" fill=\"#c4cfee\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"91.0\" y=\"58.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"113.0\" y=\"58.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"135.0\" y=\"58.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"157.0\" y=\"58.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"69.0\" y=\"80.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"91.0\" y=\"80.0\" width=\"22.0\" height=\"22.0\" fill=\"#c4cfee\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"113.0\" y=\"80.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"135.0\" y=\"80.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"157.0\" y=\"80.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"69.0\" y=\"102.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"91.0\" y=\"102.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"113.0\" y=\"102.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"135.0\" y=\"102.0\" width=\"22.0\" height=\"22.0\" fill=\"#c4cfee\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><rect x=\"157.0\" y=\"102.0\" width=\"22.0\" height=\"22.0\" fill=\"#ffffff\" stroke=\"#1c2230\" stroke-width=\"0.8\"/><line x1=\"124.0\" y1=\"6.0\" x2=\"124.0\" y2=\"132.0\" stroke=\"#1c2230\" stroke-width=\"1.1\" stroke-dasharray=\"4 3\"/><text x=\"130.0\" y=\"11.0\" font-size=\"10\" text-anchor=\"start\" fill=\"#1c2230\">o</text><line x1=\"61.0\" y1=\"69.0\" x2=\"187.0\" y2=\"69.0\" stroke=\"#1c2230\" stroke-width=\"1.1\" stroke-dasharray=\"4 3\"/><text x=\"189.0\" y=\"72.5\" font-size=\"10\" text-anchor=\"start\" fill=\"#1c2230\">p</text></svg>",
@@ -253,7 +253,7 @@
   {
    "level": 3,
    "kind": "open",
-   "text": "Čtvercovou síť n × n skládáme ze zápalek, obrázek ukazuje první tři obrazce (1 × 1, 2 × 2 a 3 × 3 čtverce). a) Kolik zápalek potřebujeme na síť 9 × 9 čtverců? b) Ze 100 zápalek postavíme největší možnou síť. Kolik čtverců má na straně a kolik zápalek zbude?",
+   "text": "Čtvercovou síť n × n skládáme ze zápalek, obrázek ukazuje první tři obrazce (1 × 1, 2 × 2 a 3 × 3 čtverce). a) Kolik zápalek potřebujeme na síť 9 × 9 čtverců? b) Ze 100 zápalek chceme postavit co největší čtvercovou síť. Kolik čtverců bude mít na straně a kolik zápalek zbude?",
    "options": null,
    "answer": "a) 180 zápalek; b) 6 × 6 čtverců, zbude 16 zápalek",
    "steps": [
@@ -293,7 +293,7 @@
    "steps": [
     "Dny v týdnu se opakují po 7 dnech. 100 : 7 = 14 a zbytek 2.",
     "Po 14 celých týdnech je zase středa, ještě 2 dny navíc: čtvrtek, pátek.",
-    "Za 100 dní bude pátek. Čtvrtek by vyšel, kdyby žák přičetl jen 1 den, tedy zapomněl na jeden krok."
+    "Za 100 dní bude pátek. Čtvrtek vyjde, když žák přičte jen 1 zbylý den místo dvou."
    ],
    "figure": null
   }

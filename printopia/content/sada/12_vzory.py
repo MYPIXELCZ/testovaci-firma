@@ -155,21 +155,21 @@ def symmetry_svg(shaded) -> str:
 
 # ------------------------------------------------------------------ téma
 T = Topic(12, "vzory", "Úsudek a vzory",
-          "Úloha 16 je nestandardní: posloupnost obrazců, číselný vzor nebo logická úvaha. Patří k nejhůř řešeným úlohám celého testu a hodně žáků ji vynechá, "
-          "přitom první podúlohu často vyřešíte prostým zapsáním prvních kroků.",
+          "Úloha 16 je nestandardní: posloupnost obrazců, číselný vzor nebo logická úvaha. Patří k nejhůř řešeným úlohám celého testu a hodně žáků ji vynechá. "
+          "První podúlohu přitom často vyřešíte prostým vypsáním prvních kroků.",
           ["Prvních pár členů si zapište do tabulky (číslo kroku, počet). Teprve potom hledejte pravidlo a ověřte ho na všech zapsaných členech, ne jen na posledním.",
-           "Stejné rozdíly mezi sousedními členy znamenají, že se pořád přičítá totéž číslo (3, 7, 11, 15, … je 4n − 1). Rozdíly, které samy rostou, hlásí schody nebo čtvercovou síť.",
-           "Vzor, který se stále opakuje (korále, dny v týdnu), řešte zbytkem po dělení: 50 : 4 = 12 a zbytek 2, tedy druhý člen skupiny.",
+           "Stejné rozdíly mezi sousedními členy znamenají, že se pořád přičítá totéž číslo (posloupnost 3, 7, 11, 15, … je 4n − 1). Rostou-li samy rozdíly, jde o vzor typu schody nebo čtvercová síť.",
+           "Vzor, který se stále opakuje (korálky, dny v týdnu), řešte zbytkem po dělení (délka skupiny je 4): 50 : 4 = 12 a zbytek 2, takže 50. člen je druhý ve skupině.",
            "Při počítání možností je vypisujte uspořádaně (podle prvního kroku nebo podle abecedy). Nic nevynechejte a nic nepočítejte dvakrát.",
-           "U logických úloh vyškrtávejte v tabulce, co nejde. U tvrzení o pravdě předpokládejte, že platí, a hledejte spor.",
-           "Úlohu nevynechávejte: záporné body nejsou a první podúlohu často zvládnete tím, že si prvních pár kroků nakreslíte nebo vypíšete."])
+           "U logických úloh vyškrtávejte v tabulce, co nejde. U výroků o pravdě a lži předpokládejte, že výrok platí, a hledejte spor.",
+           "Úlohu nevynechávejte: za špatnou odpověď se body neodečítají a první podúlohu často zvládnete tím, že si prvních pár kroků nakreslíte nebo vypíšete."])
 
 # ---------------------------------------------------------------- řešený příklad
 mat = [count(row_squares(n)) for n in range(1, 60)]
 n100 = max(n for n in range(1, 60) if count(row_squares(n)) <= 100)
-T.example("Ze zápalek skládáme řadu čtverců: jeden čtverec je ze 4 zápalek, dva čtverce vedle sebe (se společnou stranou) ze 7 zápalek, tři čtverce ze 10 zápalek. "
+T.example("Ze zápalek skládáme řadu čtverců: jeden čtverec potřebuje 4 zápalky, dva čtverce vedle sebe (se společnou stranou) 7 zápalek a tři čtverce 10 zápalek. "
           "a) Kolik zápalek potřebujeme na 10 čtverců v řadě? b) Kolik čtverců v řadě postavíme ze 100 zápalek?",
-          ["Zapíšeme si členy: 1 čtverec … 4 zápalky, 2 čtverce … 7, 3 čtverce … 10. Každý další čtverec přidá 3 zápalky (tři nové strany).",
+          ["Zapíšeme si členy: 1 čtverec → 4 zápalky, 2 čtverce → 7, 3 čtverce → 10. Každý další čtverec přidá 3 zápalky (tři nové strany).",
            "Pro n čtverců tedy potřebujeme 4 + 3 · (n − 1) = 3n + 1 zápalek. Ověříme: n = 3 dává 3 · 3 + 1 = 10. ✓",
            "a) n = 10: 3 · 10 + 1 = 31 zápalek.",
            "b) Řešíme 3n + 1 = 100, tedy 3n = 99 a n = 33 čtverců."],
@@ -179,7 +179,7 @@ T.example("Ze zápalek skládáme řadu čtverců: jeden čtverec je ze 4 zápal
 # ---------------------------------------------------------------- Základ
 a = [7 + 5 * i for i in range(6)]
 b = [3 * 2 ** i for i in range(6)]
-T.task(1, "Doplňte v každé řadě další dva členy. a) 7, 12, 17, 22, …; b) 3, 6, 12, 24, …",
+T.task(1, "Doplňte do každé řady další dva členy. a) 7, 12, 17, 22, …; b) 3, 6, 12, 24, …",
        "a) 27, 32; b) 48, 96",
        ["a) Každý člen je o 5 větší než předchozí: 22 + 5 = 27 a 27 + 5 = 32.",
         "b) Každý člen je dvojnásobkem předchozího: 24 · 2 = 48 a 48 · 2 = 96."],
@@ -190,7 +190,7 @@ n25 = [n for n in range(1, 40) if count(row_triangles(n)) == 25]
 T.task(1, "Ze stejně dlouhých zápalek skládáme řadu trojúhelníků (obrázek ukazuje první tři obrazce). "
           "a) Kolik zápalek potřebujeme na 6 trojúhelníků v řadě? b) Kolik trojúhelníků v řadě postavíme z 25 zápalek?",
        "a) 13 zápalek; b) 12 trojúhelníků",
-       ["Zapíšeme: 1 trojúhelník … 3 zápalky, 2 trojúhelníky … 5, 3 trojúhelníky … 7. Každý další trojúhelník přidá 2 zápalky.",
+       ["Zapíšeme: 1 trojúhelník → 3 zápalky, 2 trojúhelníky → 5, 3 trojúhelníky → 7. Každý další trojúhelník přidá 2 zápalky.",
         "a) 3, 5, 7, 9, 11, 13: na 6 trojúhelníků je potřeba 13 zápalek.",
         "b) Pro n trojúhelníků je to 2n + 1 zápalek. Řešíme 2n + 1 = 25, tedy 2n = 24 a n = 12.",
         "Zkouška: 2 · 12 + 1 = 25. ✓"],
@@ -200,19 +200,19 @@ T.task(1, "Ze stejně dlouhých zápalek skládáme řadu trojúhelníků (obrá
 barvy = ["červený", "modrý", "modrý", "žlutý"]
 koraly = [barvy[i % 4] for i in range(100)]
 vyroky = [koraly[49] == "modrý", koraly[:50].count("modrý") == 24, koraly[99] == "žlutý"]
-T.task(1, "Korále navlékáme dokola v tomto pořadí: červený, modrý, modrý, žlutý, červený, modrý, modrý, žlutý a tak dále. Platí tato tvrzení?",
+T.task(1, "Korálky navlékáme na nit stále dokola v tomto pořadí: červený, modrý, modrý, žlutý, červený, modrý, modrý, žlutý a tak dále. Platí tato tvrzení?",
        "ANO, NE, ANO",
-       ["Pořadí se opakuje po čtyřech korálech: červený, modrý, modrý, žlutý.",
-        "50 : 4 = 12 a zbytek 2. Po 12 úplných skupinách přijde červený a modrý korál, 50. korál je modrý. Tvrzení platí.",
-        "V 12 skupinách je 12 · 2 = 24 modrých, zbylé dva korály (červený a modrý) přidají ještě jeden: celkem 25. Tvrzení neplatí.",
-        "100 : 4 = 25 beze zbytku, 100. korál je poslední ve skupině, tedy žlutý. Tvrzení platí."],
+       ["Pořadí se opakuje po čtyřech korálcích: červený, modrý, modrý, žlutý.",
+        "50 : 4 = 12 a zbytek 2. Po 12 úplných skupinách přijde červený a modrý korálek, 50. korálek je tedy modrý. Tvrzení platí.",
+        "Ve 12 skupinách je 12 · 2 = 24 modrých, zbylé dva korálky (červený a modrý) přidají ještě jeden: celkem 25. Tvrzení neplatí.",
+        "100 : 4 = 25 beze zbytku, 100. korálek je poslední ve skupině, tedy žlutý. Tvrzení platí."],
        vyroky == [True, False, True] and koraly[:50].count("modrý") == 25,
-       kind="yesno", options=["50. korál je modrý.", "Mezi prvními 50 korály je právě 24 modrých.", "100. korál je žlutý."], space=1)
+       kind="yesno", options=["50. korálek je modrý.", "Mezi prvními 50 korálky je právě 24 modrých.", "100. korálek je žlutý."], space=1)
 
 osoby = ["Adam", "Bára", "Cyril", "Dana"]
 poradi = [p for p in permutations(osoby)
           if p.index("Adam") < p.index("Bára") and p.index("Cyril") == p.index("Bára") + 1 and p.index("Dana") != 3 and p.index("Dana") > p.index("Adam")]
-T.task(1, "Čtyři žáci, Adam, Bára, Cyril a Dana, běželi závod. Adam doběhl před Bárou. Cyril doběhl hned za Bárou, mezi nimi nikdo nedoběhl. "
+T.task(1, "Čtyři žáci (Adam, Bára, Cyril a Dana) běželi závod. Adam doběhl před Bárou. Cyril doběhl hned za Bárou, takže mezi nimi nikdo nedoběhl. "
           "Dana nedoběhla poslední a doběhla později než Adam. V jakém pořadí doběhli?",
        "Adam, Dana, Bára, Cyril",
        ["Adam je před Bárou a Cyril je hned za Bárou, takže pořadí těchto tří je Adam, Bára, Cyril (Adam nemusí být hned před Bárou).",
@@ -228,11 +228,11 @@ for p in permutations(range(1, 10)):
     sums = [sum(r) for r in m] + [sum(m[r][c] for r in range(3)) for c in range(3)] + [m[0][0] + m[1][1] + m[2][2], m[0][2] + m[1][1] + m[2][0]]
     if len(set(sums)) == 1 and all(m[r][c] == v for (r, c), v in zadano.items()):
         reseni.append(m)
-T.task(1, "Do čtverce 3 × 3 vepište čísla 1 až 9, každé právě jednou, tak aby byl součet čísel v každém řádku, v každém sloupci i na obou úhlopříčkách stejný. "
-          "Tři čísla už jsou vepsaná. Doplňte ostatní.",
+T.task(1, "Do čtverce 3 × 3 vepište čísla 1 až 9, každé právě jednou, tak, aby byl součet čísel v každém řádku, v každém sloupci i na obou úhlopříčkách stejný. "
+          "Tři čísla jsou už vepsaná. Doplňte ostatní.",
        "horní řádek 2, 7, 6; střední 9, 5, 1; dolní 4, 3, 8",
-       ["Součet čísel 1 až 9 je 45 a rozdělí se do tří řádků, takže každý řádek (sloupec, úhlopříčka) má součet 45 : 3 = 15.",
-        "Horní řádek: 2 + ? + 6 = 15, uprostřed je 7. Úhlopříčky: 2 + 5 + ? = 15 dává 8 vpravo dole, 6 + 5 + ? = 15 dává 4 vlevo dole.",
+       ["Součet čísel 1 až 9 je 45 a rozdělí se do tří řádků, takže každý řádek má součet 45 : 3 = 15. Stejný součet musí mít i sloupce a úhlopříčky.",
+        "Horní řádek: 2 + ? + 6 = 15, uprostřed je tedy 7. Úhlopříčky: 2 + 5 + ? = 15 dává 8 vpravo dole, 6 + 5 + ? = 15 dává 4 vlevo dole.",
         "Levý sloupec: 2 + ? + 4 = 15 dává 9. Pravý sloupec: 6 + ? + 8 = 15 dává 1. Prostřední sloupec: 7 + 5 + ? = 15 dává 3.",
         "Zkouška: střední řádek 9 + 5 + 1 = 15, dolní řádek 4 + 3 + 8 = 15. ✓"],
        reseni == [[(2, 7, 6), (9, 5, 1), (4, 3, 8)]],
@@ -244,7 +244,7 @@ prvni = min(n for n in range(1, 30) if count(stairs(n)) > 50)
 T.task(2, "Schody skládáme ze čtverečků, obrázek ukazuje první čtyři obrazce. "
           "a) Kolik čtverečků má 8. obrazec? b) Kolikátý obrazec je první, který má víc než 50 čtverečků?",
        "a) 36 čtverečků; b) 10. obrazec",
-       ["Počty čtverečků: 1, 3, 6, 10. Každý další obrazec přidá o jeden čtvereček víc než předchozí: nejdřív 2, pak 3, pak 4, …",
+       ["Počty čtverečků: 1, 3, 6, 10. Každý další obrazec přidá o jeden čtvereček víc než předchozí obrazec: nejdřív 2, pak 3, pak 4 čtverečky a tak dále.",
         "a) Pokračujeme: 15, 21, 28, 36. Osmý obrazec má 36 čtverečků (1 + 2 + 3 + … + 8).",
         "b) Devátý obrazec má 36 + 9 = 45 čtverečků, desátý 45 + 10 = 55. První obrazec přes 50 čtverečků je tedy desátý."],
        sch[:4] == [1, 3, 6, 10] and sch[7] == 36 and sch[8] == 45 and sch[9] == 55 and prvni == 10
@@ -253,7 +253,7 @@ T.task(2, "Schody skládáme ze čtverečků, obrázek ukazuje první čtyři ob
 
 clenove = [3 + 4 * i for i in range(100)]
 mozn = ["61", "74", "75", "80", "85"]
-T.task(2, "V posloupnosti 3, 7, 11, 15, … je každý další člen o 4 větší než předchozí. Které z čísel je členem této posloupnosti?", "C",
+T.task(2, "V posloupnosti 3, 7, 11, 15, … je každý další člen o 4 větší než předchozí. Které z uvedených čísel je členem této posloupnosti?", "C",
        ["Členy jsou 3, 7, 11, 15, …, každý z nich dává po dělení čtyřmi zbytek 3 (3 = 4 · 0 + 3, 7 = 4 · 1 + 3, 11 = 4 · 2 + 3).",
         "Zbytky po dělení čtyřmi: 61 dává 1, 74 dává 2, 75 dává 3, 80 dává 0, 85 dává 1. Zbytek 3 má jen číslo 75.",
         "Zkouška: 3 + 4 · 18 = 75, číslo 75 je 19. člen. Číslo 80 je násobek čtyř (zbytek 0), čísla 61 a 85 patří do řady 1, 5, 9, … (zbytek 1)."],
@@ -262,8 +262,8 @@ T.task(2, "V posloupnosti 3, 7, 11, 15, … je každý další člen o 4 větš�
 
 kr = [count(cross(n)) for n in range(1, 40)]
 n81 = [n for n in range(1, 40) if count(cross(n)) == 81]
-T.task(2, "Kříže skládáme ze čtverečků: uprostřed je šedý čtvereček a na každé ze čtyř stran rameno z bílých čtverečků (obrázek ukazuje první tři obrazce). "
-          "a) Kolik čtverečků má 10. obrazec? b) Kolikátý obrazec je z 81 čtverečků?",
+T.task(2, "Kříže skládáme ze čtverečků: uprostřed je šedý čtvereček a z každé ze čtyř stran k němu přiléhá rameno z bílých čtverečků (obrázek ukazuje první tři obrazce). "
+          "a) Kolik čtverečků má 10. obrazec? b) Kolikátý obrazec se skládá z 81 čtverečků?",
        "a) 41 čtverečků; b) 20. obrazec",
        ["Počty čtverečků: 5, 9, 13. Každý další obrazec přidá čtyři čtverečky, po jednom na konec každého ramene.",
         "V n-tém obrazci je šedý čtvereček a čtyři ramena po n čtverečcích: 4n + 1. Ověříme: n = 3 dává 13. ✓",
@@ -278,24 +278,24 @@ for p in permutations(krouzky):
     if (K["Jana"] not in ("tanec", "plavání") and K["Karel"] not in ("šachy", "tanec") and K["Lucie"] not in ("plavání", "florbal")
             and K["Martin"] not in ("florbal", "šachy") and any(K[d] == "tanec" for d in ("Jana", "Lucie"))):
         dobre.append(K)
-T.task(2, "Jana, Karel, Lucie a Martin chodí každý do jiného z kroužků: šachy, tanec, florbal a plavání. Jana nechodí na tanec ani na plavání. "
+T.task(2, "Jana, Karel, Lucie a Martin chodí každý do jiného z těchto kroužků: šachy, tanec, florbal a plavání. Jana nechodí na tanec ani na plavání. "
           "Karel nechodí na šachy ani na tanec. Lucie nechodí na plavání ani na florbal. Martin nechodí na florbal ani na šachy. "
           "Na tanec chodí dívka. Kdo chodí do kterého kroužku?",
        "Jana šachy, Karel florbal, Lucie tanec, Martin plavání",
        ["Martin nechodí na florbal ani na šachy, chodí tedy na tanec, nebo na plavání. Na tanec chodí dívka, takže Martin chodí na plavání.",
         "Karel může jen na florbal nebo na plavání, plavání už je obsazené, Karel chodí na florbal.",
         "Zbývají šachy a tanec pro Janu a Lucii. Jana nechodí na tanec, takže Jana chodí na šachy a Lucie na tanec.",
-        "Zkouška: Jana nechodí na tanec ani na plavání, Lucie nechodí na plavání ani na florbal a na tanec chodí dívka. ✓"],
+        "Zkouška: Jana (šachy), Karel (florbal), Lucie (tanec) i Martin (plavání) splňují všechny podmínky ze zadání. ✓"],
        dobre == [{"Jana": "šachy", "Karel": "florbal", "Lucie": "tanec", "Martin": "plavání"}], space=2)
 
 # poctivec (T) vždy mluví pravdu, lhář (L) vždy lže; tvrzení Karla: „Aspoň jeden z nás dvou je lhář.“
 mozne = [(k, l) for k, l in product("TL", repeat=2) if ((k == "T") == ("L" in (k, l)))]
-T.task(2, "Na ostrově žijí poctivci, kteří vždy mluví pravdu, a lháři, kteří vždy lžou. Karel a Lucie jsou z ostrova. "
+T.task(2, "Na ostrově žijí poctivci, kteří vždy mluví pravdu, a lháři, kteří vždy lžou. Karel a Lucie jsou obyvatelé ostrova. "
           "Karel řekne: „Aspoň jeden z nás dvou je lhář.“ Kdo z nich je poctivec a kdo lhář?",
        "Karel je poctivec, Lucie je lhářka",
        ["Předpokládejme, že Karel je lhář. Pak je jeho věta nepravdivá, tedy nikdo z nich není lhář. To odporuje předpokladu, že Karel je lhář.",
         "Karel je tedy poctivec a jeho věta je pravdivá: aspoň jeden z nich je lhář.",
-        "Karel lhář není, proto je lhář Lucie."],
+        "Karel lhář není, proto je lhářkou Lucie."],
        mozne == [("T", "L")], space=2)
 
 cislice = [int(f"{x}{y}") for x, y in permutations([1, 2, 3, 4], 2)]
@@ -336,7 +336,7 @@ T.task(2, "Mravenec leze po čarách mřížky z bodu A do bodu B. Smí jít jen
        "a) 10 cest; b) 6 cest",
        ["Do každého bodu vede tolik cest, kolik jich vede z bodu vlevo od něj a z bodu pod ním: počty sčítáme. Po dolním a levém okraji vede do každého bodu jen 1 cesta.",
         "Spodní řada zleva: 1, 1, 1, 1. Střední řada: 1, 2, 3, 4. Horní řada: 1, 3, 6, 10. Do bodu B vede 10 cest.",
-        "b) Z A do C vedou 2 cesty. Z C do B musí mravenec 2× doprava a 1× nahoru, to jsou 3 cesty (NPP, PNP, PPN, kde P je krok doprava a N krok nahoru).",
+        "b) Z A do C vedou 2 cesty. Z C do B musí mravenec 2krát doprava a 1krát nahoru, to jsou 3 cesty (NPP, PNP, PPN, kde P je krok doprava a N krok nahoru).",
         "Přes C vede 2 · 3 = 6 cest."],
        len(vsechny) == 10 == dp[PB] and len(pres_c) == 6 and len(cesty(PA, PC)) == 2 and len(cesty(PC, PB)) == 3,
        figure=paths_svg(COLS, ROWS, PA, PB, PC), space=3)
@@ -370,8 +370,8 @@ def vydlazdeni(radky, sloupce):
 p = {1: 1, 2: 2}
 for n in range(3, 12):
     p[n] = p[n - 1] + p[n - 2]
-T.task(3, "Chodník široký 2 dlaždice a dlouhý 6 dlaždic chceme vydláždit dlaždicemi tvaru obdélníku 1 × 2, které můžeme klást vodorovně i svisle. "
-          "Všechny dlaždice jsou stejné, dvě vydláždění se liší, když aspoň jedna dlaždice leží jinak. Kolika způsoby lze chodník vydláždit?",
+T.task(3, "Chodník široký 2 dlaždice a dlouhý 6 dlaždic chceme vydláždit obdélníkovými dlaždicemi 1 × 2, které můžeme klást vodorovně i svisle. "
+          "Všechny dlaždice jsou stejné; dvě vydláždění jsou různá, jestliže aspoň jedna dlaždice leží jinak. Kolika způsoby lze chodník vydláždit?",
        "13 způsobů",
        ["Označíme p(n) počet vydláždění chodníku 2 × n. Pro krátké chodníky je spočítáme: p(1) = 1 (jedna svislá dlaždice), p(2) = 2 (dvě svislé, nebo dvě vodorovné nad sebou).",
         "Na začátku chodníku leží buď svislá dlaždice (zbývá chodník 2 × (n − 1)), nebo dvě vodorovné nad sebou (zbývá chodník 2 × (n − 2)). Proto p(n) = p(n − 1) + p(n − 2).",
@@ -398,8 +398,8 @@ T.task(3, "V obrázku je vybarveno několik čtverečků. Svislá osa o a vodoro
           "b) Kolik nejméně dalších čtverečků musíme vybarvit, aby byl obrazec souměrný podle osy o i podle osy p zároveň?",
        "a) 4 čtverečky; b) 8 čtverečků",
        ["Řádky číslujeme shora, sloupce zleva. Vybarveno je 6 čtverečků: v 1. řádku 1. sloupec, ve 2. řádku 2. a 4. sloupec, ve 3. řádku 1. sloupec, ve 4. řádku 2. sloupec a v 5. řádku 4. sloupec.",
-        "a) Osa o vede 3. sloupcem: protějšek 1. sloupce je 5. sloupec, protějšek 2. sloupce je 4. sloupec. Ve 2. řádku jsou čtverečky už souměrné, v řádcích 1, 3, 4 a 5 chybí protějšek. Přidáme 4 čtverečky.",
-        "b) Osa p vede 3. řádkem: protějšek 1. řádku je 5. řádek, protějšek 2. řádku je 4. řádek. Řádky 2 a 4 jsou po úpravě podle a) stejné, 3. řádek je sám sobě protějškem. "
+        "a) Osa o vede 3. sloupcem: souměrně k 1. sloupci leží 5. sloupec a souměrně ke 2. sloupci 4. sloupec. Ve 2. řádku jsou čtverečky už souměrné, v řádcích 1, 3, 4 a 5 chybí vždy jeden souměrný čtvereček. Přidáme 4 čtverečky.",
+        "b) Osa p vede 3. řádkem: souměrně k 1. řádku leží 5. řádek a souměrně ke 2. řádku 4. řádek. Řádky 2 a 4 jsou po úpravě podle a) stejné, 3. řádek leží na ose p. "
         "V 1. řádku jsou vybarveny sloupce 1 a 5, v 5. řádku sloupce 2 a 4, každý z těchto řádků potřebuje čtverečky druhého: přidáme 2 + 2 = 4 čtverečky.",
         "Celkem přidáme 4 + 4 = 8 čtverečků, výsledný obrazec má 14 čtverečků."],
        dosou == 4 and dvesy == 8 and len(uzavreni(S, osa_o, osa_p)) == 14 and len(uzavreni(S, osa_o)) == 10
@@ -426,7 +426,7 @@ site = [count(net(n)) for n in range(1, 30)]
 nej = max(n for n in range(1, 30) if count(net(n)) <= 100)
 T.task(3, "Čtvercovou síť n × n skládáme ze zápalek, obrázek ukazuje první tři obrazce (1 × 1, 2 × 2 a 3 × 3 čtverce). "
           "a) Kolik zápalek potřebujeme na síť 9 × 9 čtverců? "
-          "b) Ze 100 zápalek postavíme největší možnou síť. Kolik čtverců má na straně a kolik zápalek zbude?",
+          "b) Ze 100 zápalek chceme postavit co největší čtvercovou síť. Kolik čtverců bude mít na straně a kolik zápalek zbude?",
        "a) 180 zápalek; b) 6 × 6 čtverců, zbude 16 zápalek",
        ["Počty zápalek: 4, 12, 24. Síť n × n má (n + 1) vodorovných řad po n zápalkách a stejně tolik svislých řad: celkem 2 · n · (n + 1) zápalek.",
         "Ověříme: n = 2 dává 2 · 2 · 3 = 12 a n = 3 dává 2 · 3 · 4 = 24. ✓",
@@ -450,7 +450,7 @@ dny = ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "nedě
 opts = ["úterý", "čtvrtek", "pátek", "sobota", "neděle"]
 T.diagnostic("Dnes je středa. Jaký den v týdnu bude za 100 dní?", "C",
              ["Dny v týdnu se opakují po 7 dnech. 100 : 7 = 14 a zbytek 2.", "Po 14 celých týdnech je zase středa, ještě 2 dny navíc: čtvrtek, pátek.",
-              "Za 100 dní bude pátek. Čtvrtek by vyšel, kdyby žák přičetl jen 1 den, tedy zapomněl na jeden krok."],
+              "Za 100 dní bude pátek. Čtvrtek vyjde, když žák přičte jen 1 zbylý den místo dvou."],
              dny[za100.weekday()] == "pátek" and opts[2] == "pátek" and 100 % 7 == 2,
              kind="choice", options=opts)
 

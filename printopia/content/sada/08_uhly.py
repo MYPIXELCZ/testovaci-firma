@@ -296,24 +296,24 @@ def obr_vyska_trojuhelnik():
 
 # ------------------------------------------------------------------ téma
 T = Topic(8, "uhly", "Úhly a trojúhelníky",
-          "Úhly a trojúhelníky se v testu objevují skoro každý rok, ve výpočtových úlohách s obrázkem i v úlohách s výběrem z možností. "
-          "Velikosti úhlů se počítají, neměří: obrázek jen ukazuje, co je zadáno.",
-          ["Vedlejší úhly dávají dohromady 180°, vrcholové úhly jsou stejně velké. U rovnoběžek jsou souhlasné i střídavé úhly stejné. "
-           "Rovnoběžnost smíte použít jen tehdy, když ji zadání říká, a pozor na záměnu souhlasných a střídavých úhlů.",
+          "Úhly a trojúhelníky se v testu objevují skoro každý rok, ve výpočtových úlohách s obrázkem i ve výběru z možností. "
+          "Velikosti úhlů se počítají, neměří: obrázek slouží jen k orientaci.",
+          ["Vedlejší úhly dávají dohromady 180°, vrcholové úhly jsou stejně velké. U rovnoběžek jsou souhlasné i střídavé úhly stejné, "
+           "kdežto úhly vnitřní jednostranné (tvar písmene C) dávají dohromady 180°. Rovnoběžnost smíte použít jen tehdy, když ji zadání uvádí.",
            "Součet vnitřních úhlů je v trojúhelníku 180° a ve čtyřúhelníku 360°. Vnější úhel trojúhelníku se rovná součtu dvou vnitřních úhlů, "
            "které k němu nepřiléhají.",
-           "Rovnoramenný trojúhelník má stejné úhly při základně, rovnostranný má všechny úhly 60°. Stejné strany hledejte i skryté, "
-           "například dva poloměry téže kružnice.",
-           "Výška je kolmá ke straně a svírá s ní 90°, těžnice vede do středu protější strany. Těžnice rozdělí trojúhelník na dva trojúhelníky "
-           "se stejným obsahem, v rovnoramenném trojúhelníku je výška na základnu zároveň těžnicí.",
-           "Thaletova věta: z bodu kružnice vidíme průměr AB pod pravým úhlem. Střed kružnice opsané pravoúhlému trojúhelníku leží uprostřed "
-           "přepony, kružnice vepsaná má střed v průsečíku os úhlů. Středový úhel je dvakrát větší než obvodový úhel nad stejným obloukem.",
-           "Trojúhelník existuje, jen když je každá strana kratší než součet zbývajících dvou (rovnost nestačí). "
+           "Rovnoramenný trojúhelník má stejné úhly při základně, rovnostranný má všechny úhly 60°. Stejné strany hledejte i skryté "
+           "(například dva poloměry téže kružnice).",
+           "Výška vede z vrcholu kolmo k protější straně, těžnice do jejího středu. Těžnice rozdělí trojúhelník na dva trojúhelníky "
+           "se stejným obsahem, v rovnoramenném trojúhelníku je výška k základně zároveň těžnicí.",
+           "Thaletova věta: z libovolného bodu kružnice (kromě A a B) vidíme průměr AB pod pravým úhlem. Střed kružnice opsané pravoúhlému trojúhelníku leží uprostřed "
+           "přepony, střed kružnice vepsané leží v průsečíku os úhlů. Středový úhel je dvakrát větší než obvodový úhel nad stejným obloukem.",
+           "Trojúhelník existuje jen tehdy, když je každá strana kratší než součet zbývajících dvou (rovnost nestačí). "
            "Při počítání se stupni a minutami pamatujte, že 1° = 60′, ne 100′."])
 
 # ---------------------------------------------------------------- Řešený příklad
 x = F(180 - 20, 4)
-T.example("V trojúhelníku ABC je úhel β o 20° větší než úhel α a úhel γ je dvakrát větší než úhel α. Vypočtěte velikosti všech tří úhlů.",
+T.example("V trojúhelníku ABC je úhel β o 20° větší než úhel α a úhel γ je dvojnásobkem úhlu α. Vypočtěte velikosti všech tří úhlů.",
           ["Velikost úhlu α označíme x. Pak β = x + 20° a γ = 2x.",
            "Součet úhlů v trojúhelníku je 180°: x + (x + 20°) + 2x = 180°.",
            "4x + 20° = 180°, 4x = 160°, x = 40°.",
@@ -338,7 +338,7 @@ T.task(1, "Přímky a, b jsou rovnoběžné, přímka c je protíná. Úhel α m
           "střídavý, a velikost úhlu γ, který je vedlejší k úhlu β.", "β = 112°, γ = 68°",
        ["Střídavé úhly u rovnoběžek jsou stejné: β = α = 112°.",
         "Vedlejší úhly dávají dohromady 180°: γ = 180° − 112° = 68°.",
-        "Kontrola: γ je souhlasný s úhlem vedlejším k α, ten má také 180° − 112° = 68°."],
+        "Kontrola: γ je souhlasný s úhlem vedlejším k α (u bodu P), ten má také 180° − 112° = 68°."],
        same(g["alfa"], 112) and same(g["beta"], beta) and same(g["gama"], gama) and beta + gama == 180,
        figure=svg, space=2)
 
@@ -362,7 +362,7 @@ T.task(1, "V rovnoramenném trojúhelníku ABC se základnou AB má úhel při v
 T.task(1, "Převeďte: a) 2° 15′ na minuty, b) 200′ na stupně a minuty, c) 3,5° na stupně a minuty.",
        "a) 135′, b) 3° 20′, c) 3° 30′",
        ["Platí 1° = 60′.", "a) 2 · 60′ + 15′ = 135′.",
-        "b) 200′ : 60′ = 3, zbytek 20′, tedy 3° 20′.", "c) 0,5° = 30′, tedy 3,5° = 3° 30′."],
+        "b) 200 : 60 = 3 se zbytkem 20, tedy 3° 20′.", "c) 0,5° = 30′, tedy 3,5° = 3° 30′."],
        2 * 60 + 15 == 135 and divmod(200, 60) == (3, 20) and divmod(F(7, 2) * 60, 60) == (3, 30), space=2)
 
 # ---------------------------------------------------------------- Jako u zkoušky
@@ -373,7 +373,7 @@ T.task(2, "V trojúhelníku ABC mají úhly při vrcholech A a B velikosti 35° 
        ["Vnitřní úhel při vrcholu C: γ = 180° − 35° − 70° = 75°.",
         "Vnější úhel je vedlejší k vnitřnímu: 180° − 75° = 105°.",
         "Rychleji: vnější úhel je součet dvou nepřilehlých vnitřních úhlů, 35° + 70° = 105°.",
-        "Chybné možnosti: 75° je vnitřní úhel, 110° = 180° − 70°, 145° = 180° − 35°, 255° = 360° − 105°."],
+        "Chybné možnosti: 75° je vnitřní úhel při vrcholu C, 110° = 180° − 70°, 145° = 180° − 35°, 255° = 360° − 105°."],
        vnejsi == 105 == 35 + 70 and [o for o in opts if int(o[:-1]) == vnejsi] == ["105°"] and opts[1] == "105°"
        and 110 == 180 - 70 and 145 == 180 - 35 and 255 == 360 - 105,
        kind="choice", options=opts, space=1)
@@ -383,7 +383,7 @@ ok = [o for o in opts if 7 + int(o.split()[0]) > 12 and 12 + 7 > int(o.split()[0
 T.task(2, "Dvě strany trojúhelníku mají délky 7 cm a 12 cm. Která z uvedených délek nemůže být délkou třetí strany?", "E (19 cm)",
        ["Třetí strana c musí splnit trojúhelníkovou nerovnost: 7 + c > 12, 12 + c > 7 a 7 + 12 > c.",
         "Z toho c > 5 cm a zároveň c < 19 cm.",
-        "Délka 19 cm se rovná součtu 7 + 12, takový trojúhelník by se zploštil na úsečku. Ostatní délky leží mezi 5 cm a 19 cm."],
+        "Délka 19 cm se rovná součtu 7 + 12, takový „trojúhelník“ by splynul s úsečkou. Ostatní délky leží mezi 5 cm a 19 cm."],
        [o for o in opts if o not in ok] == ["19 cm"] and opts[4] == "19 cm",
        kind="choice", options=opts, space=1)
 
@@ -396,9 +396,9 @@ T.task(2, "Dva vedlejší úhly jsou v poměru 4 : 5. Vypočtěte jejich velikos
        dil == 20 and 4 * dil == 80 and 5 * dil == 100 and 4 * dil + 5 * dil == 180, space=4)
 
 x = F(180, 5)
-T.task(2, "Úhel při vrcholu rovnoramenného trojúhelníku je třikrát větší než úhel při jeho základně. Vypočtěte velikosti všech tří úhlů "
+T.task(2, "Úhel při vrcholu rovnoramenného trojúhelníku je trojnásobkem úhlu při jeho základně. Vypočtěte velikosti všech tří úhlů "
           "tohoto trojúhelníku. Uveďte celý postup.", "36°, 36°, 108°",
-       ["Úhel při základně označíme x, druhý úhel při základně má také x, úhel při vrcholu je 3x.",
+       ["Úhel při základně označíme x, druhý úhel při základně má také velikost x, úhel při vrcholu je 3x.",
         "x + x + 3x = 180°, 5x = 180°, x = 36°.",
         "Úhly mají velikosti 36°, 36° a 3 · 36° = 108°.",
         "Zkouška: 36° + 36° + 108° = 180°."],
@@ -406,7 +406,7 @@ T.task(2, "Úhel při vrcholu rovnoramenného trojúhelníku je třikrát větš
 
 svg, g = obr_rovnobezka_C()
 T.task(2, "Přímka p prochází vrcholem C trojúhelníku ABC a je rovnoběžná se stranou AB. Úhly vyznačené v obrázku mezi přímkou p "
-          "a stranami AC a BC mají velikosti 47° a 58°. Vypočtěte velikosti vnitřních úhlů α, β a γ trojúhelníku ABC.", "α = 47°, β = 58°, γ = 75°",
+          "a stranami AC a BC mají po řadě velikosti 47° a 58°. Vypočtěte velikosti vnitřních úhlů α, β a γ trojúhelníku ABC.", "α = 47°, β = 58°, γ = 75°",
        ["Úhel 47° a úhel α jsou střídavé úhly u rovnoběžek p a AB, proto α = 47°.",
         "Stejně úhel 58° a úhel β jsou střídavé, proto β = 58°.",
         "γ = 180° − 47° − 58° = 75°.",
@@ -418,11 +418,11 @@ T.task(2, "Přímka p prochází vrcholem C trojúhelníku ABC a je rovnoběžn�
 s_a = (48 * 60 + 35) + (27 * 60 + 40)
 s_b = 180 * 60 - (124 * 60 + 18)
 s_c = (75 * 60 + 20) // 2
-T.task(2, "Vypočtěte a výsledek zapište ve stupních a minutách: a) 48° 35′ + 27° 40′, b) velikost úhlu vedlejšího k úhlu 124° 18′, "
-          "c) polovina úhlu 75° 20′.", "a) 76° 15′, b) 55° 42′, c) 37° 40′",
+T.task(2, "Vypočtěte a výsledky zapište ve stupních a minutách: a) 48° 35′ + 27° 40′, b) velikost úhlu vedlejšího k úhlu 124° 18′, "
+          "c) velikost poloviny úhlu 75° 20′.", "a) 76° 15′, b) 55° 42′, c) 37° 40′",
        ["a) 48° + 27° = 75° a 35′ + 40′ = 75′ = 1° 15′, celkem 76° 15′.",
         "b) 180° − 124° 18′ = 179° 60′ − 124° 18′ = 55° 42′.",
-        "c) 75° 20′ = 4 520′, polovina je 2 260′ = 37° 40′ (nebo 75° 20′ = 74° 80′, polovina 37° 40′)."],
+        "c) 75° 20′ = 4 520′, polovina je 2 260′ = 37° 40′. Jinak: 75° 20′ = 74° 80′, polovina je 37° 40′."],
        divmod(s_a, 60) == (76, 15) and divmod(s_b, 60) == (55, 42) and (75 * 60 + 20) % 2 == 0 and divmod(s_c, 60) == (37, 40)
        and 74 * 60 + 80 == 75 * 60 + 20, space=3)
 
@@ -437,14 +437,14 @@ tez = shoelace(A_, S_, C_) == shoelace(S_, B_, C_) and shoelace(A_, B_, C_) == 2
 vep = (F(1), F(1))
 vzd = [abs(vep[1]), abs(vep[0]), abs(3 * vep[0] + 4 * vep[1] - 12) / 5]
 T.task(2, "Platí tato tvrzení o trojúhelníku?", "ANO, ANO, NE",
-       ["Podle Thaletovy věty leží vrchol pravého úhlu na kružnici s průměrem přepona, střed kružnice opsané je tedy střed přepony. Platí.",
-        "Obě části mají stejně dlouhou základnu (těžnice půlí stranu) a stejnou výšku z vrcholu. Platí.",
+       ["Podle Thaletovy věty leží vrchol pravého úhlu na kružnici, jejímž průměrem je přepona, střed kružnice opsané je tedy střed přepony. Platí.",
+        "Obě části mají stejně dlouhou základnu (těžnice půlí stranu) a společnou výšku z vrcholu. Platí.",
         "Střed vepsané kružnice leží v průsečíku os úhlů, protože má stejnou vzdálenost od všech stran. "
         "Průsečík výšek tuto vlastnost obecně nemá, například v pravoúhlém trojúhelníku je to vrchol pravého úhlu. Neplatí."],
        op and tez and vzd == [1, 1, 1] and vep != (0, 0), kind="yesno",
        options=["Střed kružnice opsané pravoúhlému trojúhelníku leží uprostřed jeho přepony.",
                 "Těžnice rozdělí trojúhelník na dva trojúhelníky se stejným obsahem.",
-                "Střed kružnice vepsané trojúhelníku je průsečíkem jeho výšek."], space=1)
+                "Střed kružnice vepsané trojúhelníku je vždy průsečíkem jeho výšek."], space=1)
 
 # ---------------------------------------------------------------- Náročnější
 svg, g = obr_thales()
@@ -452,19 +452,19 @@ A_, B_, C_, S_ = g["A"], g["B"], g["C"], g["S"]
 st = [same(ang(B_, A_, C_), 65), same(ang(C_, A_, B_), 90), same(ang(S_, C_, B_), 70)]
 T.task(3, "Body A, B, C leží na kružnici se středem S, úsečka AB je průměr kružnice. Úhel CAB má velikost 35°. Platí tato tvrzení?",
        "NE, ANO, ANO",
-       ["Úhel ACB je pravý podle Thaletovy věty. Platí.",
-        "Úhel CBA = 90° − 35° = 55°, ne 65°. Neplatí.",
+       ["Úhel ACB je pravý podle Thaletovy věty (C leží na kružnici s průměrem AB), takže druhé tvrzení platí.",
+        "Úhel CBA = 180° − 90° − 35° = 55°, ne 65°. První tvrzení neplatí.",
         "Trojúhelník SAC je rovnoramenný (SA = SC jsou poloměry), úhel ACS = 35° a úhel ASC = 180° − 2 · 35° = 110°.",
-        "Úhel CSB je vedlejší k úhlu ASC: 180° − 110° = 70°. Platí. (Středový úhel je dvakrát větší než obvodový 35°.)"],
+        "Úhel CSB je vedlejší k úhlu ASC: 180° − 110° = 70°. Třetí tvrzení platí. (Středový úhel je dvakrát větší než obvodový úhel 35°.)"],
        st == [False, True, True] and same(ang(B_, A_, C_), 55) and 180 - (180 - 2 * 35) == 70, kind="yesno",
        options=["Úhel CBA má velikost 65°.", "Úhel ACB je pravý.", "Úhel CSB má velikost 70°."], figure=svg, space=1)
 
 hodn = [x for x in range(1, 40) if x + 5 > 9 and 5 + 9 > x and 9 + x > 5]
-T.task(3, "Dvě strany trojúhelníku mají délky 5 cm a 9 cm. Délka třetí strany je v centimetrech celé číslo. "
+T.task(3, "Dvě strany trojúhelníku mají délky 5 cm a 9 cm. Délka třetí strany je v centimetrech vyjádřena celým číslem. "
           "Kolik různých délek třetí strany je možných?", "9 délek (od 5 cm do 13 cm)",
        ["Trojúhelníková nerovnost: x + 5 > 9, tedy x > 4, a 5 + 9 > x, tedy x < 14. Nerovnost 9 + x > 5 platí vždy.",
         "Celá čísla větší než 4 a menší než 14 jsou 5, 6, …, 13.",
-        "Počet: 13 − 5 + 1 = 9. Délky 4 cm a 14 cm nejsou možné, protože by vznikla úsečka."],
+        "Počet: 13 − 5 + 1 = 9. Délky 4 cm a 14 cm nejsou možné, protože by trojúhelník splynul s úsečkou."],
        hodn == list(range(5, 14)) and len(hodn) == 9, space=3)
 
 svg, g = obr_vyska_teznice()
@@ -481,11 +481,11 @@ T.task(3, "V pravoúhlém trojúhelníku ABC s pravým úhlem při vrcholu C má
        figure=svg, space=3)
 
 svg, g = obr_ctverec_trojuhelnik()
-T.task(3, "Ve čtverci ABCD leží rovnostranný trojúhelník ABE (viz obrázek). Vypočtěte velikost úhlu DEC, který je v obrázku označen x.", "150°",
+T.task(3, "Uvnitř čtverce ABCD leží rovnostranný trojúhelník ABE (viz obrázek). Vypočtěte velikost úhlu DEC, který je v obrázku označen x.", "150°",
        ["Trojúhelník ABE je rovnostranný, proto AE = AB = AD a úhel BAE = 60°.",
         "Úhel DAE = 90° − 60° = 30° a trojúhelník ADE je rovnoramenný se základnou DE (AD = AE).",
         "Úhel AED = (180° − 30°) : 2 = 75°, ze souměrnosti je i úhel BEC = 75°.",
-        "Kolem bodu E je celý úhel 360°: x = 360° − 60° − 75° − 75° = 150°."],
+        "Úhly kolem bodu E dávají dohromady 360°: x = 360° − 60° − 75° − 75° = 150°."],
        same(g["E"], 150) and (180 - (90 - 60)) / 2 == 75 and 360 - 60 - 75 - 75 == 150, figure=svg, space=3)
 
 # ---------------------------------------------------------------- Úvodní test (2 úlohy tématu)
@@ -500,7 +500,7 @@ T.diagnostic("V trojúhelníku ABC má úhel při vrcholu A velikost 70° a úhe
 opts = ["ostroúhlý", "pravoúhlý", "tupoúhlý", "rovnoramenný", "rovnostranný"]
 dil = F(180, 1 + 2 + 3)
 uhly = [dil, 2 * dil, 3 * dil]
-T.diagnostic("Vnitřní úhly trojúhelníku jsou v poměru 1 : 2 : 3. Jaký je to trojúhelník?", "B (pravoúhlý)",
+T.diagnostic("Vnitřní úhly trojúhelníku jsou v poměru 1 : 2 : 3. Který z uvedených druhů trojúhelníku to je?", "B (pravoúhlý)",
              ["1 + 2 + 3 = 6 dílů, jeden díl je 180° : 6 = 30°.",
               "Úhly mají velikosti 30°, 60° a 90°.",
               "Jeden úhel je pravý, trojúhelník je pravoúhlý. Úhly nejsou stejné, takže není rovnoramenný ani rovnostranný."],

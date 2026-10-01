@@ -201,16 +201,16 @@ def modes(xs):
 
 # ------------------------------------------------------------------ téma
 T = Topic(7, "grafy", "Grafy, tabulky a průměr",
-          "Práce s grafem, tabulkou nebo průměrem se objevuje skoro v každém testu, nejčastěji jako úloha 11 se třemi tvrzeními ANO/NE. "
-          "Jsou to „levné“ body: stačí pozorně číst a počítat jednoduše.",
-          ["Než začnete počítat, přečtěte název grafu, popisky os a jednotky. Zjistěte, kolik odpovídá jeden dílek stupnice: čáry v mřížce nemusí znamenat 1.",
+          "Práce s grafem, tabulkou nebo průměrem se objevuje skoro v každém testu, nejčastěji v úloze 11 se třemi tvrzeními ANO/NE. "
+          "Patří k nejsnazším bodům: stačí pozorně číst zadání i graf a počítat jednoduše.",
+          ["Než začnete počítat, přečtěte název grafu, popisky os a jednotky. Zjistěte, kolik odpovídá jeden dílek stupnice: jedna čára mřížky nemusí znamenat 1.",
            "Aritmetický průměr = součet všech hodnot : jejich počet. Chybějící hodnotu najdete ze součtu: součet = průměr · počet hodnot. "
-           "Průměry různě velkých skupin nesčítejte a nedělte dvěma, počítejte vážený průměr.",
-           "Medián je prostřední hodnota až po seřazení podle velikosti (u sudého počtu průměr dvou prostředních). Modus je nejčastější hodnota. "
+           "Průměr dvou skupin různé velikosti není průměrem jejich průměrů: sečtěte hodnoty v obou skupinách a vydělte počtem všech hodnot.",
+           "Medián je prostřední hodnota ze seřazených čísel (u sudého počtu hodnot průměr dvou prostředních). Modus je nejčastější hodnota. "
            "Nejčastější chyba: medián vybraný z neseřazených čísel.",
            "Kruhový diagram: celý kruh je 100 % a 360°, tedy 1 % je 3,6°. Čtvrtina kruhu je 25 % a 90°.",
-           "U tvrzení ANO/NE ověřte každé zvlášť a přesně podle grafu. Pozor na slova „dvakrát víc“, „o třetinu víc“, „nejméně“, „celkem“.",
-           "Souřadnice bodu se píší [x; y]: nejdřív vodorovně, pak svisle. U lineární závislosti y = kx + q je q hodnota y pro x = 0 "
+           "U tvrzení ANO/NE ověřte každé zvlášť a přesně podle grafu. Pozor na slova „dvakrát víc“ (násobek), „o třetinu víc“ (část původní hodnoty), „nejméně“ a „celkem“.",
+           "Souřadnice bodu se zapisují [x; y]: nejdřív vodorovně (x), pak svisle (y). U lineární funkce y = kx + q je q hodnota y pro x = 0 "
            "a k říká, o kolik se y změní, když x vzroste o 1."])
 
 # ---------------------------------------------------------------- řešený příklad
@@ -231,8 +231,8 @@ T.example(f"V písemce dopadly známky takto: jedničku dostalo {znamky[1]} žá
 
 # ---------------------------------------------------------------- Základ
 dny, knihy = ["po", "út", "st", "čt", "pá"], [15, 25, 20, 10, 30]
-T.task(1, "Sloupcový graf ukazuje, kolik knih si čtenáři školní knihovny vypůjčili v jednotlivých dnech jednoho týdne. "
-          "a) Kolik knih bylo vypůjčeno za celý týden? b) O kolik knih víc si čtenáři půjčili v pátek než ve středu?",
+T.task(1, "Sloupcový graf ukazuje, kolik knih si čtenáři školní knihovny vypůjčili v jednotlivých dnech jednoho pracovního týdne. "
+          "a) Kolik knih si vypůjčili za celý týden? b) O kolik knih víc si vypůjčili v pátek než ve středu?",
        "a) 100 knih; b) o 10 knih",
        ["Z grafu přečteme: pondělí 15, úterý 25, středa 20, čtvrtek 10, pátek 30 knih.",
         "a) Za týden: 15 + 25 + 20 + 10 + 30 = 100 knih.", "b) Pátek − středa: 30 − 20 = 10 knih."],
@@ -263,15 +263,15 @@ jidlo = {"guláš": 35, "těstoviny": 30, "ryba": 15, "saláty": 20}
 n_obed = 240
 pocty = {k: F(n_obed * v, 100) for k, v in jidlo.items()}
 opts = ["8", "30", "48", "72", "168"]
-T.task(1, f"Kruhový diagram ukazuje, které jídlo si vybralo {n_obed} žáků ve školní jídelně. Kolik žáků si vybralo těstoviny?", "D",
+T.task(1, f"Kruhový diagram ukazuje, které jídlo si vybralo {n_obed} žáků ve školní jídelně (každý žák si vybral jedno jídlo). Kolik žáků si vybralo těstoviny?", "D",
        ["Těstoviny si vybralo 30 % žáků.", f"30 % z {n_obed} = {n_obed} : 100 · 30 = 2,4 · 30 = 72 žáků.",
-        "Číslo 30 je procento, ne počet žáků. Číslo 48 jsou saláty (20 %), 168 žáků si vybralo něco jiného než těstoviny."],
+        "Číslo 30 je procento, ne počet žáků; 8 vyjde dělením 240 : 30; 48 žáků si vybralo saláty (20 %) a 168 žáků něco jiného než těstoviny."],
        sum(jidlo.values()) == 100 and pocty["těstoviny"] == 72 and pocty["saláty"] == 48 and n_obed - pocty["těstoviny"] == 168
        and opts[3] == str(int(pocty["těstoviny"])) and n_obed / 30 == 8,
        kind="choice", options=opts,
        figure=pie(list(jidlo.values()), list(jidlo), [f"{v} %" for v in jidlo.values()]), space=2)
 
-T.task(1, "Funkce je dána předpisem y = 2x + 3. a) Vypočtěte y pro x = 5. b) Určete x, pro které je y = 15. "
+T.task(1, "Funkce je dána předpisem y = 2x + 3. a) Vypočtěte hodnotu y pro x = 5. b) Určete hodnotu x, pro kterou je y = 15. "
           "c) Leží bod M[−2; −1] na grafu této funkce?",
        "a) 13; b) x = 6; c) ano",
        ["a) Dosadíme x = 5: y = 2 · 5 + 3 = 13.", "b) Řešíme 2x + 3 = 15, tedy 2x = 12 a x = 6.",
@@ -282,7 +282,7 @@ T.task(1, "Funkce je dána předpisem y = 2x + 3. a) Vypočtěte y pro x = 5. b)
 # ---------------------------------------------------------------- Jako u zkoušky
 hodiny, teploty = [6, 9, 12, 15, 18], [8, 12, 18, 20, 12]
 pt = Plot(3, 21, 0, 24, left=30, right=8, top=18, bottom=26)
-T.task(2, "Spojnicový graf ukazuje teplotu venku, která se měřila v 6, 9, 12, 15 a 18 hodin. "
+T.task(2, "Spojnicový graf ukazuje teplotu venku naměřenou v 6, 9, 12, 15 a 18 hodin. "
           "a) O kolik stupňů Celsia byla nejvyšší naměřená teplota vyšší než nejnižší? b) Jaká byla průměrná teplota z těchto pěti měření?",
        "a) o 12 °C; b) 14 °C",
        ["Z grafu přečteme teploty: 8 °C, 12 °C, 18 °C, 20 °C, 12 °C.",
@@ -301,12 +301,12 @@ T.task(2, "Sloupcový graf ukazuje, kolik žáků chodí do jednotlivých sporto
        ["Z grafu: florbal 16, volejbal 12, plavání 8, atletika 10, stolní tenis 6 žáků.",
         "Florbal má o 4 žáky víc než volejbal. Třetina z 12 je 4, tvrzení platí.",
         "Dvakrát víc než stolní tenis (6) by bylo 12 žáků, atletika jich má 10. Tvrzení neplatí.",
-        "Polovina z 16 žáků florbalu je 8, přesně tolik chodí do plavání. Tvrzení platí."],
+        "Polovina ze 16 žáků florbalu je 8, přesně tolik chodí do plavání. Tvrzení platí."],
        vyroky == [True, False, True] and sum(k.values()) == 52,
        kind="yesno",
        options=["Do florbalu chodí o třetinu víc žáků než do volejbalu.",
                 "Do atletiky chodí dvakrát víc žáků než do stolního tenisu.",
-                "Do plavání chodí polovina počtu žáků z florbalu."],
+                "Do plavání chodí poloviční počet žáků než do florbalu."],
        figure=bar_chart(list(krouzky), list(krouzky.values()), 18, 2, 1, ytitle="počet žáků"), space=1)
 
 uhly = {"autobus": 144, "pěšky": 90, "auto": 72, "kolo": 54}
@@ -315,7 +315,7 @@ poc = {a: F(n_dojizdi * u, 360) for a, u in uhly.items()}
 vyroky = [poc["autobus"] == 48,
           poc["auto"] - poc["kolo"] == 6,
           poc["pěšky"] == F(n_dojizdi, 3)]
-T.task(2, f"Kruhový diagram ukazuje, jak do školy dojíždí {n_dojizdi} žáků. Velikost každé výseče je vyznačena středovým úhlem. Platí tato tvrzení?",
+T.task(2, f"Kruhový diagram ukazuje, jak se do školy dopravuje {n_dojizdi} žáků. Velikost každé výseče je vyznačena středovým úhlem. Platí tato tvrzení?",
        "ANO, ANO, NE",
        ["Celý kruh je 360° a představuje 120 žáků, 1° tedy odpovídá 120 : 360 = 1/3 žáka.",
         "Autobus: 144° → 144 : 3 = 48 žáků. Tvrzení platí.",
@@ -331,9 +331,9 @@ rozdily = {ceny[i + 1] - ceny[i] for i in range(3)}
 vyroky = [rozdily == {80},
           ceny[3] + (ceny[1] - ceny[0]) == 320 and rozdily == {60},
           F(ceny[3], hodin[3]) == 60]
-T.task(2, "Tabulka ukazuje, kolik stojí půjčení kola v půjčovně podle počtu hodin. Platí tato tvrzení?",
+T.task(2, "Tabulka ukazuje, kolik stojí půjčení kola v půjčovně podle počtu hodin. Cena se i pro delší dobu zvyšuje stejným způsobem. Platí tato tvrzení?",
        "NE, ANO, NE",
-       ["Ceny rostou o 140 − 80 = 60, 200 − 140 = 60, 260 − 200 = 60 Kč. Každá další hodina zdraží půjčení o 60 Kč, ne o 80 Kč. Tvrzení neplatí.",
+       ["Ceny rostou vždy o 60 Kč: 140 − 80 = 60, 200 − 140 = 60, 260 − 200 = 60. Každá další hodina zdraží půjčení o 60 Kč, ne o 80 Kč. Tvrzení neplatí.",
         "Za 5 hodin: 260 + 60 = 320 Kč. Tvrzení platí.",
         "Průměrná cena za hodinu při 4 hodinách: 260 : 4 = 65 Kč, ne 60 Kč. Tvrzení neplatí."],
        vyroky == [False, True, False] and F(ceny[3], hodin[3]) == 65,
@@ -345,8 +345,8 @@ T.task(2, "Tabulka ukazuje, kolik stojí půjčení kola v půjčovně podle po�
 ujeto = [52, 60, 48, 64]
 cil = 58
 pata = cil * (len(ujeto) + 1) - sum(ujeto)
-T.task(2, f"Cyklista ujel za čtyři dny {ujeto[0]} km, {ujeto[1]} km, {ujeto[2]} km a {ujeto[3]} km. "
-          f"Kolik kilometrů musí ujet pátý den, aby byl průměr za všech pět dnů {cil} km denně?",
+T.task(2, f"Cyklista ujel během čtyř dnů postupně {ujeto[0]} km, {ujeto[1]} km, {ujeto[2]} km a {ujeto[3]} km. "
+          f"Kolik kilometrů musí ujet pátý den, aby jeho průměr za všech pět dnů byl {cil} km denně?",
        "66 km",
        ["Součet za pět dnů musí být 5 · 58 = 290 km.", "Za první čtyři dny: 52 + 60 + 48 + 64 = 224 km.",
         "Pátý den: 290 − 224 = 66 km.", "Zkouška: (224 + 66) : 5 = 290 : 5 = 58 km. ✓"],
@@ -360,11 +360,11 @@ pl = Plane(-6, 2, -1, 5, 20)
 fig = svg(pl.base()
           + ln(pl.X(A[0]), pl.Y(A[1]), pl.X(B[0]), pl.Y(B[1]), INK, 1.6) + ln(pl.X(B[0]), pl.Y(B[1]), pl.X(C[0]), pl.Y(C[1]), INK, 1.6)
           + pl.point(*A, "A", -5, 12) + pl.point(*B, "B", -5, 13) + pl.point(*C, "C", -5, -2))
-T.task(2, "Body A, B a C v soustavě souřadnic jsou tři vrcholy obdélníku ABCD. Jedna jednotka na osách odpovídá 1 cm. "
+T.task(2, "Body A, B a C zakreslené v soustavě souřadnic jsou tři vrcholy obdélníku ABCD. Jedna jednotka na osách odpovídá 1 cm. "
           "Určete souřadnice bodu D a vypočtěte obvod a obsah obdélníku ABCD.",
        f"D{pt_txt(*D)}; obvod 14 cm; obsah 12 cm²",
        ["Z obrázku: A[−5; 1], B[−1; 1], C[−1; 4]. Strana AB je vodorovná, strana BC svislá.",
-        "Bod D leží nad bodem A ve výšce bodu C, tedy D[−5; 4].",
+        "Bod D má stejnou souřadnici x jako A a stejnou souřadnici y jako C, tedy D[−5; 4].",
         "Délky stran: AB = −1 − (−5) = 4 cm, BC = 4 − 1 = 3 cm.", "Obvod: 2 · (4 + 3) = 14 cm, obsah: 4 · 3 = 12 cm²."],
        D == (-5, 4) and sirka == 4 and vyska == 3 and 2 * (sirka + vyska) == 14 and sirka * vyska == 12
        and D[1] - A[1] == vyska and C[0] - D[0] == sirka and B[0] - A[0] == C[0] - D[0],
@@ -373,9 +373,9 @@ T.task(2, "Body A, B a C v soustavě souřadnic jsou tři vrcholy obdélníku AB
 mozn = ["y = 5x", "y = 2x + 3", "y = 3x + 2", "y = 3x + 5", "y = 4x + 1"]
 fs = [(lambda x: 5 * x), (lambda x: 2 * x + 3), (lambda x: 3 * x + 2), (lambda x: 3 * x + 5), (lambda x: 4 * x + 1)]
 dobre = [i for i, f in enumerate(fs) if f(1) == 5 and f(4) == 14]
-T.task(2, "Pro lineární funkci y = kx + q platí: pro x = 1 je y = 5 a pro x = 4 je y = 14. Která rovnice vyjadřuje tuto funkci?", "C",
+T.task(2, "Lineární funkce y = kx + q má pro x = 1 hodnotu y = 5 a pro x = 4 hodnotu y = 14. Která rovnice tuto funkci vyjadřuje?", "C",
        ["Z rozdílu hodnot určíme k: k = (14 − 5) : (4 − 1) = 9 : 3 = 3.", "Dosadíme x = 1 a y = 5: 5 = 3 · 1 + q, tedy q = 2. Rovnice je y = 3x + 2.",
-        "Ostatní možnosti vyhovují nejvýše jednomu bodu: y = 5x, y = 2x + 3 i y = 4x + 1 dají pro x = 1 správně 5, ale pro x = 4 vyjde 20, 11 a 17. Možnost y = 3x + 5 nevyhovuje ani prvnímu bodu (pro x = 1 vyjde 8)."],
+        "Ostatní možnosti vyhovují nejvýše jednomu bodu: y = 5x, y = 2x + 3 i y = 4x + 1 dají pro x = 1 správně 5, ale pro x = 4 vyjde po řadě 20, 11 a 17. Možnost y = 3x + 5 nevyhovuje ani jednomu z bodů (pro x = 1 vyjde 8, pro x = 4 vyjde 17)."],
        dobre == [2] and [f(4) for f in (fs[0], fs[1], fs[4])] == [20, 11, 17] and fs[3](1) == 8,
        kind="choice", options=mozn, space=2)
 
@@ -385,7 +385,7 @@ rychlosti = [(cas[i + 1][1] - cas[i][1]) / (cas[i + 1][0] - cas[i][0]) for i in 
 stoji = sum(cas[i + 1][0] - cas[i][0] for i in range(len(cas) - 1) if cas[i + 1][1] == cas[i][1])
 vyroky = [stoji == 1, max(y for _, y in cas) == 35, abs(rychlosti[3]) == abs(rychlosti[0])]
 pd = Plot(0, 4, 0, 40, left=30, right=10, top=18, bottom=26)
-T.task(3, "Graf ukazuje vzdálenost cyklisty od domova podle času od vyjetí. Platí tato tvrzení?",
+T.task(3, "Graf ukazuje vzdálenost cyklisty od domova v závislosti na čase uplynulém od vyjetí. Platí tato tvrzení?",
        "NE, ANO, ANO",
        ["Vodorovná část grafu od 1 h do 1,5 h znamená stání na místě. Cyklista stál půl hodiny, ne hodinu. Tvrzení neplatí.",
         "Nejvyšší bod grafu je v čase 2,5 h a leží ve vzdálenosti 35 km od domova. Tvrzení platí.",
@@ -416,11 +416,11 @@ T.task(3, "Přímka na obrázku je grafem lineární funkce y = kx + q. Body A a
 
 d, ch, pd_, pch = 12, 18, 20, 15
 prumer = F(d * pd_ + ch * pch, d + ch)
-T.task(3, "Ve třídě je 12 dívek a 18 chlapců. Z písemky měly dívky průměrně 20 bodů a chlapci průměrně 15 bodů. Jaký je průměr bodů celé třídy?",
+T.task(3, "Ve třídě je 12 dívek a 18 chlapců. V písemce získaly dívky průměrně 20 bodů a chlapci průměrně 15 bodů. Jaký byl průměr bodů celé třídy?",
        "17 bodů",
        ["Dívky získaly dohromady 12 · 20 = 240 bodů.", "Chlapci získali dohromady 18 · 15 = 270 bodů.",
         "Celá třída má 12 + 18 = 30 žáků a 240 + 270 = 510 bodů.", "Průměr: 510 : 30 = 17 bodů.",
-        "Chybný je průměr 17,5 (průměr čísel 20 a 15): chlapců je víc než dívek, výsledek proto musí být blíž k 15."],
+        "Průměr 17,5 (průměr čísel 20 a 15) by byl chybný: chlapců je víc než dívek, výsledek proto musí být blíž k 15."],
        prumer == 17 and F(pd_ + pch, 2) == F(35, 2) and d * pd_ == 240 and ch * pch == 270,
        space=4)
 
@@ -436,10 +436,10 @@ for a in range(1, 41):
                 if c == 7 and modes(s) == [6] and e == 2 * a and mean(s) == 8 and median(s) == 7:
                     reseni.append(s)
 T.task(3, "Pět přirozených čísel má tyto vlastnosti: jejich aritmetický průměr je 8, medián je 7, modus je 6 a největší z nich je "
-          "dvakrát větší než nejmenší. Určete všech pět čísel.",
+          "dvojnásobkem nejmenšího. Určete všech pět čísel.",
        "6, 6, 7, 9, 12",
        ["Součet čísel je 5 · 8 = 40. Medián je prostřední číslo po seřazení, třetí číslo je tedy 7.",
-        "Modus 6 znamená, že se 6 vyskytuje aspoň dvakrát. Protože 6 < 7, jsou dvě šestky nejmenší čísla: 6, 6, 7, …",
+        "Modus 6 znamená, že se číslo 6 vyskytuje aspoň dvakrát. Protože 6 je menší než medián 7, jsou obě šestky mezi dvěma nejmenšími čísly: 6, 6, 7, …",
         "Největší číslo je 2 · 6 = 12, takže řada je 6, 6, 7, ?, 12.", "Čtvrté číslo: 40 − (6 + 6 + 7 + 12) = 40 − 31 = 9.",
         "Zkouška: 6, 6, 7, 9, 12 má součet 40, medián 7, modus 6 a 12 = 2 · 6. ✓"],
        reseni == [[6, 6, 7, 9, 12]],
@@ -449,9 +449,9 @@ T.task(3, "Pět přirozených čísel má tyto vlastnosti: jejich aritmetický p
 n_jezdi, uhel = 150, 72
 kolo = F(n_jezdi * uhel, 360)
 opts = ["20", "30", "72", "78", "108"]
-T.diagnostic(f"Kruhový diagram ukazuje, jak do školy dojíždí {n_jezdi} žáků. Výseč „kolo“ má středový úhel {uhel}°. Kolik žáků jezdí do školy na kole?", "B",
+T.diagnostic(f"Kruhový diagram ukazuje, jak se do školy dopravuje {n_jezdi} žáků. Výseč „kolo“ má středový úhel {uhel}°. Kolik žáků jezdí do školy na kole?", "B",
              ["Celý kruh má 360°, výseč 72° je tedy 72 : 360 = 1/5 kruhu, to je 20 %.", "1/5 ze 150 žáků je 150 : 5 = 30 žáků.",
-              "Číslo 72 je úhel, ne počet žáků. Číslo 108 by byla chybná představa „72 % ze 150“, číslo 20 je procento."],
+              "Číslo 72 je úhel, ne počet žáků. Číslo 108 vznikne chybnou úvahou „72 % ze 150“, číslo 20 je procento a 78 vznikne odečtením 150 − 72."],
              kolo == 30 and F(uhel, 360) == F(1, 5) and F(150 * 72, 100) == 108 and 150 - 72 == 78 and str(int(kolo)) == opts[1],
              kind="choice", options=opts,
              figure=pie([72, 90, 144, 54], ["kolo", "pěšky", "autobus", "auto"], ["72°", "", "", ""]))

@@ -2,14 +2,14 @@
  "num": 6,
  "slug": "umernost",
  "title": "Poměr a úměrnost",
- "intro": "Poměr, úměrnost, pohyb a společná práce se v testu objevují ve většině ročníků, často jako krátká úloha na začátku nebo uvnitř slovní úlohy. Základem je poznat, zda se veličiny mění stejným směrem (přímá úměrnost), nebo opačným (nepřímá úměrnost).",
+ "intro": "Poměr, úměrnost, pohyb a společná práce se u zkoušky objevují ve většině ročníků, často jako krátká úloha na začátku testu nebo jako součást slovní úlohy. Základem je poznat, zda se veličiny mění stejným směrem (přímá úměrnost), nebo opačným (nepřímá úměrnost).",
  "tips": [
-  "Poměr 3 : 5 se krátí a rozšiřuje jako zlomek (6 : 10 je totéž). Při dělení v poměru 3 : 5 sečtěte díly (3 + 5 = 8), spočítejte jeden díl a vynásobte. Stejně se počítají směsi: poměr 2 : 3 znamená 2 díly jedné složky a 3 díly druhé.",
+  "Poměr 3 : 5 se krátí a rozšiřuje jako zlomek (6 : 10 je totéž co 3 : 5). Při dělení v poměru 3 : 5 sečtěte díly (3 + 5 = 8), spočítejte jeden díl a vynásobte jím počty dílů. Stejně se počítají směsi: poměr 2 : 3 znamená 2 díly jedné složky a 3 díly druhé.",
   "Přímá úměrnost: kolikrát víc, tolikrát víc (víc kilogramů, vyšší cena). Nepřímá úměrnost: kolikrát víc, tolikrát méně (víc pracovníků, méně dní). Před počítáním se vždy zeptejte, jestli se veličiny mění stejným, nebo opačným směrem.",
   "Trojčlenka: nejdřív spočítejte hodnotu pro jednu jednotku (1 kg, 1 pracovník), pak pro požadované množství. U nepřímé úměrnosti zůstává stálý součin, např. počet pracovníků · počet dní.",
-  "Měřítko 1 : 50 000 znamená, že 1 cm na mapě je 50 000 cm = 500 m ve skutečnosti. Převádějte jednotky: 1 km = 100 000 cm. Délky se násobí měřítkem, obsahy jeho druhou mocninou.",
-  "Rychlost = dráha : čas, dráha = rychlost · čas. Hlídejte jednotky: minuty převeďte na hodiny (45 min = 3/4 h). Rychlost v km/h převedete na m/s dělením 3,6, opačně násobením 3,6. Průměrná rychlost je celková dráha dělená celkovým časem, ne průměr dvou rychlostí.",
-  "Společná práce: když první pracovník udělá celou práci za 6 hodin a druhý za 3 hodiny, udělají za hodinu 1/6 a 1/3 práce, společně 1/6 + 1/3 = 1/2. Celá práce je 1, takže jim zabere 1 : 1/2 = 2 hodiny."
+  "Měřítko 1 : 50 000 znamená, že 1 cm na mapě odpovídá 50 000 cm = 500 m ve skutečnosti. Převádějte jednotky: 1 km = 100 000 cm. Délky z mapy násobte číslem 50 000, obsahy jeho druhou mocninou (50 000²).",
+  "Rychlost = dráha : čas, dráha = rychlost · čas. Hlídejte jednotky: minuty převeďte na hodiny (45 min = 3/4 h). Rychlost v km/h převedete na m/s dělením číslem 3,6, opačně (z m/s na km/h) násobením číslem 3,6. Průměrná rychlost je celková dráha dělená celkovým časem, ne průměr dvou rychlostí.",
+  "Společná práce: když první pracovník udělá celou práci za 6 hodin a druhý za 3 hodiny, udělají za hodinu 1/6, respektive 1/3 práce, společně tedy za hodinu 1/6 + 1/3 = 1/2 práce. Celá práce je 1, takže jim společně zabere 1 : 1/2 = 2 hodiny."
  ],
  "example": {
   "text": "Na mapě v měřítku 1 : 25 000 je trasa dlouhá 14 cm. Turista jde stálou rychlostí 5 km/h. Za jak dlouho trasu ujde? Výsledek zapište v minutách.",
@@ -30,7 +30,7 @@
    "answer": "3 : 10",
    "steps": [
     "Obě délky převedeme na stejnou jednotku: 1,5 m = 150 cm, poměr je 45 : 150.",
-    "Zkrátíme společným dělitelem 15: 45 : 150 = 3 : 10."
+    "Zkrátíme číslem 15: 45 : 150 = 3 : 10."
    ],
    "figure": null,
    "space": 2
@@ -38,7 +38,7 @@
   {
    "level": 1,
    "kind": "open",
-   "text": "Dva brigádníci si rozdělí odměnu 1 200 Kč v poměru odpracovaných hodin 3 : 5. Kolik korun dostane každý?",
+   "text": "Dva brigádníci si rozdělí odměnu 1 200 Kč v poměru svých odpracovaných hodin 3 : 5. Kolik korun dostane první a kolik druhý?",
    "options": null,
    "answer": "450 Kč a 750 Kč",
    "steps": [
@@ -94,7 +94,7 @@
     "1 km = 1 000 m a 1 h = 3 600 s.",
     "18 km/h = 18 000 m : 3 600 s = 5 m/s.",
     "Zkratka: rychlost v km/h dělíme 3,6 (18 : 3,6 = 5), opačně m/s násobíme 3,6.",
-    "Možnost 64,8 vznikne násobením 3,6 místo dělení."
+    "Chyby: 64,8 vznikne násobením 3,6 místo dělení, 50 dělením 360 místo 3 600, 0,5 dělením 36 místo 3,6 a 18 vznikne bez převodu jednotek."
    ],
    "figure": null,
    "space": 2
@@ -102,7 +102,7 @@
   {
    "level": 2,
    "kind": "choice",
-   "text": "Čtyři dělníci vykopou stejným tempem příkop za 9 dní. Za kolik dní ho vykopá šest dělníků?",
+   "text": "Čtyři dělníci vykopou příkop za 9 dní. Všichni dělníci pracují stejným tempem. Za kolik dní by příkop vykopalo šest dělníků?",
    "options": [
     "3 dny",
     "6 dní",
@@ -112,10 +112,10 @@
    ],
    "answer": "B",
    "steps": [
-    "Víc dělníků udělá práci rychleji, jde o nepřímou úměrnost: počet dělníků · počet dní zůstává stálý.",
+    "Víc dělníků udělá práci rychleji, jde tedy o nepřímou úměrnost: součin počtu dělníků a počtu dní je stálý.",
     "4 · 9 = 36, jeden dělník by příkop kopal 36 dní.",
     "Šest dělníků: 36 : 6 = 6 dní.",
-    "Chyby: 13,5 dne vznikne přímou úměrou (9 · 6 : 4), 36 dní je součin bez dělení, 3 dny a 7 dní odčítání dní od 9."
+    "Chyby: 13,5 dne vznikne záměnou za přímou úměrnost (9 · 6 : 4), 36 dní je součin 4 · 9 bez dělení, 3 dny je rozdíl 9 − 6 a 7 dní rozdíl 9 − 2."
    ],
    "figure": null,
    "space": 3
@@ -156,13 +156,13 @@
    "text": "Platí tato tvrzení?",
    "options": [
     "Poměr 12 : 18 je stejný jako poměr 2 : 3.",
-    "Když 5 pracovníků dokončí práci za 12 dní, pak 10 pracovníků ji (stejným tempem) dokončí za 24 dní.",
+    "Když 5 pracovníků dokončí práci za 12 dní, pak 10 stejně rychlých pracovníků ji dokončí za 24 dní.",
     "Auto jedoucí stálou rychlostí 60 km/h ujede za 20 minut 20 km."
    ],
    "answer": "ANO, NE, ANO",
    "steps": [
     "12 : 18 = 2 : 3, protože obě čísla vydělíme šesti. Tvrzení platí.",
-    "Pracovníků je dvakrát víc, práce potrvá dvakrát kratší dobu: 12 : 2 = 6 dní, ne 24. Jde o nepřímou úměrnost. Tvrzení neplatí.",
+    "Pracovníků je dvakrát víc, práce proto potrvá poloviční dobu: 12 : 2 = 6 dní, ne 24. Jde o nepřímou úměrnost. Tvrzení neplatí.",
     "20 minut je 1/3 hodiny a 60 · 1/3 = 20 km. Tvrzení platí."
    ],
    "figure": null,
@@ -171,14 +171,14 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Jeden pracovník vymaluje byt za 10 dní, druhý za 15 dní. Za kolik dní ho vymalují společně?",
+   "text": "Jeden pracovník by sám vymaloval byt za 10 dní, druhý sám za 15 dní. Za kolik dní ho vymalují společně?",
    "options": null,
    "answer": "za 6 dní",
    "steps": [
     "První vymaluje za den 1/10 bytu, druhý 1/15 bytu.",
     "Společně za den: 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6 bytu.",
     "Celý byt (to je 1) vymalují za 1 : 1/6 = 6 dní.",
-    "Pozor: čas není průměr časů, (10 + 15) : 2 = 12,5 dne by vyšlo víc než 10 dní, za které byt zvládne sám rychlejší pracovník."
+    "Pozor: čas společné práce není průměr časů. Průměr (10 + 15) : 2 = 12,5 dne je víc než 10 dní, které potřebuje sám rychlejší pracovník, společně to tedy musí jít rychleji."
    ],
    "figure": null,
    "space": 3
@@ -186,7 +186,7 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Suchá zdicí směs se míchá z cementu a písku v poměru 1 : 4 (podle hmotnosti). Kolik kilogramů cementu a kolik kilogramů písku je třeba na 45 kg směsi?",
+   "text": "Suchá směs na zdění se míchá z cementu a písku v poměru 1 : 4 (podle hmotnosti). Kolik kilogramů cementu a kolik kilogramů písku je třeba na 45 kg směsi?",
    "options": null,
    "answer": "9 kg cementu a 36 kg písku",
    "steps": [
@@ -201,13 +201,13 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Pozemek je na plánu v měřítku 1 : 500 nakreslen jako obdélník s rozměry 8 cm a 5 cm. Jaký je jeho skutečný obsah v metrech čtverečních?",
+   "text": "Na plánu v měřítku 1 : 500 je pozemek nakreslen jako obdélník o rozměrech 8 cm a 5 cm. Jaký je skutečný obsah pozemku? Výsledek uveďte v metrech čtverečních.",
    "options": null,
    "answer": "1 000 m²",
    "steps": [
     "Skutečné rozměry: 8 cm · 500 = 4 000 cm = 40 m a 5 cm · 500 = 2 500 cm = 25 m.",
     "Obsah: 40 · 25 = 1 000 m².",
-    "Pozor: obsah na plánu (8 · 5 = 40 cm²) se nenásobí 500, ale 500² = 250 000: 40 · 250 000 = 10 000 000 cm² = 1 000 m² (1 m² = 10 000 cm²)."
+    "Pozor: obsah na plánu (8 · 5 = 40 cm²) se nenásobí číslem 500, ale číslem 500² = 250 000: 40 · 250 000 = 10 000 000 cm² = 1 000 m² (1 m² = 10 000 cm²)."
    ],
    "figure": null,
    "space": 3
@@ -215,7 +215,7 @@
   {
    "level": 3,
    "kind": "open",
-   "text": "První pracovník vyklidí sklep za 12 hodin, druhý za 4 hodiny. Prvních 2 hodiny pracuje sám první pracovník, potom se přidá druhý. Za kolik hodin od začátku bude sklep vyklizený?",
+   "text": "První pracovník by sám vyklidil sklep za 12 hodin, druhý sám za 4 hodiny. Prvních 2 hodiny pracuje jen první pracovník, potom se k němu přidá druhý. Za kolik hodin od začátku bude sklep vyklizený?",
    "options": null,
    "answer": "za 4,5 hodiny (4 hodiny 30 minut)",
    "steps": [
@@ -235,10 +235,10 @@
    "options": null,
    "answer": "24 km/h",
    "steps": [
-    "Délka cesty není zadaná, zvolíme ji: 60 km (společný násobek čísel 20 a 30).",
+    "Délka cesty není zadaná a výsledek na ní nezávisí, proto ji zvolíme: 60 km (společný násobek čísel 20 a 30).",
     "Tam: 60 : 20 = 3 h, zpět: 60 : 30 = 2 h, celkem 5 h.",
     "Celá dráha je 2 · 60 = 120 km, průměrná rychlost 120 : 5 = 24 km/h.",
-    "Průměr rychlostí (20 + 30) : 2 = 25 km/h je špatně: cyklista jel déle pomaleji, proto vychází méně."
+    "Průměr rychlostí (20 + 30) : 2 = 25 km/h je chybný postup: pomalejší rychlostí jel cyklista delší dobu, proto je průměrná rychlost nižší než 25 km/h."
    ],
    "figure": null,
    "space": 4
@@ -261,7 +261,7 @@
   {
    "level": 3,
    "kind": "open",
-   "text": "Zásoba krmiva vystačí 20 koním na 18 dní. Po 6 dnech se 5 koní prodá. Na kolik dalších dní vystačí zbylé krmivo zbývajícím koním?",
+   "text": "Zásoba krmiva vystačí 20 koním na 18 dní. Každý kůň spotřebuje denně stejné množství krmiva. Po 6 dnech se prodá 5 koní. Na kolik dalších dní vystačí zbylé krmivo zbývajícím koním?",
    "options": null,
    "answer": "na 16 dní",
    "steps": [

@@ -261,16 +261,16 @@ def obr_ctverec_kruh():
 
 # ------------------------------------------------------------------ téma
 T = Topic(9, "obsahy", "Obvody, obsahy, kruh a Pythagorova věta",
-          "Obvody a obsahy jsou v testu každý rok, často ve složeném obrazci nebo spolu s kruhem. Pythagorova věta se většinou skrývá uvnitř jiné úlohy: "
-          "přepona, úhlopříčka obdélníku nebo výška rovnoramenného trojúhelníku.",
-          ["Obvod je délka čáry kolem obrazce (v cm, m), obsah je plocha uvnitř (v cm², m²). Před počítáním si podtrhněte, co se po vás chce.",
+          "Obvody a obsahy se v testu objevují každý rok, často ve složeném obrazci nebo spolu s kruhem. Pythagorova věta se většinou skrývá uvnitř jiné úlohy: "
+          "jako úhlopříčka obdélníku, výška rovnoramenného trojúhelníku nebo výška lichoběžníku.",
+          ["Obvod je délka čáry kolem obrazce (v cm, m), obsah je velikost plochy uvnitř (v cm², m²). Před počítáním si podtrhněte, co zadání žádá a v jakých jednotkách.",
            "Vzorce: čtverec S = a², obdélník S = a · b, rovnoběžník S = a · v, trojúhelník S = a · v : 2, lichoběžník S = (a + c) · v : 2. "
            "Výška je kolmá k základně, často není stranou obrazce a do obvodu nepatří.",
-           "Kruh: o = 2 · π · r, S = π · r². Pozor na záměnu poloměru a průměru. Dosazuje se π ≈ 3,14, nebo 22/7, když je poloměr násobkem sedmi. "
-           "Výseč je část kruhu (čtvrtina, třetina…), mezikruží je rozdíl dvou kruhů: S = π · (R² − r²), ne π · (R − r)².",
+           "Kruh: o = 2 · π · r, S = π · r². Pozor na záměnu poloměru a průměru. Za π dosazujte hodnotu uvedenou v zadání (3,14 nebo 22/7; zlomek se hodí, když je poloměr násobkem sedmi). "
+           "Výseč je část kruhu (například čtvrtina nebo třetina), mezikruží je rozdíl dvou kruhů: S = π · (R² − r²), ne π · (R − r)².",
            "Pythagorova věta: v pravoúhlém trojúhelníku platí c² = a² + b², kde c je přepona (leží proti pravému úhlu). Odvěsnu spočtete odečtením: "
-           "a² = c² − b². Často se opakují trojice 3, 4, 5; 5, 12, 13; 8, 15, 17; 7, 24, 25 a jejich násobky (6, 8, 10 a podobně).",
-           "Převody obsahu: 1 m² = 10 000 cm², 1 a = 100 m², 1 ha = 10 000 m². Typická chyba je násobit stovkou místo deseti tisíci.",
+           "a² = c² − b². Hodí se znát trojice 3, 4, 5; 5, 12, 13; 8, 15, 17; 7, 24, 25 a jejich násobky (například 6, 8, 10).",
+           "Převody obsahu: 1 m² = 10 000 cm², 1 a (ar) = 100 m², 1 ha = 10 000 m². Typická chyba: násobit nebo dělit číslem 100 místo 10 000.",
            "Složený obrazec rozdělte na jednoduché části, nebo od většího obrazce odečtěte vyříznutou část. "
            "Do obvodu patří jen vnější čára obrazce, společné hranice částí se nepočítají."])
 
@@ -281,7 +281,7 @@ T.example("Obdélníkový pozemek má obvod 68 m a jednu stranu dlouhou 24 m. Vy
           ["Polovina obvodu je 68 : 2 = 34 m, druhá strana je tedy 34 − 24 = 10 m.",
            "Obsah: S = 24 · 10 = 240 m².",
            "Úhlopříčka u je přepona pravoúhlého trojúhelníku s odvěsnami 24 m a 10 m: u² = 24² + 10² = 576 + 100 = 676.",
-           "u = √676 = 26 m (trojice 5, 12, 13 zvětšená dvakrát)."],
+           "u = √676 = 26 m (dvojnásobek trojice 5, 12, 13)."],
           "S = 240 m², u = 26 m",
           b == 10 and 2 * (24 + b) == 68 and 24 * b == 240 and u == 26 and 26 ** 2 == 676 and (10, 24, 26) == (2 * 5, 2 * 12, 2 * 13))
 
@@ -295,7 +295,7 @@ svg, g = obr_pythagoras()
 c = iroot(9 ** 2 + 12 ** 2)
 T.task(1, "Pravoúhlý trojúhelník ABC má pravý úhel při vrcholu C a odvěsny AC = 9 cm a BC = 12 cm. Vypočtěte délku přepony AB "
           "a obvod trojúhelníku.", "AB = 15 cm, obvod 36 cm",
-       ["Pythagorova věta: c² = 9² + 12² = 81 + 144 = 225.", "c = √225 = 15 cm (trojice 3, 4, 5 zvětšená třikrát).",
+       ["Pythagorova věta: c² = 9² + 12² = 81 + 144 = 225.", "c = √225 = 15 cm (trojnásobek trojice 3, 4, 5).",
         "Obvod: 9 + 12 + 15 = 36 cm."],
        same(g["AC"], 9) and same(g["BC"], 12) and same(g["AB"], c) and c == 15 and 9 + 12 + c == 36 and (9, 12, 15) == (3 * 3, 4 * 3, 5 * 3),
        figure=svg, space=2)
@@ -326,7 +326,7 @@ pomery = {F((2 * a_) ** 2, a_ ** 2) for a_ in (1, 3, 7)}
 T.task(2, "Strana čtverce se zdvojnásobí. Kolikrát se zvětší jeho obsah?", "C (4krát)",
        ["Původní strana a, původní obsah a². Nová strana 2a, nový obsah (2a)² = 4a².",
         "Ověření na čísle: a = 3 cm má obsah 9 cm², strana 6 cm má obsah 36 cm², 36 : 9 = 4.",
-        "Zdvojnásobí se obvod, ale obsah se zvětší čtyřikrát."],
+        "Zdvojnásobí se obvod, ale obsah se zvětší čtyřikrát. Chyby: 2krát je změna obvodu, 8krát by byl objem krychle."],
        pomery == {4} and opts[2] == "4krát" and opts.count("4krát") == 1 and 2 ** 3 == 8, kind="choice", options=opts, space=1)
 
 svg, g = obr_lichobeznik()
@@ -335,7 +335,7 @@ v = iroot(10 ** 2 - x ** 2)
 S_ = F((22 + 10) * v, 2)
 T.task(2, "Rovnoramenný lichoběžník ABCD má základny AB = 22 cm a CD = 10 cm a ramena AD = BC = 10 cm. Vypočtěte jeho výšku a obsah.",
        "v = 8 cm, S = 128 cm²",
-       ["Výškou z vrcholů C a D vznikne obdélník a dva shodné pravoúhlé trojúhelníky. Kratší odvěsna každého z nich je (22 − 10) : 2 = 6 cm.",
+       ["Výšky z vrcholů C a D rozdělí lichoběžník na obdélník a dva shodné pravoúhlé trojúhelníky. Kratší odvěsna každého z nich je (22 − 10) : 2 = 6 cm.",
         "Rameno je přepona: v² = 10² − 6² = 100 − 36 = 64, v = 8 cm (trojice 6, 8, 10).",
         "Obsah: S = (a + c) · v : 2 = (22 + 10) · 8 : 2 = 128 cm²."],
        x == 6 and v == 8 and S_ == 128 and same(g["v"], v) and same(g["S"], S_) and same(g["AD"], 10) and same(g["CD"], 10),
@@ -357,7 +357,7 @@ T.task(2, "Mezikruží je omezené dvěma soustřednými kružnicemi o poloměre
           "Uveďte celý postup.", f"{dec(S_)} cm²",
        ["Obsah velkého kruhu: S₁ = π · 10² = 3,14 · 100 = 314 cm².", "Obsah malého kruhu: S₂ = π · 5² = 3,14 · 25 = 78,5 cm².",
         "Mezikruží: 314 − 78,5 = 235,5 cm². Stejně: π · (10² − 5²) = 3,14 · 75 = 235,5 cm².",
-        "Pozor: π · (10 − 5)² = 78,5 cm² je špatně, to je obsah malého kruhu."],
+        "Pozor: výpočet π · (10 − 5)² dává 78,5 cm², což je chybný výsledek (to je obsah malého kruhu)."],
        S_ == F(2355, 10) and PI * 100 - PI * 25 == S_ and PI * (10 - 5) ** 2 == F(785, 10) != S_, space=4)
 
 svg, g = obr_ctvrtkruh()
@@ -387,7 +387,7 @@ plot = 600 + 800 + c
 S_ = F(600 * 800, 2)
 T.task(2, "Pole má tvar pravoúhlého trojúhelníku s odvěsnami 600 m a 800 m. Vypočtěte a) délku plotu kolem celého pole, "
           "b) obsah pole v hektarech.", "a) 2 400 m, b) 24 ha",
-       ["Přepona: c² = 600² + 800² = 360 000 + 640 000 = 1 000 000, c = 1 000 m (trojice 3, 4, 5 zvětšená 200krát).",
+       ["Přepona: c² = 600² + 800² = 360 000 + 640 000 = 1 000 000, c = 1 000 m (200násobek trojice 3, 4, 5).",
         "Plot: 600 + 800 + 1 000 = 2 400 m.", "Obsah: S = 600 · 800 : 2 = 240 000 m².",
         "1 ha = 10 000 m², tedy 240 000 m² = 24 ha."],
        c == 1000 and plot == 2400 and S_ == 240000 and S_ / 10000 == 24 and (600, 800, 1000) == (3 * 200, 4 * 200, 5 * 200), space=4)
@@ -397,7 +397,7 @@ svg, g = obr_slozeny()
 hrany = g["hrany"]
 obvod = sum(round(h) for h in hrany)
 obsah = 12 * 9 - 5 * 3
-T.task(3, "Obrazec na obrázku má všechny úhly pravé, rozměry jsou v centimetrech. Vypočtěte jeho obvod a obsah.",
+T.task(3, "Sousední strany obrazce na obrázku jsou na sebe kolmé, rozměry jsou v centimetrech. Vypočtěte jeho obvod a obsah.",
        "o = 42 cm, S = 93 cm²",
        ["Chybějící strany: pravá svislá strana má 9 − 3 = 6 cm, vodorovná strana v zářezu má 12 − 7 = 5 cm.",
         "Obvod: 12 + 6 + 5 + 3 + 7 + 9 = 42 cm (stejně jako obvod obdélníku 12 × 9).",
@@ -449,7 +449,7 @@ r = F(628, 10) / (2 * PI)
 S_ = PI * r ** 2
 T.diagnostic("Obvod kruhu je 62,8 cm. Jaký je obsah kruhu (použijte π ≈ 3,14)?", "C (314 cm²)",
              ["Z obvodu o = 2 · π · r vyjde r = 62,8 : (2 · 3,14) = 62,8 : 6,28 = 10 cm.", "Obsah: S = π · r² = 3,14 · 10² = 314 cm².",
-              "Chybné možnosti: 31,4 = π · r, 100 = r², 628 = 2 · π · r², 1 256 = π · d²."],
+              "Chybné možnosti vznikly takto: 31,4 cm² je π · r, 100 cm² je r², 628 cm² je 2 · π · r² a 1 256 cm² je π · d² (průměr místo poloměru)."],
              r == 10 and S_ == 314 and opts[2] == "314 cm²" and PI * r == F(314, 10) and PI * (2 * r) ** 2 == 1256 and 2 * PI * r ** 2 == 628,
              kind="choice", options=opts)
 
