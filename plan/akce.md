@@ -8,7 +8,7 @@ V každém probuzení udělat aspoň jeden krok z nejvyšší akce a přehodnoti
 | # | Akce | P7 | Stav | Další krok |
 |---|------|----|------|-----------|
 | 1 | Zboží.cz a Heureka: produktový feed sady přijímaček (lidé s nákupním záměrem, ceny kniha vs. 349 Kč) | 10–15 % | běží | Agent zpracovává `plan/postupy/zbozi-heureka.md` (17:2x). Pak podle něj: ověřit, zda přijmou digitální zboží ke stažení, poplatky, požadavky na e-shop, doba schválení (plan/postupy/zbozi-heureka.md) |
-| 2 | Sklik obsahová síť: zobrazení rodičům (zájmy, témata), klik 1–2 Kč | 15–20 % | běží | Agent zpracovává `plan/postupy/sklik-obsahova-sit.md` (17:2x). Pak, pak kampaň ≤ 82 Kč kreditu |
+| 2 | Sklik obsahová síť: zobrazení rodičům (zájmy, témata), klik 1–2 Kč | 15–20 % | běží | Agent zpracovává `plan/postupy/sklik-obsahova-sit.md` (17:2x). Pak kampaň ≤ 82 Kč kreditu |
 | 3 | Nabídka s nízkou bariérou: úvodní test + plán za 49 Kč nebo jedno téma za 79 Kč místo jen sady za 349 Kč | zvyšuje konverzi 3–5× | čeká na kanál | Návrh hotový (`plan/nabidka-printopia.md`); implementovat po prvním kanálu s reálnými návštěvami (akce 1 nebo 2) |
 | 4 | Soukromá reklama Google/Meta (Ondřej platí mimo účetnictví), rodiče deváťáků na Facebooku | 30 % při ~500 Kč | čeká na Ondřeje | Předložit Ondřejovi konkrétní číslo a očekávaný výsledek až po akcích 1–3 |
 | 5 | B2B licence sady doučovacím centrům a učitelům (kontakt přes formulář webu, ne hromadný e-mail) | 5–10 % | čeká na Ondřeje | Právní riziko (zákon 480/2004 §7): Ondřej rozhodne |
