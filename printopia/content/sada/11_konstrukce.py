@@ -293,26 +293,26 @@ def task(level, text, answer, steps, check, fig):
 
 
 T = Topic(11, "konstrukce", "Konstrukční úlohy",
-          "Konstrukce jsou v testu v úlohách 9 a 10 (5 až 6 bodů z 50), ale úspěšnost je jen kolem 24 % a třetina žáků je vůbec nezkusí. "
-          "Přitom stačí několik základních kroků a bodují se i správně sestrojené části.",
+          "Konstrukce jsou v testu v úlohách 9 a 10 (5 až 6 bodů z 50), ale úspěšnost je jen kolem 24 % a třetina žáků se o ně vůbec nepokusí. "
+          "Přitom stačí zvládnout několik základních kroků a bodují se i správně sestrojené části.",
           ["Nejdřív náčrt a rozbor (do sešitu): nakreslete hotový útvar odhadem, označte dané prvky a hledejte neznámý bod jako průsečík dvou množin bodů.",
-           "Množiny bodů: dané vzdálenosti od bodu je kružnice, dané vzdálenosti od přímky jsou dvě rovnoběžky, stejně vzdálené od A a B jsou na ose úsečky AB, "
-           "stejně vzdálené od ramen úhlu na ose úhlu a z bodů Thaletovy kružnice (průměr AB) je úsečka AB vidět pod pravým úhlem.",
-           "Osa úsečky: z obou konců oblouky stejného poloměru, větší než polovina úsečky, průsečíky spojit. Osa úhlu: oblouk kolem vrcholu, z jeho průsečíků "
-           "s rameny dva oblouky stejného poloměru, průsečík spojit s vrcholem.",
+           "Množiny bodů: body dané vzdálenosti od bodu S tvoří kružnici, body dané vzdálenosti od přímky p dvě rovnoběžky s p, body stejně vzdálené od A a B osu úsečky AB, "
+           "body stejně vzdálené od ramen úhlu osu úhlu. Z bodů Thaletovy kružnice (průměr AB) je úsečka AB vidět pod pravým úhlem.",
+           "Osa úsečky: z obou krajních bodů narýsujte oblouky stejného poloměru, většího než polovina úsečky, a spojte jejich průsečíky. Osa úhlu: narýsujte oblouk se středem ve vrcholu, z jeho průsečíků "
+           "s rameny dva oblouky stejného poloměru a jejich průsečík spojte s vrcholem.",
            "Kolmici a rovnoběžku sestrojíte trojúhelníkem s ryskou nebo kružítkem. Úhly 90°, 60°, 45° a 30° lze sestrojit bez úhloměru (osa úsečky, rovnostranný trojúhelník, osa úhlu).",
-           "Všechna řešení: kružnice protíná přímku ve dvou, jednom nebo žádném bodě. Najděte všechny průsečíky, ověřte, které vyhovují zadání, a nezapomeňte na souměrný obraz.",
-           "U zkoušky se konstrukce obtahuje propiskou a postup se nepíše. Měřte až nakonec, kontrolní délky v klíči jsou zaokrouhlené na milimetry (rozdíl 1 až 2 mm je v pořádku)."])
+           "Počet řešení: kružnice protíná přímku ve dvou, v jednom nebo v žádném bodě. Najděte všechny průsečíky, ověřte, které vyhovují zadání, a nezapomeňte na souměrná řešení (bod nad přímkou AB i pod ní), pokud je zadání nevylučuje.",
+           "U zkoušky se konstrukce obtahuje propiskou a postup se nepíše. Měřte až na závěr, kontrolní délky v klíči jsou zaokrouhlené na milimetry (rozdíl 1 až 2 mm je v pořádku)."])
 
 # ---------------------------------------------------------------- Řešený příklad
 A, B = P(0, 0), P(7, 0)
 Cs = [c for c in circ_circ(A, 5, B, 4) if c.imag > 0]
 C = Cs[0]
 v_ex = dist_line(C, A, B)
-T.example("Sestrojte trojúhelník ABC, v němž |AB| = 7 cm, |AC| = 5 cm, |BC| = 4 cm a bod C leží nad přímkou AB. Kolik má úloha řešení? Změřte výšku na stranu AB.",
+T.example("Sestrojte trojúhelník ABC, v němž |AB| = 7 cm, |AC| = 5 cm, |BC| = 4 cm a bod C leží nad přímkou AB. Kolik řešení má úloha? Změřte výšku na stranu AB.",
           ["Rozbor (náčrt): bod C je od A vzdálený 5 cm a od B 4 cm, leží tedy na kružnici k (A; 5 cm) a zároveň na kružnici l (B; 4 cm).",
-           "Konstrukce: narýsujeme úsečku AB, |AB| = 7 cm. Kružítkem narýsujeme oblouk k (A; 5 cm) a oblouk l (B; 4 cm). Jejich průsečík nad přímkou AB je bod C, spojíme ho s A a B.",
-           "Počet řešení: platí trojúhelníková nerovnost (5 + 4 > 7), proto se kružnice protnou ve dvou bodech. Jeden leží nad přímkou AB a druhý pod ní, úloha má 1 řešení.",
+           "Konstrukce: narýsujeme úsečku AB, |AB| = 7 cm. Kružítkem narýsujeme oblouky k (A; 5 cm) a l (B; 4 cm). Jejich průsečík nad přímkou AB je bod C, spojíme ho s A a B.",
+           "Počet řešení: trojúhelník lze sestrojit, protože součet dvou kratších stran je větší než nejdelší strana (5 + 4 > 7). Kružnice se proto protnou ve dvou bodech, jeden leží nad přímkou AB a druhý pod ní. Podle zadání leží C nad přímkou AB, úloha má 1 řešení.",
            f"Kontrola: výška na stranu AB (vzdálenost bodu C od přímky AB) vychází asi {cm(v_ex)} cm."],
           f"1 řešení, výška ≈ {cm(v_ex)} cm",
           len(circ_circ(A, 5, B, 4)) == 2 and len(Cs) == 1 and near(abs(C - A), 5) and near(abs(C - B), 4)
@@ -346,13 +346,13 @@ f.dim(A, C1, "5 cm")
 f.dim(S, C1, f"{cm(SC)} cm")
 f.dim(A, B, "7 cm")
 task(1, "Narýsujte úsečku AB délky 7 cm a sestrojte její osu o. Najděte všechny body C, které leží na ose o a mají od bodu A vzdálenost 5 cm. "
-        "Kolik takových bodů je? Změřte vzdálenost bodu C od středu S úsečky AB.",
+        "Kolik takových bodů je? Změřte vzdálenost kteréhokoli z nich od středu S úsečky AB.",
      f"2 body (jeden nad a jeden pod přímkou AB). Kontrola: |SC| ≈ {cm(SC)} cm.",
-     ["Rozbor: body stejně vzdálené od A a B leží na ose úsečky AB. Body vzdálené 5 cm od A leží na kružnici k (A; 5 cm). Hledané body jsou průsečíky osy a kružnice.",
-      "Narýsujeme úsečku AB, |AB| = 7 cm. Z bodů A a B narýsujeme oblouky o stejném poloměru větším než polovina úsečky (třeba 4,5 cm). Jejich průsečíky spojíme: vznikne osa o a její průsečík s AB je střed S.",
+     ["Rozbor: osa o je množina bodů stejně vzdálených od A a B. Body vzdálené 5 cm od A leží na kružnici k (A; 5 cm). Hledané body jsou průsečíky osy o a kružnice k.",
+      "Narýsujeme úsečku AB, |AB| = 7 cm. Z bodů A a B narýsujeme oblouky o stejném poloměru, větším než polovina úsečky AB (třeba 4,5 cm). Jejich průsečíky spojíme: vznikne osa o a její průsečík s AB je střed S.",
       "Kružítkem narýsujeme kružnici k (A; 5 cm).",
       "Kružnice k protne osu o ve dvou bodech C a C′, protože |AS| = 3,5 cm je menší než poloměr 5 cm. Úloha má 2 řešení.",
-      f"Kontrola: v pravoúhlém trojúhelníku ASC je |SC| = √(5² − 3,5²) = √12,75 ≈ {cm(SC)} cm. Také |BC| = |AC| = 5 cm."],
+      f"Kontrola: v pravoúhlém trojúhelníku ASC je |SC| = √(5² − 3,5²) = √12,75 ≈ {cm(SC)} cm. Také platí |BC| = |AC| = 5 cm."],
      near(abs(C1 - A), 5) and near(abs(C1 - B), 5) and near(abs(C2 - A), 5) and near(abs(C2 - B), 5) and near(C1.real, 3.5) and near(C2.real, 3.5)
      and near(C1, C2.conjugate()) and near(SC, math.sqrt(12.75)) and cm(SC) == "3,6" and 5 > abs(S - A), f)
 
@@ -380,7 +380,7 @@ task(1, "Narýsujte vodorovnou úsečku AB, |AB| = 6 cm. Sestrojte trojúhelník
      f"1 řešení. Kontrola: výška na stranu AB ≈ {cm(v)} cm.",
      ["Rozbor: bod C je od A vzdálený 5 cm a od B 4,5 cm, leží tedy na kružnici k (A; 5 cm) a na kružnici l (B; 4,5 cm).",
       "Narýsujeme úsečku AB, |AB| = 6 cm. Pak kružítkem narýsujeme oblouky k (A; 5 cm) a l (B; 4,5 cm). Jejich průsečík nad přímkou AB je bod C.",
-      "Trojúhelník existuje, protože platí trojúhelníková nerovnost (5 + 4,5 > 6). Kružnice se protnou ve dvou bodech, nad přímkou AB je jen jeden. Úloha má 1 řešení.",
+      "Trojúhelník lze sestrojit, protože součet dvou kratších stran je větší než nejdelší strana (5 + 4,5 > 6). Kružnice se protnou ve dvou bodech, nad přímkou AB je jen jeden. Úloha má 1 řešení.",
       f"Kontrola: kolmice z bodu C dopadne na AB asi {cm(foot)} cm od bodu A a výška vychází asi {cm(v)} cm."],
      len(sol) == 2 and len(Cs) == 1 and near(abs(C - A), 5) and near(abs(C - B), 4.5) and 5 + 4.5 > 6 and 5 + 6 > 4.5 and 4.5 + 6 > 5
      and near(foot, (36 + 25 - 20.25) / 12) and near(v, dist_line(C, A, B)) and cm(v) == "3,7" and cm(foot) == "3,4", f)
@@ -412,15 +412,15 @@ f.amark(V, arm_a, arm_b, 1.2, "60°")
 pt_labels(f, V=V, A=arm_a, B=arm_b, P=Pp, Q=Q, X=X)
 f.text(7.4 * R / abs(R) + P(0.1, 0.3), "o")
 f.dim(P(X.real, 0), X, f"{cm(d1)} cm")
-task(1, "Sestrojte úhel AVB o velikosti 60° (použijte kružítko, ne úhloměr) a jeho osu o. Na ose najděte bod X, který má od vrcholu V vzdálenost 5 cm. "
-        "Změřte vzdálenost bodu X od ramene VA (kolmo k rameni).",
+task(1, "Sestrojte úhel AVB o velikosti 60° (použijte kružítko, ne úhloměr) a jeho osu o. Na ose o najděte bod X, který má od vrcholu V vzdálenost 5 cm. "
+        "Změřte vzdálenost bodu X od ramene VA (měřte kolmo k rameni).",
      f"1 řešení. Kontrola: bod X je od každého ramene vzdálený {cm(d1)} cm.",
      ["Rozbor: osa úhlu je množina bodů stejně vzdálených od obou ramen. Bod X leží na ose a na kružnici k (V; 5 cm).",
-      "Úhel 60°: narýsujeme polopřímku VA a kružnici (V; 4 cm), která ji protne v bodě P. Kružnice (P; 4 cm) protne první kružnici v bodě Q. "
-      "Trojúhelník VPQ je rovnostranný, proto má úhel PVQ 60° a polopřímka VQ je druhé rameno.",
-      "Osa úhlu: z bodů P a Q narýsujeme oblouky o stejném poloměru (třeba 3 cm), které se protnou v bodě R. Polopřímka VR je osa o a svírá s rameny úhly 30°.",
+      "Úhel 60°: narýsujeme polopřímku VA a kružnici (V; 4 cm), která ji protne v bodě P. Kružnice (P; 4 cm) protne první kružnici v bodě Q (zvolíme ho nad polopřímkou VA). "
+      "Trojúhelník VPQ je rovnostranný, proto má úhel PVQ velikost 60° a polopřímka VQ je druhé rameno VB.",
+      "Osa úhlu: z bodů P a Q narýsujeme oblouky o stejném poloměru (třeba 3 cm), které se protnou v bodě R. Polopřímka VR je osa o a svírá s oběma rameny úhel 30°.",
       "Kružnice k (V; 5 cm) protne polopřímku VR v bodě X. Úloha má 1 řešení.",
-      f"Kontrola: v pravoúhlém trojúhelníku s úhlem 30° je odvěsna proti tomuto úhlu poloviční oproti přeponě, tedy 5 : 2 = {cm(d1)} cm. Stejně daleko je X od ramene VB."],
+      f"Kontrola: v pravoúhlém trojúhelníku s úhlem 30° je odvěsna ležící proti tomuto úhlu poloviční oproti přeponě, tedy 5 : 2 = {cm(d1)} cm. Bod X je stejně daleko i od ramene VB."],
      near(d1, 2.5) and near(d2, 2.5) and near(abs(X), 5) and near(abs(R - Pp), 3) and near(abs(R - Q), 3), f)
 
 # 4. Množiny bodů: vzdálenost od bodu a od přímky
@@ -450,7 +450,7 @@ task(1, "Narýsujte přímku p a na ní bod S. Najděte všechny body X, které 
      ["Rozbor: body vzdálené 3 cm od S leží na kružnici k (S; 3 cm). Body vzdálené 2 cm od přímky p leží na dvou rovnoběžkách s p, jedné v každé polorovině.",
       "Narýsujeme přímku p a bod S. V bodě S sestrojíme kolmici k přímce p a naneseme na ni od S na obě strany 2 cm.",
       "Oběma nanesenými body vedeme rovnoběžky r a r′ s přímkou p.",
-      "Narýsujeme kružnici k (S; 3 cm). Každá rovnoběžka je od S vzdálená 2 cm, to je méně než poloměr 3 cm, proto protne kružnici ve dvou bodech. Celkem je 4 body.",
+      "Narýsujeme kružnici k (S; 3 cm). Každá rovnoběžka je od S vzdálená 2 cm, to je méně než poloměr 3 cm, proto protne kružnici ve dvou bodech. Celkem jsou 4 body.",
       f"Kontrola: dva body na téže rovnoběžce jsou od sebe 2 · √(3² − 2²) = 2 · √5 ≈ {cm(xx)} cm."],
      all(near(abs(z - S0), 3) and near(abs(z.imag), 2) for z in pts4) and len({round(z.real, 6) + 1j * round(z.imag, 6) for z in pts4}) == 4
      and near(xx, 2 * math.sqrt(5)) and cm(xx) == "4,5", f)
@@ -477,11 +477,11 @@ f.dim(S, C, "4 cm")
 f.dim(A, C, f"{cm(ram)} cm")
 task(1, "Sestrojte rovnoramenný trojúhelník ABC se základnou AB, |AB| = 6 cm, a výškou na základnu 4 cm (bod C leží nad přímkou AB). Změřte délku ramene AC.",
      f"1 řešení. Kontrola: |AC| = |BC| = {cm(ram)} cm.",
-     ["Rozbor: v rovnoramenném trojúhelníku leží vrchol C na ose základny AB. Výška na základnu je 4 cm, takže C je na ose ve vzdálenosti 4 cm od AB.",
+     ["Rozbor: v rovnoramenném trojúhelníku leží vrchol C na ose základny AB. Výška na základnu je 4 cm, takže C leží na ose ve vzdálenosti 4 cm od přímky AB.",
       "Narýsujeme úsečku AB, |AB| = 6 cm, a její osu o. Střed úsečky AB označíme S.",
       "Na ose o naneseme od bodu S nad přímku AB vzdálenost 4 cm: dostaneme bod C.",
       "Spojíme A s C a B s C. Úloha má 1 řešení.",
-      f"Kontrola: |AS| = 3 cm a |SC| = 4 cm, takže |AC| = √(3² + 4²) = {cm(ram)} cm. Totéž platí pro |BC|."],
+      f"Kontrola: |AS| = 3 cm a |SC| = 4 cm, takže |AC| = √(3² + 4²) = √25 = 5 cm. Totéž platí pro |BC|."],
      near(abs(C - B), abs(C - A)) and near(ram, 5) and near(C.imag, 4) and near(dist_line(C, A, B), 4) and cm(ram) == "5,0", f)
 
 # ================================================================ Jako u zkoušky
@@ -536,7 +536,7 @@ task(2, "Narýsujte úsečku AB, |AB| = 7 cm. Sestrojte trojúhelník ABC, v ně
       "Narýsujeme úsečku AB, |AB| = 7 cm.",
       "Při bodě A sestrojíme nad přímkou AB úhel 45° (úhloměrem nebo jako polovinu pravého úhlu) a při bodě B úhel 60°.",
       "Průsečík volných ramen je bod C. Součet úhlů 45° + 60° je menší než 180°, polopřímky se proto protnou právě jednou. Úloha má 1 řešení.",
-      f"Kontrola: úhel při bodě C má 180° − 45° − 60° = 75°. Změřením vyjde |AC| ≈ {cm(AC)} cm a |BC| ≈ {cm(BC)} cm."],
+      f"Kontrola: velikost úhlu při bodě C je 180° − 45° − 60° = 75°. Měřením vyjde |AC| ≈ {cm(AC)} cm a |BC| ≈ {cm(BC)} cm."],
      above(C) and near(angle(B, A, C), 45) and near(angle(A, B, C), 60) and near(gam, 75)
      and near(AC, 7 * math.sin(math.radians(60)) / math.sin(math.radians(75))) and near(BC, 7 * math.sin(math.radians(45)) / math.sin(math.radians(75)))
      and (cm(AC), cm(BC)) == ("6,3", "5,1"), f)
@@ -565,11 +565,11 @@ f.dot(S, "S", (0.3, -0.6))
 f.dim(A, Cc, "5 cm")
 f.dim(A, Bq, f"{cm(side)} cm")
 task(2, "Sestrojte čtverec ABCD, jehož úhlopříčka AC má délku 5 cm. Změřte délku strany čtverce.",
-     f"1 řešení (čtverec je určen jednoznačně). Kontrola: strana ≈ {cm(side)} cm.",
+     f"1 řešení (čtverec je určen jednoznačně, záměna B a D dává shodný čtverec). Kontrola: strana ≈ {cm(side)} cm.",
      ["Rozbor: úhlopříčky čtverce jsou stejně dlouhé, navzájem kolmé a půlí se. Vrcholy B a D proto leží na ose úhlopříčky AC a jsou od jejího středu S vzdálené 2,5 cm (polovina úhlopříčky).",
       "Narýsujeme úsečku AC, |AC| = 5 cm, její osu a střed S.",
       "Kružnice k (S; 2,5 cm) protne osu ve dvou bodech B a D. (Kružnice prochází i body A a C.)",
-      "Spojíme A, B, C, D. Čtverec je určen jednoznačně, úloha má 1 řešení.",
+      "Spojíme A, B, C, D. Čtverec je určen jednoznačně (záměna B a D dává shodný čtverec), úloha má 1 řešení.",
       f"Kontrola: v pravoúhlém trojúhelníku ASB je |SA| = |SB| = 2,5 cm, takže |AB|² = 2,5² + 2,5² = 12,5 a |AB| = √12,5 ≈ {cm(side)} cm."],
      all(near(abs(sq[i] - sq[(i + 1) % 4]), side) for i in range(4)) and near(angle(A, Bq, Cc), 90) and near(abs(D - Bq), 5) and near(side, math.sqrt(12.5))
      and cm(side) == "3,5", f)
@@ -593,10 +593,10 @@ f.dim(D, A, "4 cm")
 f.dim(A, Cp, f"{cm(AC)} cm")
 f.dim(B, D, f"{cm(BD)} cm")
 h9 = D.imag
-task(2, "Sestrojte rovnoběžník ABCD, v němž |AB| = 6 cm, |AD| = 4 cm a velikost úhlu DAB je 60°. Změřte délky obou úhlopříček AC a BD.",
+task(2, "Sestrojte rovnoběžník ABCD, v němž |AB| = 6 cm, |AD| = 4 cm, velikost úhlu DAB je 60° a bod D leží nad přímkou AB. Změřte délky obou úhlopříček AC a BD.",
      f"1 řešení. Kontrola: |AC| ≈ {cm(AC)} cm, |BD| ≈ {cm(BD)} cm.",
      ["Rozbor: v rovnoběžníku jsou protější strany rovnoběžné a stejně dlouhé. Bod D leží na rameni úhlu 60° ve vzdálenosti 4 cm od A. Bod C je průsečík rovnoběžky s AB vedené bodem D a rovnoběžky s AD vedené bodem B.",
-      "Narýsujeme úsečku AB, |AB| = 6 cm, při bodě A úhel 60° a na jeho rameni bod D, |AD| = 4 cm.",
+      "Narýsujeme úsečku AB, |AB| = 6 cm, při bodě A nad přímkou AB úhel 60° a na jeho rameni bod D, |AD| = 4 cm.",
       "Bodem D vedeme rovnoběžku s AB a bodem B rovnoběžku s AD. Jejich průsečík je bod C. Spojíme A, B, C, D. Úloha má 1 řešení.",
       f"Kontrola: bod D je asi {cm(h9)} cm nad přímkou AB a 2 cm vpravo od A. Proto |AC| = √(8² + {cm(h9)}²) ≈ {cm(AC)} cm a |BD| = √(4² + {cm(h9)}²) ≈ {cm(BD)} cm."],
      near(Cp, B + D) and near(abs(Cp - B), 4) and near(abs(Cp - D), 6) and near(AC, math.sqrt(76)) and near(BD, math.sqrt(28))
@@ -624,14 +624,14 @@ f.dot(S, "S", (0.0, -0.7))
 f.dim(A, Cl, f"{cm(leg1)} cm")
 f.dim(Cl, B, f"{cm(leg2)} cm")
 f.dim(P(Cl.real, 0), Cl, "4,8 cm")
-task(2, "Sestrojte všechny pravoúhlé trojúhelníky ABC s přeponou AB, |AB| = 10 cm, a výškou 4,8 cm na přeponu AB, v nichž bod C leží nad přímkou AB. "
+task(2, "Sestrojte všechny pravoúhlé trojúhelníky ABC s přeponou AB, |AB| = 10 cm, a výškou 4,8 cm na přeponu, v nichž bod C leží nad přímkou AB. "
         "Kolik řešení má úloha? Změřte délky obou odvěsen.",
      f"2 řešení (shodné trojúhelníky souměrné podle osy úsečky AB). Kontrola: odvěsny {cm(leg1)} cm a {cm(leg2)} cm.",
      ["Rozbor: podle Thaletovy věty leží vrchol pravého úhlu C na kružnici s průměrem AB (Thaletova kružnice). Výška na přeponu je 4,8 cm, takže C leží i na rovnoběžce s AB ve vzdálenosti 4,8 cm.",
       "Narýsujeme úsečku AB, |AB| = 10 cm, její střed S a Thaletovu kružnici k (S; 5 cm).",
-      "Sestrojíme rovnoběžku r s AB ve vzdálenosti 4,8 cm nad AB (kolmice k AB v bodě S, na ní 4,8 cm, rovnoběžka).",
-      "Rovnoběžka r protne kružnici k ve dvou bodech C a C′, protože 4,8 < 5. Úloha má 2 řešení: trojúhelníky ABC a ABC′ jsou shodné a souměrné podle osy úsečky AB.",
-      f"Kontrola: bod C je od S vodorovně √(5² − 4,8²) = √1,96 = 1,4 cm, takže pata výšky je 3,6 cm od A. Odvěsny: √(3,6² + 4,8²) = {cm(leg1)} cm a √(6,4² + 4,8²) = {cm(leg2)} cm."],
+      "Sestrojíme rovnoběžku r s AB ve vzdálenosti 4,8 cm nad AB: v bodě S vztyčíme kolmici k AB, naneseme na ni 4,8 cm a tímto bodem vedeme rovnoběžku.",
+      "Rovnoběžka r protne kružnici k ve dvou bodech C a C′, protože vzdálenost 4,8 cm je menší než poloměr 5 cm. Úloha má 2 řešení: trojúhelníky ABC a ABC′ jsou shodné a souměrné podle osy úsečky AB.",
+      f"Kontrola: vodorovná vzdálenost bodu C od S je √(5² − 4,8²) = √1,96 = 1,4 cm, takže pata výšky je 5 − 1,4 = 3,6 cm od A a 10 − 3,6 = 6,4 cm od B. Odvěsny: √(3,6² + 4,8²) = 6 cm a √(6,4² + 4,8²) = 8 cm."],
      near(angle(A, Cl, B), 90) and near(angle(A, Cr, B), 90) and near(Cl.real, 3.6) and near(Cr.real, 6.4) and near(leg1, 6) and near(leg2, 8) and near(leg1 * leg2 / 10, 4.8)
      and near(abs(Cr - B), leg1) and (cm(leg1), cm(leg2)) == ("6,0", "8,0"), f)
 
@@ -661,10 +661,10 @@ task(2, "Narýsujte kružnici k se středem S a poloměrem 3 cm a na ní libovol
         "Najděte všechny body X na tečně t, které mají od bodu T vzdálenost 4 cm. Kolik takových bodů je? Změřte vzdálenost |SX|.",
      f"2 body. Kontrola: |SX| = |SX′| = {cm(SX)} cm.",
      ["Rozbor: tečna je kolmá na poloměr ST v bodě dotyku T. Hledané body X leží na tečně t a na kružnici l (T; 4 cm).",
-      "Narýsujeme kružnici k (S; 3 cm), bod T na ní a polopřímku ST.",
+      "Narýsujeme kružnici k (S; 3 cm), bod T na ní a přímku ST.",
       "Tečna t je kolmice k přímce ST vedená bodem T.",
-      "Kružnice l (T; 4 cm) protne tečnu t ve dvou bodech X a X′, po jednom na každé straně od bodu T. Úloha má 2 řešení.",
-      f"Kontrola: trojúhelník STX je pravoúhlý s odvěsnami 3 cm a 4 cm, takže |SX| = √(3² + 4²) = {cm(SX)} cm. Totéž platí pro X′."],
+      "Kružnice l (T; 4 cm) protne tečnu t ve dvou bodech X a X′, po jednom na každé straně od bodu T. Hledané body jsou tedy 2.",
+      f"Kontrola: trojúhelník STX je pravoúhlý s odvěsnami 3 cm a 4 cm, takže |SX| = √(3² + 4²) = √25 = 5 cm. Totéž platí pro X′."],
      near(abs(XL - S0), SX) and near(SX, 5) and near(dist_line(S0, P(-5, 3), P(5, 3)), r0) and near(abs(T0 - S0), r0) and cm(SX) == "5,0", f)
 
 # 12. Trojúhelník: úhel a výška
@@ -691,7 +691,7 @@ task(2, "Narýsujte úsečku AB, |AB| = 7 cm. Sestrojte trojúhelník ABC, v ně
      f"1 řešení. Kontrola: |AC| ≈ {cm(AC)} cm, |BC| ≈ {cm(BC)} cm.",
      ["Rozbor: výška na stranu AB je 4 cm, takže C leží na rovnoběžce s AB ve vzdálenosti 4 cm nad přímkou AB. Zároveň leží na rameni úhlu 60° s vrcholem A.",
       "Narýsujeme úsečku AB, |AB| = 7 cm, a při bodě A úhel 60°: rameno vedeme nad přímku AB.",
-      "Sestrojíme rovnoběžku r s AB ve vzdálenosti 4 cm nad AB (kolmice v bodě A, na ní 4 cm, rovnoběžka).",
+      "Sestrojíme rovnoběžku r s AB ve vzdálenosti 4 cm nad AB: v bodě A vztyčíme kolmici k AB, naneseme na ni 4 cm a tímto bodem vedeme rovnoběžku.",
       "Průsečík ramene a rovnoběžky r je bod C. Rameno protne rovnoběžku právě jednou, úloha má 1 řešení.",
       f"Kontrola: bod C leží asi {cm(cx)} cm vpravo od A a 4 cm nad přímkou AB. Podle Pythagorovy věty |AC| = √({cm(cx)}² + 4²) ≈ {cm(AC)} cm a "
       f"|BC| = √({cm(7 - cx)}² + 4²) ≈ {cm(BC)} cm."],
@@ -725,10 +725,10 @@ task(3, "Narýsujte úsečku AB, |AB| = 8 cm. Sestrojte všechny trojúhelníky 
         "Kolik řešení má úloha? U každého řešení změřte délku strany BC.",
      f"2 řešení. Kontrola: |BC| ≈ {cm(BCf)} cm (bod C) a |BC′| ≈ {cm(BCn)} cm (bod C′).",
      ["Rozbor: bod C leží na rameni úhlu 30° s vrcholem B a zároveň na kružnici k (A; 5 cm). Hledáme všechny průsečíky ramene s kružnicí.",
-      "Narýsujeme úsečku AB, |AB| = 8 cm. Při bodě B sestrojíme nad přímkou AB úhel 30° (polovina úhlu 60°) a jeho rameno narýsujeme dostatečně dlouhé, aspoň 10 cm.",
+      "Narýsujeme úsečku AB, |AB| = 8 cm. Při bodě B sestrojíme nad přímkou AB úhel 30° (polovina úhlu 60°). Jeho rameno narýsujeme dostatečně dlouhé, aspoň 10 cm.",
       "Narýsujeme kružnici k (A; 5 cm).",
       "Vzdálenost bodu A od ramene je 8 : 2 = 4 cm (v pravoúhlém trojúhelníku s úhlem 30° je protilehlá odvěsna poloviční oproti přeponě). To je méně než 5 cm, proto kružnice protne rameno ve dvou bodech C a C′. Úloha má 2 řešení: trojúhelníky ABC a ABC′.",
-      f"Kontrola: pata kolmice z A na rameno je od B vzdálená √(8² − 4²) = √48 ≈ {cm(pe)} cm a polovina tětivy je √(5² − 4²) = 3 cm. Proto |BC| ≈ {cm(pe)} + 3 ≈ {cm(BCf)} cm a |BC′| ≈ {cm(pe)} − 3 ≈ {cm(BCn)} cm."],
+      f"Kontrola: pata kolmice z A na rameno je od B vzdálená √(8² − 4²) = √48 ≈ {cm(pe)} cm a polovina tětivy je √(5² − 4²) = 3 cm. Proto |BC| ≈ {cm(pe)} + 3 ≈ {cm(BCf)} cm a |BC′| ≈ {cm(pe)} − 3 ≈ {cm(BCn)} cm. Oba průsečíky leží na rameni, protože {cm(pe)} > 3."],
      near(dA, 4) and 4 < 5 < 8 and near(BCf, pe + 3) and near(BCn, pe - 3) and (cm(BCf), cm(BCn)) == ("9,9", "3,9")
      and sorted(round(5 * math.sin(math.radians(180 - 30 - cang)) / 0.5, 6) for cang in (math.degrees(math.asin(0.8)), 180 - math.degrees(math.asin(0.8))))
      == sorted([round(BCf, 6), round(BCn, 6)]) and cm(pe + 3) == cm(BCf) and cm(pe - 3) == cm(BCn), f)
@@ -758,14 +758,14 @@ f.dim(B, Cl, "4 cm")
 f.dim(D, A, "5 cm")
 f.dim(P(D.real, 0), D, f"{cm(vl)} cm")
 task(3, "Sestrojte lichoběžník ABCD se základnami AB a CD, v němž |AB| = 8 cm, |CD| = 3 cm, |BC| = 4 cm, |AD| = 5 cm a body C, D leží nad přímkou AB. "
-        "Změřte výšku lichoběžníku.",
+        "Změřte výšku lichoběžníku a délku úhlopříčky AC.",
      f"1 řešení. Kontrola: výška ≈ {cm(vl)} cm, úhlopříčka |AC| ≈ {cm(AC)} cm.",
      ["Rozbor: bodem D vedeme rovnoběžku s ramenem BC, která protne AB v bodě E. Čtyřúhelník EBCD je rovnoběžník, takže |EB| = |CD| = 3 cm a |DE| = |BC| = 4 cm. "
       "Proto |AE| = 8 − 3 = 5 cm.",
-      "Trojúhelník AED má strany |AE| = 5 cm, |AD| = 5 cm a |DE| = 4 cm, můžeme ho sestrojit (sss).",
+      "Trojúhelník AED má strany |AE| = 5 cm, |AD| = 5 cm a |DE| = 4 cm, proto ho lze sestrojit podle věty sss.",
       "Narýsujeme úsečku AB, |AB| = 8 cm, a na ní bod E, |AE| = 5 cm. Oblouky k (A; 5 cm) a l (E; 4 cm) se protnou nad přímkou AB v bodě D.",
-      "Bodem D vedeme rovnoběžku s AB a naneseme na ni od D směrem k B vzdálenost 3 cm: bod C. Spojíme B s C. Úloha má 1 řešení.",
-      f"Kontrola: výška lichoběžníku je výška trojúhelníku AED a vychází asi {cm(vl)} cm. Úhlopříčka |AC| vychází asi {cm(AC)} cm."],
+      "Bodem D vedeme rovnoběžku s AB a naneseme na ni od D ve směru od A k B vzdálenost 3 cm: to je bod C. Spojíme B s C. Úloha má 1 řešení.",
+      f"Kontrola: výška lichoběžníku je výška trojúhelníku AED na stranu AE a vychází asi {cm(vl)} cm. Úhlopříčka |AC| vychází asi {cm(AC)} cm."],
      near(abs(D - A), 5) and near(abs(Cl - B), 4) and near(Cl.imag, D.imag) and near(abs(Cl - D), 3) and near(abs(D - E), 4) and near(abs(B - E), 3)
      and near(vl, 2 * math.sqrt(7 * 2 * 2 * 3) / 5) and (cm(vl), cm(AC)) == ("3,7", "7,4"), f)
 
@@ -798,11 +798,11 @@ f.dim(Bq, D, f"{cm(BD)} cm")
 task(3, "Sestrojte čtyřúhelník ABCD, v němž |AB| = 6 cm, |BC| = 5 cm, |CD| = 6 cm, |AD| = 3 cm a úhlopříčka AC má délku 7 cm. "
         "Body B a D leží na opačných stranách přímky AC. Změřte druhou úhlopříčku BD.",
      f"1 řešení. Kontrola: |BD| ≈ {cm(BD)} cm.",
-     ["Rozbor: úhlopříčka AC rozdělí čtyřúhelník na trojúhelníky ABC (strany 6, 5 a 7 cm) a ACD (strany 3, 6 a 7 cm). Mají společnou stranu AC, sestrojíme je za sebou.",
+     ["Rozbor: úhlopříčka AC rozdělí čtyřúhelník na trojúhelníky ABC (strany 6, 5 a 7 cm) a ACD (strany 3, 6 a 7 cm). Mají společnou stranu AC, proto je sestrojíme na opačných stranách této úsečky.",
       "Narýsujeme úsečku AC, |AC| = 7 cm.",
       "Bod B je průsečík oblouků k (A; 6 cm) a l (C; 5 cm) na jedné straně přímky AC.",
       "Bod D je průsečík oblouků m (A; 3 cm) a n (C; 6 cm) na opačné straně přímky AC.",
-      "Spojíme A, B, C, D. Obě trojúhelníkové nerovnosti platí (6 + 5 > 7 a 3 + 6 > 7). Body B a D mají podle zadání ležet na opačných stranách přímky AC, proto má úloha 1 řešení.",
+      "Spojíme A, B, C, D. Oba trojúhelníky lze sestrojit, protože součet dvou kratších stran je větší než nejdelší strana (6 + 5 > 7 a 3 + 6 > 7). Body B a D leží podle zadání na opačných stranách přímky AC, po volbě strany pro bod B je tedy D určen jednoznačně a úloha má 1 řešení (opačná volba dává shodný čtyřúhelník).",
       f"Kontrola: vzdálenost bodů B a D vychází asi {cm(BD)} cm."],
      near(abs(Bq - A), 6) and near(abs(Bq - Cc), 5) and near(abs(D - A), 3) and near(abs(D - Cc), 6) and Bq.imag > 0 > D.imag
      and 0 < xc < 7 and near(BD, math.hypot((36 + 49 - 25) / 14 - (9 + 49 - 36) / 14, math.sqrt(36 - ((36 + 49 - 25) / 14) ** 2) + math.sqrt(9 - ((9 + 49 - 36) / 14) ** 2))) and cm(BD) == "7,3", f)
@@ -826,13 +826,13 @@ f.dim(A, B, "7 cm")
 f.dim(A, foot_pt, f"{cm(dd)} cm")
 f.text(A + P(1.55, 1.0), "k", "middle")
 task(3, "Rozhodněte, zda existuje trojúhelník ABC, v němž |AB| = 7 cm, velikost úhlu ABC je 40° a |AC| = 3 cm (bod C leží nad přímkou AB). "
-        "Pokud existuje, sestrojte ho. Pokud ne, zdůvodněte to změřením vzdálenosti bodu A od ramene úhlu.",
+        "Pokud existuje, sestrojte ho. Pokud ne, zdůvodněte to změřením vzdálenosti bodu A od druhého ramene BC úhlu ABC.",
      f"0 řešení: trojúhelník neexistuje. Kontrola: vzdálenost bodu A od přímky BC je ≈ {cm(dd)} cm, což je víc než 3 cm.",
      ["Rozbor: bod C by musel ležet na rameni úhlu 40° s vrcholem B a na kružnici k (A; 3 cm). Řešení existuje jen tehdy, když kružnice rameno protne.",
-      "Narýsujeme úsečku AB, |AB| = 7 cm, při bodě B nad přímkou AB úhel 40° (úhloměrem) a jeho rameno. Narýsujeme kružnici k (A; 3 cm).",
+      "Narýsujeme úsečku AB, |AB| = 7 cm, při bodě B úhloměrem úhel 40° nad přímkou AB a jeho rameno BC. Pak narýsujeme kružnici k (A; 3 cm).",
       "Z bodu A spustíme kolmici na přímku BC a změříme její délku. Vyjde asi 4,5 cm.",
       "Nejbližší bod přímky BC je od A vzdálený 4,5 cm, tedy víc než poloměr 3 cm. Kružnice k přímku BC vůbec neprotne, úloha má 0 řešení.",
-      f"Kontrola pro rodiče: výpočet 7 · sin 40° ≈ {cm(dd)} cm měření potvrzuje (sinus se u zkoušky nepočítá, k řešení ho žák nepotřebuje)."],
+      f"Kontrola pro rodiče: měření potvrzuje výpočet 7 · sin 40° ≈ {cm(dd)} cm (sinus se u zkoušky nepoužívá, k řešení ho žák nepotřebuje)."],
      hits == [] and near(dd, 7 * math.sin(math.radians(40))) and cm(dd) == "4,5" and dd > 3 and near(abs(foot_pt - A), dd), f)
 
 # ---------------------------------------------------------------- Úvodní test (2 úlohy tématu)
@@ -849,15 +849,15 @@ moznosti = {
 }
 # možnost je správná, jen když popisuje přesně ty body, které jsou stejně vzdálené od A a B
 spravne = [k for k, pred in moznosti.items() if [pred(p) for p in samples] == equid]
-T.diagnostic("Které body mají od dvou různých bodů A a B stejnou vzdálenost?", "C",
+T.diagnostic("Které body v rovině mají od dvou různých bodů A a B stejnou vzdálenost?", "C",
              ["Body stejně vzdálené od A a B tvoří osu úsečky AB: kolmici k AB vedenou jejím středem.",
-              "Střed úsečky AB je jen jeden z těchto bodů. Přímka AB, Thaletova kružnice a kružnice kolem A obsahují body, které od A a B stejně daleko nejsou."],
+              "Střed úsečky AB je jen jeden z těchto bodů, ostatní body osy by chyběly. Přímka AB, Thaletova kružnice i kružnice kolem A obsahují i body, které od A a B stejně daleko nejsou."],
              spravne == ["body osy úsečky AB"], kind="choice", options=list(moznosti))
 S0 = P(5, 0)
 Cts = circ_circ(S0, 5, P(0, 0), 6)
 assert len(Cts) == 2
 bcs = [abs(c - P(10, 0)) for c in Cts]
-T.diagnostic("Bod C leží na kružnici s průměrem AB, |AB| = 10 cm, a platí |AC| = 6 cm. Jak dlouhá je strana BC?", "8 cm",
+T.diagnostic("Bod C leží na kružnici s průměrem AB, |AB| = 10 cm, a platí |AC| = 6 cm. Jak dlouhá je úsečka BC?", "8 cm",
              ["Podle Thaletovy věty je úhel ACB pravý, trojúhelník ABC je pravoúhlý s přeponou AB.",
               "Pythagorova věta: |BC|² = 10² − 6² = 100 − 36 = 64, tedy |BC| = 8 cm."],
              all(near(b, 8) and near(angle(P(0, 0), c, P(10, 0)), 90) for b, c in zip(bcs, Cts)))
