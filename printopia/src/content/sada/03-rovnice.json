@@ -2,14 +2,14 @@
  "num": 3,
  "slug": "rovnice",
  "title": "Lineární rovnice a soustavy",
- "intro": "Lineární rovnice a soustava dvou rovnic jsou úlohou 4 jednotné zkoušky a hodnotí se podle zapsaného postupu, bez postupu nejsou body. Pište každý krok na samostatný řádek a výsledek vždy dopočítejte do konce.",
+ "intro": "Lineární rovnice a soustava dvou rovnic tvoří úlohu 4 jednotné zkoušky (4 body) a hodnotí se podle zapsaného postupu: bez postupu body nejsou. Pište každý krok na samostatný řádek a výsledek vždy dopočítejte do konce.",
  "tips": [
-  "Rovnici se zlomky vynásobte společným jmenovatelem všech členů, i těch bez zlomku. Při násobení šesti se číslo 3 změní na 18, nezůstane 3.",
-  "Minus před závorkou změní znaménko u každého členu v ní: 7 − 2 · (x − 1) = 7 − 2x + 2. Nejčastější chyba je nevynásobit druhý člen závorky.",
+  "Rovnici se zlomky vynásobte společným jmenovatelem, a to všechny členy, i ty bez zlomku. Při násobení šesti se z čísla 3 stane 18, nezůstane 3.",
+  "Číslo před závorkou vynásobte každým členem v ní, včetně znaménka: 7 − 2 · (x − 1) = 7 − 2x + 2. Nejčastější chybou je vynásobit jen první člen závorky.",
   "Dvě závorky násobte „každý člen s každým“: (x + 3) · (x − 2) = x² − 2x + 3x − 6 = x² + x − 6. Když se členy s x² na obou stranách zruší, zbude lineární rovnice.",
-  "Členy převádějte na druhou stranu se změněným znaménkem a poslední krok vždy dopište (z 3x = 15 až x = 5). Nedokončený poslední krok stojí bod. Správnost ověřte dosazením do původní rovnice.",
-  "Vyjde-li nepravdivá rovnost (např. 6 = 5), rovnice nemá řešení. Vyjde-li vždy pravdivá rovnost (např. 0 = 0), vyhovuje každé číslo a řešení je nekonečně mnoho.",
-  "U soustavy najděte obě neznámé a zapište je jako x = …, y = …, chybějící druhá neznámá stojí body. Sčítací metoda: rovnice vynásobte tak, aby se u jedné neznámé objevila opačná čísla (např. 2y a −2y), a sečtěte je. Dosazovací metoda: z jedné rovnice vyjádřete neznámou a dosaďte ji do druhé."
+  "Členy převádějte na druhou stranu se změněným znaménkem a poslední krok vždy dopište (od 3x = 15 až k x = 5). Nedokončený poslední krok stojí bod. Správnost ověřte dosazením do původní rovnice (do archu zkoušku psát nemusíte).",
+  "Vyjde-li nepravdivá rovnost bez neznámé (např. 6 = 5), rovnice nemá řešení. Vyjde-li vždy pravdivá rovnost (např. 0 = 0), vyhovuje každé číslo, takže řešení je nekonečně mnoho.",
+  "U soustavy najděte obě neznámé a zapište je jako x = …, y = …; chybějící druhá neznámá stojí bod. Sčítací metoda: rovnice vynásobte tak, aby u jedné neznámé vyšla opačná čísla (např. 2y a −2y), a pak je sečtěte. Dosazovací metoda: z jedné rovnice vyjádřete jednu neznámou a dosaďte ji do druhé rovnice."
  ],
  "example": {
   "text": "Řešte rovnici a zapište celý postup: 3 · (x − 2) − x/2 = 1/4 · (3x + 18)",
@@ -19,7 +19,7 @@
    "Sloučíme členy s x na levé straně: 10x − 24 = 3x + 18.",
    "Členy s x převedeme doleva, čísla doprava a změníme jim znaménka: 10x − 3x = 18 + 24, tedy 7x = 42.",
    "Vydělíme sedmi: x = 6.",
-   "Zkouška: L = 3 · 4 − 3 = 9, P = 1/4 · 36 = 9. ✓"
+   "Zkouška (L je levá strana, P pravá): L = 3 · 4 − 3 = 9, P = 1/4 · 36 = 9. ✓"
   ],
   "answer": "x = 6"
  },
@@ -61,7 +61,7 @@
    "options": null,
    "answer": "x = 10",
    "steps": [
-    "Vynásobíme všechny členy pěti (i číslo −3 a číslo 1): 2x − 15 = 5.",
+    "Vynásobíme všechny členy pěti (i čísla −3 a 1): 2x − 15 = 5.",
     "Přičteme 15: 2x = 20.",
     "Vydělíme dvěma: x = 10.",
     "Zkouška: L = 2/5 · 10 − 3 = 4 − 3 = 1 = P. ✓"
@@ -85,7 +85,7 @@
     "Roznásobíme závorku: 3x + 6 = 5x − 4.",
     "Členy převedeme: 6 + 4 = 5x − 3x, tedy 10 = 2x.",
     "x = 5, správná je možnost C.",
-    "Ostatní možnosti jsou typické chyby: 3 (zapomenuté vynásobení čísla 2 trojkou), 1 (špatné znaménko u čísla 4), −1 (špatné znaménko u čísla 6), 10 (nedokončený poslední krok, chybí dělení dvěma)."
+    "Ostatní možnosti vznikají typickými chybami: 3 (číslo 2 v závorce se nevynásobilo třemi), 1 (špatné znaménko u čísla 4), −1 (špatné znaménko u čísla 6), 10 (nedokončený poslední krok, chybí dělení dvěma)."
    ],
    "figure": null,
    "space": 2
@@ -97,7 +97,7 @@
    "options": null,
    "answer": "x = 3",
    "steps": [
-    "Roznásobíme závorku, minus před ní změní obě znaménka: 7 − 2x + 2 = 3.",
+    "Roznásobíme závorku číslem −2, takže se změní znaménka obou členů v ní: 7 − 2x + 2 = 3.",
     "Sloučíme čísla: 9 − 2x = 3.",
     "Odečteme 9: −2x = −6.",
     "Vydělíme číslem −2: x = 3.",
@@ -144,8 +144,8 @@
    "options": null,
    "answer": "x = 5, y = 3",
    "steps": [
-    "Z rovnice (I) dosadíme za x do rovnice (II): 2 · (3y − 4) − y = 7.",
-    "Roznásobíme a sloučíme: 6y − 8 − y = 7, tedy 5y = 15.",
+    "Za x dosadíme výraz z rovnice (I) do rovnice (II): 2 · (3y − 4) − y = 7.",
+    "Roznásobíme a sloučíme: 6y − 8 − y = 7. Přičteme 8: 5y = 15.",
     "Vydělíme pěti: y = 3.",
     "Dopočítáme x z rovnice (I): x = 3 · 3 − 4 = 5.",
     "Zkouška: (I) 3 · 3 − 4 = 5 ✓, (II) 2 · 5 − 3 = 7 ✓."
@@ -164,7 +164,7 @@
     "Sečteme s rovnicí (II), neznámá y se zruší: 7x = 28.",
     "Vydělíme sedmi: x = 4.",
     "Dosadíme do rovnice (I): 2 · 4 + y = 11, tedy y = 3.",
-    "Zkouška: (II) 3 · 4 − 2 · 3 = 12 − 6 = 6 ✓."
+    "Zkouška: (I) 2 · 4 + 3 = 11 ✓, (II) 3 · 4 − 2 · 3 = 12 − 6 = 6 ✓."
    ],
    "figure": null,
    "space": 5
@@ -193,7 +193,7 @@
   {
    "level": 2,
    "kind": "yesno",
-   "text": "Rozhodněte, zda tvrzení platí.",
+   "text": "Platí tato tvrzení o rovnicích?",
    "options": [
     "Rovnice 3 · (x + 2) = 3x + 5 nemá žádné řešení.",
     "Rovnice 2 · (x − 4) = 2x − 8 má právě jedno řešení.",
@@ -201,7 +201,7 @@
    ],
    "answer": "ANO, NE, ANO",
    "steps": [
-    "Rovnice 3 · (x + 2) = 3x + 5 vede na 3x + 6 = 3x + 5, tedy 6 = 5. To neplatí pro žádné x, rovnice nemá řešení. Tvrzení platí.",
+    "Rovnice 3 · (x + 2) = 3x + 5 vede na 3x + 6 = 3x + 5, tedy 6 = 5. To je nepravdivá rovnost, rovnice proto nemá řešení. Tvrzení platí.",
     "Rovnice 2 · (x − 4) = 2x − 8 vede na 2x − 8 = 2x − 8, což platí pro každé x. Rovnice má nekonečně mnoho řešení, ne jedno. Tvrzení neplatí.",
     "Dosadíme x = 2 do rovnice 2x + 3 = x + 5: L = 2 · 2 + 3 = 7, P = 2 + 5 = 7. Tvrzení platí."
    ],
@@ -232,9 +232,9 @@
    "answer": "x = −4",
    "steps": [
     "Každý člen první závorky vynásobíme každým členem druhé: (x + 3) · (x − 2) = x² − 2x + 3x − 6 = x² + x − 6. Také x · (x + 4) = x² + 4x.",
-    "Dosadíme a minus před závorkou změní znaménka: x² + x − 6 − (x² + 4x) = 6, tedy x² + x − 6 − x² − 4x = 6.",
+    "Dosadíme do rovnice, přičemž minus před závorkou změní znaménka jejích členů: x² + x − 6 − (x² + 4x) = 6, tedy x² + x − 6 − x² − 4x = 6.",
     "Členy s x² se zruší: −3x − 6 = 6.",
-    "Přičteme 6: −3x = 12, tedy x = −4.",
+    "Přičteme 6: −3x = 12. Vydělíme číslem −3: x = −4.",
     "Zkouška: L = (−4 + 3) · (−4 − 2) − (−4) · (−4 + 4) = (−1) · (−6) − 0 = 6 = P. ✓"
    ],
    "figure": null,
@@ -250,7 +250,7 @@
     "Rovnici (I) vynásobíme šesti: 3x + 2y = 36.",
     "Za y dosadíme z rovnice (II): 3x + 2 · (2x − 3) = 36.",
     "Roznásobíme a sloučíme: 3x + 4x − 6 = 36, tedy 7x − 6 = 36.",
-    "Přičteme 6: 7x = 42, x = 6.",
+    "Přičteme 6: 7x = 42. Vydělíme sedmi: x = 6.",
     "Dopočítáme y z rovnice (II): y = 2 · 6 − 3 = 9.",
     "Zkouška: (I) 6/2 + 9/3 = 3 + 3 = 6 ✓, (II) 2 · 6 − 3 = 9 ✓."
    ],
@@ -264,7 +264,7 @@
    "options": null,
    "answer": "x = −8",
    "steps": [
-    "Roznásobíme závorky, minus před druhou změní znaménka obou členů: 2/3 · x − 8/3 − 1/2 · x + 3 = 1/4 · x + 1.",
+    "Roznásobíme závorky; minus před druhou závorkou změní znaménka obou členů v ní: 2/3 · x − 8/3 − 1/2 · x + 3 = 1/4 · x + 1.",
     "Vynásobíme všechny členy dvanácti: 8x − 32 − 6x + 36 = 3x + 12.",
     "Sloučíme: 2x + 4 = 3x + 12.",
     "Členy s x doleva, čísla doprava: 2x − 3x = 12 − 4, tedy −x = 8.",
@@ -313,7 +313,7 @@
    "steps": [
     "Z rovnice (I) vyjádříme y: y = 9 − x.",
     "Dosadíme do rovnice (II): 3x − 2 · (9 − x) = 2.",
-    "Roznásobíme a sloučíme: 3x − 18 + 2x = 2, tedy 5x − 18 = 2, 5x = 20.",
+    "Roznásobíme a sloučíme: 3x − 18 + 2x = 2, tedy 5x − 18 = 2. Přičteme 18: 5x = 20.",
     "Vydělíme pěti: x = 4. Pak y = 9 − 4 = 5.",
     "Zkouška: (I) 4 + 5 = 9 ✓, (II) 3 · 4 − 2 · 5 = 12 − 10 = 2 ✓."
    ],

@@ -59,18 +59,18 @@ assert ev("√(9 + 16)") == 5 and ev("√9 + √16") == 7 and ev("√(4 · 25)")
 assert ev("2 1/3") == F(7, 3) and ev("1,5") == F(3, 2)
 
 T = Topic(1, "zlomky", "Zlomky, desetinná čísla, mocniny a odmocniny",
-          "Číselné výrazy se zlomky, desetinnými čísly, mocninami a odmocninami jsou u zkoušky každý rok, hlavně v úloze 2, "
-          "a zlomky se vracejí i v rovnicích a slovních úlohách. Počítejte bez kalkulačky a výsledek vždy zkraťte na základní tvar.",
-          ["Před sčítáním a odčítáním převeďte zlomky na společného jmenovatele (nejmenší společný násobek).",
+          "Číselné výrazy se zlomky, desetinnými čísly, mocninami a odmocninami se u zkoušky objevují každý rok, hlavně v úloze 2, "
+          "a zlomky se vracejí i v rovnicích a slovních úlohách. Kalkulačka není povolená. V části s postupem stojí nezkrácený zlomek bod, proto výsledek vždy zkraťte na základní tvar.",
+          ["Před sčítáním a odčítáním převeďte zlomky na společného jmenovatele, nejlépe na nejmenší společný násobek jmenovatelů.",
            "Dělit zlomkem znamená násobit převrácenou hodnotou: a/b : c/d = a/b · d/c.",
-           "Smíšené číslo převeďte na zlomek: 2 1/3 = 7/3. Desetinné číslo na zlomek: 0,25 = 1/4.",
+           "Smíšené číslo převeďte na zlomek: 2 1/3 = 7/3. Desetinné číslo převeďte na zlomek podle řádů a zkraťte: 0,25 = 25/100 = 1/4.",
            "Pořadí operací: nejdřív závorky, mocniny a odmocniny, pak násobení a dělení, nakonec sčítání a odčítání. "
-           "U složeného zlomku spočítejte zvlášť čitatel a jmenovatel, pak je vydělte.",
-           "Pozor na znaménka: (−3)² = 9, ale −3² = −9, a lichá mocnina záporného čísla je záporná: (−2)³ = −8. "
-           "Záporný exponent znamená převrácenou hodnotu: 2⁻³ = 1/8 a (2/3)⁻² = 9/4. Dále 5⁰ = 1 a 10⁻² = 0,01.",
-           "Odmocnina je nezáporné číslo, jehož druhá mocnina je číslo pod odmocninou: √49 = 7. Druhé mocniny čísel 11 až 20 máte u zkoušky "
-           "na poslední straně sešitu (17² = 289, tedy √289 = 17). Odmocnina ze součtu není součet odmocnin: √(9 + 16) = 5, ne 3 + 4. "
-           "Součin odmocnit smíte: √(4 · 25) = 2 · 5."])
+           "U složeného zlomku spočítejte zvlášť čitatel a jmenovatel a pak čitatel vydělte jmenovatelem.",
+           "Pozor na znaménka: (−3)² = 9, ale −3² = −9. Lichá mocnina záporného čísla je záporná: (−2)³ = −8. "
+           "Záporný exponent znamená převrácenou hodnotu: 2⁻³ = 1/8 a (2/3)⁻² = 9/4. Dále platí 5⁰ = 1 (nenulové číslo na nultou je 1) a 10⁻² = 0,01.",
+           "Druhá odmocnina čísla je nezáporné číslo, jehož druhá mocnina se rovná tomuto číslu: √49 = 7. Druhé mocniny čísel 11 až 20 jsou u zkoušky "
+           "uvedeny na poslední straně sešitu (17² = 289, tedy √289 = 17). Odmocnina ze součtu se nerovná součtu odmocnin: √(9 + 16) = 5, ne 3 + 4. "
+           "Odmocninu ze součinu naopak rozdělit smíte: √(4 · 25) = 2 · 5."])
 
 q = "(−2)³ + 3² · 5/6 − √81 : 6"
 r = ev(q)
@@ -84,18 +84,18 @@ T.example(f"Vypočtěte a výsledek zapište v základním tvaru: {q}",
 # ---------------------------------------------------------------- Základ
 r = F(5, 6) - F(3, 8)
 T.task(1, "Vypočtěte: 5/6 − 3/8", fr(r),
-       ["Společný jmenovatel čísel 6 a 8 je 24.", "5/6 = 20/24, 3/8 = 9/24.", "20/24 − 9/24 = 11/24."],
+       ["Nejmenší společný násobek jmenovatelů 6 a 8 je 24.", "5/6 = 20/24, 3/8 = 9/24.", "20/24 − 9/24 = 11/24."],
        r == F(11, 24) and F(5, 6) == F(20, 24) and F(3, 8) == F(9, 24))
 
 r = F(7, 10) / F(14, 15)
 T.task(1, "Vypočtěte: 7/10 : 14/15", fr(r),
-       ["Dělení zlomkem nahradíme násobením převrácenou hodnotou: 7/10 · 15/14.", "Krátíme: 7 a 14 sedmi, 15 a 10 pěti: 1/2 · 3/2.",
+       ["Dělení zlomkem nahradíme násobením převrácenou hodnotou: 7/10 · 15/14.", "Zkrátíme křížem: 7 a 14 sedmi, 15 a 10 pěti, vyjde 1/2 · 3/2.",
         "1/2 · 3/2 = 3/4."],
        r == F(3, 4))
 
 r = F(125, 100)
 T.task(1, "Zapište desetinné číslo 1,25 jako zlomek v základním tvaru a jako smíšené číslo.", "5/4 = 1 1/4",
-       ["1,25 = 125/100.", "Zkrátíme 25: 125/100 = 5/4.", "5/4 = 4/4 + 1/4 = 1 1/4."],
+       ["1,25 = 125/100.", "Zkrátíme číslem 25: 125/100 = 5/4.", "5/4 = 4/4 + 1/4 = 1 1/4."],
        r == F(5, 4))
 
 q = "√81 − 2³ + (−3)²"
@@ -107,7 +107,7 @@ T.task(1, f"Vypočtěte: {q}", fr(r),
        r == 10 and ev("√81") == 9 and ev("2³") == 8 and ev("(−3)²") == 9, space=2)
 
 opts = {"3/5": F(3, 5), "0,58": F(58, 100), "4/7": F(4, 7), "5/9": F(5, 9), "0,56": F(56, 100)}
-T.task(1, "Které z čísel je největší?", "A",
+T.task(1, "Které z těchto čísel je největší?", "A",
        ["Převedeme zlomky na desetinná čísla: 3/5 = 0,6; 4/7 ≈ 0,571; 5/9 ≈ 0,556.",
         "Porovnáme: 0,6 > 0,58 > 0,571 > 0,56 > 0,556.", "Největší je 3/5, možnost A."],
        max(opts, key=opts.get) == "3/5",
@@ -116,7 +116,7 @@ T.task(1, "Které z čísel je největší?", "A",
 # ---------------------------------------------------------------- Jako u zkoušky
 r = (2 + F(1, 3)) * F(3, 14) - F(1, 4)
 T.task(2, "Vypočtěte: 2 1/3 · 3/14 − 1/4", fr(r),
-       ["Smíšené číslo převedeme: 2 1/3 = 7/3.", "7/3 · 3/14 = 21/42 = 1/2.", "1/2 − 1/4 = 2/4 − 1/4 = 1/4."],
+       ["Smíšené číslo převedeme na zlomek: 2 1/3 = 7/3.", "7/3 · 3/14 = 21/42 = 1/2.", "1/2 − 1/4 = 2/4 − 1/4 = 1/4."],
        r == F(1, 4) and F(7, 3) * F(3, 14) == F(1, 2))
 
 r = (F(3, 4) + F(5, 6)) / (F(5, 3) - F(1, 2))
@@ -127,7 +127,7 @@ T.task(2, "Vypočtěte složený zlomek: (3/4 + 5/6) / (5/3 − 1/2)", fr(r),
 
 r = F(15, 10) * F(2, 3) + F(25, 100) / F(1, 2)
 T.task(2, "Vypočtěte a výsledek zapište zlomkem v základním tvaru: 1,5 · 2/3 + 0,25 : 1/2", fr(r),
-       ["Desetinná čísla na zlomky: 1,5 = 3/2 a 0,25 = 1/4.", "Násobení: 3/2 · 2/3 = 1.", "Dělení: 1/4 : 1/2 = 1/4 · 2 = 1/2.",
+       ["Desetinná čísla převedeme na zlomky: 1,5 = 3/2 a 0,25 = 1/4.", "Násobení: 3/2 · 2/3 = 1.", "Dělení: 1/4 : 1/2 = 1/4 · 2 = 1/2.",
         "Součet: 1 + 1/2 = 3/2."],
        r == F(3, 2))
 
@@ -135,7 +135,7 @@ q = "2⁻³ + (1/2)⁻² − 5⁰"
 r = ev(q)
 T.task(2, f"Vypočtěte a výsledek zapište v základním tvaru: {q}", fr(r),
        ["Záporný exponent znamená převrácenou hodnotu: 2⁻³ = 1/2³ = 1/8.",
-        "(1/2)⁻² je převrácený zlomek na druhou: 2² = 4.",
+        "U (1/2)⁻² zlomek převrátíme a umocníme: 2² = 4.",
         "Nultá mocnina je 1: 5⁰ = 1.",
         "1/8 + 4 − 1 = 1/8 + 3 = 1/8 + 24/8 = 25/8."],
        r == F(25, 8) and ev("2⁻³") == F(1, 8) and ev("(1/2)⁻²") == 4 and ev("5⁰") == 1 and F(1, 8) + 3 == F(25, 8))
@@ -151,30 +151,30 @@ T.task(2, f"Vypočtěte a výsledek zapište jako desetinné číslo: {q}", "1,0
 
 stmts = [F(2, 5) + F(1, 5) == F(3, 10), F(3, 4) / F(3, 8) == 2, F(1, 3) * 6 == 2]
 T.task(2, "Platí tato tvrzení?", "NE, ANO, ANO",
-       ["2/5 + 1/5 = 3/5, ne 3/10. Sčítáme jen čitatele, jmenovatel zůstává. Tvrzení neplatí.",
+       ["2/5 + 1/5 = 3/5, ne 3/10. Sčítají se jen čitatelé, jmenovatel zůstává stejný. Tvrzení neplatí.",
         "3/4 : 3/8 = 3/4 · 8/3 = 24/12 = 2. Platí.", "1/3 · 6 = 6/3 = 2. Platí."],
        stmts == [False, True, True], kind="yesno",
        options=["2/5 + 1/5 = 3/10", "3/4 : 3/8 = 2", "Třetina z šesti je 2."], space=1)
 
 x = (F(7, 12) - F(1, 4)) / F(2, 3)
 T.task(2, "Řešte rovnici: 2/3 · x + 1/4 = 7/12", f"x = {fr(x)}",
-       ["Odečteme 1/4: 2/3 · x = 7/12 − 3/12 = 4/12 = 1/3.", "Vydělíme 2/3: x = 1/3 · 3/2 = 1/2.",
+       ["Odečteme 1/4: 2/3 · x = 7/12 − 3/12 = 4/12 = 1/3.", "Vydělíme zlomkem 2/3, tedy vynásobíme jeho převrácenou hodnotou: x = 1/3 · 3/2 = 1/2.",
         "Zkouška: 2/3 · 1/2 + 1/4 = 1/3 + 1/4 = 4/12 + 3/12 = 7/12. ✓"],
        x == F(1, 2) and F(2, 3) * x + F(1, 4) == F(7, 12))
 
 # ---------------------------------------------------------------- Náročnější
 celkem = 60 / (1 - F(2, 5) - F(1, 4))
-T.task(3, "Ve třídě si 2/5 žáků vybralo výlet do hor, 1/4 žáků výlet k vodě a zbylých 21 žáků muzeum. "
-          "Kolik žáků vybíralo?", "60 žáků",
-       ["Hory a voda dohromady: 2/5 + 1/4 = 8/20 + 5/20 = 13/20 žáků.", "Na muzeum zbývá 1 − 13/20 = 7/20 žáků, to je 21 žáků.",
-        "1/20 žáků … 21 : 7 = 3 žáci, celá třída 20 · 3 = 60 žáků.",
+T.task(3, "Žáci třídy volili mezi třemi výlety. Do hor se přihlásilo 2/5 žáků, k vodě 1/4 žáků a do muzea zbylých 21 žáků. "
+          "Kolik žáků je ve třídě?", "60 žáků",
+       ["Hory a voda dohromady: 2/5 + 1/4 = 8/20 + 5/20 = 13/20 všech žáků.", "Do muzea zbývá 1 − 13/20 = 7/20 všech žáků, a to je 21 žáků.",
+        "Jedna dvacetina žáků je 21 : 7 = 3 žáci, celá třída (20 dvacetin) je 20 · 3 = 60 žáků.",
         "Zkouška: 2/5 ze 60 = 24, 1/4 ze 60 = 15, 24 + 15 + 21 = 60. ✓"],
        21 / (1 - F(2, 5) - F(1, 4)) == 60 and F(2, 5) * 60 + F(1, 4) * 60 + 21 == 60, space=4)
 
 r = (F(1, 2) - F(1, 3)) / (F(1, 3) - F(1, 4)) - F(4, 5) * (1 + F(1, 4))
 T.task(3, "Vypočtěte: (1/2 − 1/3) : (1/3 − 1/4) − 4/5 · (1 + 1/4)", fr(r),
        ["První závorka: 1/2 − 1/3 = 3/6 − 2/6 = 1/6.", "Druhá závorka: 1/3 − 1/4 = 4/12 − 3/12 = 1/12.",
-        "Podíl: 1/6 : 1/12 = 1/6 · 12 = 2.", "Součin: 4/5 · 5/4 = 1.", "Rozdíl: 2 − 1 = 1."],
+        "Podíl: 1/6 : 1/12 = 1/6 · 12 = 2.", "Poslední závorka: 1 + 1/4 = 5/4, tedy součin 4/5 · 5/4 = 1.", "Rozdíl: 2 − 1 = 1."],
        r == 1, space=4)
 
 q = "(√(25/16) − (2/3)⁻¹) : (−1/2)³"
@@ -191,8 +191,8 @@ T.task(3, f"Vypočtěte a výsledek zapište v základním tvaru: {q}", fr(r),
 # Čtverec o stejném obsahu jako obdélník 8 m × 18 m: obsah 144 m², strana √144 = 12 m
 strana = ev("√(8 · 18)")
 rozdil_obvodu = 2 * (8 + 18) - 4 * strana
-T.task(3, "Obdélníková zahrada má rozměry 8 m a 18 m. Majitel ji chce upravit na čtvercovou zahradu o stejném obsahu "
-          "a celou ji oplotit. Metr plotu stojí 450 Kč. Kolik korun ušetří oproti oplocení původní obdélníkové zahrady?",
+T.task(3, "Obdélníková zahrada má rozměry 8 m a 18 m. Majitel chce změnit její tvar na čtverec o stejném obsahu "
+          "a oplotit ji po celém obvodu. Metr plotu stojí 450 Kč. Kolik korun za plot ušetří oproti oplocení původní obdélníkové zahrady?",
        "1 800 Kč",
        ["Obsah obdélníkové zahrady: 8 · 18 = 144 m².",
         "Čtverec o obsahu 144 m² má stranu √144 = 12 m.",
@@ -208,12 +208,12 @@ vals = [F(8), F(72), F(12), F(144), F(-12)]
 T.diagnostic(f"Kolik je {q}?", "C",
              ["Nejdřív mocniny pod odmocninou: 13² = 169 a 5² = 25, rozdíl 169 − 25 = 144.",
               "√144 = 12, protože 12² = 144.",
-              "Pozor: odmocnina se s mocninou nezruší po částech. 13 − 5 = 8 je chyba (A), 144 je zapomenutá odmocnina (D)."],
+              "Pozor: √(13² − 5²) se nerovná 13 − 5. Výsledek 8 (A) je právě tato chyba, 144 (D) je zapomenutá odmocnina."],
              r == 12 and [v == r for v in vals] == [False, False, True, False, False] and 13 ** 2 - 5 ** 2 == 144,
              kind="choice", options=["8", "72", "12", "144", "−12"])
 r = (F(2, 3) - F(1, 4)) / (1 + F(1, 4))
 T.diagnostic("Vypočtěte: (2/3 − 1/4) : (1 + 1/4)", fr(r),
-             ["Čitatel: 2/3 − 1/4 = 8/12 − 3/12 = 5/12.", "Jmenovatel: 1 + 1/4 = 5/4.", "5/12 : 5/4 = 5/12 · 4/5 = 20/60 = 1/3."],
+             ["První závorka: 2/3 − 1/4 = 8/12 − 3/12 = 5/12.", "Druhá závorka: 1 + 1/4 = 5/4.", "5/12 : 5/4 = 5/12 · 4/5 = 20/60 = 1/3."],
              r == F(1, 3))
 
 T.save()

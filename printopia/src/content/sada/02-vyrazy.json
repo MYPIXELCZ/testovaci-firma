@@ -2,21 +2,21 @@
  "num": 2,
  "slug": "vyrazy",
  "title": "Výrazy a mnohočleny",
- "intro": "Úprava výrazů je u zkoušky každý rok v úloze 3 (4 body) a jedna její část se píše s postupem. Postup musí být úplný: výsledek bez postupu se u takové úlohy nehodnotí.",
+ "intro": "Úprava výrazů je u zkoušky každý rok, v úloze 3 za 4 body, a jedna její část se píše s postupem. Bez postupu se tato část nehodnotí vůbec, proto pište každý krok úpravy, ne jen výsledek. Jedna drobná chyba (znaménko, nedokončený krok) stojí bod.",
  "tips": [
-  "Mínus před závorkou změní znaménka všech členů v závorce: 5 − (x − 2) = 5 − x + 2.",
+  "Minus před závorkou změní znaménka všech členů v závorce: 5 − (x − 2) = 5 − x + 2.",
   "(a + b)² není a² + b², chybí prostřední člen. Správně: (a + b)² = a² + 2ab + b²; (a − b)² = a² − 2ab + b².",
-  "Rozdíl druhých mocnin se rozkládá: a² − b² = (a − b)(a + b). Součet a² + b² se takto rozložit nedá. Vzorce máte u zkoušky na poslední straně sešitu, rozhoduje ale to, jestli je ve výrazu poznáte.",
-  "Sčítat a odčítat jde jen podobné členy (stejná proměnná ve stejné mocnině): 3a² + 2a² = 5a², ale 3a² + 2a se nespojí. Při násobení jednočlenů násobte zvlášť čísla a zvlášť proměnné: 3a · 2a = 6a².",
-  "Při vytýkání zkontrolujte výsledek roznásobením. Když vytknete celý člen, zůstane v závorce jednička: 4x + 4 = 4(x + 1).",
-  "Zkouška dosazením: dosaďte do zadání i do výsledku stejné jednoduché číslo (třeba x = 1). Musí vyjít totéž. Záporné číslo dosazujte do závorky: (−2)² = 4, ale −2² = −4."
+  "Rozdíl druhých mocnin (rozdíl čtverců) se rozkládá na součin: a² − b² = (a − b)(a + b). Součet a² + b² se takto rozložit nedá. Vzorce jsou u zkoušky uvedeny na poslední straně sešitu, ale žák musí sám poznat, kdy je použít.",
+  "Sčítat a odčítat lze jen podobné členy (stejná proměnná ve stejné mocnině): 3a² + 2a² = 5a², ale 3a² + 2a nelze sloučit. Při násobení jednočlenů násobte zvlášť čísla a zvlášť proměnné: 3a · 2a = 6a².",
+  "Při vytýkání zkontrolujte výsledek roznásobením. Vytknete-li celý člen výrazu, zůstane na jeho místě v závorce jednička (zapomenutá jednička je častá chyba): 4x + 4 = 4(x + 1).",
+  "Zkouška dosazením: dosaďte do zadání i do výsledku stejné jednoduché číslo (třeba x = 1). Obě hodnoty se musí rovnat. Záporné číslo dosazujte do závorky: (−2)² = 4, ale −2² = −4."
  ],
  "example": {
   "text": "Upravte výraz a zapište ho v základním tvaru: (x + 4)² − (x − 1)(x + 3)",
   "steps": [
-   "První závorku umocníme podle vzorce (a + b)²: (x + 4)² = x² + 8x + 16.",
-   "Druhý součin roznásobíme každý člen s každým: (x − 1)(x + 3) = x² + 3x − x − 3 = x² + 2x − 3.",
-   "Před druhým součinem je minus, proto změníme znaménka všech členů: x² + 8x + 16 − x² − 2x + 3.",
+   "První závorku umocníme podle vzorce (a + b)² = a² + 2ab + b²: (x + 4)² = x² + 8x + 16.",
+   "Druhý součin roznásobíme (každý člen s každým): (x − 1)(x + 3) = x² + 3x − x − 3 = x² + 2x − 3.",
+   "Před druhým součinem je minus, proto změníme znaménka všech jeho členů: x² + 8x + 16 − x² − 2x + 3.",
    "Sečteme podobné členy: x² − x² = 0, 8x − 2x = 6x, 16 + 3 = 19."
   ],
   "answer": "6x + 19"
@@ -29,8 +29,8 @@
    "options": null,
    "answer": "3x² − 2x + 5",
    "steps": [
-    "Mínus před druhou závorkou změní znaménka všech jejích členů: 5x² − 3x + 1 − 2x² + x + 4.",
-    "Sečteme podobné členy: x²: 5 − 2 = 3, x: −3 + 1 = −2, čísla: 1 + 4 = 5.",
+    "Minus před druhou závorkou změní znaménka všech jejích členů: 5x² − 3x + 1 − 2x² + x + 4.",
+    "Sečteme podobné členy: členy s x²: 5 − 2 = 3, členy s x: −3 + 1 = −2, čísla: 1 + 4 = 5.",
     "Výsledek: 3x² − 2x + 5."
    ],
    "figure": null,
@@ -44,7 +44,7 @@
    "answer": "a² + a",
    "steps": [
     "Vynásobíme jednočleny: 2a · 3a = 6a² a 5a · a = 5a².",
-    "6a² − 5a² + a = a² + a. Člen a se s a² nespojí, protože nemá stejnou mocninu."
+    "6a² − 5a² + a = a² + a. Člen a se s a² nesloučí, protože nemá stejnou mocninu."
    ],
    "figure": null,
    "space": 2
@@ -69,7 +69,7 @@
    "options": null,
    "answer": "24",
    "steps": [
-    "Dosadíme a záporné číslo dáme do závorky: 3 · (−2)² − (−2) · 3 + 2 · 3.",
+    "Dosadíme, přičemž záporné číslo dáme do závorky: 3 · (−2)² − (−2) · 3 + 2 · 3.",
     "(−2)² = 4 a −(−2) · 3 = +6: 3 · 4 + 6 + 6.",
     "12 + 6 + 6 = 24."
    ],
@@ -91,7 +91,7 @@
    "steps": [
     "Použijeme vzorec (a + b)² = a² + 2ab + b² pro b = 3.",
     "(a + 3)² = a² + 2 · a · 3 + 3² = a² + 6a + 9, tedy C.",
-    "A zapomíná prostřední člen, B má místo 6a jen 3a, D má špatné znaménko prostředního členu, E chybí 9."
+    "A vynechává prostřední člen, B má místo 6a jen 3a, D má opačné znaménko prostředního členu a v E chybí 9."
    ],
    "figure": null,
    "space": 1
@@ -103,7 +103,7 @@
    "options": null,
    "answer": "4a² − 12ab + 9b²",
    "steps": [
-    "Druhá mocnina rozdílu je druhá mocnina prvního členu, minus dvojnásobek součinu obou členů, plus druhá mocnina druhého členu. První člen je 2a, druhý je 3b.",
+    "Druhá mocnina rozdílu je druhá mocnina prvního členu, minus dvojnásobek součinu obou členů, plus druhá mocnina druhého členu. Tady je první člen 2a a druhý 3b.",
     "(2a)² = 4a², 2 · 2a · 3b = 12ab, (3b)² = 9b².",
     "(2a − 3b)² = 4a² − 12ab + 9b²."
    ],
@@ -118,7 +118,7 @@
    "answer": "8x² + 4x − 29",
    "steps": [
     "První součin je rozdíl čtverců: (3x + 5)(3x − 5) = (3x)² − 5² = 9x² − 25.",
-    "Druhý výraz podle vzorce: (x − 2)² = x² − 4x + 4.",
+    "Druhou mocninu rozepíšeme podle vzorce: (x − 2)² = x² − 4x + 4.",
     "Odčítáme celou závorku, proto změníme znaménka: 9x² − 25 − x² + 4x − 4.",
     "Sečteme podobné členy: 8x² + 4x − 29."
    ],
@@ -132,7 +132,7 @@
    "options": null,
    "answer": "3x(2x − 5)",
    "steps": [
-    "Největší společný dělitel čísel 6 a 15 je 3. Proměnná x je v obou členech (x² a x), vytkneme jedno x. Společný činitel je 3x.",
+    "Největší společný dělitel čísel 6 a 15 je 3. Proměnná x je v obou členech (x² a x), vytkneme ji v nižší mocnině, tedy jedno x. Společný činitel je 3x.",
     "6x² = 3x · 2x a 15x = 3x · 5.",
     "6x² − 15x = 3x(2x − 5).",
     "Zkouška roznásobením: 3x · 2x − 3x · 5 = 6x² − 15x. ✓"
@@ -143,7 +143,7 @@
   {
    "level": 2,
    "kind": "yesno",
-   "text": "Platí rovnost pro všechna čísla x?",
+   "text": "Platí každá z rovností pro všechna čísla x?",
    "options": [
     "(x + 3)² = x² + 9",
     "x² − 16 = (x − 4)(x + 4)",
@@ -151,7 +151,7 @@
    ],
    "answer": "NE, ANO, ANO",
    "steps": [
-    "(x + 3)² = x² + 6x + 9, chybí prostřední člen 6x. Tvrzení neplatí (pro x = 1 vyjde vlevo 16, vpravo 10).",
+    "(x + 3)² = x² + 6x + 9, chybí prostřední člen 6x. Rovnost neplatí (pro x = 1 vyjde vlevo 16, vpravo 10).",
     "Rozdíl čtverců: (x − 4)(x + 4) = x² − 16. Platí.",
     "4x − 2(x − 3) = 4x − 2x + 6 = 2x + 6. Platí."
    ],
@@ -161,7 +161,7 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Upravte výraz (x + 2)(x − 2) − x(x − 1) a pak vypočtěte jeho hodnotu pro x = 5.",
+   "text": "Upravte výraz (x + 2)(x − 2) − x(x − 1) a poté vypočtěte jeho hodnotu pro x = 5.",
    "options": null,
    "answer": "x − 4, hodnota 1",
    "steps": [
@@ -180,7 +180,7 @@
    "options": null,
    "answer": "4x + 1",
    "steps": [
-    "(2x − 1)² = 4x² − 4x + 1 (prostřední člen je 2 · 2x · 1 = 4x).",
+    "(2x − 1)² = 4x² − 4x + 1 (prostřední člen je −2 · 2x · 1 = −4x).",
     "4x(x − 2) = 4x² − 8x.",
     "Odečteme celou závorku: 4x² − 4x + 1 − 4x² + 8x.",
     "Sečteme podobné členy: 4x + 1."
@@ -196,7 +196,7 @@
    "answer": "(3a − 4b)(3a + 4b)",
    "steps": [
     "Obě části jsou druhé mocniny: 9a² = (3a)² a 16b² = (4b)².",
-    "Rozdíl čtverců se rozloží na součin (první člen − druhý člen)(první člen + druhý člen).",
+    "Rozdíl čtverců se rozloží na součin: (první člen − druhý člen)(první člen + druhý člen).",
     "9a² − 16b² = (3a − 4b)(3a + 4b)."
    ],
    "figure": null,
@@ -232,7 +232,7 @@
     "Obě mocniny rozepíšeme: (x + 3)² = x² + 6x + 9 a (x − 3)² = x² − 6x + 9.",
     "Druhou závorku odečítáme, proto změníme znaménka: x² + 6x + 9 − x² + 6x − 9.",
     "Sečteme: 6x + 6x = 12x, tedy C. Zkouška pro x = 1: 16 − 4 = 12. ✓",
-    "Chyby: A vznikne při špatně změněných znaménkách, B z (x − 3)² = x² − 9, D ze sčítání místo odčítání, E z (x − 3)² = x² + 9."
+    "Chyby: A vznikne, když se minus před závorkou použije jen na první člen (x²), B z (x − 3)² = x² − 9, D ze sčítání místo odčítání, E z (x − 3)² = x² + 9."
    ],
    "figure": null,
    "space": 3
@@ -240,14 +240,14 @@
   {
    "level": 3,
    "kind": "open",
-   "text": "Obdélník má jednu stranu dlouhou x cm, druhá strana je o 3 cm delší. Obě strany prodloužíme o 2 cm. Zapište výrazem, o kolik cm² se zvětší obsah, a výraz zjednodušte.",
+   "text": "Jedna strana obdélníku má délku x cm, druhá je o 3 cm delší. Obě strany prodloužíme o 2 cm. Zapište výrazem, o kolik cm² se zvětší obsah obdélníku, a výraz zjednodušte.",
    "options": null,
    "answer": "4x + 10 (cm²)",
    "steps": [
-    "Původní strany jsou x a x + 3 cm, obsah x(x + 3) = x² + 3x.",
-    "Nové strany jsou x + 2 a x + 5 cm, obsah (x + 2)(x + 5) = x² + 7x + 10.",
+    "Původní strany mají délky x cm a (x + 3) cm, obsah je x(x + 3) = x² + 3x.",
+    "Nové strany mají délky (x + 2) cm a (x + 5) cm, obsah je (x + 2)(x + 5) = x² + 7x + 10.",
     "Přírůstek: x² + 7x + 10 − (x² + 3x) = 4x + 10 (cm²).",
-    "Zkouška pro x = 1: obdélník 1 × 4 má obsah 4, nový 3 × 6 má obsah 18, rozdíl 14 = 4 · 1 + 10. ✓"
+    "Zkouška pro x = 1: původní obdélník o stranách 1 cm a 4 cm má obsah 4 cm², nový o stranách 3 cm a 6 cm má obsah 18 cm², rozdíl 14 cm² = 4 · 1 + 10. ✓"
    ],
    "figure": null,
    "space": 4
@@ -260,7 +260,7 @@
    "answer": "2(x − 3)²",
    "steps": [
     "Vytkneme společný činitel 2: 2x² − 12x + 18 = 2(x² − 6x + 9).",
-    "V závorce je druhá mocnina dvojčlenu: x² − 2 · x · 3 + 3² = (x − 3)².",
+    "Výraz v závorce je rozvinutá druhá mocnina dvojčlenu: x² − 2 · x · 3 + 3² = (x − 3)².",
     "2x² − 12x + 18 = 2(x − 3)².",
     "Zkouška roznásobením: 2(x² − 6x + 9) = 2x² − 12x + 18. ✓"
    ],

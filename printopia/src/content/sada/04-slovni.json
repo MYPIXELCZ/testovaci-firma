@@ -2,21 +2,21 @@
  "num": 4,
  "slug": "slovni",
  "title": "Slovní úlohy řešené rovnicí",
- "intro": "Slovní úlohy s neznámou („označme x“) jsou v úlohách 5 až 8 jednotné zkoušky téměř v každém testu a správně je vyřeší jen necelá třetina žáků. Každou úlohu pište stejně: označení neznámé, rovnice, řešení, zkouška, slovní odpověď.",
+ "intro": "Slovní úlohy s neznámou („označme x“) se v úlohách 5 až 8 jednotné zkoušky objevují téměř v každém testu a správně je vyřeší jen necelá třetina žáků. U zkoušky se tam hodnotí jen výsledek, zápis rovnice ale chrání před chybami. Každou úlohu proto pište stejně: označení neznámé, rovnice, řešení, zkouška, slovní odpověď.",
  "tips": [
-  "Neznámou zvolte tak, aby se k ní vztahovaly ostatní údaje, a pojmenujte ji větou: „Označme x počet žáků ve třídě.“ Odpověď na konci musí odpovídat na otázku zadání, ne jen vypsat x.",
-  "Při „o třetinu víc“ je základem původní hodnota: nová = x + 1/3 · x = 4/3 · x. Když je zadaná nová hodnota, dělte číslem 4/3 (násobte 3/4), neodečítejte od ní třetinu. Příklad: 4/3 · x = 48 dává x = 36, ne 48 − 16 = 32.",
-  "Typická chyba: „o třetinu méně“ a „o třetinu víc“ nejsou opak. Je-li A o třetinu menší než B, je B větší než A o polovinu, tedy o 50 %, ne o třetinu. Základem je vždy to, s čím se porovnává (co stojí za slovem „než“). Příklad: B = 90, A = 60, rozdíl 30 je třetina z 90, ale polovina z 60.",
-  "Větu překládejte slovo po slovu: „o 5 víc než Jana“ je x + 5, „dvakrát tolik“ je 2x, „před 3 lety“ je x − 3, „za 4 roky“ je x + 4. U věku se ke každému z lidí přičítá nebo odčítá stejné číslo.",
-  "Zlomek z části není zlomek z celku: třetina ze zbytku je jiná než třetina celku. Nejdřív zjistěte, co zbylo (x − x/3 = 2/3 · x), a z toho počítejte dál.",
-  "Zkoušku dělejte podle textu úlohy, ne jen v rovnici. Posuďte, zda výsledek dává smysl: počet lidí je celé číslo, věk není záporný, strany trojúhelníku musí splnit trojúhelníkovou nerovnost."
+  "Za neznámou zvolte údaj, ke kterému se ostatní vztahují, a pojmenujte ji větou: „Označme x počet žáků ve třídě.“ Slovní odpověď na konci musí odpovídat na otázku ze zadání, nestačí napsat hodnotu x.",
+  "U slov „o třetinu víc“ je základem původní hodnota: nová = x + 1/3 · x = 4/3 · x. Je-li zadaná nová hodnota, vydělte ji číslem 4/3 (tedy vynásobte 3/4) a neodečítejte od ní třetinu. Příklad: 4/3 · x = 48 dává x = 36, ne 48 − 16 = 32.",
+  "Typická chyba: „o třetinu méně“ a „o třetinu víc“ nejsou navzájem opačné. Je-li A o třetinu menší než B, je B větší než A o polovinu, tedy o 50 %, ne o třetinu. Základem je vždy to, s čím se porovnává (co stojí za slovem „než“). Příklad: B = 90, A = 60, rozdíl 30 je třetina z 90, ale polovina z 60.",
+  "Zadání převádějte na zápis po částech: je-li x hodnota, ke které se ostatní vztahují, pak „o 5 víc“ je x + 5 a „dvakrát tolik“ je 2x. Je-li x nynější věk, pak „před 3 lety“ je x − 3 a „za 4 roky“ je x + 4. U věku se ke každému z lidí přičítá nebo odčítá stejné číslo.",
+  "Zlomek z části není zlomek z celku: třetina ze zbytku je jiná než třetina celku. Nejdřív zjistěte, co zbylo (x − x/3 = 2/3 · x), a teprve z tohoto zbytku počítejte další zlomek.",
+  "Zkoušku dělejte podle textu úlohy, ne jen v rovnici. Posuďte, zda výsledek dává smysl: počet lidí je celé číslo, věk nemůže být záporný a délky stran trojúhelníku musí splňovat trojúhelníkovou nerovnost (dvě strany dohromady jsou delší než třetí)."
  ],
  "example": {
   "text": "Ve sportovním kroužku je o třetinu víc dívek než chlapců. Celkem se kroužku účastní 42 dětí. Kolik je v něm chlapců a kolik dívek? Označte neznámou, zapište rovnici a vyřešte ji.",
   "steps": [
    "Označme x počet chlapců. Dívek je o třetinu víc: x + 1/3 · x = 4/3 · x.",
    "Chlapců a dívek je dohromady 42: x + 4/3 · x = 42.",
-   "Vynásobíme všechny členy třemi: 3x + 4x = 126, tedy 7x = 126, x = 18.",
+   "Vynásobíme všechny členy třemi: 3x + 4x = 126, tedy 7x = 126 a x = 18.",
    "Dívek je 4/3 · 18 = 24.",
    "Zkouška: 24 − 18 = 6 a 6 je třetina z 18 ✓, 18 + 24 = 42 ✓."
   ],
@@ -41,13 +41,13 @@
   {
    "level": 1,
    "kind": "open",
-   "text": "Jana je o 4 roky starší než její bratr. Dohromady mají 26 let. Kolik let je Janě a kolik bratrovi? Označte neznámou, zapište rovnici a vyřešte ji.",
+   "text": "Jana je o 4 roky starší než její bratr. Dohromady jim je 26 let. Kolik let je Janě a kolik bratrovi? Označte neznámou, zapište rovnici a vyřešte ji.",
    "options": null,
    "answer": "bratrovi 11 let, Janě 15 let",
    "steps": [
     "Označme x věk bratra v letech. Janě je x + 4 let.",
-    "Dohromady mají 26 let: x + (x + 4) = 26.",
-    "Sloučíme: 2x + 4 = 26, tedy 2x = 22, x = 11.",
+    "Dohromady jim je 26 let: x + (x + 4) = 26.",
+    "Sloučíme: 2x + 4 = 26, tedy 2x = 22 a x = 11.",
     "Janě je 11 + 4 = 15 let. Zkouška: 15 − 11 = 4 ✓, 11 + 15 = 26 ✓."
    ],
    "figure": null,
@@ -56,13 +56,13 @@
   {
    "level": 1,
    "kind": "open",
-   "text": "Tři kamarádi si rozdělili výdělek z brigády 1 300 Kč. Petr dostal dvakrát víc než Marek a Tomáš o 100 Kč víc než Marek. Kolik korun dostal každý? Označte neznámou, zapište rovnici a vyřešte ji.",
+   "text": "Tři kamarádi si rozdělili výdělek z brigády, dohromady 1 300 Kč. Petr dostal dvojnásobek Markovy částky a Tomáš o 100 Kč víc než Marek. Kolik korun dostal každý? Označte neznámou, zapište rovnici a vyřešte ji.",
    "options": null,
    "answer": "Marek 300 Kč, Petr 600 Kč, Tomáš 400 Kč",
    "steps": [
     "Označme x částku, kterou dostal Marek, v korunách. Petr dostal 2x, Tomáš x + 100.",
     "Dohromady dostali 1 300 Kč: x + 2x + (x + 100) = 1 300.",
-    "Sloučíme: 4x + 100 = 1 300, tedy 4x = 1 200, x = 300.",
+    "Sloučíme: 4x + 100 = 1 300, tedy 4x = 1 200 a x = 300.",
     "Petr dostal 2 · 300 = 600 Kč, Tomáš 300 + 100 = 400 Kč.",
     "Zkouška: 300 + 600 + 400 = 1 300 ✓."
    ],
@@ -72,7 +72,7 @@
   {
    "level": 1,
    "kind": "choice",
-   "text": "Po zdražení o třetinu stojí lyžařský pas 300 Kč. Kolik stál před zdražením?",
+   "text": "Po zdražení o třetinu stojí skipas 300 Kč. Kolik stál před zdražením?",
    "options": [
     "75 Kč",
     "100 Kč",
@@ -86,7 +86,7 @@
     "Nová cena je 300 Kč: 4/3 · x = 300.",
     "x = 300 : 4/3 = 300 · 3/4 = 225.",
     "Zkouška: třetina ze 225 je 75 a 225 + 75 = 300 ✓. Správná je možnost D.",
-    "Ostatní možnosti jsou typické chyby: 200 vznikne odečtením třetiny od 300 (základem je ale původní cena, ne nová), 100 je třetina z 300, 75 je samotné zdražení a 400 je 4/3 z 300."
+    "Ostatní možnosti vznikají typickými chybami: 200 je 300 po odečtení třetiny (základem je ale původní cena, ne nová), 100 je třetina z 300, 75 je samotné zdražení a 400 je 4/3 z 300."
    ],
    "figure": null,
    "space": 3
@@ -94,13 +94,13 @@
   {
    "level": 1,
    "kind": "open",
-   "text": "Obdélníková zahrada má obvod 36 m. Jedna její strana je o 4 m delší než druhá. Určete délky stran zahrady. Označte neznámou, zapište rovnici a vyřešte ji.",
+   "text": "Obdélníková zahrada má obvod 36 m. Jedna její strana je o 4 m delší než strana s ní sousední. Určete délky stran zahrady. Označte neznámou, zapište rovnici a vyřešte ji.",
    "options": null,
    "answer": "7 m a 11 m",
    "steps": [
     "Označme x délku kratší strany v metrech. Delší strana má x + 4 metry.",
-    "Obvod obdélníku je 2 · (a + b): 2 · (x + x + 4) = 36.",
-    "Roznásobíme: 4x + 8 = 36, tedy 4x = 28, x = 7.",
+    "Obvod obdélníku je 2 · (a + b), kde a, b jsou sousední strany: 2 · (x + x + 4) = 36.",
+    "Sečteme v závorce a roznásobíme: 4x + 8 = 36, tedy 4x = 28 a x = 7.",
     "Kratší strana má 7 m, delší 7 + 4 = 11 m.",
     "Zkouška: 2 · (7 + 11) = 2 · 18 = 36 ✓."
    ],
@@ -110,14 +110,14 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Otec je o 28 let starší než syn. Za 5 let bude otci třikrát tolik let co synovi. Kolik let je nyní synovi a kolik otci? Označte neznámou, zapište rovnici a vyřešte ji.",
+   "text": "Otec je o 28 let starší než syn. Za 5 let bude otci třikrát tolik let, kolik bude synovi. Kolik let je nyní synovi a kolik otci? Označte neznámou, zapište rovnici a vyřešte ji.",
    "options": null,
    "answer": "synovi 9 let, otci 37 let",
    "steps": [
     "Označme x věk syna nyní. Otci je nyní x + 28 let.",
     "Za 5 let bude synovi x + 5 let a otci x + 28 + 5 = x + 33 let.",
-    "Otci bude třikrát tolik: x + 33 = 3 · (x + 5).",
-    "Roznásobíme: x + 33 = 3x + 15, tedy 18 = 2x, x = 9.",
+    "Otci bude třikrát tolik, kolik bude synovi: x + 33 = 3 · (x + 5).",
+    "Roznásobíme: x + 33 = 3x + 15, tedy 18 = 2x a x = 9.",
     "Zkouška: za 5 let bude synovi 14 a otci 42 let, 3 · 14 = 42 ✓ a 42 − 14 = 28 ✓.",
     "Odpověď: Synovi je 9 let, otci 37 let."
    ],
@@ -134,7 +134,7 @@
     "Označme x délku celé trasy v kilometrech. První den ujel x/3, druhý den x/4 a třetí den 35 km.",
     "Všechny tři dny dohromady dají celou trasu: x/3 + x/4 + 35 = x.",
     "Vynásobíme všechny členy dvanácti: 4x + 3x + 420 = 12x, tedy 7x + 420 = 12x.",
-    "Odečteme 7x: 420 = 5x, x = 84.",
+    "Odečteme 7x: 420 = 5x. Vydělíme pěti: x = 84.",
     "Zkouška: 84 : 3 = 28 km, 84 : 4 = 21 km, 28 + 21 + 35 = 84 ✓."
    ],
    "figure": null,
@@ -149,9 +149,9 @@
    "steps": [
     "Označme x délku ramene v centimetrech (obě ramena jsou stejně dlouhá). Základna má x − 3 cm.",
     "Obvod je součet tří stran: x + x + (x − 3) = 27.",
-    "Sloučíme: 3x − 3 = 27, tedy 3x = 30, x = 10.",
+    "Sloučíme: 3x − 3 = 27, tedy 3x = 30 a x = 10.",
     "Ramena mají 10 cm, základna 10 − 3 = 7 cm.",
-    "Zkouška: 10 + 10 + 7 = 27 ✓. Trojúhelník existuje, protože 7 + 10 > 10."
+    "Zkouška: 10 + 10 + 7 = 27 ✓. Trojúhelník lze sestrojit, protože dvě strany jsou vždy dohromady delší než třetí (7 + 10 > 10 a 10 + 10 > 7)."
    ],
    "figure": null,
    "space": 4
@@ -159,15 +159,15 @@
   {
    "level": 2,
    "kind": "open",
-   "text": "Petr by posekal zahradu sám za 4 hodiny, jeho táta by ji sám posekal za 12 hodin. Za jak dlouho ji posekají společně? Označte neznámou, zapište rovnici a vyřešte ji.",
+   "text": "Petr by sám posekal zahradu za 4 hodiny, jeho otec by ji sám posekal za 12 hodin. Za jak dlouho ji posekají společně? Označte neznámou, zapište rovnici a vyřešte ji.",
    "options": null,
    "answer": "za 3 hodiny",
    "steps": [
     "Označme x počet hodin, za které zahradu posekají společně. Celá zahrada je 1.",
-    "Petr poseká za hodinu 1/4 zahrady, táta 1/12 zahrady. Za x hodin posekají x/4 a x/12.",
+    "Petr poseká za hodinu 1/4 zahrady, otec 1/12 zahrady. Za x hodin posekají x/4 a x/12 zahrady.",
     "Dohromady posekají celou zahradu: x/4 + x/12 = 1.",
     "Vynásobíme dvanácti: 3x + x = 12, tedy 4x = 12 a x = 3.",
-    "Zkouška: za 3 hodiny poseká Petr 3/4 zahrady a táta 3/12 = 1/4 zahrady, dohromady 3/4 + 1/4 = 1 ✓.",
+    "Zkouška: za 3 hodiny poseká Petr 3/4 zahrady a otec 3/12 = 1/4 zahrady, dohromady 3/4 + 1/4 = 1 ✓.",
     "Odpověď: Společně zahradu posekají za 3 hodiny."
    ],
    "figure": null,
@@ -182,7 +182,7 @@
    "steps": [
     "Označme x nejmenší z čísel. Další liché číslo je o 2 větší, třetí o 4 větší: x, x + 2, x + 4.",
     "Součet je 129: x + (x + 2) + (x + 4) = 129.",
-    "Sloučíme: 3x + 6 = 129, tedy 3x = 123, x = 41.",
+    "Sloučíme: 3x + 6 = 129, tedy 3x = 123 a x = 41.",
     "Čísla jsou 41, 43 a 45.",
     "Zkouška: 41 + 43 + 45 = 129 ✓ a všechna tři čísla jsou lichá."
    ],
@@ -205,7 +205,7 @@
     "Jana má x korun, Petr o 20 víc, tedy x + 20 korun.",
     "Dohromady mají x + (x + 20) = 2x + 20 korun, a to je 100 Kč: 2x + 20 = 100. Správná je možnost B.",
     "Zkouška: x = 40, Petr má 60 Kč, 60 − 40 = 20 ✓ a 40 + 60 = 100 ✓.",
-    "Ostatní možnosti: A počítá jen s Petrem, C má minus místo plus, D počítá, že oba mají Petrovu částku, E odčítá místo přičítání."
+    "Ostatní možnosti: A bere 100 Kč jako částku jen jednoho z nich, C má minus místo plus, D počítá, že oba mají stejnou částku jako Petr, E odčítá místo přičítání a zapomíná na druhého z nich."
    ],
    "figure": null,
    "space": 2
@@ -222,7 +222,7 @@
    "answer": "ANO, NE, ANO",
    "steps": [
     "Pavel má x − 1/3 · x = 2/3 · x žetonů. Tvrzení platí.",
-    "Lukáš má víc o x − 2/3 · x = 1/3 · x, ale základem pro „víc“ je Pavlův počet: 1/3 · x : 2/3 · x = 1/2. Lukáš má víc o polovinu, ne o třetinu. Příklad: Lukáš 90, Pavel 60, rozdíl 30 je třetina z 90, ale polovina z 60. Tvrzení neplatí.",
+    "Lukáš má víc o x − 2/3 · x = 1/3 · x. Základem pro „o kolik víc“ je ale Pavlův počet: (1/3 · x) : (2/3 · x) = 1/2. Lukáš má víc o polovinu, ne o třetinu. Příklad: Lukáš 90, Pavel 60, rozdíl 30 je třetina z 90, ale polovina z 60. Tvrzení neplatí.",
     "Polovina je 50 %, takže Lukáš má o 50 % víc žetonů než Pavel. Tvrzení platí."
    ],
    "figure": null,
@@ -231,7 +231,7 @@
   {
    "level": 3,
    "kind": "open",
-   "text": "Babička rozdělila mezi tři vnuky dohromady 5 100 Kč. Prostřední dostal o čtvrtinu víc než nejmladší a nejstarší dvakrát tolik co nejmladší. Kolik korun dostal každý? Označte neznámou, zapište rovnici a vyřešte ji.",
+   "text": "Babička rozdělila mezi tři vnuky dohromady 5 100 Kč. Prostřední vnuk dostal o čtvrtinu víc než nejmladší a nejstarší dvojnásobek částky nejmladšího. Kolik korun dostal každý? Označte neznámou, zapište rovnici a vyřešte ji.",
    "options": null,
    "answer": "nejmladší 1 200 Kč, prostřední 1 500 Kč, nejstarší 2 400 Kč",
    "steps": [
@@ -239,7 +239,7 @@
     "Dohromady dostali 5 100 Kč: x + 5/4 · x + 2x = 5 100.",
     "Vynásobíme všechny členy čtyřmi: 4x + 5x + 8x = 20 400, tedy 17x = 20 400 a x = 1 200.",
     "Prostřední dostal 5/4 · 1 200 = 1 500 Kč, nejstarší 2 · 1 200 = 2 400 Kč.",
-    "Zkouška: 1 500 − 1 200 = 300 je čtvrtina z 1 200 ✓ a 1 200 + 1 500 + 2 400 = 5 100 ✓."
+    "Zkouška: 1 500 − 1 200 = 300 a 300 je čtvrtina z 1 200 ✓, 1 200 + 1 500 + 2 400 = 5 100 ✓."
    ],
    "figure": null,
    "space": 6
@@ -247,13 +247,13 @@
   {
    "level": 3,
    "kind": "open",
-   "text": "Honza dostal od babičky peníze. Třetinu z nich utratil za jízdenky. Z toho, co mu zbylo, utratil polovinu v kině. Nakonec mu zbylo 120 Kč. Kolik korun od babičky dostal? Označte neznámou, zapište rovnici a vyřešte ji.",
+   "text": "Honza dostal od babičky peníze. Třetinu z nich utratil za jízdenky. Z toho, co mu zbylo, polovinu utratil v kině. Nakonec mu zbylo 120 Kč. Kolik korun od babičky dostal? Označte neznámou, zapište rovnici a vyřešte ji.",
    "options": null,
    "answer": "360 Kč",
    "steps": [
     "Označme x částku, kterou Honza dostal, v korunách. Na jízdenky utratil x/3, zbylo mu x − x/3 = 2/3 · x.",
     "V kině utratil polovinu zbytku: 1/2 · 2/3 · x = 1/3 · x.",
-    "Zbylo mu x − x/3 − 1/3 · x = 120, tedy 1/3 · x = 120 a x = 360.",
+    "Nakonec mu zbylo 120 Kč: x − x/3 − 1/3 · x = 120, tedy 1/3 · x = 120 a x = 360.",
     "Zkouška: jízdenky 360 : 3 = 120 Kč, zbývá 240 Kč, kino 240 : 2 = 120 Kč, zbude 240 − 120 = 120 Kč ✓."
    ],
    "figure": null,
@@ -262,7 +262,7 @@
   {
    "level": 3,
    "kind": "open",
-   "text": "Ke 3 kg roztoku, který obsahuje 20 % soli, přidáme vodu. Kolik kilogramů vody je třeba přidat, aby roztok obsahoval 12 % soli? Označte neznámou, zapište rovnici a vyřešte ji.",
+   "text": "Máme 3 kg solného roztoku, který obsahuje 20 % soli. Kolik kilogramů čisté vody musíme přidat, aby roztok obsahoval jen 12 % soli? Označte neznámou, zapište rovnici a vyřešte ji.",
    "options": null,
    "answer": "2 kg vody",
    "steps": [
@@ -277,7 +277,7 @@
   {
    "level": 3,
    "kind": "open",
-   "text": "Strana čtverce má délku x cm. Jeden rozměr čtverce zvětšíme o 3 cm a druhý zmenšíme o 2 cm, vznikne obdélník. Obsah obdélníku je stejný jako obsah původního čtverce. Určete délku strany čtverce. Zapište rovnici a vyřešte ji.",
+   "text": "Strana čtverce má délku x cm. Jeden rozměr čtverce zvětšíme o 3 cm a druhý zmenšíme o 2 cm, čímž vznikne obdélník. Obsah obdélníku je stejný jako obsah původního čtverce. Určete délku strany čtverce. Zapište rovnici a vyřešte ji.",
    "options": null,
    "answer": "6 cm",
    "steps": [
@@ -321,7 +321,7 @@
     "Mikina stojí 600 Kč: 2/3 · x = 600.",
     "x = 600 : 2/3 = 600 · 3/2 = 900.",
     "Zkouška: třetina z 900 je 300 a 900 − 300 = 600 ✓. Správná je možnost C.",
-    "Typické chyby: 800 je 600 + 1/3 · 600 (třetina se bere z ceny mikiny, ale základem je cena bundy), 400 je 2/3 · 600, 1 200 je dvojnásobek a 1 800 trojnásobek."
+    "Typické chyby: 800 je 600 + 1/3 · 600 (třetina se bere z ceny mikiny, ale základem je cena bundy), 400 je 2/3 · 600, 1 200 je dvojnásobek ceny mikiny a 1 800 trojnásobek."
    ],
    "figure": null
   }

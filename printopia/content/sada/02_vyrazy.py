@@ -132,24 +132,24 @@ assert show(P("5 − (x − 2)")) == "−x + 7" and show(P("3a · 2a")) == "6a²
 assert show(P("4x + 4")) == "4x + 4" and same("4x + 4", "4(x + 1)") and ev("(−2)²") == 4 and ev("−2²") == -4
 
 T = Topic(2, "vyrazy", "Výrazy a mnohočleny",
-          "Úprava výrazů je u zkoušky každý rok v úloze 3 (4 body) a jedna její část se píše s postupem. "
-          "Postup musí být úplný: výsledek bez postupu se u takové úlohy nehodnotí.",
-          ["Mínus před závorkou změní znaménka všech členů v závorce: 5 − (x − 2) = 5 − x + 2.",
+          "Úprava výrazů je u zkoušky každý rok, v úloze 3 za 4 body, a jedna její část se píše s postupem. "
+          "Bez postupu se tato část nehodnotí vůbec, proto pište každý krok úpravy, ne jen výsledek. Jedna drobná chyba (znaménko, nedokončený krok) stojí bod.",
+          ["Minus před závorkou změní znaménka všech členů v závorce: 5 − (x − 2) = 5 − x + 2.",
            "(a + b)² není a² + b², chybí prostřední člen. Správně: (a + b)² = a² + 2ab + b²; (a − b)² = a² − 2ab + b².",
-           "Rozdíl druhých mocnin se rozkládá: a² − b² = (a − b)(a + b). Součet a² + b² se takto rozložit nedá. "
-           "Vzorce máte u zkoušky na poslední straně sešitu, rozhoduje ale to, jestli je ve výrazu poznáte.",
-           "Sčítat a odčítat jde jen podobné členy (stejná proměnná ve stejné mocnině): 3a² + 2a² = 5a², ale 3a² + 2a se nespojí. "
+           "Rozdíl druhých mocnin (rozdíl čtverců) se rozkládá na součin: a² − b² = (a − b)(a + b). Součet a² + b² se takto rozložit nedá. "
+           "Vzorce jsou u zkoušky uvedeny na poslední straně sešitu, ale žák musí sám poznat, kdy je použít.",
+           "Sčítat a odčítat lze jen podobné členy (stejná proměnná ve stejné mocnině): 3a² + 2a² = 5a², ale 3a² + 2a nelze sloučit. "
            "Při násobení jednočlenů násobte zvlášť čísla a zvlášť proměnné: 3a · 2a = 6a².",
-           "Při vytýkání zkontrolujte výsledek roznásobením. Když vytknete celý člen, zůstane v závorce jednička: 4x + 4 = 4(x + 1).",
-           "Zkouška dosazením: dosaďte do zadání i do výsledku stejné jednoduché číslo (třeba x = 1). Musí vyjít totéž. "
+           "Při vytýkání zkontrolujte výsledek roznásobením. Vytknete-li celý člen výrazu, zůstane na jeho místě v závorce jednička (zapomenutá jednička je častá chyba): 4x + 4 = 4(x + 1).",
+           "Zkouška dosazením: dosaďte do zadání i do výsledku stejné jednoduché číslo (třeba x = 1). Obě hodnoty se musí rovnat. "
            "Záporné číslo dosazujte do závorky: (−2)² = 4, ale −2² = −4."])
 
 # ---------------------------------------------------------------- Řešený příklad
 q = "(x + 4)² − (x − 1)(x + 3)"
 T.example(f"Upravte výraz a zapište ho v základním tvaru: {q}",
-          ["První závorku umocníme podle vzorce (a + b)²: (x + 4)² = x² + 8x + 16.",
-           "Druhý součin roznásobíme každý člen s každým: (x − 1)(x + 3) = x² + 3x − x − 3 = x² + 2x − 3.",
-           "Před druhým součinem je minus, proto změníme znaménka všech členů: x² + 8x + 16 − x² − 2x + 3.",
+          ["První závorku umocníme podle vzorce (a + b)² = a² + 2ab + b²: (x + 4)² = x² + 8x + 16.",
+           "Druhý součin roznásobíme (každý člen s každým): (x − 1)(x + 3) = x² + 3x − x − 3 = x² + 2x − 3.",
+           "Před druhým součinem je minus, proto změníme znaménka všech jeho členů: x² + 8x + 16 − x² − 2x + 3.",
            "Sečteme podobné členy: x² − x² = 0, 8x − 2x = 6x, 16 + 3 = 19."],
           "6x + 19",
           show(P(q)) == "6x + 19" and show(P("(x + 4)²")) == "x² + 8x + 16" and show(P("(x − 1)(x + 3)")) == "x² + 2x − 3"
@@ -158,15 +158,15 @@ T.example(f"Upravte výraz a zapište ho v základním tvaru: {q}",
 # ---------------------------------------------------------------- Základ
 q, a = "(5x² − 3x + 1) − (2x² − x − 4)", "3x² − 2x + 5"
 T.task(1, f"Upravte a zapište v základním tvaru: {q}", a,
-       ["Mínus před druhou závorkou změní znaménka všech jejích členů: 5x² − 3x + 1 − 2x² + x + 4.",
-        "Sečteme podobné členy: x²: 5 − 2 = 3, x: −3 + 1 = −2, čísla: 1 + 4 = 5.",
+       ["Minus před druhou závorkou změní znaménka všech jejích členů: 5x² − 3x + 1 − 2x² + x + 4.",
+        "Sečteme podobné členy: členy s x²: 5 − 2 = 3, členy s x: −3 + 1 = −2, čísla: 1 + 4 = 5.",
         f"Výsledek: {a}."],
        show(P(q)) == a and same(q, "5x² − 3x + 1 − 2x² + x + 4"), space=2)
 
 q, a = "2a · 3a − 5a · a + a", "a² + a"
 T.task(1, f"Upravte a zapište v základním tvaru: {q}", a,
        ["Vynásobíme jednočleny: 2a · 3a = 6a² a 5a · a = 5a².",
-        "6a² − 5a² + a = a² + a. Člen a se s a² nespojí, protože nemá stejnou mocninu."],
+        "6a² − 5a² + a = a² + a. Člen a se s a² nesloučí, protože nemá stejnou mocninu."],
        show(P(q)) == a and show(P("2a · 3a")) == "6a²" and show(P("5a · a")) == "5a²", space=2)
 
 q, a = "3(2x − 1) − 2(x − 4)", "4x + 5"
@@ -179,7 +179,7 @@ T.task(1, f"Roznásobte závorky a výraz zjednodušte: {q}", a,
 q = "3a² − ab + 2b"
 r = ev(q, a=-2, b=3)
 T.task(1, f"Vypočtěte hodnotu výrazu {q} pro a = −2, b = 3.", "24",
-       ["Dosadíme a záporné číslo dáme do závorky: 3 · (−2)² − (−2) · 3 + 2 · 3.",
+       ["Dosadíme, přičemž záporné číslo dáme do závorky: 3 · (−2)² − (−2) · 3 + 2 · 3.",
         "(−2)² = 4 a −(−2) · 3 = +6: 3 · 4 + 6 + 6.",
         "12 + 6 + 6 = 24."],
        r == 24 and 3 * (-2) ** 2 - (-2) * 3 + 2 * 3 == 24 == 12 + 6 + 6, space=2)
@@ -189,14 +189,14 @@ opts = ["a² + 9", "a² + 3a + 9", "a² + 6a + 9", "a² − 6a + 9", "a² + 6a"]
 T.task(1, f"Který z výrazů je roven {q}?", "C",
        ["Použijeme vzorec (a + b)² = a² + 2ab + b² pro b = 3.",
         "(a + 3)² = a² + 2 · a · 3 + 3² = a² + 6a + 9, tedy C.",
-        "A zapomíná prostřední člen, B má místo 6a jen 3a, D má špatné znaménko prostředního členu, E chybí 9."],
+        "A vynechává prostřední člen, B má místo 6a jen 3a, D má opačné znaménko prostředního členu a v E chybí 9."],
        [P(o) == P(q) for o in opts] == [False, False, True, False, False],
        kind="choice", options=opts, space=1)
 
 # ---------------------------------------------------------------- Jako u zkoušky
 q, a = "(2a − 3b)²", "4a² − 12ab + 9b²"
 T.task(2, f"Umocněte a zapište v základním tvaru: {q}", a,
-       ["Druhá mocnina rozdílu je druhá mocnina prvního členu, minus dvojnásobek součinu obou členů, plus druhá mocnina druhého členu. První člen je 2a, druhý je 3b.",
+       ["Druhá mocnina rozdílu je druhá mocnina prvního členu, minus dvojnásobek součinu obou členů, plus druhá mocnina druhého členu. Tady je první člen 2a a druhý 3b.",
         "(2a)² = 4a², 2 · 2a · 3b = 12ab, (3b)² = 9b².",
         f"(2a − 3b)² = {a}."],
        show(P(q)) == a and show(P("(2a)²")) == "4a²" and show(P("2 · 2a · 3b")) == "12ab" and show(P("(3b)²")) == "9b²", space=2)
@@ -204,7 +204,7 @@ T.task(2, f"Umocněte a zapište v základním tvaru: {q}", a,
 q, a = "(3x + 5)(3x − 5) − (x − 2)²", "8x² + 4x − 29"
 T.task(2, f"Upravte a zapište v základním tvaru: {q}", a,
        ["První součin je rozdíl čtverců: (3x + 5)(3x − 5) = (3x)² − 5² = 9x² − 25.",
-        "Druhý výraz podle vzorce: (x − 2)² = x² − 4x + 4.",
+        "Druhou mocninu rozepíšeme podle vzorce: (x − 2)² = x² − 4x + 4.",
         "Odčítáme celou závorku, proto změníme znaménka: 9x² − 25 − x² + 4x − 4.",
         f"Sečteme podobné členy: {a}."],
        show(P(q)) == a and show(P("(3x + 5)(3x − 5)")) == "9x² − 25" and show(P("(x − 2)²")) == "x² − 4x + 4"
@@ -212,22 +212,22 @@ T.task(2, f"Upravte a zapište v základním tvaru: {q}", a,
 
 q, a = "6x² − 15x", "3x(2x − 5)"
 T.task(2, f"Vytkněte před závorku největší možný společný činitel: {q}", a,
-       ["Největší společný dělitel čísel 6 a 15 je 3. Proměnná x je v obou členech (x² a x), vytkneme jedno x. Společný činitel je 3x.",
+       ["Největší společný dělitel čísel 6 a 15 je 3. Proměnná x je v obou členech (x² a x), vytkneme ji v nižší mocnině, tedy jedno x. Společný činitel je 3x.",
         "6x² = 3x · 2x a 15x = 3x · 5.",
         "6x² − 15x = 3x(2x − 5).",
         "Zkouška roznásobením: 3x · 2x − 3x · 5 = 6x² − 15x. ✓"],
        same(q, a) and gcd(6, 15) == 3 and gcd(2, 5) == 1 and same("3x · 2x", "6x²") and same("3x · 5", "15x"), space=2)
 
 stm = [("(x + 3)² = x² + 9", False), ("x² − 16 = (x − 4)(x + 4)", True), ("4x − 2(x − 3) = 2x + 6", True)]
-T.task(2, "Platí rovnost pro všechna čísla x?", "NE, ANO, ANO",
-       ["(x + 3)² = x² + 6x + 9, chybí prostřední člen 6x. Tvrzení neplatí (pro x = 1 vyjde vlevo 16, vpravo 10).",
+T.task(2, "Platí každá z rovností pro všechna čísla x?", "NE, ANO, ANO",
+       ["(x + 3)² = x² + 6x + 9, chybí prostřední člen 6x. Rovnost neplatí (pro x = 1 vyjde vlevo 16, vpravo 10).",
         "Rozdíl čtverců: (x − 4)(x + 4) = x² − 16. Platí.",
         "4x − 2(x − 3) = 4x − 2x + 6 = 2x + 6. Platí."],
        all(same(*s.split(" = ")) == ok for s, ok in stm) and ev("(x + 3)²", x=1) == 16 and ev("x² + 9", x=1) == 10,
        kind="yesno", options=[s for s, _ in stm], space=1)
 
 q, a = "(x + 2)(x − 2) − x(x − 1)", "x − 4"
-T.task(2, f"Upravte výraz {q} a pak vypočtěte jeho hodnotu pro x = 5.", f"{a}, hodnota 1",
+T.task(2, f"Upravte výraz {q} a poté vypočtěte jeho hodnotu pro x = 5.", f"{a}, hodnota 1",
        ["(x + 2)(x − 2) = x² − 4 (rozdíl čtverců) a x(x − 1) = x² − x.",
         "x² − 4 − (x² − x) = x² − 4 − x² + x = x − 4.",
         "Dosadíme x = 5: 5 − 4 = 1.",
@@ -236,7 +236,7 @@ T.task(2, f"Upravte výraz {q} a pak vypočtěte jeho hodnotu pro x = 5.", f"{a}
 
 q, a = "(2x − 1)² − 4x(x − 2)", "4x + 1"
 T.task(2, f"Upravte výraz a uveďte celý postup: {q}", a,
-       ["(2x − 1)² = 4x² − 4x + 1 (prostřední člen je 2 · 2x · 1 = 4x).",
+       ["(2x − 1)² = 4x² − 4x + 1 (prostřední člen je −2 · 2x · 1 = −4x).",
         "4x(x − 2) = 4x² − 8x.",
         "Odečteme celou závorku: 4x² − 4x + 1 − 4x² + 8x.",
         f"Sečteme podobné členy: {a}."],
@@ -246,7 +246,7 @@ T.task(2, f"Upravte výraz a uveďte celý postup: {q}", a,
 q, a = "9a² − 16b²", "(3a − 4b)(3a + 4b)"
 T.task(2, f"Rozložte na součin pomocí vzorce: {q}", a,
        ["Obě části jsou druhé mocniny: 9a² = (3a)² a 16b² = (4b)².",
-        "Rozdíl čtverců se rozloží na součin (první člen − druhý člen)(první člen + druhý člen).",
+        "Rozdíl čtverců se rozloží na součin: (první člen − druhý člen)(první člen + druhý člen).",
         f"{q} = {a}."],
        same(q, a) and same("9a²", "(3a)²") and same("16b²", "(4b)²"), space=2)
 
@@ -265,25 +265,25 @@ T.task(3, f"Výraz {q} je roven:", "C",
        ["Obě mocniny rozepíšeme: (x + 3)² = x² + 6x + 9 a (x − 3)² = x² − 6x + 9.",
         "Druhou závorku odečítáme, proto změníme znaménka: x² + 6x + 9 − x² + 6x − 9.",
         "Sečteme: 6x + 6x = 12x, tedy C. Zkouška pro x = 1: 16 − 4 = 12. ✓",
-        "Chyby: A vznikne při špatně změněných znaménkách, B z (x − 3)² = x² − 9, D ze sčítání místo odčítání, E z (x − 3)² = x² + 9."],
+        "Chyby: A vznikne, když se minus před závorkou použije jen na první člen (x²), B z (x − 3)² = x² − 9, D ze sčítání místo odčítání, E z (x − 3)² = x² + 9."],
        [P(o) == P(q) for o in opts] == [False, False, True, False, False] and ev(q, x=1) == 12
        and show(P("(x + 3)² + (x − 3)²")) == "2x² + 18" and show(P("(x + 3)² − (x² − 9)")) == "6x + 18",
        kind="choice", options=opts, space=3)
 
 q, a = "(x + 2)(x + 5) − x(x + 3)", "4x + 10"
-T.task(3, "Obdélník má jednu stranu dlouhou x cm, druhá strana je o 3 cm delší. Obě strany prodloužíme o 2 cm. "
-          "Zapište výrazem, o kolik cm² se zvětší obsah, a výraz zjednodušte.", f"{a} (cm²)",
-       ["Původní strany jsou x a x + 3 cm, obsah x(x + 3) = x² + 3x.",
-        "Nové strany jsou x + 2 a x + 5 cm, obsah (x + 2)(x + 5) = x² + 7x + 10.",
+T.task(3, "Jedna strana obdélníku má délku x cm, druhá je o 3 cm delší. Obě strany prodloužíme o 2 cm. "
+          "Zapište výrazem, o kolik cm² se zvětší obsah obdélníku, a výraz zjednodušte.", f"{a} (cm²)",
+       ["Původní strany mají délky x cm a (x + 3) cm, obsah je x(x + 3) = x² + 3x.",
+        "Nové strany mají délky (x + 2) cm a (x + 5) cm, obsah je (x + 2)(x + 5) = x² + 7x + 10.",
         f"Přírůstek: x² + 7x + 10 − (x² + 3x) = {a} (cm²).",
-        "Zkouška pro x = 1: obdélník 1 × 4 má obsah 4, nový 3 × 6 má obsah 18, rozdíl 14 = 4 · 1 + 10. ✓"],
+        "Zkouška pro x = 1: původní obdélník o stranách 1 cm a 4 cm má obsah 4 cm², nový o stranách 3 cm a 6 cm má obsah 18 cm², rozdíl 14 cm² = 4 · 1 + 10. ✓"],
        show(P(q)) == a and show(P("x(x + 3)")) == "x² + 3x" and show(P("(x + 2)(x + 5)")) == "x² + 7x + 10"
        and 3 * 6 - 1 * 4 == 14 == ev(a, x=1), space=4)
 
 q, a = "2x² − 12x + 18", "2(x − 3)²"
 T.task(3, f"Rozložte na součin: {q}", a,
        ["Vytkneme společný činitel 2: 2x² − 12x + 18 = 2(x² − 6x + 9).",
-        "V závorce je druhá mocnina dvojčlenu: x² − 2 · x · 3 + 3² = (x − 3)².",
+        "Výraz v závorce je rozvinutá druhá mocnina dvojčlenu: x² − 2 · x · 3 + 3² = (x − 3)².",
         f"{q} = {a}.",
         "Zkouška roznásobením: 2(x² − 6x + 9) = 2x² − 12x + 18. ✓"],
        same(q, a) and same("x² − 6x + 9", "(x − 3)²") and same(q, "2(x² − 6x + 9)"), space=3)
