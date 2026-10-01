@@ -8,7 +8,7 @@
 
 ## Pravidla (VŽDY)
 - **Nečekat na Ondřeje.** Jeho kroky shrnout jednou a stručně, pak hned pokračovat ve všem, co jimi není blokované. Nikdy nekončit práci jen proto, že něco čeká na něj.
-- **Kontrola každých 5 minut (Ondřejův pokyn 2026-10-01 01:18):** na konci KAŽDÉHO probuzení naplánovat `send_later` za 5 min (zpráva „5min kontrola: pokračuj podle CLAUDE.md…“). Platí, dokud Ondřej neřekne jinak. Nikdy nekončit práci s tím, že se čeká: když chybí informace od Ondřeje, pokračovat ve všem ostatním, co má perspektivu (FAILS.md). Stop hook to před koncem tahu kontroluje.
+- **Kontrola každou hodinu (Ondřejův pokyn 2026-10-01 04:12, nahrazuje pokyn z 01:18 „každých 5 minut“):** na konci KAŽDÉHO probuzení naplánovat `send_later` za 60 minut (zpráva „1h kontrola: pokračuj podle CLAUDE.md…“). Platí, dokud Ondřej neřekne jinak. Nikdy nekončit práci s tím, že se čeká: když chybí informace od Ondřeje, pokračovat ve všem ostatním, co má perspektivu (FAILS.md). Stop hook to před koncem tahu kontroluje.
 - **Pojistka:** běží trvalá hodinová připomínka (Routine `trig_01JwSBqqYubWBAPLvW1ZK1Te`, každou hodinu v :25 do této session). Při každém spuštění: kontrola stavu, navázat na Ondřejovy kroky, jinak další neblokovaná práce. Vypnout jen na Ondřejův pokyn (update_trigger enabled=false).
 - **FAIL:** zpráva od Ondřeje začínající „FAIL: …“ = trvalý záznam do `FAILS.md` (hook `.claude/hooks/fail-log.py` ji zapíše sám; když ne, zapsat ručně). Pokaždé doplnit příčinu a pojistku (pravidlo sem, test nebo kontrola v kódu), zavést ji, commit + push. Před prací projít `FAILS.md`, ať se nic neopakuje.
 - **Víc práce Clauda ve prospěch nižších nákladů a méně práce Ondřeje.**
