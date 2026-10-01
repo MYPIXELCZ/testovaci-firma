@@ -181,3 +181,6 @@ ol.topics { grid-template-columns: repeat(4, 1fr); }
 .legal li { margin-bottom: 0.5em; }
 @media (max-width: 640px) { .pay { grid-template-columns: 1fr; } .qr { max-width: 260px; } }
 @media print { .header, .footer, .no-print, .sticky-cta { display: none; } body { background: #fff; padding: 0; } }
+.tips-box { margin-top: 18px; background: rgba(255,255,255,0.55); border-radius: 12px; padding: 12px 16px; }
+.tips-box summary { cursor: pointer; font-weight: 600; color: var(--blue); }
+.tips-box .form { margin-top: 14px; }

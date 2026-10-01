@@ -3,7 +3,7 @@ import { after } from "next/server";
 import { storage } from "@/lib/storage";
 import { track } from "@/lib/track";
 
-const SOURCES = ["ukazka", "koupit"] as const;
+const SOURCES = ["ukazka"] as const;
 type Source = (typeof SOURCES)[number];
 const ROLES = ["rodic", "zak", "ucitel"] as const;
 type Role = (typeof ROLES)[number];
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
   const source = String(body.source ?? "") as Source;
   const src = String(body.src ?? "").slice(0, 40).replace(/[^\w.-]/g, "");
   if (!EMAIL.test(email) || email.length > 200) return Response.json({ error: "Zkontrolujte prosím e-mail." }, { status: 400 });
-  if (body.consent !== true) return Response.json({ error: "Bez souhlasu vám nemůžeme nic poslat." }, { status: 400 });
+  if (body.consent !== true) return Response.json({ error: "Bez souhlasu vám tipy posílat nemůžeme." }, { status: 400 });
   // Role měří, kdo kupuje; souhlas může dítě v ČR dát samo až od 15 let, proto jiné volby nejsou.
   const role = String(body.role ?? "") as Role;
   if (!ROLES.includes(role)) return Response.json({ error: "Vyberte prosím, kdo formulář vyplňuje." }, { status: 400 });
@@ -36,5 +36,5 @@ export async function POST(req: Request) {
   await storage.write(key, JSON.stringify(lead), { overwrite: true });
   const ua = req.headers.get("user-agent");
   if (!prev) after(() => track("lead", src, ua, { source, role }));
-  return Response.json({ ok: true, download: source === "ukazka" ? "/ukazka-zlomky.pdf" : null });
+  return Response.json({ ok: true });
 }

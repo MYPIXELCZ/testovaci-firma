@@ -48,7 +48,7 @@ export default function GuestListPage() {
 
         <h2>5. Sbírejte odpovědi s termínem</h2>
         <p>
-          Na pozvánce uveďte, do kdy mají hosté odpovědět, obvykle 4 až 6 týdnů před svatbou. Kdo se neozve, tomu po termínu
+          Na pozvánce uveďte, do kdy mají hosté odpovědět, obvykle 6 až 8 týdnů před svatbou. Kdo se neozve, tomu po termínu
           zavolejte. Místo konání i catering potřebují konečný počet zhruba měsíc předem.
         </p>
 

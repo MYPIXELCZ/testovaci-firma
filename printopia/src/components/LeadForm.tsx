@@ -7,12 +7,11 @@ import { send } from "./Beacon";
 // Kdo formulář vyplňuje: test poptávky tím měří, kdo je kupující. Mladší 15 let možnost nemají (GDPR, souhlas v ČR od 15 let).
 const ROLES = [["rodic", "Rodič"], ["zak", "Žák/žákyně, je mi aspoň 15 let"], ["ucitel", "Učitel/lektor"]] as const;
 
-type Props = { source: "ukazka" | "koupit"; src: string; button: string; consentText: string; done: string };
+type Props = { source: "ukazka"; src: string; button: string; consentText: string; done: string };
 
 export default function LeadForm({ source, src, button, consentText, done }: Props) {
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
   const [error, setError] = useState("");
-  const [download, setDownload] = useState<string | null>(null);
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,18 +29,11 @@ export default function LeadForm({ source, src, button, consentText, done }: Pro
       setError(data.error ?? "Něco se nepovedlo, zkuste to prosím znovu.");
       return;
     }
-    setDownload(data.download ?? null);
     send("form_submit");
     setState("done");
   }
 
-  if (state === "done")
-    return (
-      <div>
-        <p style={{ fontWeight: 600 }}>{done}</p>
-        {download && <a className="btn" href={download} download data-track="pdf_download">Stáhnout ukázku (PDF)</a>}
-      </div>
-    );
+  if (state === "done") return <p style={{ fontWeight: 600 }}>{done}</p>;
 
   return (
     <form className="form" onSubmit={submit}>

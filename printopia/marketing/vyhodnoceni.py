@@ -15,7 +15,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 API = "https://api.sklik.cz/drak/json/v5/"
-CAMPAIGN = 7984059
+CAMPAIGN_NAME = "Printopia – prodej přijímačky"
 today = datetime.now(ZoneInfo("Europe/Prague")).date().isoformat()  # Sklik počítá dny v pražském čase
 since = sys.argv[1] if len(sys.argv) > 1 else "2026-10-01"
 
@@ -41,6 +41,10 @@ def report(kind, filt, columns):
 
 
 user = {"session": call("client.loginByToken", os.environ["SKLIK_TOKEN"])["session"]}
+CAMPAIGN = next((c["id"] for c in call("campaigns.list", user, {}, {"limit": 100, "offset": 0}).get("campaigns", [])
+                 if c.get("name") == CAMPAIGN_NAME and c.get("status") != "removed"), None)
+if CAMPAIGN is None:
+    sys.exit("Kampaň zatím neexistuje (sklik_api.py).")
 camp, err1 = report("campaigns", {"ids": [CAMPAIGN]}, ["id", "name"])
 queries, err2 = report("queries", {"campaign": {"ids": [CAMPAIGN]}}, ["query", "keyword.name"])
 st = {k: 0 for k in ["impressions", "clicks", "totalMoney"]}
@@ -52,9 +56,13 @@ web = json.load(urllib.request.urlopen(urllib.request.Request(
     "https://printopia.cz/api/stats", headers={"x-stats-key": os.environ["STATS_KEY"]}), timeout=30))
 
 home = web["funnel"]["byPage"].get("home", {})
-sk = web["funnel"]["bySrc"].get("home:sklik", {})
+by_src = web["funnel"]["bySrc"]
+# Návštěvy ze Skliku ze všech stránek (úvod, témata, objednávka), ne jen z úvodu.
+sk_views = sum(v.get("view", 0) for k, v in by_src.items() if k.endswith(":sklik"))
+sk_home = by_src.get("home:sklik", {})
+orders = web.get("orders", {"created": {}, "paid": {}, "revenue": 0})
 clicks, spend = st["clicks"], st["totalMoney"] / 100
-print(f"# Vyhodnocení testu Printopia ({since} až {today})\n")
+print(f"# Vyhodnocení Printopia ({since} až {today})\n")
 print("## Reklama (Sklik)")
 print(f"- zobrazení {st['impressions']}, prokliky {clicks}, CTR {100 * clicks / st['impressions']:.1f} %" if st["impressions"] else "- zatím žádná zobrazení")
 print(f"- utraceno {spend:.0f} Kč, průměrná cena prokliku {spend / clicks:.1f} Kč" if clicks else f"- utraceno {spend:.0f} Kč")
@@ -67,20 +75,23 @@ if top_q:
     for q, c, i in top_q:
         print(f"  - {q}: {i} / {c}")
 print("\n## Web")
-print(f"- návštěvy ze Skliku {sk.get('view', 0)}, celkem úvod {home.get('view', 0)}")
-for k in ["t10", "t30", "scroll50", "cta_sample", "cta_buy", "form_start", "form_submit"]:
-    print(f"  - {k}: {home.get(k, 0)}")
-print(f"- leady: {web['server']['leads']}, role: {web['server']['leadsByRole']}")
+print(f"- návštěvy ze Skliku (všechny stránky) {sk_views}, celkem úvod {home.get('view', 0)}")
+for k in ["t10", "t30", "scroll50", "cta_sample", "cta_buy", "pdf_download", "form_start", "form_submit"]:
+    print(f"  - úvod {k}: {home.get(k, 0)} (ze Skliku {sk_home.get(k, 0)})")
+print(f"- e-maily na tipy: {web['server']['leads']}, role: {web['server']['leadsByRole']}")
+print(f"- objednávky: vytvořeno {sum(orders['created'].values())}, zaplaceno {sum(orders['paid'].values())}, tržba {orders['revenue']} Kč, "
+      f"podle zdroje {orders['paid']}")
 print(f"- anketa: {web['feedback']}")
 print("\n## Závěry")
 for f in web["findings"]:
     print(f"- {f}")
-visits = sk.get("view", 0) or clicks
-if visits >= 80:
-    buy_rate = 100 * sk.get("cta_buy", 0) / visits
-    ok = buy_rate >= 5 and web["server"]["leads"] >= 10 and (not clicks or spend / clicks <= 6)
-    stop = buy_rate < 2 or web["server"]["leads"] < 4
-    print(f"- Kritérium testu: klik na Koupit {buy_rate:.1f} % (≥ 5 %), e-maily {web['server']['leads']} (≥ 10) → "
-          + ("POKRAČOVAT" if ok else "ZASTAVIT" if stop else "PRODLOUŽIT o 7 dní (jen SEO)"))
+paid = sum(orders["paid"].values())
+visits = sk_views or clicks
+if paid:
+    print(f"- {paid} zaplacených objednávek, {orders['revenue']} Kč; cena za objednávku z reklamy {spend / max(1, orders['paid'].get('sklik', 0)):.0f} Kč.")
+if visits >= 190:
+    sk_orders = orders["created"].get("sklik", 0)
+    print(f"- Rozhodnutí při {visits} návštěvách ze Skliku: objednávek ze Skliku {sk_orders}, zaplacených {orders['paid'].get('sklik', 0)} → "
+          + ("POKRAČOVAT (platící zákazníci jsou)" if paid else "PRODLOUŽIT jen SEO / ZASTAVIT reklamu, pokud nikdo neobjednal"))
 else:
-    print(f"- Kritérium testu: zatím {visits} prokliků, rozhodnutí až od 80.")
+    print(f"- Zatím {visits} návštěv ze Skliku, rozhodnutí až od cca 190 (při 80 nejde rozlišit 2 % od 5 %), výsledek jen orientační.")

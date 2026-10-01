@@ -38,8 +38,8 @@ export default function SchedulePage() {
             se čeká.
           </li>
           <li>
-            <strong>Focení novomanželů plánujte na pozdní odpoledne.</strong> Hodina před západem slunce dává nejhezčí světlo.
-            S fotografem se domluvte předem.
+            <strong>Focení novomanželů plánujte na odpoledne, kdy je světlo měkké.</strong> Přesný čas upravte podle ročního
+            období a domluvy s fotografem.
           </li>
           <li>
             <strong>Určete jednoho koordinátora.</strong> Obvykle svědka nebo svědkyni. Hlídá čas, řeší dodavatele a vy se

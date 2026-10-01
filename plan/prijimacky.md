@@ -36,15 +36,16 @@ Stav: **research hotový, čeká se na test poptávky (oddíl 4). Nic se nestav�
   | 8 Kč | 0,5 % | 1 600 Kč | ztráta |
 - **Závěr ekonomiky:** placená reklama se vyplatí jen při konverzi ≥ 1,5 % a CPC ≤ 5 Kč. Hlavní kanál proto musí být **SEO** (tematické stránky „zlomky přijímačky příklady“ apod. s ukázkou zdarma), reklama jen tam, kde test ukáže CAC pod 250 Kč. Strop tržeb v sezóně (odhad): 100–400 prodejů × 349 Kč = 35–140 tis. Kč. Hodně nejisté, odvozeno jen z relativní hledanosti.
 
-## 4. Test poptávky před stavbou
-- **Co:** na printopia.cz za ≤ 4 h práce připravím stránku (bez produktu): nabídka, cena 349 Kč, ukázka 1 tématu (5 úloh s postupem) za e-mail. Tlačítko „Koupit“ vede na „Spouštíme 15. 11., pošleme vám upozornění a slevu 20 %“ (bez platby, nic se neprodává předem).
-- **Měření:** návštěvy, stažení ukázky (e-mail), kliknutí na „Koupit“ (za cenu vidí). Zdroje návštěv: Sklik (vyhledávání, dotazy z oddílu 1) + IndexNow/Search Console.
-- **Rozpočet:** **Sklik 400 Kč** na 14 dní (odhad 50–130 prokliků). Česká služba, fakturuje Seznam.cz, bez problému s DPH. Jinak 0 Kč.
-- **Doba:** 14 dní (cílově 2026-10-06 až 10-20).
+## 4. Test poptávky (změna 2026-10-01 02:20: rovnou prodej)
+**Změna:** Ondřej (2026-10-01 02:20) chce rovnou prodávat, sada je hotová za hodiny. Fake door se ruší, web rovnou prodává (objednávka, QR, párování Fio). Test tedy měří skutečné nákupy, ne jen kliky.
+- **Měření:** návštěvy (Sklik všechny stránky + SEO), klik na Koupit, objednávky vytvořené a zaplacené, stažení ukázky, tipy e-mailem (nepovinné), anketa. Rozpad po klíčových slovech a reklamách (`utm_term`, `utm_content`).
+- **Rozpočet:** **Sklik 400 Kč** na 14 dní (ze kterého kampaň dostane asi 80–130 prokliků). Česká služba, fakturuje Seznam.cz. Jinak 0 Kč.
+- **Doba:** 14 dní od obnovení kampaně, pak rozhodnutí. Kampaň se obnoví až po auditu `plan/postupy/sklik.md`, schválení reklam a nasazení prodeje.
+- **Statistika (předem zapsáno):** 80 prokliků nerozliší 2 % od 5 %, k tomu je potřeba asi 190 návštěv. Výsledek při méně návštěvách je jen orientační.
 - **Kritérium:**
-  - **Pokračovat:** ≥ 80 prokliků, **klik na „Koupit“ ≥ 5 % návštěv a zároveň ≥ 10 e-mailů**, CPC ≤ 6 Kč.
-  - **Zastavit:** klik na „Koupit“ < 2 % nebo < 4 e-maily. Produkt se nestaví, do plánu se zapíše, proč.
-  - Mezi tím: prodloužit o 7 dní bez dalších peněz (jen SEO), pak rozhodnout.
+  - **Pokračovat (víc reklamy):** ≥ 1 zaplacená objednávka ze Skliku za 14 dní a cena objednávky ≤ 349 Kč, nebo ≥ 5 zaplacených objednávek celkem včetně SEO.
+  - **Zastavit reklamu:** 0 objednávek ze Skliku po ≥ 190 návštěvách. SEO a obsah zůstávají (nic nestojí).
+  - Mezi tím: prodloužit o 7 dní jen SEO, pak rozhodnout; poučení do `plan/prijimacky-vyhodnoceni.md`.
 
 ## 5. Role Ondřeje (test kroku: jen autorizace a schválení)
 1. **Schválit výdaj 400 Kč na Sklik** (test). Z rozpočtu 1 000 Kč, předem ověřit zůstatek po nákupu domény anoberu.cz.

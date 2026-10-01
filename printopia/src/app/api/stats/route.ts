@@ -22,6 +22,14 @@ export async function GET(req: Request) {
     counts[ev] ??= {};
     counts[ev][src] = (counts[ev][src] ?? 0) + 1;
   }
+  // Návštěvy ze Skliku podle klíčového slova a reklamy (utm_term, utm_content)
+  const byTerm: Record<string, number> = {};
+  const byAd: Record<string, number> = {};
+  for (const item of (await storage.list("events/")).filter((i) => i.pathname.split("/")[2] === "visit" && i.pathname.split("/")[3] === "sklik")) {
+    const x = JSON.parse((await storage.read(item.pathname)) ?? "{}");
+    if (x.term) byTerm[x.term] = (byTerm[x.term] ?? 0) + 1;
+    if (x.content) byAd[x.content] = (byAd[x.content] ?? 0) + 1;
+  }
   const roles: Record<string, number> = {};
   for (const item of await storage.list("leads/")) {
     const lead = JSON.parse((await storage.read(item.pathname)) ?? "{}");
@@ -90,6 +98,7 @@ export async function GET(req: Request) {
     days: [...days].sort(),
     server: { visits: counts.visit ?? {}, buyClicks: counts.buy_click ?? {}, leads: sum(counts.lead), leadsByRole: roles },
     orders,
+    sklik: { byKeyword: byTerm, byAd },
     funnel: { byPage, bySrc, byDevice },
     rates: {
       homeToBuyClick: pct(h.cta_buy, h.view),

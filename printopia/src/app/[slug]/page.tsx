@@ -46,14 +46,18 @@ export default async function TopicPage({ params }: PageProps<"/[slug]">) {
 
         <div className="box" style={{ marginTop: 32 }}>
           <h2 style={{ marginTop: 0 }}>Ukázka k tisku zdarma</h2>
-          <p>8 úloh na zlomky jako PDF s místem na počítání a postupy na konci.</p>
-          <LeadForm
-            source="ukazka"
-            src={topic.slug.replace("-prijimacky", "")}
-            button="Stáhnout PDF zdarma"
-            consentText="Souhlasím se zasíláním tipů k přípravě na přijímačky a nabídek Printopie (nejvýše dvakrát měsíčně)."
-            done="Děkujeme! PDF je připravené ke stažení."
-          />
+          <p>8 úloh na zlomky jako PDF s místem na počítání a postupy na konci. Stáhnete ho bez e-mailu.</p>
+          <p><a className="btn" href="/ukazka-zlomky.pdf" download data-track="pdf_download">Stáhnout PDF zdarma</a></p>
+          <details className="tips-box">
+            <summary>Chci k tomu i tipy na přípravu e-mailem</summary>
+            <LeadForm
+              source="ukazka"
+              src={topic.slug.replace("-prijimacky", "")}
+              button="Posílejte mi tipy"
+              consentText="Souhlasím se zasíláním tipů k přípravě na přijímačky a nabídek Printopie (nejvýše dvakrát měsíčně)."
+              done="Děkujeme! Tipy vám budeme posílat nejvýše dvakrát měsíčně a odhlásit se můžete kdykoli."
+            />
+          </details>
         </div>
 
         <div style={{ marginTop: 32 }}><Feedback /></div>

@@ -16,9 +16,10 @@ import { track } from "@/lib/track";
 // Cílová skupina (plan/prijimacky.md 1b): hledají deváťáci, platí rodiče i žáci 15+ (měří test).
 // Prodejní sdělení pro dospělé, žákům jen informace; žádná výzva dětem ke koupi. Design: plan/design-prijimacky.md.
 const TOPICS = [
-  "Zlomky a desetinná čísla", "Procenta", "Poměr a úměrnost", "Mocniny a odmocniny",
-  "Výrazy a mnohočleny", "Lineární rovnice", "Slovní úlohy (pohyb, práce, směsi)", "Jednotky a převody",
-  "Úhly a trojúhelníky", "Obvody a obsahy", "Pythagorova věta", "Tělesa: objem a povrch",
+  "Zlomky, desetinná čísla, mocniny a odmocniny", "Výrazy a mnohočleny", "Lineární rovnice a soustavy",
+  "Slovní úlohy řešené rovnicí", "Procenta", "Poměr a úměrnost, pohyb a práce",
+  "Grafy, tabulky a průměr", "Úhly a trojúhelníky", "Obvody, obsahy, kruh a Pythagorova věta",
+  "Tělesa: objem a povrch", "Konstrukční úlohy", "Úsudek a vzory",
 ];
 const EXAM = new Date("2027-04-12T08:00:00+02:00");
 
@@ -35,7 +36,10 @@ export default async function Home({ searchParams }: Props) {
   const sp = await searchParams;
   const src = String(sp.utm_source ?? sp.src ?? "").slice(0, 40).replace(/[^\w.-]/g, "");
   const ua = (await headers()).get("user-agent");
-  after(() => track("visit", src, ua));
+  // Měření po klíčových slovech a reklamách (Sklik doplní {keywordId} a {creative}); bez osobních údajů.
+  const clean = (v: unknown) => String(v ?? "").slice(0, 20).replace(/[^\w.-]/g, "");
+  const [term, content] = [clean(sp.utm_term), clean(sp.utm_content)];
+  after(() => track("visit", src, ua, term || content ? { term, content } : {}));
   const days = Math.max(0, Math.ceil((EXAM.getTime() - Date.now()) / 86_400_000));
   const w = Math.max(1, Math.floor(days / 7 / 12));
   const perTopic = w === 1 ? "týden" : w < 5 ? `${w} týdny` : `${w} týdnů`;
@@ -177,14 +181,18 @@ export default async function Home({ searchParams }: Props) {
           <div className="box sample-grid">
             <div>
               <h2>Ukázka zdarma: {ukazka.tasks.length} úloh na zlomky</h2>
-              <p>PDF k tisku s místem na počítání. Postupy řešení jsou až na konci, aby je dítě nevidělo předem.</p>
-              <LeadForm
-                source="ukazka"
-                src={src}
-                button="Stáhnout ukázku"
-                consentText="Souhlasím se zasíláním tipů k přípravě na přijímačky a nabídek Printopie (nejvýše dvakrát měsíčně)."
-                done="Děkujeme! Ukázka je připravená ke stažení."
-              />
+              <p>PDF k tisku s místem na počítání. Postupy řešení jsou až na konci, aby je dítě nevidělo předem. Stáhnete ho bez e-mailu.</p>
+              <p><a className="btn" href="/ukazka-zlomky.pdf" download data-track="pdf_download">Stáhnout ukázku (PDF)</a></p>
+              <details className="tips-box">
+                <summary>Chci k tomu i tipy na přípravu e-mailem</summary>
+                <LeadForm
+                  source="ukazka"
+                  src={src}
+                  button="Posílejte mi tipy"
+                  consentText="Souhlasím se zasíláním tipů k přípravě na přijímačky a nabídek Printopie (nejvýše dvakrát měsíčně)."
+                  done="Děkujeme! Tipy vám budeme posílat nejvýše dvakrát měsíčně a odhlásit se můžete kdykoli."
+                />
+              </details>
             </div>
             <Image src="/nahled-ulohy.webp" width={909} height={719} sizes="(max-width: 800px) 100vw, 560px"
                    alt="První strana ukázky s úlohami na zlomky" className="sample-img" />

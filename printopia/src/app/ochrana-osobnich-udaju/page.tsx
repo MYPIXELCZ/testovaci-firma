@@ -32,11 +32,11 @@ export default function Privacy() {
             od nákupu. Právním základem je oprávněný zájem.
           </li>
           <li>
-            <strong>Ukázka zdarma a tipy k přípravě:</strong> když nám u ukázky necháte e-mail, uložíme ho s datem, s tím, zda
-            jste rodič, žák, nebo učitel, a odkud jste přišli. Budeme vám posílat tipy k přípravě na přijímačky a nabídky
-            Printopie, nejvýše dvakrát měsíčně. Právním základem je váš souhlas, který můžete kdykoli odvolat. E-maily
-            smažeme nejpozději 30. 6. 2027, po přijímačkách. Formulář je určen dospělým a žákům od 15 let, e-maily dětí
-            mladších 15 let vědomě nesbíráme.
+            <strong>Tipy k přípravě e-mailem:</strong> ukázku zdarma si stáhnete bez zadání e-mailu. Pokud chcete navíc tipy,
+            nechte nám e-mail: uložíme ho s datem, s tím, zda jste rodič, žák, nebo učitel, a odkud jste přišli. Budeme vám
+            posílat tipy k přípravě na přijímačky a nabídky Printopie, nejvýše dvakrát měsíčně. Právním základem je váš
+            souhlas, který můžete kdykoli odvolat. E-maily smažeme nejpozději 30. 6. 2027, po přijímačkách. Formulář je
+            určen dospělým a žákům od 15 let, e-maily dětí mladších 15 let vědomě nesbíráme.
           </li>
         </ul>
 

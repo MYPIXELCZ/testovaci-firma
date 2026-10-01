@@ -94,15 +94,16 @@ try {
   check(home.includes("je mi aspoň 15 let") && !home.includes("rodičům</a>"), "formulář se ptá na roli, žádná výzva dětem ke koupi");
   const r1 = await post({ email: "Rodic@Example.cz", consent: true, role: "rodic", source: "ukazka", src: "sklik" });
   const j1 = await r1.json();
-  check(r1.ok && j1.download === "/ukazka-zlomky.pdf", "lead z ukázky vrátí odkaz na PDF");
-  const r2 = await post({ email: "rodic@example.cz", consent: true, role: "rodic", source: "koupit", src: "sklik" });
-  check(r2.ok, "lead z Koupit");
+  check(r1.ok && j1.ok === true && !("download" in j1), "tipy e-mailem: jen přihlášení, stažení ukázky je zvlášť");
+  check(home.includes('href="/ukazka-zlomky.pdf"') && (await fetch(`${BASE}/ukazka-zlomky.pdf`)).ok, "ukázka PDF se stáhne bez e-mailu");
+  const r2 = await post({ email: "rodic@example.cz", consent: true, role: "rodic", source: "ukazka", src: "sklik" });
+  check(r2.ok && (await post({ email: "a@b.cz", consent: true, role: "rodic", source: "koupit" })).status === 400, "opakované přihlášení; neznámý zdroj se odmítne");
   const hp = await post({ email: "bot@example.cz", consent: true, source: "ukazka", website: "x" });
   check(hp.ok, "honeypot odpoví ok");
   const files = readdirSync(path.join(store, "leads"));
   check(files.length === 1, "jeden e-mail = jeden záznam (bot se neuložil)");
   const lead = JSON.parse(readFileSync(path.join(store, "leads", files[0]), "utf8"));
-  check(lead.email === "rodic@example.cz" && lead.sources.join() === "ukazka,koupit" && lead.src === "sklik" && lead.role === "rodic", "záznam má zdroje, roli i původ");
+  check(lead.email === "rodic@example.cz" && lead.sources.join() === "ukazka" && lead.src === "sklik" && lead.role === "rodic", "záznam má zdroje, roli i původ");
   check(logs.includes('"ev":"visit"') && logs.includes('"ev":"buy_click"') && logs.includes('"ev":"lead"'), "události v logu pro měření testu");
   await fetch(`${BASE}/`, { headers: { "User-Agent": "Googlebot/2.1" } });
   await new Promise((r) => setTimeout(r, 500));
@@ -156,6 +157,15 @@ try {
   check(emails.filter((e) => e.to === "printopia@mypixel.cz" && e.subject.includes("Zaplaceno")).length === 1, "firma dostala upozornění na platbu");
   const paidPage = (await (await get(`/objednavka/${oid}`)).text()).replaceAll("<!-- -->", "");
   check(paidPage.includes("Zaplaceno") && paidPage.includes(`/stahnout/${oid}?soubor=zlomky`), "po zaplacení stránka nabízí listy ke stažení");
+  const manifest = JSON.parse(readFileSync(new URL("../src/content/sada-soubory.json", import.meta.url), "utf8"));
+  check(manifest.length >= 3 && manifest[0].slug === "uvodni-test" && manifest.at(-1).slug === "plan", `sada má úvodní test, listy a plán (${manifest.length} souborů)`);
+  let allPdf = true;
+  for (const f of manifest) {
+    const r = await fetch(`${BASE}/stahnout/${oid}?soubor=${f.slug}`);
+    const buf = Buffer.from(await r.arrayBuffer());
+    if (!r.ok || buf.subarray(0, 4).toString() !== "%PDF" || buf.length < 8000) { allPdf = false; console.log("  vadný soubor:", f.slug); }
+  }
+  check(allPdf, "všechny soubory sady se stáhnou jako PDF");
   const dl = await fetch(`${BASE}/stahnout/${oid}?soubor=zlomky`);
   check(dl.ok && dl.headers.get("content-type") === "application/pdf" && (await dl.arrayBuffer()).byteLength > 10000, "pracovní list se stáhne jako PDF");
   check((await fetch(`${BASE}/stahnout/${oid}?soubor=../../etc/passwd`, { redirect: "manual" })).status === 303, "neznámý soubor se nestáhne");
