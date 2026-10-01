@@ -35,6 +35,13 @@ code_checks = {
     "aplikace: e2e test metrik": r"trychtýř",
 }
 missing += [k for k, rx in code_checks.items() if not re.search(rx, code)]
+# Nejdřív nastudovat, pak dělat: každý použitý kanál má postupy s odškrtnutým kontrolním seznamem.
+for channel, marker in {"sklik": "sklik.py"}.items():
+    if any(p.name == marker for p in app.rglob(marker)):
+        post = plan.parent / "postupy" / f"{channel}.md"
+        t = post.read_text(encoding="utf-8") if post.exists() else ""
+        if "## Kontrolní seznam" not in t or "- [ ]" in t:
+            missing.append(f"{post}: postupy kanálu {channel} s odškrtnutým kontrolním seznamem")
 if missing:
     sys.exit("CHYBÍ před spuštěním:\n- " + "\n- ".join(missing))
 print("OK: plán i aplikace mají metriky a vyhodnocení.")

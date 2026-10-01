@@ -54,5 +54,5 @@ Chyby nahlášené Ondřejem ("FAIL: ..."). Každá má příčinu a pojistku, a
 
 ## 2026-10-01 02:22 (Praha)
 - **Hlášení:** POKUD NĚCO DĚLÁŠ např. reklamy na skliku, přečti si na internetu nejdřív čeho se vyvarovat a jak co dělat ať to neděláš na slepo
-- **Příčina:** (doplnit)
-- **Pojistka:** (doplnit)
+- **Příčina:** Sklik kampaň (klíčová slova, typy shody, vylučující slova, inzeráty, rozpočet) jsem postavil z vlastní hlavy, bez nastudování, co u Skliku funguje a co ne. Stejně jsem začínal i jiné činnosti (SEO, prodejní web, obsah sady): rovnou jsem dělal místo toho, abych si nejdřív zjistil osvědčené postupy a typické chyby.
+- **Pojistka:** Pravidlo v CLAUDE.md: před každou novou činností (reklama, kanál, typ obsahu, produkt, právní krok) nejdřív průzkum z internetu do `plan/postupy/<činnost>.md` (zdroje, čeho se vyvarovat, jak na to, kontrolní seznam). Teprve pak dělat, podle seznamu. Kontrola v kódu: `sklik_api.py` kampaň nezaloží ani nespustí, dokud `plan/postupy/sklik.md` neexistuje a nemá všechny body seznamu odškrtnuté. `plan/kontrola-spusteni.py` vyžaduje postupy pro každý použitý kanál. Kampaň je do auditu pozastavená. Průzkum Skliku a struktury přijímaček CERMAT běží.

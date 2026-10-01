@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Založí testovací kampaň ze sklik.py přes API Sklik Drak. Idempotentní: existující kampaň nezakládá znovu.
 
-    SKLIK_TOKEN=… python3 printopia/marketing/sklik_api.py [--status]
+    SKLIK_TOKEN=… python3 printopia/marketing/sklik_api.py [--status | --pause | --resume]
 
 Token je jen v env (Vercel projekt printopia, SKLIK_TOKEN), nikdy v repozitáři.
 """
@@ -34,6 +34,13 @@ def call(method, *params):
     return res
 
 
+# Pojistka z FAILS.md: kampaň se zakládá a spouští jen podle nastudovaných postupů s odškrtnutým kontrolním seznamem.
+if "--status" not in sys.argv and "--pause" not in sys.argv:
+    postupy = Path(__file__).resolve().parents[2] / "plan/postupy/sklik.md"
+    text = postupy.read_text(encoding="utf-8") if postupy.exists() else ""
+    if "## Kontrolní seznam" not in text or "- [ ]" in text:
+        raise SystemExit(f"Nejdřív {postupy}: průzkum postupů a celý kontrolní seznam odškrtnutý (- [x]).")
+
 session = call("client.loginByToken", os.environ["SKLIK_TOKEN"])["session"]
 user = {"session": session}
 info = call("client.get", user)["user"]
@@ -44,6 +51,10 @@ existing = [c for c in call("campaigns.list", user, {}, {"limit": 100, "offset":
 if existing:
     c = existing[0]
     print("kampaň existuje:", c["id"], c.get("status"), c.get("actualClicks"))
+    if "--pause" in sys.argv or "--resume" in sys.argv:
+        status = "suspend" if "--pause" in sys.argv else "active"
+        call("campaigns.update", user, [{"id": c["id"], "type": "fulltext", "status": status}])
+        print("nový stav:", status)
     sys.exit(0)
 if "--status" in sys.argv:
     print("kampaň zatím neexistuje")
