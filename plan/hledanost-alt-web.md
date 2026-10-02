@@ -16,9 +16,9 @@ Zdroj: Sklik API `keywords.suggest.stats` (jen Seznam; ø 2 měs. je číslo, kt
 Součet ø 2 měs.: 167 / měs., součet špiček: 247 / měs.
 
 ## Verdikt (automaticky)
-Předpoklady (ne měření): cena 4990 Kč, konverze na platbu 1.5 %, na signál poptávky při ověření 5.0 %, CTR 3 %, cíl 3000 Kč měsíčně, okno 3 dny, rozpočet na dokoupené kliky 150 Kč při ø 59.6 Kč za klik, jiné kliky 0 měsíčně. Hledání je jen Seznam (Sklik).
-- Ověřitelnost do 3 dnů: **NE**. Dosažitelných návštěv 3.0 (z toho dokoupených 2.5), potřeba 18 (aspoň jeden signál poptávky s pravděpodobností 60 %).
-- Dostatečný prodej: **NE**. Tržby měsíčně při dnešní hledanosti 375 Kč (ve špičce 555 Kč) proti cíli 3000 Kč.
+Předpoklady (ne měření): cena 4990 Kč, konverze na platbu 0.2 %, na signál poptávky při ověření 1.0 %, CTR 3 %, cíl zisku 10000 Kč měsíčně, okno 3 dny, rozpočet na dokoupené kliky 0 Kč při ø 59.6 Kč za klik, jiné kliky 200 měsíčně. Hledání je jen Seznam (Sklik).
+- Ověřitelnost do 3 dnů: **NE**. Dosažitelných návštěv 20.5 (z toho dokoupených 0.0), potřeba 92 (aspoň jeden signál poptávky s pravděpodobností 60 %).
+- Dostatečný prodej: **NE**. Kritérium: škálovatelný (průměrný zisk ≥ 10000 Kč měsíčně, cesta k desítkám tisíc). Tržby měsíčně při dnešní hledanosti 2557 Kč, náklady 12615 Kč, zisk -10057 Kč (ve špičce zisk -10171 Kč).
 - Závěr: **NESTAVĚT a nespouštět bez výjimky schválené Ondřejem**.
 
 ## Kapacita trhu

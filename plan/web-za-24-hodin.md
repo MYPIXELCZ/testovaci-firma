@@ -1,5 +1,13 @@
 # Web za 24 hodin: návrh testu (jen texty a podmínky, nic nestavět do výjimky Ondřeje)
 
+**Korekce podle průzkumu agenta 2026-10-02 (`plan/konkurence-web-za-24-hodin.md`, `plan/postupy/web-za-24-hodin.md`), platí před textem níže:**
+- Náklad testu NENÍ 0 Kč: Bazoš ve Službách stojí 49 Kč vložení a 49 Kč každé TOP (7× TOP = 392 Kč za 28 dní), test se 2× TOP = 147 Kč. Sbazar je zdarma (TOP 29 Kč). Výdaj schvaluje Ondřej (finance, jeho veto). Bazoš vyžaduje SMS ověření a mikroplatbu 1 Kč z bankovního účtu spojeného s telefonem.
+- Název a IČO firmy musí být na konci inzerátu (pravidlo Bazoše, žádný z 47 konkurentů to nedělá, porušení = smazání bez vrácení poplatku).
+- **Právní riziko pro Ondřejovo veto: hosting cizích webů na Vercelu.** Fair Use dovoluje na Pro komerční hostování, ale Terms čl. 11 (i) zakazuje zpřístupnit službu třetí straně. Navrhuji prodávat „provoz a správu“ bez přístupu klienta do Vercelu, plán B je export souborů ke klientovi na jeho hosting, a před spuštěním písemné potvrzení od Vercel supportu.
+- Nesmí se tvrdit „bez AI“ (klamavé jednání) ani „autorská práva přejdou na vás“ (výstup AI nemusí být autorské dílo, rozsudek MS Praha 10 C 13/2023): v podmínkách jen licence k užití, v textu mluvit o výsledku, termínu a záruce.
+- Cena 3 990 až 4 990 Kč je střed trhu (medián Bazoše 3 999 Kč), „24 hodin“ slibuje 7 konkurentů. Odlišení: jedna cena na první rok včetně domény, hostingu a SSL, termín s datem po podkladech, vrácení peněz, tabulka „co v ceně je a není“, náhled před zaplacením (standard trhu: platba až po schválení náhledu, náhled jen neindexovaný).
+- Odhad za 72 h: P(≥1 závazná poptávka) ≈ 20 až 25 % (ne 40 %), jeden inzerát se 7× TOP dá ~0,5 zakázky měsíčně (~2 300 Kč tržeb). Samotný Bazoš/Sbazar cíl 10 000 Kč zisku měsíčně nesplní, test je levná sonda zájmu a je třeba ho prodloužit na 7 dní (0 dotazů za 72 h je jen slabé NE).
+
 Stav: NÁVRH 2026-10-02. Verdikt kanálu Seznam je NE (nízká hledanost), proto kanál = inzertní portály s vlastní návštěvností. Stavět se začne až po „Výjimka schválená Ondřejem: sonda Web za 24 hodin, náklad 0 Kč, 72 h“ (zapsat sem i do `plan/hledanost-web-za-24-hodin.md`). Průzkum konkurence a pravidel portálů dělá agent do `plan/konkurence-web-za-24-hodin.md` a `plan/postupy/web-za-24-hodin.md`; inzerát nezveřejnit před odškrtnutým seznamem.
 
 ## Cílová skupina
@@ -44,6 +52,6 @@ Odpověď zákazníkovi (e-mail, do 60 minut od poptávky):
 
 ## Test (po schválení)
 - Postup: 1) Ondřejovo schválení + souhlas s podmínkami, 2) ukázkový web (jedna stránka, výslovně označená jako ukázka, na webprodava.cz) do 1 hodiny, 3) inzerát na Bazoši (SMS ověření telefonem dělá Ondřej, autorizace), 4) odpovědi z e-mailu `web@mypixel.cz` do 60 minut (alias zřizuje Ondřej, autorizace), 5) vyhodnocení po 72 h.
-- Úspěch: aspoň 1 závazná poptávka (konkrétní obor a požadavek, souhlas s cenou). Neúspěch po 72 h: jedna úprava (cena, text, druhý portál) a dalších 72 h; po 0 poptávkách za 7 dní test končí, zapsat poučení.
-- Náklad: 0 Kč (Bazoš základní inzerát zdarma, doména webprodava.cz už je, hosting v rámci Vercel Pro).
-- Co od Ondřeje: „ano, test webu“ + schválení podmínek (právo), ověření telefonu na inzertním portálu, alias e-mailu `web@mypixel.cz`. Nic dalšího, žádné ruční zveřejňování.
+- Úspěch: aspoň 1 závazná poptávka (konkrétní obor a požadavek, souhlas s cenou) do 7 dnů. Po 72 h bez poptávky jedna úprava (cena, text, druhý portál), po 0 dotazech za 7 dní test končí, zapsat poučení.
+- Náklad: Bazoš 147 Kč (vložení + 2× TOP, strop 392 Kč), Sbazar 0 až 29 Kč; doména webprodava.cz už je. Hosting klientských webů na Vercelu viz riziko výše.
+- Co od Ondřeje: „ano, test webu“ (a „Výjimka schválená Ondřejem“, protože formální verdikt je NE), schválení výdaje 147 Kč (finance), schválení podmínek a rizika Vercel čl. 11 (právo), SMS ověření telefonu a mikroplatba 1 Kč na Bazoši, alias e-mailu `web@mypixel.cz`. Nic dalšího, žádné ruční zveřejňování.
