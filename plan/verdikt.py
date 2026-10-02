@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 """Automatický verdikt před stavbou (FAILS.md 2026-10-02 13:31): jde to ověřit do 3 dnů a bude prodej dostatečný?
 
-    python3 plan/verdikt.py <projekt> --cena 349 [--konv 0.01] [--konv-overeni X] [--ctr 0.03] [--cil 3000] [--dny 3] [--rozpocet 0] [--jine-kliky-mesicne 0]
+    python3 plan/verdikt.py <projekt> --cena 349 [--konv 0.01] [--konv-overeni X] [--ctr 0.03] [--cil 10000] [--dny 3] [--rozpocet 0] [--jine-kliky-mesicne 0] [--naklad-mesicne 0] [--pasivni]
 
 Čte `plan/hledanost-<projekt>.md` (tabulka „Cílové dotazy“ ze `plan/hledanost.py`) a do téhož souboru zapíše oddíl „## Verdikt (automaticky)“.
 - Ověřitelnost: kolik návštěv se do `--dny` dnů dá reálně získat (hledání × CTR × dny/30 + jiné kliky) proti tomu, kolik jich je potřeba,
   aby aspoň jedna objednávka přišla s pravděpodobností ≥ 60 % při předpokládané konverzi (≈ 92 návštěv při 1 %).
-- Dostatečný prodej: měsíční tržby při dnešní hledanosti (ø 2 měs., sezóna se nepočítá) proti cíli `--cil` Kč měsíčně.
+- Dostatečný prodej (Ondřej 2026-10-02 13:46: 3 000 Kč měsíčně není cíl): měsíční ZISK při dnešní hledanosti (ø 2 měs., sezóna se nepočítá) musí dosáhnout
+  A) škálovatelný business: průměrný zisk ≥ `--cil` (výchozí 10 000 Kč měsíčně; kolísání mezi měsíci je v pořádku) a cesta k desítkám tisíc, NEBO
+  B) plně pasivní business (`--pasivni`: po spuštění žádná práce Clauda ani Ondřeje, vše automaticky): náklady ≤ ⅓ tržeb a zisk ≥ 2 000 Kč měsíčně (např. tržby 3 000, náklad 1 000, zisk 2 000).
+  Zisk = tržby − náklady; náklady = klikání placené reklamy (kliky × cena kliku) + `--naklad-mesicne` (ostatní měsíční náklady v Kč).
 `--konv-overeni` = podíl návštěv, který stačí jako signál poptávky při ověření (u služeb závazná poptávka s cenou, např. 0,05), jinak platí `--konv`.
 `--rozpocet` = Kč, které se v okně ověření smí utratit za dokoupené kliky (cena kliku z tabulky); `--jine-kliky-mesicne` = trvale dostupné kliky mimo hledání (placená reklama jinde): rozpočet / cena kliku. Bez nich počítá jen hledání ze Skliku (Seznam).
-Konverze 1 % a CTR 3 % jsou konzervativní předpoklady, ne měření. Cíl 3 000 Kč měsíčně je minimum pro „vedlejší příjem“, Ondřej ho může změnit.
+Konverze 1 % a CTR 3 % jsou konzervativní předpoklady, ne měření. Cíle (10 000 Kč zisku / pasivně 2 000 Kč zisku při nákladu ≤ ⅓ tržeb) stanovil Ondřej 2026-10-02.
 Výjimku z verdiktu smí zapsat jen Ondřej řádkem „Výjimka schválená Ondřejem: <důvod> (<datum>)“.
 """
 import math
@@ -19,7 +22,8 @@ from pathlib import Path
 
 args = sys.argv[1:]
 project = args[0]
-opt = {"--cena": None, "--konv": 0.01, "--konv-overeni": None, "--ctr": 0.03, "--cil": 3000, "--dny": 3, "--rozpocet": 0, "--jine-kliky-mesicne": 0}
+opt = {"--cena": None, "--konv": 0.01, "--konv-overeni": None, "--ctr": 0.03, "--cil": 10000, "--dny": 3, "--rozpocet": 0, "--jine-kliky-mesicne": 0, "--naklad-mesicne": 0}
+pasivni = "--pasivni" in args
 for i, a in enumerate(args):
     if a in opt:
         opt[a] = float(args[i + 1])
@@ -49,12 +53,20 @@ bought = rozpocet / cpc if cpc else 0
 reach = avg * ctr * dny / 30 + jine * dny / 30 + bought
 monthly_avg = (avg * ctr + jine) * konv * cena
 monthly_peak = (peak * ctr + jine) * konv * cena
+naklad = (avg * ctr + jine) * cpc + opt["--naklad-mesicne"]
+zisk = monthly_avg - naklad
+zisk_peak = monthly_peak - ((peak * ctr + jine) * cpc + opt["--naklad-mesicne"])
+if pasivni:
+    ok_sales = monthly_avg > 0 and naklad <= monthly_avg / 3 and zisk >= 2000
+    kriterium = "pasivní (náklady ≤ ⅓ tržeb a zisk ≥ 2 000 Kč měsíčně, bez práce po spuštění)"
+else:
+    ok_sales = zisk >= cil
+    kriterium = f"škálovatelný (průměrný zisk ≥ {cil:.0f} Kč měsíčně, cesta k desítkám tisíc)"
 ok_verify = reach >= need
-ok_sales = monthly_avg >= cil
 verdict = f"""## Verdikt (automaticky)
-Předpoklady (ne měření): cena {cena:.0f} Kč, konverze na platbu {konv * 100:.1f} %, na signál poptávky při ověření {konv_o * 100:.1f} %, CTR {ctr * 100:.0f} %, cíl {cil:.0f} Kč měsíčně, okno {dny:.0f} dny, rozpočet na dokoupené kliky {rozpocet:.0f} Kč při ø {cpc:.1f} Kč za klik, jiné kliky {jine:.0f} měsíčně. Hledání je jen Seznam (Sklik).
+Předpoklady (ne měření): cena {cena:.0f} Kč, konverze na platbu {konv * 100:.1f} %, na signál poptávky při ověření {konv_o * 100:.1f} %, CTR {ctr * 100:.0f} %, cíl zisku {cil:.0f} Kč měsíčně, okno {dny:.0f} dny, rozpočet na dokoupené kliky {rozpocet:.0f} Kč při ø {cpc:.1f} Kč za klik, jiné kliky {jine:.0f} měsíčně. Hledání je jen Seznam (Sklik).
 - Ověřitelnost do {dny:.0f} dnů: **{"ANO" if ok_verify else "NE"}**. Dosažitelných návštěv {reach:.1f} (z toho dokoupených {bought:.1f}), potřeba {need} (aspoň jeden signál poptávky s pravděpodobností 60 %).
-- Dostatečný prodej: **{"ANO" if ok_sales else "NE"}**. Tržby měsíčně při dnešní hledanosti {monthly_avg:.0f} Kč (ve špičce {monthly_peak:.0f} Kč) proti cíli {cil:.0f} Kč.
+- Dostatečný prodej: **{"ANO" if ok_sales else "NE"}**. Kritérium: {kriterium}. Tržby měsíčně při dnešní hledanosti {monthly_avg:.0f} Kč, náklady {naklad:.0f} Kč, zisk {zisk:.0f} Kč (ve špičce zisk {zisk_peak:.0f} Kč).
 - Závěr: **{"stavět smí" if ok_verify and ok_sales else "NESTAVĚT a nespouštět bez výjimky schválené Ondřejem"}**.
 """
 if "## Verdikt (automaticky)" in text:

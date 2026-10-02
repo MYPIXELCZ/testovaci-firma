@@ -1,6 +1,8 @@
 # Alternativní businessy (portfolio gate, FAILS.md 2026-10-02 13:34)
 
 Pravidlo: dokud žádný aktivní business nemá verdikt „ověřitelné do 3 dnů: ANO“ a „dostatečný prodej: ANO“ (`plan/verdikt.py`), hledá se alternativa.
+
+**Cíl (Ondřej 2026-10-02 13:46):** 3 000 Kč měsíčně není cíl. Hledáme buď (A) **škálovatelný business**: průměrný zisk ≥ 10 000 Kč měsíčně (kolísání OK, např. 50 000 → 10 000 → 15 000) s cestou k desítkám tisíc, nebo (B) **plně pasivní business**: po spuštění žádná práce, náklady ≤ ⅓ tržeb (tržby 3 000, náklad 1 000, zisk 2 000). Čísla níže (tržby při 3 000 Kč cíli) jsou proto jen horní odhad; podle nového cíle neprojde ani jeden kandidát přes Seznam.
 V každém probuzení posunout nejlepšího kandidáta o krok (research, test 72 hodin, rozhodnutí). Stav vypisuje `tools/stav.py` (sekce portfolio).
 
 ## Aktivní businessy a jejich verdikt (stav 2026-10-02)
@@ -31,7 +33,7 @@ vyhledávání má pro všechny naše nápady hledanost v desítkách až nízk�
 ## Modely, které se dají ověřit do 72 hodin bez objemu hledání
 1. **Produktizovaná služba, kterou doděláme my (AI) a prodáme přes kanály s vlastní návštěvností** (Bazoš, Sbazar, Firmy.cz, lokální skupiny, přímá nabídka firmám přes kontaktní formuláře webu).
    Kandidát č. 1: **„Web za 24 hodin“** (jednostránkový nebo malý web pro živnostníky a malé firmy, 3 990 až 4 990 Kč + 290 Kč měsíčně správa), doména `webprodava.cz` (zdarma, Ondřejova).
-   Ověření: za 72 hodin aspoň 1 závazná poptávka s cenovou nabídkou. Náklad 0 Kč. Dostatečný prodej: 1 zakázka měsíčně = 4 990 Kč, opakované platby za správu.
+   Ověření: za 72 hodin aspoň 1 závazná poptávka s cenovou nabídkou. Náklad 0 Kč. Dostatečný prodej podle nového cíle (A): ≥ 2 zakázky měsíčně (2 × 4 990 ≈ 10 000 Kč zisku, náklad skoro 0), tedy ≈ 8–10 poptávek měsíčně při 20–30 % uzavření; 1 závazná poptávka za 72 h tomu odpovídá. Přírůstek: opakované platby za správu (20 klientů × 290 Kč = 5 800 Kč měsíčně). Není pasivní (každý web = práce Clauda), proto platí jen kritérium A.
    Potřebuje od Ondřeje: schválení obchodních podmínek služby (právo), účet na inzertním portálu (ověření telefonem), souhlas s tím, že odpovídám zákazníkům z firemního e-mailu.
 2. **Soukromá placená reklama Ondřeje (Google/Meta) na stávající produkt** jako jednorázový test poptávky: ověřitelné do 3 dnů (asi 100 kliků za 500 Kč), ale strop produktu zůstává nízký (viz verdikt).
 3. **SEO, afiliace, obsahové weby**: kanál je pomalý (týdny až měsíce), pravidlo 3 dnů nesplňují. Nezačínat.

@@ -54,9 +54,9 @@ Součet ø 2 měs.: 26 / měs., součet špiček: 76 / měs.
 | svatební planovac | 0 | 1 | 2025-09 | 0.0 |
 
 ## Verdikt (automaticky)
-Předpoklady (ne měření): cena 349 Kč, konverze 1.0 %, CTR 3 %, cíl 3000 Kč měsíčně, okno 3 dny, jiné kliky 0 měsíčně. Hledání je jen Seznam (Sklik).
-- Ověřitelnost do 3 dnů: **NE**. Dosažitelných návštěv 0.1, potřeba 92 (aspoň jedna objednávka s pravděpodobností 60 %).
-- Dostatečný prodej: **NE**. Tržby měsíčně při dnešní hledanosti 3 Kč (ve špičce 8 Kč) proti cíli 3000 Kč.
+Předpoklady (ne měření): cena 349 Kč, konverze na platbu 1.0 %, na signál poptávky při ověření 1.0 %, CTR 3 %, cíl zisku 10000 Kč měsíčně, okno 3 dny, rozpočet na dokoupené kliky 0 Kč při ø 1.8 Kč za klik, jiné kliky 0 měsíčně. Hledání je jen Seznam (Sklik).
+- Ověřitelnost do 3 dnů: **NE**. Dosažitelných návštěv 0.1 (z toho dokoupených 0.0), potřeba 92 (aspoň jeden signál poptávky s pravděpodobností 60 %).
+- Dostatečný prodej: **NE**. Kritérium: škálovatelný (průměrný zisk ≥ 10000 Kč měsíčně, cesta k desítkám tisíc). Tržby měsíčně při dnešní hledanosti 3 Kč, náklady 1 Kč, zisk 1 Kč (ve špičce zisk 4 Kč).
 - Závěr: **NESTAVĚT a nespouštět bez výjimky schválené Ondřejem**.
 
 ## Kapacita trhu

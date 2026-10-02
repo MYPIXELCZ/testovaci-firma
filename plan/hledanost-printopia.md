@@ -62,9 +62,9 @@ Součet ø 2 měs.: 928 / měs., součet špiček: 5310 / měs.
 | cermat přijímací testy | 4 | 98 | 2026-01 | 2.6 |
 
 ## Verdikt (automaticky)
-Předpoklady (ne měření): cena 349 Kč, konverze na platbu 1.0 %, na signál poptávky při ověření 1.0 %, CTR 3 %, cíl 3000 Kč měsíčně, okno 3 dny, rozpočet na dokoupené kliky 0 Kč při ø 2.2 Kč za klik, jiné kliky 0 měsíčně. Hledání je jen Seznam (Sklik).
+Předpoklady (ne měření): cena 349 Kč, konverze na platbu 1.0 %, na signál poptávky při ověření 1.0 %, CTR 3 %, cíl zisku 10000 Kč měsíčně, okno 3 dny, rozpočet na dokoupené kliky 0 Kč při ø 2.2 Kč za klik, jiné kliky 0 měsíčně. Hledání je jen Seznam (Sklik).
 - Ověřitelnost do 3 dnů: **NE**. Dosažitelných návštěv 2.8 (z toho dokoupených 0.0), potřeba 92 (aspoň jeden signál poptávky s pravděpodobností 60 %).
-- Dostatečný prodej: **NE**. Tržby měsíčně při dnešní hledanosti 97 Kč (ve špičce 556 Kč) proti cíli 3000 Kč.
+- Dostatečný prodej: **NE**. Kritérium: škálovatelný (průměrný zisk ≥ 10000 Kč měsíčně, cesta k desítkám tisíc). Tržby měsíčně při dnešní hledanosti 97 Kč, náklady 61 Kč, zisk 37 Kč (ve špičce zisk 209 Kč).
 - Závěr: **NESTAVĚT a nespouštět bez výjimky schválené Ondřejem**.
 
 ## Kapacita trhu
