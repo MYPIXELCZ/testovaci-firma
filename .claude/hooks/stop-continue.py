@@ -37,7 +37,7 @@ else:
         stale = f" plan/stav-session.md je starý {age:.0f} min: aktualizuj a commitni."
 print(json.dumps({
     "decision": "block",
-    "reason": ("Konec tahu (bez výčtu Ondřejovi, jen nové věci, žádost o něj, rizika). Ověř: send_later za 60 min naplánován; "
+    "reason": ("Konec tahu (bez výčtu Ondřejovi, jen nové věci, žádost o něj, rizika). Ověř: "
                "`python3 tools/stav.py` puštěn a ALERTY vyřízeny; neblokovaná práce pokračuje; nečekáš na událost s P<20 %; "
                "modely se nemíchají (ListAgents před žádostí o přepnutí); nový pokyn Ondřeje posouzen kriticky (výhrada jednou, veto platí, `plan/rozhodnuti.md`); "
                "Vercel jen tým MYPIXELCZ; stav v plan/stav-session.md." + stale + nxt),

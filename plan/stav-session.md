@@ -1,9 +1,9 @@
 # Stav hlavní session (průběžný zápis, aby se po kompresi chatu neztratila nit)
 
-Aktualizováno: 2026-10-02 15:45 Praha. Aktualizovat po každém významném kroku (nový pokyn Ondřeje, start nebo konec agenta, rozhodnutí, commit). Po kompresi nebo novém startu session ho přečíst jako první (vkládá ho hook `session-resume.py`), pak CLAUDE.md a FAILS.md.
+Aktualizováno: 2026-10-02 15:40 Praha. Aktualizovat po každém významném kroku (nový pokyn Ondřeje, start nebo konec agenta, rozhodnutí, commit). Po kompresi nebo novém startu session ho přečíst jako první (vkládá ho hook `session-resume.py`), pak CLAUDE.md a FAILS.md.
 
 ## Kdo a kde
-Hlavní session „TESTOVACÍ FIRMA“ (CCR `session_01N4ZDnfkuU5cm6b5gWA3X3Y`), větev `claude/hopeful-hamilton-n1pbnk` (push nasazuje do Vercel týmu MYPIXELCZ). Hodinová rutina `trig_01JwSBqqYubWBAPLvW1ZK1Te` (:25) a jednorázová připomínka `trig_01HsG7157SouDk5eMtpHKrbB` (15:28 Praha); po každém probuzení nová `send_later` za 60 minut. Ondřej píše česky, krátce; odpovědi jen s informační hodnotou.
+Hlavní session „TESTOVACÍ FIRMA“ (CCR `session_01N4ZDnfkuU5cm6b5gWA3X3Y`), větev `claude/hopeful-hamilton-n1pbnk` (push nasazuje do Vercel týmu MYPIXELCZ). **Hodinová rutina `trig_01JwSBqqYubWBAPLvW1ZK1Te` je VYPNUTÁ a jednorázová připomínka smazána (Ondřej 15:36); nic neplánovat, `send_later` nepoužívat.** Termíny: Zboží.cz přeměřit 2026-10-03, vyhodnotit do 2026-10-04 (bez připomínky, jen na Ondřejovo vyzvání). Ondřej píše česky, krátce; odpovědi jen s informační hodnotou.
 
 ## Cíl a pravidla (podrobně CLAUDE.md)
 Cíl A: zisk ≥ 10 000 Kč měsíčně hned nebo doložená cesta do ~6 měsíců (dnes nezáporný), nebo B: pasivně, náklad ≤ ⅓ tržeb. Preference: automatizovaný produkt, pak 3D tisk, pak zakázkový web/systém/e-shop. Zahraniční placené služby povoleny (výdaj schvaluje Ondřej). Rozpočet zbývá ~700 Kč. Pravidla z FAILů dnes: verdikt/ověřitelnost, stav všech akcí (`tools/stav.py`), portfolio gate, zpětná platnost, normy přistávacího webu a zákaz „AI vzhledu“, modely se nemíchají (dávky), Vercel jen MYPIXELCZ, poradce ne přikyvovač (`plan/rozhodnuti.md`), podíl na trhu (SABLONA 2b), schopnost místo minulosti (2a), prezentace jako proměnná (2c).
@@ -18,7 +18,7 @@ Ondřej má živé: mypixel.cz (MYPIXEL s.r.o., WordPress weby od 14 800 Kč, 85
 1. ReviewBoost jako business testovací firmy (#22): Seznam jen „google recenze“ 137/měs, bez Google dat nevím; čeká na Ondřejovu odpověď (je to jeho oddělený projekt? zákazníci?) a DataForSEO. 2. K4 digitální produkty Etsy (#23, pasivní, B ≈ 30 %, A ≈ 10 %): krok 0 DataForSEO. 3. K6 Shoptet doplněk po datech (nemáme zdroj dat bez portálů, nízká priorita). K5 3D tisk NE pro A.
 
 ## Agenti
-Žádný neběží (agent konkurence ReviewBoostu zastaven). Připomínka: `trig_01Eg2vKMjN1pAaun2B7A7yux` (15:13 Praha po 60 min, ve skutečnosti 16:13), rutina :25 trvalá.
+Žádný neběží (agent konkurence ReviewBoostu zastaven). Připomínky žádné.
 
 ## ReviewBoost: STOP (Ondřej 15:15)
 Projekt má chybu, nesmím ho využít; nic jsem v jeho repu neměnil, lokální kopii smazal. Akce #22 zamítnuta. Zbývá K4 Etsy (#23, potřebuje DataForSEO) nebo nic.
@@ -36,4 +36,4 @@ K4 Etsy tím nejde ověřit; navrženo 🥇 Google Ads účet + Keyword Planner 
 1. Rozhodnutí o směru: 🥇 ReviewBoost jako business testovací firmy (marketing, růst), 🥈 K4 Etsy, 🥉 nic nového. 2. Autorizace účtu DataForSEO (1 USD zdarma, bez karty; pro ReviewBoost i K4). 3. Oprava IČ v patičce mypixel.cz (17664578 patří Glow Wrapp s.r.o., správně 17617421); tvrzení „+47 recenzí v průměru“ na reviewboost.cz musí mít data (jinak klamavé, § 6b zákona 40/1995). 4. Search Console printopia.cz (nepotvrzeno).
 
 ## Další kroky (dávka Sonnet)
-1. Po Ondřejově odpovědi: akce #22 nebo #23. 2. Zboží.cz přeměřit 10-03, vyhodnotit 10-04; #19, #20. 3. Každé probuzení: `python3 tools/stav.py`; send_later 60 min (trig_01HsG7157SouDk5eMtpHKrbB 15:28 Praha čeká).
+1. Po Ondřejově odpovědi: akce #22 nebo #23. 2. Zboží.cz přeměřit 10-03, vyhodnotit 10-04; #19, #20. 3. Bez hodinových probuzení: `python3 tools/stav.py` jen na žádost.
