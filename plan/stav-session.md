@@ -1,6 +1,6 @@
 # Stav hlavní session (průběžný zápis, aby se po kompresi chatu neztratila nit)
 
-Aktualizováno: 2026-10-02 15:20 Praha. Aktualizovat po každém významném kroku (nový pokyn Ondřeje, start nebo konec agenta, rozhodnutí, commit). Po kompresi nebo novém startu session ho přečíst jako první (vkládá ho hook `session-resume.py`), pak CLAUDE.md a FAILS.md.
+Aktualizováno: 2026-10-02 15:15 Praha. Aktualizovat po každém významném kroku (nový pokyn Ondřeje, start nebo konec agenta, rozhodnutí, commit). Po kompresi nebo novém startu session ho přečíst jako první (vkládá ho hook `session-resume.py`), pak CLAUDE.md a FAILS.md.
 
 ## Kdo a kde
 Hlavní session „TESTOVACÍ FIRMA“ (CCR `session_01N4ZDnfkuU5cm6b5gWA3X3Y`), větev `claude/hopeful-hamilton-n1pbnk` (push nasazuje do Vercel týmu MYPIXELCZ). Hodinová rutina `trig_01JwSBqqYubWBAPLvW1ZK1Te` (:25) a jednorázová připomínka `trig_01HsG7157SouDk5eMtpHKrbB` (15:28 Praha); po každém probuzení nová `send_later` za 60 minut. Ondřej píše česky, krátce; odpovědi jen s informační hodnotou.
@@ -16,6 +16,9 @@ Ondřej má živé: mypixel.cz (MYPIXEL s.r.o., WordPress weby od 14 800 Kč, 85
 
 ## Kandidáti teď
 1. ReviewBoost jako business testovací firmy (#22): Seznam jen „google recenze“ 137/měs, bez Google dat nevím; čeká na Ondřejovu odpověď (je to jeho oddělený projekt? zákazníci?) a DataForSEO. 2. K4 digitální produkty Etsy (#23, pasivní, B ≈ 30 %, A ≈ 10 %): krok 0 DataForSEO. 3. K6 Shoptet doplněk po datech (nemáme zdroj dat bez portálů, nízká priorita). K5 3D tisk NE pro A.
+
+## Agenti
+Běží 1: konkurence ReviewBoostu (Sonnet, výstup `plan/reviewboost-konkurence.md`, hlídá právní riziko „review gatingu“ a nejlepší niku). Připomínka: `trig_01Eg2vKMjN1pAaun2B7A7yux` (15:13 Praha po 60 min, ve skutečnosti 16:13), rutina :25 trvalá.
 
 ## Čeká na Ondřeje
 1. Rozhodnutí o směru: 🥇 ReviewBoost jako business testovací firmy (marketing, růst), 🥈 K4 Etsy, 🥉 nic nového. 2. Autorizace účtu DataForSEO (1 USD zdarma, bez karty; pro ReviewBoost i K4). 3. Oprava IČ v patičce mypixel.cz (17664578 patří Glow Wrapp s.r.o., správně 17617421); tvrzení „+47 recenzí v průměru“ na reviewboost.cz musí mít data (jinak klamavé, § 6b zákona 40/1995). 4. Search Console printopia.cz (nepotvrzeno).
