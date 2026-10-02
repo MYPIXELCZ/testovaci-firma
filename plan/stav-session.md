@@ -1,6 +1,6 @@
 # Stav hlavní session (průběžný zápis, aby se po kompresi chatu neztratila nit)
 
-Aktualizováno: 2026-10-02 15:26 Praha. Aktualizovat po každém významném kroku (nový pokyn Ondřeje, start nebo konec agenta, rozhodnutí, commit). Po kompresi nebo novém startu session ho přečíst jako první (vkládá ho hook `session-resume.py`), pak CLAUDE.md a FAILS.md.
+Aktualizováno: 2026-10-02 15:30 Praha. Aktualizovat po každém významném kroku (nový pokyn Ondřeje, start nebo konec agenta, rozhodnutí, commit). Po kompresi nebo novém startu session ho přečíst jako první (vkládá ho hook `session-resume.py`), pak CLAUDE.md a FAILS.md.
 
 ## Kdo a kde
 Hlavní session „TESTOVACÍ FIRMA“ (CCR `session_01N4ZDnfkuU5cm6b5gWA3X3Y`), větev `claude/hopeful-hamilton-n1pbnk` (push nasazuje do Vercel týmu MYPIXELCZ). Hodinová rutina `trig_01JwSBqqYubWBAPLvW1ZK1Te` (:25) a jednorázová připomínka `trig_01HsG7157SouDk5eMtpHKrbB` (15:28 Praha); po každém probuzení nová `send_later` za 60 minut. Ondřej píše česky, krátce; odpovědi jen s informační hodnotou.
@@ -22,6 +22,9 @@ Ondřej má živé: mypixel.cz (MYPIXEL s.r.o., WordPress weby od 14 800 Kč, 85
 
 ## ReviewBoost: STOP (Ondřej 15:15)
 Projekt má chybu, nesmím ho využít; nic jsem v jeho repu neměnil, lokální kopii smazal. Akce #22 zamítnuta. Zbývá K4 Etsy (#23, potřebuje DataForSEO) nebo nic.
+
+## DataForSEO zamítnuto (Ondřej 15:19)
+K4 Etsy tím nejde ověřit; navrženo 🥇 Google Ads účet + Keyword Planner (zdarma, pásma), 🥈 jen B-sondy bez dat, 🥉 pauza hledání (Printopia a anoberu zůstávají pasivní). Čeká na jeho volbu.
 
 ## Čeká na Ondřeje
 1. Rozhodnutí o směru: 🥇 ReviewBoost jako business testovací firmy (marketing, růst), 🥈 K4 Etsy, 🥉 nic nového. 2. Autorizace účtu DataForSEO (1 USD zdarma, bez karty; pro ReviewBoost i K4). 3. Oprava IČ v patičce mypixel.cz (17664578 patří Glow Wrapp s.r.o., správně 17617421); tvrzení „+47 recenzí v průměru“ na reviewboost.cz musí mít data (jinak klamavé, § 6b zákona 40/1995). 4. Search Console printopia.cz (nepotvrzeno).
