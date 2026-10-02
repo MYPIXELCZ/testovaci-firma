@@ -164,6 +164,16 @@ for line in (ROOT / "plan/akce.md").read_text(encoding="utf-8").splitlines():
         else:
             print(f"  akce #{cols[0]}: sleduje {', '.join(tags)}")
 
+print("\n## zpětné opravy starých projektů (CLAUDE.md „Zpětná platnost pravidel“)")
+for line in (ROOT / "plan/akce.md").read_text(encoding="utf-8").splitlines():
+    cols = [c.strip() for c in line.strip().strip("|").split("|")]
+    if len(cols) >= 5 and cols[0].isdigit() and "[zpetne]" in cols[4] and not cols[3].startswith(("zamítnuto", "hotovo")):
+        if not re.search(r"Přínos:.*\d", cols[4]):
+            print(f"  akce #{cols[0]}: zpětná oprava bez odhadu přínosu s čísly")
+            ALERTS.append(f"akce #{cols[0]} je zpětná oprava bez „Přínos: …“ s čísly (zrušit, nebo doplnit odhad)")
+        else:
+            print(f"  akce #{cols[0]}: zpětná oprava s odhadem přínosu")
+
 print("\n## model: úlohy, které potřebují vyšší model než Sonnet 5.5 (CLAUDE.md „Model“)")
 model_file = ROOT / "plan/model.txt"
 active = model_file.exists() and "vyšší model aktivní" in model_file.read_text(encoding="utf-8")

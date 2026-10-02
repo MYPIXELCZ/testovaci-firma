@@ -23,7 +23,7 @@ mkdirSync(out, { recursive: true });
 const T = {
   "kontrast-text-min": 4.5, "kontrast-velky-text-min": 3, "pismo-telo-min-px": 16, "delka-radku-max-znaku": 80,
   "tap-target-min-px": 44, "lcp-max-s": 2.5, "cls-max": 0.1, "cta-opakovani-min": 3, "max-mrizek-stejnych-karet": 1,
-  "max-rodin-pisma": 2, "nahled-produktu-min-px-pc": 420, "nahled-produktu-min-px-mobil": 280, "h1-max-slov": 14,
+  "max-rodin-pisma": 2, "nahled-produktu-min-px-pc": 420, "nahled-produktu-min-px-mobil": 280, "h1-max-slov": 14, "h1-pomer-k-telu-min": 3.5, "css-promenne-min": 6,
   "max-stockovych-fotek": 1, "title-min": 25, "title-max": 65, "description-min": 70, "description-max": 165,
   "pisma-zakazana": "Space Grotesk, Poppins",
   "pisma-podezrela": "Inter, Roboto, Arial, Montserrat, Open Sans, system-ui",
@@ -94,7 +94,7 @@ for (const [name, w, h, mobile] of [["pc", 1440, 900, false], ["mobil", 390, 844
       if (!sub) E("hero-podnadpis", "pod h1 chybí podnadpis nad ohybem");
     }
     const ctas = [...document.querySelectorAll("a, button")].filter((e) => vis(e) && !e.closest("nav") && /^(button|a)$/i.test(e.tagName) && e.innerText.trim().length > 1);
-    const ctaFold = ctas.filter((e) => e.getBoundingClientRect().top < fold - 20 && e.getBoundingClientRect().height >= 36 && /(koupit|objednat|stáhnout|začít|vyzkoušet|chci|získat|poslat|nezávazn|ukázk)/i.test(e.innerText));
+    const ctaFold = ctas.filter((e) => e.getBoundingClientRect().top < fold - 20 && e.getBoundingClientRect().height >= 36 && /(koupit|objednat|stáhnout|začít|vyzkoušet|chci|získat|poslat|nezávazn|ukázk|naplánovat|rezervovat|vstupenk|zjistit|poptat|napsat|kontakt|přidat|zaregistr|prohlédnout)/i.test(e.innerText));
     if (!ctaFold.length) E("hero-cta", "nad ohybem není viditelné tlačítko s výzvou k akci (koupit, objednat, stáhnout…)");
     else {
       const main = ctaFold[0], href = main.getAttribute("href");
@@ -103,7 +103,8 @@ for (const [name, w, h, mobile] of [["pc", 1440, 900, false], ["mobil", 390, 844
       const bg = bgOf(main), fg = parse(getComputedStyle(main).color);
       if (bg && fg) { const cr = ratio(fg, bg); if (cr < T["kontrast-text-min"]) E("cta-kontrast", `kontrast CTA ${cr.toFixed(2)}:1 (min. ${T["kontrast-text-min"]})`); }
     }
-    const visuals = [...document.querySelectorAll("img, svg, picture, canvas, video")].filter((e) => vis(e) && e.getBoundingClientRect().top < fold);
+    const bgVisual = [...document.querySelectorAll("div, section, header")].some((e) => { const b = e.getBoundingClientRect(); return vis(e) && b.top < fold && b.width * Math.min(b.height, fold) > innerWidth * fold * 0.3 && /url\(/.test(getComputedStyle(e).backgroundImage); });
+    const visuals = [...document.querySelectorAll("img, svg, picture, canvas, video")].filter((e) => vis(e) && e.getBoundingClientRect().top < fold).concat(bgVisual ? [document.body] : []);
     const minW = mobile ? T["nahled-produktu-min-px-mobil"] : T["nahled-produktu-min-px-pc"];
     const prodImgs = [...document.querySelectorAll("img")].filter((e) => vis(e) && /(náhled|ukázk|produkt|sada|plánovač|list|tabulk|web|stránk|screenshot)/i.test(`${e.alt} ${e.src}`));
     if (!prodImgs.length) E("nahled-produktu", "na stránce není obrázek s náhledem produktu (alt/název souboru: náhled, ukázka, produkt…)");
@@ -114,7 +115,7 @@ for (const [name, w, h, mobile] of [["pc", 1440, 900, false], ["mobil", 390, 844
     const sizes = [...document.querySelectorAll("p, li")].filter((e) => vis(e) && e.innerText.trim().length > 60).map((e) => parseFloat(getComputedStyle(e).fontSize)).sort((a, b) => a - b);
     const medianSize = sizes.length ? sizes[Math.floor(sizes.length / 2)] : 0;
     if (medianSize && medianSize < T["pismo-telo-min-px"]) E("pismo-telo", `mediánové písmo odstavců ${medianSize}px (min. ${T["pismo-telo-min-px"]} px)`);
-    const textEls = [...document.querySelectorAll("h1,h2,h3,h4,p,li,a,button,span,label,summary,dt,dd")].filter((e) => vis(e) && [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length > 1));
+    const textEls = [...document.querySelectorAll("h1,h2,h3,h4,p,li,a,button,span,label,summary,dt,dd")].filter((e) => vis(e) && !e.closest("[aria-hidden=true]") && parse(getComputedStyle(e).color)?.a > 0.3 && [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length > 1));
     const fams = new Set(), banned = T["pisma-zakazana"].split(",").map((x) => x.trim().toLowerCase()).filter(Boolean);
     const bannedUsed = new Set();
     for (const e of textEls) {
@@ -141,8 +142,23 @@ for (const [name, w, h, mobile] of [["pc", 1440, 900, false], ["mobil", 390, 844
       const s = getComputedStyle(e);
       if ((s.webkitBackgroundClip === "text" || s.backgroundClip === "text") && /gradient/.test(s.backgroundImage)) { E("gradient-text", `gradientní text: ${e.tagName} „${e.innerText.slice(0, 30)}“`); break; }
     }
-    const emoji = (document.body.innerText.match(/[\p{Extended_Pictographic}]/gu) || []);
+    const emoji = (document.body.innerText.match(/\p{Emoji_Presentation}|\p{Extended_Pictographic}\uFE0F/gu) || []);
     if (emoji.length) E("emoji", `emoji v rozhraní: ${[...new Set(emoji)].join(" ")} (nahradit vlastní ikonou nebo grafikou)`);
+
+    // měřítko kvality zoo-hero (plan/postupy/mericko-kvality-zoo-hero.md): hierarchie, pohyb, systém
+    if (h1 && medianSize && parseFloat(getComputedStyle(h1).fontSize) / medianSize < T["h1-pomer-k-telu-min"]) W("hierarchie", `h1 je jen ${(parseFloat(getComputedStyle(h1).fontSize) / medianSize).toFixed(1)}× větší než text těla (zoo-hero ≈ 8×, min. ${T["h1-pomer-k-telu-min"]}×)`);
+    if (!mobile) {
+      let animated = document.getAnimations().length > 0, reduced = false, tokens = 0, transitions = 0;
+      for (const e of document.querySelectorAll("a, button")) { if (parseFloat(getComputedStyle(e).transitionDuration) > 0) transitions++; }
+      for (const sh of document.styleSheets) { try { for (const rule of sh.cssRules) {
+        if (rule.media && /prefers-reduced-motion/.test(rule.media.mediaText)) reduced = true;
+        if (rule.selectorText === ":root") tokens += [...rule.style].filter((x) => x.startsWith("--")).length;
+      } } catch {} }
+      for (const e of document.querySelectorAll("*")) { if (getComputedStyle(e).animationName !== "none") { animated = true; break; } }
+      if (animated && !reduced) E("pohyb-reduced-motion", "stránka má animace, ale žádné pravidlo @media (prefers-reduced-motion)");
+      if (tokens < T["css-promenne-min"]) W("barevny-system", `jen ${tokens} CSS proměnných v :root (min. ${T["css-promenne-min"]}): barvy a mezery mají být systém, ne roztroušené hodnoty`);
+      if (!transitions) W("mikrodetaily", "žádné plynulé přechody u tlačítek a odkazů (hover, fokus)");
+    }
 
     // rozvržení
     const grids = [];
@@ -184,7 +200,7 @@ for (const [name, w, h, mobile] of [["pc", 1440, 900, false], ["mobil", 390, 844
     if (mobile) {
       const small = [...document.querySelectorAll("button, a.btn, a[class*=btn], a[class*=button], input, select")].filter((e) => vis(e) && Math.min(e.getBoundingClientRect().height, 99) < T["tap-target-min-px"]);
       if (small.length) E("tap-target", `${small.length} ovládacích prvků nižších než ${T["tap-target-min-px"]} px (např. „${(small[0].innerText || small[0].value || "").trim().slice(0, 20)}“)`);
-      if (document.documentElement.scrollWidth > innerWidth + 1) E("preteka", "stránka přetéká do strany");
+      window.scrollTo(200, 0); if (window.scrollX > 0) E("preteka", "stránka se dá posunout do strany (vodorovný posuvník)"); window.scrollTo(0, 0);
     }
 
     // struktura (jen jednou, na PC)
