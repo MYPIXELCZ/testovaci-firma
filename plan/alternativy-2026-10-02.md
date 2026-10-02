@@ -107,3 +107,10 @@ Kolo 2 u části kandidátů uvedlo „nasycené“ nebo „vítěz bere vše“
 | K8 chatbot pro malé firmy | 6 až 10 klientů | desítky tisíc webů (nezměřeno) | pravděpodobně pod 0,1 % | kanál (0 poptávek, Seznam 16 hledání), ne konkurence |
 | 3D tisk | 59 váz měsíčně | Zboží.cz 23 až 47 nabídek na dotaz | neznámý | marže 20 až 50 Kč na hodinu tisku, ne konkurence |
 Závěr: u K5, K8 a Shoptet doplňku nebyla pravá příčina NE konkurence, ale chybějící kanál, nízká marže nebo neověřitelnost. Konečné pořadí (#13) udělat znovu s oddílem 2b a výhodami proti konkurenci u každého z kandidátů (cena, rychlost odpovědi do hodiny, balíček na rok, nika), na vyšším modelu.
+
+## Dodatek 2026-10-02 14:44: varianty prezentace K1+K2 (stejná služba, různé segmenty)
+Plán a odpovědi v testu se značí variantou, vyhodnocují se zvlášť (reakce, výhry), poctivost: stejná služba, jiné podání.
+- **Varianta 1: „Technik na zavolanou“ pro majitele e-shopu, který se bojí agentury.** Problém jeho slovy: „potřebuju něco upravit a nechci platit agenturu za týden čekání“. Příslib: úprava do 24 hodin za pevnou cenu předem, bez smlouvy. Kotva: freelancer 500 až 550 Kč za hodinu, agentura 20 tisíc. Konkurence: freelanceři a partneři Shoptetu (776), podíl se měří výhrou odpovědí.
+- **Varianta 2: „Měsíční balíček úprav“ pro e-shop, který má úpravy pořád.** Problém: „pořád něco potřebujeme předělat a nechci řešit každou zakázku zvlášť“. Příslib: paušál 2 990 Kč měsíčně, pevný rozsah (hodiny, SLA odpovědi do hodiny), výpověď kdykoli. Kotva: 20 hodin freelancera 10 500 Kč. Konkurence: freelanceři, správa za 3 750 až 10 500 Kč měsíčně.
+- **Varianta 3: „Rychlé ruce pro agentury a freelancery“ (subdodávka).** Segment: agentury a freelanceři, kteří nestíhají. Příslib: pevná cena za úkol, předání s dokumentací, bez přímého kontaktu s jejich klientem. Kotva: jejich vlastní hodinová sazba. Podíl: menší trh, ale opakované zakázky; ověřit jednou odpovědí na poptávku nebo přímým dotazem (jen B2B kontakt na jejich veřejný e-mail s nabídkou, ne hromadně).
+Vyhodnocení po 72 h a 28 dnech podle značky varianty v tabulce reakcí.

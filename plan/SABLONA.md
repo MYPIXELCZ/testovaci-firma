@@ -45,6 +45,9 @@ a Ondřej nekupuje nic (doména, reklama). Každé tvrzení o poptávce musí m�
 ## 2a. Schopnost (umím to?) (povinné, FAIL 2026-10-02 14:43)
 Rozhodujeme podle toho, zda jsme schopni to udělat, ne zda jsme to už dělali. U každé části řešení: umím ji? Ověření do 24 h (zkouška, prototyp, dokumentace) a výsledek zapsat. „Nedělali jsme“ není důvod k NE. Chybějící reference řešit pilotem se zárukou, nikdy ne vymyšlenými referencemi (klamavé jednání).
 
+## 2c. Prezentace pro cílovou skupinu (povinné, FAIL 2026-10-02 14:44)
+Stejná služba se různým skupinám jeví jinak podle toho, jak je podána. Navrhnout 2 až 3 varianty pro různé segmenty a u každé uvést: **segment** (kdo, v jaké situaci), **jeho slovy problém** (ne naše řešení), **název a příslib**, **cenová kotva a balení** (s čím se srovná: agentura, freelancer, „udělám si sám“), **důkaz** (ukázka, záruka, pilot; nic vymyšleného), **kanál a jazyk**, **konkurence v této variantě** a **realistický podíl** (oddíl 2b). V testu každou variantu označit a vyhodnotit zvlášť; vítěze volit podle reakcí, u malých vzorků postupně, ne statisticky. Platí poctivost: jiné podání, ne jiná skutečnost.
+
 ## 2b. Konkurence a ukousnutelný podíl (povinné, FAIL 2026-10-02 14:38)
 V každém businessu drží trh statisticky pár velkých hráčů. Neříkáme proto automaticky „nasycené, NE“, ptáme se, zda a čím si ukousneme kus (realisticky):
 1. **Trh a koncentrace:** kolik nákupních rozhodnutí měsíčně je v dosažitelném trhu (poptávky, nové e-shopy, hledání, prodeje konkurence) a kolik z něj drží vedoucí hráči (číslo a zdroj).
