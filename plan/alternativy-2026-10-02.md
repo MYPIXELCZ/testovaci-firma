@@ -114,3 +114,8 @@ Plán a odpovědi v testu se značí variantou, vyhodnocují se zvlášť (reakc
 - **Varianta 2: „Měsíční balíček úprav“ pro e-shop, který má úpravy pořád.** Problém: „pořád něco potřebujeme předělat a nechci řešit každou zakázku zvlášť“. Příslib: paušál 2 990 Kč měsíčně, pevný rozsah (hodiny, SLA odpovědi do hodiny), výpověď kdykoli. Kotva: 20 hodin freelancera 10 500 Kč. Konkurence: freelanceři, správa za 3 750 až 10 500 Kč měsíčně.
 - **Varianta 3: „Rychlé ruce pro agentury a freelancery“ (subdodávka).** Segment: agentury a freelanceři, kteří nestíhají. Příslib: pevná cena za úkol, předání s dokumentací, bez přímého kontaktu s jejich klientem. Kotva: jejich vlastní hodinová sazba. Podíl: menší trh, ale opakované zakázky; ověřit jednou odpovědí na poptávku nebo přímým dotazem (jen B2B kontakt na jejich veřejný e-mail s nabídkou, ne hromadně).
 Vyhodnocení po 72 h a 28 dnech podle značky varianty v tabulce reakcí.
+
+## Dodatek 2026-10-02 14:50: korekce K4 po průzkumu zahraničních služeb (`plan/postupy/zahranicni-sluzby.md`)
+- Krok 0 pro K4 NENÍ Keywords Everywhere za 280 Kč (ten je jen roční plán od 84 USD ≈ 1 831 Kč + DPH). Nejlevnější je **DataForSEO Google Ads Search Volume API**: 100 dotazů ≈ 0,06 USD ≈ 1,3 Kč, 1 USD na zkoušku zdarma bez karty (podle jejich stránek, neověřeno nezávisle), tedy krok 0 za ≈ 0 Kč.
+- Seznam tvoří jen ≈ 15 % českého hledání (StatCounter 09/2026: Google 78,7 %, Seznam 15,1 %), čísla ze Skliku podhodnocují trh asi 5× (odhad, ověří DataForSEO). To může změnit verdikty u kandidátů, které padly na „Seznam nemá objem“.
+- Hosting klientských webů: Vercel čl. 11 zakazuje službu třetím stranám, doporučený Netlify (agenturám povoluje, Personal 9 USD ≈ 196 Kč + DPH).
