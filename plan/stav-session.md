@@ -1,6 +1,6 @@
 # Stav hlavní session (průběžný zápis, aby se po kompresi chatu neztratila nit)
 
-Aktualizováno: 2026-10-02 15:05 Praha. Aktualizovat po každém významném kroku (nový pokyn Ondřeje, start nebo konec agenta, rozhodnutí, commit). Po kompresi nebo novém startu session ho přečíst jako první (vkládá ho hook `session-resume.py`), pak CLAUDE.md a FAILS.md.
+Aktualizováno: 2026-10-02 15:20 Praha. Aktualizovat po každém významném kroku (nový pokyn Ondřeje, start nebo konec agenta, rozhodnutí, commit). Po kompresi nebo novém startu session ho přečíst jako první (vkládá ho hook `session-resume.py`), pak CLAUDE.md a FAILS.md.
 
 ## Kdo a kde
 Hlavní session „TESTOVACÍ FIRMA“ (CCR `session_01N4ZDnfkuU5cm6b5gWA3X3Y`), větev `claude/hopeful-hamilton-n1pbnk` (push nasazuje do Vercel týmu MYPIXELCZ). Hodinová rutina `trig_01JwSBqqYubWBAPLvW1ZK1Te` (:25) a jednorázová připomínka `trig_01HsG7157SouDk5eMtpHKrbB` (15:28 Praha); po každém probuzení nová `send_later` za 60 minut. Ondřej píše česky, krátce; odpovědi jen s informační hodnotou.
@@ -11,14 +11,14 @@ Cíl A: zisk ≥ 10 000 Kč měsíčně hned nebo doložená cesta do ~6 měsíc
 ## Stav businessů
 Printopia a anoberu: verdikt NE/NE, pasivně, nic nepřepracovávat. Zboží.cz sonda běží (pozice 32 a 45; přeměřit 2026-10-03, vyhodnotit 2026-10-04). Sklik kredit ≈ 124 Kč bez DPH, 0 kliků. Doporučení Skliku: jen „dynamický retargeting návštěvníků Seznamu“ zvážit (akce #20 po 10-04). Web za 24 hodin: jen levná sonda zájmu, verdikt NE/NE, šance 20–25 %, riziko Vercel Terms čl. 11, Bazoš 147 Kč.
 
-## Rozhodnutí #13 (hotovo 15:0x na Opus 5.5, `plan/rozhodnuti-business.md`)
-Jeden business „Dílna na poptávky“ (K1 úkol + K2 balíček 2 990 Kč + K3 projekt 15–60 tis.), sonda odpověďmi na poptávky, varianty V1–V4, akce #21; Bazoš test zrušen; K4 jen krok 0 (DataForSEO), K6 po datech, K5 NE. Šance na A ≈ 25 % (výhrada zapsána v dokumentu).
+## Revize #13 (15:09–15:20, Ondřej sdělil nové fakty)
+Ondřej má živé: mypixel.cz (MYPIXEL s.r.o., WordPress weby od 14 800 Kč, 85+ webů, 5,0 z 24 Google recenzí), webprodava.cz (jeho nabídka webů, provozovatel Ing. Ondřej Chloupek), ReviewBoost SaaS (reviewboost.cz, MYPIXEL s.r.o., 690 Kč/měs) a platí ePoptávku 500 Kč/měs. **Nechce poptávkové portály (duplicita)** → „Dílna na poptávky“ (#21) a stránka na webprodava.cz (#14) zrušeny, třída „web pro malé firmy“ duplikuje jeho byznys. Domény v CLAUDE.md nebyly volné (opraveno). Model: Sonnet 5.5 aktivní (`plan/model.txt`), agenti neběží. Portfolio gate: žádný business s ANO/ANO.
+
+## Kandidáti teď
+1. ReviewBoost jako business testovací firmy (#22): Seznam jen „google recenze“ 137/měs, bez Google dat nevím; čeká na Ondřejovu odpověď (je to jeho oddělený projekt? zákazníci?) a DataForSEO. 2. K4 digitální produkty Etsy (#23, pasivní, B ≈ 30 %, A ≈ 10 %): krok 0 DataForSEO. 3. K6 Shoptet doplněk po datech (nemáme zdroj dat bez portálů, nízká priorita). K5 3D tisk NE pro A.
 
 ## Čeká na Ondřeje
-1. „ano, sonda poptávek“. 2. Shoptet (reCAPTCHA): 🥇 odesílá on (≈ 1 min na kus, ≈ 25 měsíčně), 🥈 vynechat, 🥉 e-mail na veřejný kontakt (nedoporučeno). 3. Podmínky služby (připravím). 4. Webtrh Premium 465 Kč, jen pokud nutné. 5. E-mail dílny čitelný přes Gmail konektor, registrace zkušebního Shoptetu. 6. Search Console printopia.cz (nepotvrzeno). 7. Přepnout zpět na Sonnet 5.5 (požádáno 15:0x).
+1. Rozhodnutí o směru: 🥇 ReviewBoost jako business testovací firmy (marketing, růst), 🥈 K4 Etsy, 🥉 nic nového. 2. Autorizace účtu DataForSEO (1 USD zdarma, bez karty; pro ReviewBoost i K4). 3. Oprava IČ v patičce mypixel.cz (17664578 patří Glow Wrapp s.r.o., správně 17617421); tvrzení „+47 recenzí v průměru“ na reviewboost.cz musí mít data (jinak klamavé, § 6b zákona 40/1995). 4. Search Console printopia.cz (nepotvrzeno).
 
-## Agenti
-Neběží žádný.
-
-## Další kroky (pořadí, dávka Sonnet)
-1. Po „přepnuto zpět“: `plan/model.txt` přepsat na „sonnet aktivní“. 2. Ověření 2a: Playwright na cizí HTTPS (README: NSS store nastaven), kdo smí odpovídat na Shoptet poptávky, Webtrh Premium (nutnost, cena, období), placený kontakt u ePoptávky a Poptavky.cz. 3. Tři vzorové odpovědi na živé poptávky s kusem řešení. 4. Podmínky služby dílny (rozšířit `plan/web-za-24-hodin.md`). 5. `plan/sonda-poptavky.csv` a sekce v `tools/stav.py`. 6. #14 stránka dílny až po schválení (vyšší model). 7. Zboží.cz přeměřit 10-03, vyhodnotit 10-04; #19, #20. 8. Každé probuzení: `python3 tools/stav.py`.
+## Další kroky (dávka Sonnet)
+1. Po Ondřejově odpovědi: akce #22 nebo #23. 2. Zboží.cz přeměřit 10-03, vyhodnotit 10-04; #19, #20. 3. Každé probuzení: `python3 tools/stav.py`; send_later 60 min (trig_01HsG7157SouDk5eMtpHKrbB 15:28 Praha čeká).
