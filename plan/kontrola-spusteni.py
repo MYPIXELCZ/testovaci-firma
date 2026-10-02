@@ -23,6 +23,9 @@ checks = {
     "plán: 7. Metriky a vyhodnocení": r"## 7\. Metriky",
 }
 missing = [k for k, rx in checks.items() if not re.search(rx, text)]
+# Konkurence a ukousnutelný podíl (FAILS.md 2026-10-02 14:38)
+if not re.search(r"## 2b\. Konkurence a ukousnutelný podíl", text) or not re.search(r"Naše výhody", text) or not re.search(r"Realistický podíl", text):
+    missing.append("plán: oddíl „## 2b. Konkurence a ukousnutelný podíl“ (trh a koncentrace, naše výhody s důkazem, úzká nika, realistický podíl, závěr)")
 # Vercel (FAILS.md 2026-10-02 14:17): web se nasazuje jen do týmu MYPIXELCZ.
 if not re.search(r"Vercel tým:\s*MYPIXELCZ\s*\(team_fNHd0fCTFAA6MuEnT4BlEeWu\)", text):
     missing.append("plán: řádek „Vercel tým: MYPIXELCZ (team_fNHd0fCTFAA6MuEnT4BlEeWu)“ po ověření `get_project` (plan/postupy/vercel-nasazeni.md)")

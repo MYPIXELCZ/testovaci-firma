@@ -41,3 +41,11 @@ a Ondřej nekupuje nic (doména, reklama). Každé tvrzení o poptávce musí m�
 - Kontrola: `python3 plan/kontrola-spusteni.py plan/<projekt>.md <aplikace>` musí projít.
 
 - **Zahraniční kanály a služby (Ondřej 2026-10-02):** v kapacitě trhu, konkurenci i v kanálech posuzovat zahraniční a placené služby (Google Ads, Etsy, Gumroad, hostingy, platební brány) stejně jako české: přínos proti ceně včetně 21 % DPH (reverse charge), poplatků a administrativy. Původ služby není důvod zamítnutí.
+
+## 2b. Konkurence a ukousnutelný podíl (povinné, FAIL 2026-10-02 14:38)
+V každém businessu drží trh statisticky pár velkých hráčů. Neříkáme proto automaticky „nasycené, NE“, ptáme se, zda a čím si ukousneme kus (realisticky):
+1. **Trh a koncentrace:** kolik nákupních rozhodnutí měsíčně je v dosažitelném trhu (poptávky, nové e-shopy, hledání, prodeje konkurence) a kolik z něj drží vedoucí hráči (číslo a zdroj).
+2. **Naše výhody (aspoň 3 s důkazem):** cena, rychlost, balíček (např. jedna cena na rok), specializace na úzkou niku, jazyk a místo, záruka, bezrizikový test, to, co vedoucí hráč nedělá (ze `Konkurence` tabulky). Výhoda bez důkazu se nepočítá.
+3. **Úzká nika:** nejmenší segment, kde můžeme být první nebo nejlepší, místo boje o celý trh.
+4. **Realistický podíl:** kolik objednávek měsíčně potřebujeme (cíl ÷ cena), kolik je to procent dosažitelného trhu (`plan/verdikt.py --trh-objednavek-mesicne N`, strop pro nováčka do 6 měsíců 3 %) a čím to doložíme (srovnatelní nováčci, jejich prodeje a recenze, naše míra odpovědí z testu). Žádná čísla „z optimismu“: bez dokladu se bere podíl 1 %. U poptávkových portálů se strop 3 % nahrazuje mírou výhry u odpovědí (benchmark nebo naše měření z testu), `--podil-max` se nastaví s odůvodněním.
+5. **Závěr:** ukousnutelné ANO/NE a co by to změnilo (cena, nika, kanál).

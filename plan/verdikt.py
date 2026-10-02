@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Automatický verdikt před stavbou (FAILS.md 2026-10-02 13:31): jde to ověřit do 3 dnů a bude prodej dostatečný?
 
-    python3 plan/verdikt.py <projekt> --cena 349 [--konv 0.01] [--konv-overeni X] [--ctr 0.03] [--cil 10000] [--dny 3] [--rozpocet 0] [--jine-kliky-mesicne 0] [--naklad-mesicne 0] [--jine-cpc N] [--rust-mesicne 0] [--horizont 6] [--pasivni]
+    python3 plan/verdikt.py <projekt> --cena 349 [--konv 0.01] [--konv-overeni X] [--ctr 0.03] [--cil 10000] [--dny 3] [--rozpocet 0] [--jine-kliky-mesicne 0] [--naklad-mesicne 0] [--jine-cpc N] [--rust-mesicne 0] [--horizont 6] [--trh-objednavek-mesicne N] [--podil-max 0.03] [--pasivni]
 
 Čte `plan/hledanost-<projekt>.md` (tabulka „Cílové dotazy“ ze `plan/hledanost.py`) a do téhož souboru zapíše oddíl „## Verdikt (automaticky)“.
 - Ověřitelnost: kolik návštěv se do `--dny` dnů dá reálně získat (hledání × CTR × dny/30 + jiné kliky) proti tomu, kolik jich je potřeba,
@@ -24,7 +24,7 @@ from pathlib import Path
 
 args = sys.argv[1:]
 project = args[0]
-opt = {"--cena": None, "--konv": 0.01, "--konv-overeni": None, "--ctr": 0.03, "--cil": 10000, "--dny": 3, "--rozpocet": 0, "--jine-kliky-mesicne": 0, "--naklad-mesicne": 0, "--jine-cpc": None, "--rust-mesicne": 0, "--horizont": 6}
+opt = {"--cena": None, "--konv": 0.01, "--konv-overeni": None, "--ctr": 0.03, "--cil": 10000, "--dny": 3, "--rozpocet": 0, "--jine-kliky-mesicne": 0, "--naklad-mesicne": 0, "--jine-cpc": None, "--rust-mesicne": 0, "--horizont": 6, "--trh-objednavek-mesicne": None, "--podil-max": 0.03}
 pasivni = "--pasivni" in args
 for i, a in enumerate(args):
     if a in opt:
@@ -72,10 +72,17 @@ else:
     ok_sales = zisk >= cil or (rust_ok and zisk >= 0 and zisk_h >= cil)
     kriterium = f"škálovatelný (zisk ≥ {cil:.0f} Kč měsíčně hned" + (f", nebo při odůvodněném růstu {rust * 100:.0f} % měsíčně do {horizont:.0f} měsíců" if rust_ok else ", růst nezadán nebo neodůvodněn") + ", cesta k desítkám tisíc)"
 ok_verify = reach >= need
+# Ukousnutelný podíl (Ondřej 2026-10-02 14:38: v každém businessu je konkurence, která drží trh; ptát se, zda si realisticky ukousneme kus)
+trh = opt["--trh-objednavek-mesicne"]
+potreba_obj = (2000 if pasivni else cil) / cena if cena else 0
+podil = potreba_obj / trh if trh else None
+podil_max = opt["--podil-max"]
+ok_share = podil is not None and podil <= podil_max
 verdict = f"""## Verdikt (automaticky)
 Předpoklady (ne měření): cena {cena:.0f} Kč, konverze na platbu {konv * 100:.1f} %, na signál poptávky při ověření {konv_o * 100:.1f} %, CTR {ctr * 100:.0f} %, cíl zisku {cil:.0f} Kč měsíčně, okno {dny:.0f} dny, rozpočet na dokoupené kliky {rozpocet:.0f} Kč při ø {cpc:.1f} Kč za klik, jiné kliky {jine:.0f} měsíčně. Hledání je jen Seznam (Sklik).
 - Ověřitelnost do {dny:.0f} dnů: **{"ANO" if ok_verify else "NE"}**. Dosažitelných návštěv {reach:.1f} (z toho dokoupených {bought:.1f}), potřeba {need} (aspoň jeden signál poptávky s pravděpodobností 60 %).
 - Dostatečný prodej: **{"ANO" if ok_sales else "NE"}**. Kritérium: {kriterium}. Tržby měsíčně při dnešní hledanosti {monthly_avg:.0f} Kč, náklady {naklad:.0f} Kč, zisk {zisk:.0f} Kč (ve špičce zisk {zisk_peak:.0f} Kč){f", projektovaný za {horizont:.0f} měs. při růstu {rust * 100:.0f} % měsíčně {zisk_h:.0f} Kč" if rust_ok else ""}.
+- Ukousnutelný podíl: **{("ANO" if ok_share else "NE") if podil is not None else "NEOVĚŘENO"}**. {f"Pro cíl je třeba {potreba_obj:.1f} objednávek měsíčně z dosažitelných {trh:.0f}, tj. podíl {podil * 100:.1f} % (realistický strop pro nováčka do 6 měsíců {podil_max * 100:.0f} %)." if podil is not None else "Chybí `--trh-objednavek-mesicne` (kolik nákupních rozhodnutí měsíčně je v dosažitelném trhu); doplnit podle plan/SABLONA.md oddíl 2b."}
 - Závěr: **{"stavět smí" if ok_verify and ok_sales else "NESTAVĚT a nespouštět bez výjimky schválené Ondřejem"}**.
 """
 if "## Verdikt (automaticky)" in text:
@@ -87,4 +94,4 @@ else:
     text = text.replace(marker, "\n" + verdict + marker, 1) if marker in text else text.rstrip("\n") + "\n\n" + verdict
 path.write_text(text, encoding="utf-8")
 print(verdict)
-sys.exit(0 if ok_verify and ok_sales else 1)
+sys.exit(0 if ok_verify and ok_sales else 1)  # podíl na trhu se vypisuje a hlídá `plan/kontrola-spusteni.py`

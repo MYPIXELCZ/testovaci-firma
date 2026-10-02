@@ -94,3 +94,16 @@ Bazoš sekce IT: 99 inzerátů, z toho 59 o webech a e-shopech, medián ceny 3 9
 - Etsy, Google, Heureka, Fler a Upwork nešlo změřit přímo (blokují roboty); jde o odhady z vyhledávače a blogů (slabé zdroje, hlavně u příjmů prodejců).
 - 3D tisk: ceny a počet nabídek jsou ze Zboží.cz, které zobrazuje i Allegro; objem prodejů tam nevidím. Kapacita závisí na modelu tiskárny. Pojištění odpovědnosti za výrobek a povinnosti k obalům (EKO-KOM) jsem nezjišťoval.
 - Zdroje: Sklik `keywords.suggest.stats`, hlidacstatu.cz, partneri.shoptet.cz a .sk, doplnky.shoptet.cz (243 stránek doplňků), webtrh.cz, poptavky.cz, epoptavka.cz, bazos.cz, zbozi.cz, ceníky konkurence.
+
+## Dodatek 2026-10-02 14:38: podíl na trhu (FAIL: konkurence sama není důvod k NE)
+Kolo 2 u části kandidátů uvedlo „nasycené“ nebo „vítěz bere vše“ jako důvod NE. Podle nového pravidla (`plan/SABLONA.md` oddíl 2b) se u každého ptáme, zda si ukousneme kus. Čísla z dosavadních dat, ostatní označeno neznámé:
+| Kandidát | Potřeba pro cíl | Dosažitelný trh | Potřebný podíl | Co ve skutečnosti blokuje |
+|---|---|---|---|---|
+| K1+K2 lovec poptávek | 2,0 zakázky měsíčně (4 990) | ≈ 45 poptávek měsíčně | 4,5 % (u poptávek rozhoduje míra výhry, předpoklad 5 %, benchmark neověřen) | míra výhry (měřit v testu), ne konkurence |
+| K3 zakázkový web | 0,37 až 0,5 zakázky měsíčně | ≈ 12 poptávek měsíčně | 3 až 4 %, bez referencí výhra 1 až 2 % | chybějící reference |
+| K4 digitální produkty (Etsy) | B: 9 prodejů, A: 34 prodejů měsíčně | konkurent TheSheetCode ≈ 81 prodejů měsíčně po 4 letech | B ≈ 11 %, A ≈ 42 % jednoho zavedeného konkurenta | B realistické při 50+ inzerátech, A za rok a víc; neověřitelné do 72 h |
+| K4 Shoptet doplněk | ≈ 29 platících e-shopů | 48 410 e-shopů | ≈ 0,06 % | pozice vítěze (Apollo) a schválení Shoptetu, ne konkurence |
+| K5 hlídač zakázek | 24 až 40 předplatitelů | trh neměřen | neznámý | kanál a zdarma Hlídač státu; ukousnutelné jen jako nika (IT, web, grafika: 136 zakázek měsíčně v IT službách), neověřeno |
+| K8 chatbot pro malé firmy | 6 až 10 klientů | desítky tisíc webů (nezměřeno) | pravděpodobně pod 0,1 % | kanál (0 poptávek, Seznam 16 hledání), ne konkurence |
+| 3D tisk | 59 váz měsíčně | Zboží.cz 23 až 47 nabídek na dotaz | neznámý | marže 20 až 50 Kč na hodinu tisku, ne konkurence |
+Závěr: u K5, K8 a Shoptet doplňku nebyla pravá příčina NE konkurence, ale chybějící kanál, nízká marže nebo neověřitelnost. Konečné pořadí (#13) udělat znovu s oddílem 2b a výhodami proti konkurenci u každého z kandidátů (cena, rychlost odpovědi do hodiny, balíček na rok, nika), na vyšším modelu.

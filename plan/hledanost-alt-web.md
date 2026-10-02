@@ -19,6 +19,7 @@ Součet ø 2 měs.: 167 / měs., součet špiček: 247 / měs.
 Předpoklady (ne měření): cena 4990 Kč, konverze na platbu 0.2 %, na signál poptávky při ověření 1.0 %, CTR 3 %, cíl zisku 10000 Kč měsíčně, okno 3 dny, rozpočet na dokoupené kliky 0 Kč při ø 59.6 Kč za klik, jiné kliky 200 měsíčně. Hledání je jen Seznam (Sklik).
 - Ověřitelnost do 3 dnů: **NE**. Dosažitelných návštěv 20.5 (z toho dokoupených 0.0), potřeba 92 (aspoň jeden signál poptávky s pravděpodobností 60 %).
 - Dostatečný prodej: **NE**. Kritérium: škálovatelný (zisk ≥ 10000 Kč měsíčně hned, růst nezadán nebo neodůvodněn, cesta k desítkám tisíc). Tržby měsíčně při dnešní hledanosti 2557 Kč, náklady 691 Kč, zisk 1867 Kč (ve špičce zisk 1754 Kč).
+- Ukousnutelný podíl: **NE**. Pro cíl je třeba 2.0 objednávek měsíčně z dosažitelných 45, tj. podíl 4.5 % (realistický strop pro nováčka do 6 měsíců 3 %).
 - Závěr: **NESTAVĚT a nespouštět bez výjimky schválené Ondřejem**.
 
 ## Kapacita trhu
