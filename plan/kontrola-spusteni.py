@@ -28,6 +28,15 @@ if not design.exists() or not re.search(r"## Konkurence|## Rozbor", design.read_
     missing.append(f"design průzkum {design} (rozbor konkurence, prvky, vizuální směr)")
 elif not re.search(r"## Texty", design.read_text(encoding="utf-8")):
     missing.append(f"{design}: oddíl „## Texty“ (každý blok webu → na jakou otázku cílové skupiny odpovídá)")
+if design.exists():
+    # Přistávací web (FAILS.md 2026-10-02 13:50 a 13:53): nezávislá revize vzhledu se skóre ≥ 8/10 a čistá `tools/landing-kontrola.mjs`.
+    dt = design.read_text(encoding="utf-8")
+    rev = re.search(r"## Revize vzhledu(.*?)(\n## |\Z)", dt, re.S)
+    sc = re.search(r"Skóre:\s*(\d+(?:[.,]\d+)?)\s*/\s*10", rev.group(1)) if rev else None
+    if not rev or not sc or float(sc.group(1).replace(",", ".")) < 8:
+        missing.append(f"{design}: oddíl „## Revize vzhledu“ se řádkem „Skóre: N/10“ (N ≥ 8) od nezávislého recenzenta (screenshoty PC 1440 + mobil 390, rubrika z plan/postupy/pristavaci-web.md, kritérium „nepůsobí jako vygenerované AI“)")
+    elif not re.search(r"landing-kontrola:\s*OK", rev.group(1)):
+        missing.append(f"{design}: v oddílu „## Revize vzhledu“ řádek „landing-kontrola: OK (datum)“ po úspěšném `node tools/landing-kontrola.mjs <URL>`")
 code_checks = {
     "aplikace: trychtýř (události návštěvy)": r"funnel|trychtýř",
     "aplikace: anketa „proč ne“": r"[Ff]eedback",
