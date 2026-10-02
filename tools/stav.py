@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Jeden přehled výsledků VŠECH akcí z plan/akce.md (FAILS.md 2026-10-02 13:32: nesmí se sledovat jen aktuální akce).
 
-    python3 tools/stav.py
+    python3 tools/stav.py [--podrobne]   (výchozí je kompaktní výpis kvůli tokenům)
 
 Tokeny: env SKLIK_TOKEN, STATS_KEY_PRINTOPIA, STATS_KEY_ANOBERU, jinak soubory .sklik_token, .stats_key, .stats_key_anoberu ve scratchpadu.
 Každá akce v plan/akce.md, která není `zamítnuto`/`hotovo`, musí mít v posledním sloupci značku [stav:<sekce>] a sekce musí tady existovat,
@@ -149,6 +149,10 @@ def portfolio():
 
 
 SECTIONS = {"sklik", "zbozi", "seo", "printopia", "anoberu", "portfolio"}  # názvy sekcí výše, značka [stav:<název>] v plan/akce.md
+import io
+FULL = "--podrobne" in sys.argv  # výchozí výstup je kompaktní kvůli tokenům (FAILS.md 2026-10-02 14:50)
+_buf, _real = io.StringIO(), sys.stdout
+sys.stdout = _buf
 print("# Stav všech akcí", date.today())
 sklik()
 site("printopia", "https://printopia.cz", "STATS_KEY_PRINTOPIA", ".stats_key")
@@ -194,6 +198,8 @@ state_file = ROOT / "plan/stav-session.md"
 if state_file.exists():
     import time
     age_h = (time.time() - state_file.stat().st_mtime) / 3600
+    if len(state_file.read_text(encoding="utf-8").splitlines()) > 90:
+        ALERTS.append("plan/stav-session.md má přes 90 řádků: zkrátit (hook ho vkládá do kontextu, tokeny)")
     if age_h > 2:
         ALERTS.append(f"plan/stav-session.md je starý {age_h:.1f} h: aktualizovat (nit po kompresi chatu)")
 else:
@@ -201,4 +207,12 @@ else:
 
 print("\n## ALERTY (nové věci, na které reagovat)")
 print("\n".join(f"  - {a}" for a in ALERTS) if ALERTS else "  žádné")
+sys.stdout = _real
+_out = _buf.getvalue()
+if FULL:
+    print(_out)
+else:
+    _keep = re.compile(r"^## |kredit|objednávky|návštěvy|zobrazení stránek|strana \d|^  - |CHYBÍ|ČEKÁ NA|Nákupy:|Printopia – prodej")
+    print("\n".join(l[:150] for l in _out.splitlines() if _keep.search(l)))
+    print("(kompaktní výpis, podrobně: python3 tools/stav.py --podrobne)")
 sys.exit(1 if any("sledování" in a for a in ALERTS) else 0)
