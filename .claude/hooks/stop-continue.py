@@ -24,9 +24,19 @@ if os.path.exists(akce):
         if len(cols) >= 5 and cols[3] in ("další", "research"):
             nxt = f" Další krok z plan/akce.md: #{cols[0]} {cols[1]}: {cols[4]}"
             break
+# Průběžný stav proti ztrátě niky po kompresi chatu (FAILS.md 2026-10-02 14:46)
+stale = ""
+state = os.path.join(os.environ.get("CLAUDE_PROJECT_DIR") or os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "plan", "stav-session.md")
+if os.path.exists(state):
+    import time
+    age = (time.time() - os.path.getmtime(state)) / 60
+    if age > 40:
+        stale = f"0) `plan/stav-session.md` je starý {age:.0f} min: před koncem tahu ho aktualizuj (kdo čeká na Ondřeje, běžící agenti, rozhodnutí, další kroky) a commitni, ať se po kompresi chatu neztratí nit. "
+else:
+    stale = "0) Chybí `plan/stav-session.md`, založ ho (stav, čeká na Ondřeje, agenti, další kroky). "
 print(json.dumps({
     "decision": "block",
-    "reason": ("Odpověď Ondřejovi bez výčtu těchto bodů: jen co se změnilo, co potřebuješ od něj a rizika (CLAUDE.md „Stručně“). Kontrola před koncem tahu (FAILS.md): 1) Je naplánovaný send_later za 1 hodinu? Pokud ne, naplánuj ho (delay_minutes 60). "
+    "reason": ("Odpověď Ondřejovi bez výčtu těchto bodů: jen co se změnilo, co potřebuješ od něj a rizika (CLAUDE.md „Stručně“). Kontrola před koncem tahu (FAILS.md): " + stale + "1) Je naplánovaný send_later za 1 hodinu? Pokud ne, naplánuj ho (delay_minutes 60). "
                "2) Zbývá neblokovaná práce s perspektivou (i když od Ondřeje chybí informace)? Pokud ano, pokračuj v ní. "
                "3) Spustil jsi v tomto probuzení `python3 tools/stav.py` a zareagoval na VŠECHNY ALERTY (ne jen na aktuální akci)? Má firma business s verdiktem ANO/ANO, jinak posunul jsi kandidáta z plan/alternativy.md? "
                "4) Čekáš na událost, která nastane v následujících hodinách/dnech s pravděpodobností pod ~20 %? To není čekání, ale chybějící akce: udělej další krok z plan/akce.md nebo ji doplň." + nxt + " "

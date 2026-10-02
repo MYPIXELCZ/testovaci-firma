@@ -94,6 +94,10 @@ def site(name, url, env, fname):
     server = d.get("server", {})
     if server:
         print(f"  návštěvy podle zdroje {server.get('visits')}, po dnech {server.get('visitsByDay')}, klik na Koupit {server.get('buyClicks')}, leady {server.get('leads')}")
+    by_src = (d.get("funnel") or {}).get("bySrc") or {}
+    js_views = {k: v.get("view", 0) for k, v in by_src.items() if v.get("view")}
+    if js_views:
+        print(f"  zobrazení stránek s JavaScriptem (spolehlivější než serverové návštěvy, ty zahrnují i naše testy a Ondřejovy vlastní návštěvy) {js_views}")
     print(f"  anketa {json.dumps(d.get('feedback'), ensure_ascii=False)}")
     created = orders.get("created", 0)
     created = sum(created.values()) if isinstance(created, dict) else created
@@ -185,6 +189,15 @@ for line in (ROOT / "plan/akce.md").read_text(encoding="utf-8").splitlines():
         else:
             print(f"  akce #{cols[0]} ({cols[1][:50]}): ČEKÁ NA PŘEPNUTÍ MODELU")
             ALERTS.append(f"model: akce #{cols[0]} čeká na přepnutí na vyšší model (připomenout Ondřejovi, dokud nepřepne)")
+
+state_file = ROOT / "plan/stav-session.md"
+if state_file.exists():
+    import time
+    age_h = (time.time() - state_file.stat().st_mtime) / 3600
+    if age_h > 2:
+        ALERTS.append(f"plan/stav-session.md je starý {age_h:.1f} h: aktualizovat (nit po kompresi chatu)")
+else:
+    ALERTS.append("chybí plan/stav-session.md (nit po kompresi chatu)")
 
 print("\n## ALERTY (nové věci, na které reagovat)")
 print("\n".join(f"  - {a}" for a in ALERTS) if ALERTS else "  žádné")
