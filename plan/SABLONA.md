@@ -3,6 +3,9 @@
 Povinná šablona (pojistka z FAILS.md). Bez vyplněných oddílů 1–4 se nestaví nic, co trvá déle než pár hodin,
 a Ondřej nekupuje nic (doména, reklama). Každé tvrzení o poptávce musí mít zdroj (odkaz, nástroj, datum).
 
+## 0. Verdikt (povinné, FAILS.md 2026-10-02): ověřitelné do 3 dnů a dostatečný prodej
+`python3 plan/verdikt.py <projekt> --cena … [--konv-overeni 0.05 --rozpocet …]` zapíše do `plan/hledanost-<projekt>.md` verdikt. Bez ANO/ANO se nestaví (výjimku schvaluje jen Ondřej).
+
 ## 1. Poptávka (důkazy, ne dojmy)
 - **Absolutní hledanost (povinné, FAILS.md 2026-10-01 17:00):** `SKLIK_TOKEN=… python3 plan/hledanost.py <projekt> "dotaz" … --navrhy "základ"` zapíše `plan/hledanost-<projekt>.md` (měsíční hledání, špička, CPC, nejsilnější související dotazy). Relativní Trends ani našeptávač nestačí. Do oddílu „## Kapacita trhu“ vyplnit: hledanost × CTR × konverze × cena vs. cíl projektu a závěr stavět / nestavět / nejdřív sonda. Součástí kontroly `plan/kontrola-spusteni.py`.
 - Relativní signály navíc: Trends, našeptávač (co lidé zadávají).

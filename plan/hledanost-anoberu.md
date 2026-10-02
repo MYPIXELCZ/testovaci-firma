@@ -53,6 +53,12 @@ Součet ø 2 měs.: 26 / měs., součet špiček: 76 / měs.
 | 53260 svatební plánovací blok | 0 | 1 | 2026-01 | 0.0 |
 | svatební planovac | 0 | 1 | 2025-09 | 0.0 |
 
+## Verdikt (automaticky)
+Předpoklady (ne měření): cena 349 Kč, konverze 1.0 %, CTR 3 %, cíl 3000 Kč měsíčně, okno 3 dny, jiné kliky 0 měsíčně. Hledání je jen Seznam (Sklik).
+- Ověřitelnost do 3 dnů: **NE**. Dosažitelných návštěv 0.1, potřeba 92 (aspoň jedna objednávka s pravděpodobností 60 %).
+- Dostatečný prodej: **NE**. Tržby měsíčně při dnešní hledanosti 3 Kč (ve špičce 8 Kč) proti cíli 3000 Kč.
+- Závěr: **NESTAVĚT a nespouštět bez výjimky schválené Ondřejem**.
+
 ## Kapacita trhu
 Čísla jsou jen ze Seznamu (Sklik), Google v nich není a skutečný objem může být vyšší. Sklik u málo hledaných dotazů ukazuje nuly.
 

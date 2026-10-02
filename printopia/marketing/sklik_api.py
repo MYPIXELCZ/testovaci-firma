@@ -10,6 +10,7 @@ plan/postupy/sklik.md musí mít celý kontrolní seznam odškrtnutý.
 """
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -34,6 +35,9 @@ if changing:
     vt = vol.read_text(encoding="utf-8") if vol.exists() else ""
     if "## Kapacita trhu" not in vt or "(doplnit" in vt.split("## Kapacita trhu")[1]:
         raise SystemExit(f"Nejdřív {vol}: absolutní hledanost a vyplněná kapacita trhu (plan/hledanost.py).")
+    if not re.search(r"Ověřitelnost do \d+ dnů: \*\*ANO", vt) or not re.search(r"Dostatečný prodej: \*\*ANO", vt):
+        if "Výjimka schválená Ondřejem:" not in vt:  # FAILS.md 2026-10-02 13:31
+            raise SystemExit(f"{vol}: verdikt není ANO/ANO (ověřitelné do 3 dnů, dostatečný prodej). Bez řádku „Výjimka schválená Ondřejem: …“ se kampaň nemění.")
 
 spec = json.loads(subprocess.run([sys.executable, str(Path(__file__).with_name("sklik.py"))],
                                  check=True, capture_output=True, text=True).stdout)

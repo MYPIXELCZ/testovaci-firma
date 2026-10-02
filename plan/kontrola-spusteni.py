@@ -51,6 +51,15 @@ else:
     cap = vt.split("## Kapacita trhu")[1] if "## Kapacita trhu" in vt else ""
     if not cap.strip() or "(doplnit" in cap:
         missing.append(f"{vol}: oddíl „## Kapacita trhu“ (hledanost × CTR × konverze × cena vs. cíl, závěr) musí být vyplněný")
+# Verdikt (FAILS.md 2026-10-02 13:31): ověřitelné do 3 dnů a dostatečný prodej, jinak jen s výjimkou schválenou Ondřejem.
+if vol is not None:
+    vt = vol.read_text(encoding="utf-8")
+    ov = re.search(r"Ověřitelnost do \d+ dnů: \*\*(\w+)", vt)
+    ds = re.search(r"Dostatečný prodej: \*\*(\w+)", vt)
+    if not (ov and ds):
+        missing.append(f"{vol}: oddíl „## Verdikt (automaticky)“ (`python3 plan/verdikt.py <projekt> --cena …`)")
+    elif (ov.group(1), ds.group(1)) != ("ANO", "ANO") and "Výjimka schválená Ondřejem:" not in vt:
+        missing.append(f"{vol}: verdikt {ov.group(1)}/{ds.group(1)} (ověřitelné do 3 dnů / dostatečný prodej), bez řádku „Výjimka schválená Ondřejem: …“ se nespouští")
 if missing:
     sys.exit("CHYBÍ před spuštěním:\n- " + "\n- ".join(missing))
 print("OK: plán i aplikace mají metriky a vyhodnocení.")

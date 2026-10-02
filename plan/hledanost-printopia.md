@@ -61,6 +61,12 @@ Součet ø 2 měs.: 928 / měs., součet špiček: 5310 / měs.
 | cermat testy ke stažení | 171 | 98 | 2026-03 | 2.3 |
 | cermat přijímací testy | 4 | 98 | 2026-01 | 2.6 |
 
+## Verdikt (automaticky)
+Předpoklady (ne měření): cena 349 Kč, konverze na platbu 1.0 %, na signál poptávky při ověření 1.0 %, CTR 3 %, cíl 3000 Kč měsíčně, okno 3 dny, rozpočet na dokoupené kliky 0 Kč při ø 2.2 Kč za klik, jiné kliky 0 měsíčně. Hledání je jen Seznam (Sklik).
+- Ověřitelnost do 3 dnů: **NE**. Dosažitelných návštěv 2.8 (z toho dokoupených 0.0), potřeba 92 (aspoň jeden signál poptávky s pravděpodobností 60 %).
+- Dostatečný prodej: **NE**. Tržby měsíčně při dnešní hledanosti 97 Kč (ve špičce 556 Kč) proti cíli 3000 Kč.
+- Závěr: **NESTAVĚT a nespouštět bez výjimky schválené Ondřejem**.
+
 ## Kapacita trhu
 Čísla jsou jen ze Seznamu (Sklik); Google v nich není, jeho podíl neumím změřit.
 

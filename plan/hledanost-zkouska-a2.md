@@ -48,6 +48,12 @@ Součet ø 2 měs.: 2 / měs., součet špiček: 14 / měs.
 | cvičení na zkoušku z českého jazyka pro cizince | 0 | 2 | 2025-12 | 0.0 |
 | zkouška z českého jazyka pro cizince pro trvalý pobyt v prostějově | 0 | 2 | 2025-09 | 0.0 |
 
+## Verdikt (automaticky)
+Předpoklady (ne měření): cena 199 Kč, konverze 1.0 %, CTR 3 %, cíl 3000 Kč měsíčně, okno 3 dny, jiné kliky 0 měsíčně. Hledání je jen Seznam (Sklik).
+- Ověřitelnost do 3 dnů: **NE**. Dosažitelných návštěv 0.0, potřeba 92 (aspoň jedna objednávka s pravděpodobností 60 %).
+- Dostatečný prodej: **NE**. Tržby měsíčně při dnešní hledanosti 0 Kč (ve špičce 1 Kč) proti cíli 3000 Kč.
+- Závěr: **NESTAVĚT a nespouštět bez výjimky schválené Ondřejem**.
+
 ## Kapacita trhu
 Čísla jsou jen ze Seznamu (Sklik), Google a Facebook v nich nejsou.
 

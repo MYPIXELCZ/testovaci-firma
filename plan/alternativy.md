@@ -1,0 +1,40 @@
+# Alternativní businessy (portfolio gate, FAILS.md 2026-10-02 13:34)
+
+Pravidlo: dokud žádný aktivní business nemá verdikt „ověřitelné do 3 dnů: ANO“ a „dostatečný prodej: ANO“ (`plan/verdikt.py`), hledá se alternativa.
+V každém probuzení posunout nejlepšího kandidáta o krok (research, test 72 hodin, rozhodnutí). Stav vypisuje `tools/stav.py` (sekce portfolio).
+
+## Aktivní businessy a jejich verdikt (stav 2026-10-02)
+| Business | Verdikt | Poznámka |
+|---|---|---|
+| Printopia (sada přijímaček 349 Kč) | NE / NE | Seznam: ~3 návštěvy za 3 dny, tržby ~100 Kč měsíčně při dnešní hledanosti |
+| Anoberu (svatební plánovač 349 Kč) | NE / NE | Seznam: 0,1 návštěvy za 3 dny, sezóna až od prosince |
+| A2 čeština pro cizince | NE / NE | zamítnuto, nepostaveno |
+
+## Kandidáti proti Seznamu (Sklik hledanost, předpoklady: konverze na platbu 1,5 %, na poptávku 5 %, CTR 3 %, 150 Kč na dokoupené kliky)
+| Kandidát | Cena | Ověřitelné do 3 dnů | Dosažitelné návštěvy | Tržby měsíčně z hledání | Ve špičce |
+|---|---:|---|---:|---:|---:|
+| Web na klíč (`alt-web`) | 4 990 | NE (CPC kolem 60 Kč) | 3,0 | 375 | 555 |
+| E-shop na klíč (`alt-eshop`) | 9 990 | NE | 2,7 | 90 | 234 |
+| Audit webu / SEO (`alt-audit`) | 1 990 | ANO (jen dokoupením kliků) | 79 | 30 | 4 502 |
+| Překlady (`alt-preklady`) | 600 | ANO | 20 | 60 | 2 206 |
+| Vzory smluv (`alt-smlouvy`) | 199 | ANO | 153 | 84 | 187 |
+| Životopis na míru (`alt-zivotopis`) | 590 | ANO | 35 | 13 | 29 |
+| Korektury (`alt-korektura`) | 900 | ANO | 33 | 9 | 134 |
+| Texty na web (`alt-texty`) | 1 500 | ANO | 30 | 26 | 44 |
+| Online pozvánky (`alt-pozvanky`) | 290 | ANO | 48 | 25 | 96 |
+| Generátor životopisu (`alt-generator`) | 149 | ANO | 40 | 8 | 15 |
+| Loga, prezentace, Excel na míru | 990 až 1 500 | ANO | ~30 | 0 až 4 | do 21 |
+
+**Závěr:** žádný kandidát nemá „dostatečný prodej“ (cíl 3 000 Kč měsíčně) přes hledání na Seznamu, a to ani ve špičce. Problém není jen produkt, ale **kanál**: Seznam
+vyhledávání má pro všechny naše nápady hledanost v desítkách až nízkých stovkách měsíčně. Jakýkoli další produkt postavený na „najdou nás ve Skliku“ skončí stejně.
+
+## Modely, které se dají ověřit do 72 hodin bez objemu hledání
+1. **Produktizovaná služba, kterou doděláme my (AI) a prodáme přes kanály s vlastní návštěvností** (Bazoš, Sbazar, Firmy.cz, lokální skupiny, přímá nabídka firmám přes kontaktní formuláře webu).
+   Kandidát č. 1: **„Web za 24 hodin“** (jednostránkový nebo malý web pro živnostníky a malé firmy, 3 990 až 4 990 Kč + 290 Kč měsíčně správa), doména `webprodava.cz` (zdarma, Ondřejova).
+   Ověření: za 72 hodin aspoň 1 závazná poptávka s cenovou nabídkou. Náklad 0 Kč. Dostatečný prodej: 1 zakázka měsíčně = 4 990 Kč, opakované platby za správu.
+   Potřebuje od Ondřeje: schválení obchodních podmínek služby (právo), účet na inzertním portálu (ověření telefonem), souhlas s tím, že odpovídám zákazníkům z firemního e-mailu.
+2. **Soukromá placená reklama Ondřeje (Google/Meta) na stávající produkt** jako jednorázový test poptávky: ověřitelné do 3 dnů (asi 100 kliků za 500 Kč), ale strop produktu zůstává nízký (viz verdikt).
+3. **SEO, afiliace, obsahové weby**: kanál je pomalý (týdny až měsíce), pravidlo 3 dnů nesplňují. Nezačínat.
+
+## Další krok
+Rozhodnutí Ondřeje o variantě 1 (jedna odpověď: „ano, test webu“ a schválení podmínek). Do té doby připravuji jen texty a podmínky jako návrh, nic nestavím (verdikt NE vyžaduje jeho výjimku).
