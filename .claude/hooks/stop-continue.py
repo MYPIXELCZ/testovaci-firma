@@ -31,5 +31,6 @@ print(json.dumps({
                "3) Spustil jsi v tomto probuzení `python3 tools/stav.py` a zareagoval na VŠECHNY ALERTY (ne jen na aktuální akci)? Má firma business s verdiktem ANO/ANO, jinak posunul jsi kandidáta z plan/alternativy.md? "
                "4) Čekáš na událost, která nastane v následujících hodinách/dnech s pravděpodobností pod ~20 %? To není čekání, ale chybějící akce: udělej další krok z plan/akce.md nebo ji doplň." + nxt + " "
                "5) Potřebuje některá úloha vyšší model než Sonnet 5.5 (návrh vzhledu webu, volba businessu, audit)? Řekni si o přepnutí, u této úlohy čekej a zbytek práce dělej dál (CLAUDE.md „Model“). "
+               "6) Hodnotil jsi nové pokyny a nápady Ondřeje kriticky? Pokud s něčím nesouhlasíš, řekni to jednou věcně s alternativou (🥇🥈🥉); když na tom Ondřej trvá, jeho veto platí a zapiš to do plan/rozhodnuti.md. "
                "Tah ukonči jen tehdy, když je připomínka naplánovaná a vše ostatní čeká na Ondřeje."),
 }, ensure_ascii=False))

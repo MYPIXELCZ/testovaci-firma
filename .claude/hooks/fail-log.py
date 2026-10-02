@@ -22,5 +22,7 @@ with open(path, "a", encoding="utf-8") as f:
 print(
     "Ondřej nahlásil FAIL; zapsáno do FAILS.md. Povinně: 1) doplň do FAILS.md příčinu a pojistku "
     "(pravidlo v CLAUDE.md, test, kontrola v kódu), 2) pojistku skutečně zaveď, 3) commitni a pushni, "
-    "4) Ondřejovi stručně potvrď co se změnilo."
+    "4) Ondřejovi stručně potvrď co se změnilo. "
+    "5) Posuď, jestli je pokyn dobrý (přínos, riziko, náklad). Pokud ho považuješ za špatný nebo nákladný, řekni to jednou věcně a s alternativou; "
+    "trvá-li Ondřej na svém, jeho veto platí: proveď to a zapiš do plan/rozhodnuti.md (CLAUDE.md „Poradce, ne přikyvovač“)."
 )
