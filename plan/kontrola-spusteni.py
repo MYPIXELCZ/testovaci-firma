@@ -23,6 +23,9 @@ checks = {
     "plán: 7. Metriky a vyhodnocení": r"## 7\. Metriky",
 }
 missing = [k for k, rx in checks.items() if not re.search(rx, text)]
+# Vercel (FAILS.md 2026-10-02 14:17): web se nasazuje jen do týmu MYPIXELCZ.
+if not re.search(r"Vercel tým:\s*MYPIXELCZ\s*\(team_fNHd0fCTFAA6MuEnT4BlEeWu\)", text):
+    missing.append("plán: řádek „Vercel tým: MYPIXELCZ (team_fNHd0fCTFAA6MuEnT4BlEeWu)“ po ověření `get_project` (plan/postupy/vercel-nasazeni.md)")
 design = plan.with_name("design-" + plan.name)
 if not design.exists() or not re.search(r"## Konkurence|## Rozbor", design.read_text(encoding="utf-8")):
     missing.append(f"design průzkum {design} (rozbor konkurence, prvky, vizuální směr)")

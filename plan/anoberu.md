@@ -26,3 +26,5 @@ Doplněno zpětně 2026-10-01 podle šablony (produkt byl spuštěn 2026-09-30 p
 - Anonymní trychtýř (`web/src/components/Beacon.tsx` → `/api/e` → `/api/stats`): úvod a články → klik na Koupit → objednávka → zaplaceno, podle zařízení a zdroje.
 - Proč ne: anketa na úvodu a u každého článku. Objednávky a platby ze serveru.
 - Závěry: `/api/stats` → `findings`. Vyhodnocení do `plan/anoberu-vyhodnoceni.md`.
+
+Vercel tým: MYPIXELCZ (team_fNHd0fCTFAA6MuEnT4BlEeWu), projekt `anoberu`, `accountId` ověřeno přes get_project 2026-10-02.

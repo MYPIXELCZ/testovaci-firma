@@ -68,3 +68,5 @@ Nic dalšího: žádné příspěvky, obsah ani ruční marketing.
 - Reklama: statistiky a hledané dotazy ze Skliku (API).
 - Celkové vyhodnocení jedním příkazem: `SKLIK_TOKEN=… STATS_KEY=… python3 printopia/marketing/vyhodnoceni.py` (reklama + trychtýř + anketa + kritérium pokračovat/zastavit/prodloužit).
 - Závěry: `/api/stats` → `findings` (od 30 návštěv). Po testu zapsat `plan/prijimacky-vyhodnoceni.md` s poučením pro další RUN.
+
+Vercel tým: MYPIXELCZ (team_fNHd0fCTFAA6MuEnT4BlEeWu), projekt `printopia`, `accountId` ověřeno přes get_project 2026-10-02.
