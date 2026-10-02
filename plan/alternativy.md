@@ -5,6 +5,10 @@ Pravidlo: dokud žádný aktivní business nemá verdikt „ověřitelné do 3 d
 **Cíl (Ondřej 2026-10-02 13:46):** 3 000 Kč měsíčně není cíl. Hledáme buď (A) **škálovatelný business**: zisk ≥ 10 000 Kč měsíčně hned, nebo doložená cesta k němu do ~6 měsíců (Ondřej 14:16) (Ondřej 14:13: nemusí to být zisk první měsíc, perspektiva musí být dlouhodobá; v `plan/verdikt.py` parametry `--rust-mesicne` a `--horizont`, růst s odůvodněním) s cestou k desítkám tisíc, kolísání OK (např. 50 000 → 10 000 → 15 000), nebo (B) **plně pasivní business**: po spuštění žádná práce, náklady ≤ ⅓ tržeb (tržby 3 000, náklad 1 000, zisk 2 000). Čísla níže (tržby při 3 000 Kč cíli) jsou proto jen horní odhad; podle nového cíle neprojde ani jeden kandidát přes Seznam.
 V každém probuzení posunout nejlepšího kandidáta o krok (research, test 72 hodin, rozhodnutí). Stav vypisuje `tools/stav.py` (sekce portfolio).
 
+## Rozšíření prostoru řešení (Ondřej 2026-10-02 14:20)
+Plně automatizovaný produkt zůstává preferovaný, ale smí se hledat i: **(2) hotové výrobky z Ondřejovy 3D tiskárny** (katalogový produkt, ne zakázkový tisk; Ondřej akceptuje tisk, balení a expedici u schváleného produktu) a **(3) zakázkový web, systém nebo e-shop** (custom, vyšší cena za zakázku, stavím já).
+Co u nich rozhoduje (moje výhrady, jednou): 3D tisk: ruční práce na každou objednávku (balení, expedice, vratky), nízká marže na kus a strop jedné tiskárny; licence cizích modelů (Printables a Thingiverse často zakazují komerční použití, jen vlastní návrhy nebo komerční licence); odpovědnost za výrobek a GPSR; poptávku ověřit ještě před tiskem (nabídka „vyrobíme na objednávku“ na Zboží.cz a Fleru). Zakázkové systémy: vyšší cena umožní cíl A už s 1 až 3 zakázkami měsíčně, ale dlouhý obchodní cyklus a každá zakázka je práce; vyhodnotit jako samostatného kandidáta.
+
 ## Aktivní businessy a jejich verdikt (stav 2026-10-02)
 | Business | Verdikt | Poznámka |
 |---|---|---|
