@@ -30,7 +30,7 @@ print(json.dumps({
                "2) Zbývá neblokovaná práce s perspektivou (i když od Ondřeje chybí informace)? Pokud ano, pokračuj v ní. "
                "3) Spustil jsi v tomto probuzení `python3 tools/stav.py` a zareagoval na VŠECHNY ALERTY (ne jen na aktuální akci)? Má firma business s verdiktem ANO/ANO, jinak posunul jsi kandidáta z plan/alternativy.md? "
                "4) Čekáš na událost, která nastane v následujících hodinách/dnech s pravděpodobností pod ~20 %? To není čekání, ale chybějící akce: udělej další krok z plan/akce.md nebo ji doplň." + nxt + " "
-               "5) Potřebuje některá úloha vyšší model než Sonnet 5.5 (návrh vzhledu webu, volba businessu, audit)? Řekni si o přepnutí, u této úlohy čekej a zbytek práce dělej dál (CLAUDE.md „Model“). "
+               "5) Potřebuje některá úloha vyšší model než Sonnet 5.5 (návrh vzhledu webu, volba businessu, audit)? Modely se nemíchají: o přepnutí žádej až když `ListAgents` nic nebězí a všechny úlohy pro Sonnet jsou dodělané; v dávce vyššího modelu spouštěj agenty jen na úlohy pro něj a po úloze požádej o přepnutí zpět (CLAUDE.md „Model“). "
                "6) Hodnotil jsi nové pokyny a nápady Ondřeje kriticky? Pokud s něčím nesouhlasíš, řekni to jednou věcně s alternativou (🥇🥈🥉); když na tom Ondřej trvá, jeho veto platí a zapiš to do plan/rozhodnuti.md. "
                "7) Nasazoval jsi web nebo domény na Vercel? Smí jen tým MYPIXELCZ (team_fNHd0fCTFAA6MuEnT4BlEeWu), nikdy jiný (JOYMARK…): teamId v každém volání a get_project accountId po založení. "
                "Tah ukonči jen tehdy, když je připomínka naplánovaná a vše ostatní čeká na Ondřeje."),
