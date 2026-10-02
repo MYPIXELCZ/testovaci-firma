@@ -39,3 +39,5 @@ a Ondřej nekupuje nic (doména, reklama). Každé tvrzení o poptávce musí m�
 - Automatické závěry z dat: kde lidé odpadají a co upravit (reklama, stránka, nabídka, formulář, cena).
 - Po testu zapsat `plan/<projekt>-vyhodnoceni.md`: čísla, závěr pokračovat/zastavit, co zlepšit pro další RUN.
 - Kontrola: `python3 plan/kontrola-spusteni.py plan/<projekt>.md <aplikace>` musí projít.
+
+- **Zahraniční kanály a služby (Ondřej 2026-10-02):** v kapacitě trhu, konkurenci i v kanálech posuzovat zahraniční a placené služby (Google Ads, Etsy, Gumroad, hostingy, platební brány) stejně jako české: přínos proti ceně včetně 21 % DPH (reverse charge), poplatků a administrativy. Původ služby není důvod zamítnutí.
