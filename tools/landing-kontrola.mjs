@@ -23,7 +23,8 @@ mkdirSync(out, { recursive: true });
 const T = {
   "kontrast-text-min": 4.5, "kontrast-velky-text-min": 3, "pismo-telo-min-px": 16, "delka-radku-max-znaku": 80,
   "tap-target-min-px": 44, "lcp-max-s": 2.5, "cls-max": 0.1, "cta-opakovani-min": 3, "max-mrizek-stejnych-karet": 1,
-  "max-rodin-pisma": 2, "nahled-produktu-min-px-pc": 420, "nahled-produktu-min-px-mobil": 280, "h1-max-slov": 14, "h1-pomer-k-telu-min": 3.5, "css-promenne-min": 6,
+  "pocet-rodin-pisem-max": 2, "pocet-velikosti-pisma-max": 8, "cta-vyska-min-px": 48, "h1-slov-min": 4, "ai-znaky-celkem-max": 6,
+  "font-family-varovani": "Inter, Roboto, Arial, Montserrat, Open Sans, Lato, Poppins, DM Sans, Fraunces, system-ui", "nahled-produktu-min-px-pc": 420, "nahled-produktu-min-px-mobil": 280, "h1-slov-max": 12, "pomer-h1-k-telu-pc-min": 2.5, "css-promenne-min": 6,
   "max-stockovych-fotek": 1, "title-min": 25, "title-max": 65, "description-min": 70, "description-max": 165,
   "pisma-zakazana": "Space Grotesk, Poppins",
   "pisma-podezrela": "Inter, Roboto, Arial, Montserrat, Open Sans, system-ui",
@@ -89,7 +90,7 @@ for (const [name, w, h, mobile] of [["pc", 1440, 900, false], ["mobil", 390, 844
     if (h1) {
       const words = h1.innerText.trim().split(/\s+/).length;
       if (h1.getBoundingClientRect().top > fold * 0.75) E("hero-h1", "h1 není v horní části první obrazovky");
-      if (words > T["h1-max-slov"]) W("hero-h1", `h1 má ${words} slov (max. ${T["h1-max-slov"]})`);
+      if (words > T["h1-slov-max"] || words < T["h1-slov-min"]) W("hero-h1", `h1 má ${words} slov (${T["h1-slov-min"]} až ${T["h1-slov-max"]})`);
       const sub = [...document.querySelectorAll("p, h2")].find((e) => vis(e) && h1.compareDocumentPosition(e) & Node.DOCUMENT_POSITION_FOLLOWING && e.getBoundingClientRect().top < fold);
       if (!sub) E("hero-podnadpis", "pod h1 chybí podnadpis nad ohybem");
     }
@@ -126,8 +127,10 @@ for (const [name, w, h, mobile] of [["pc", 1440, 900, false], ["mobil", 390, 844
     const famList = [...fams].filter((f) => !/^(__|ui-|-apple|BlinkMac|Segoe)/.test(f) || true);
     // next/font generuje jména jako „__Inter_abc“ → vyčistit
     const clean = [...new Set(famList.map((f) => f.replace(/^__/, "").replace(/_[a-z0-9]{6,}$/i, "").replace(/_/g, " ")))];
-    if (clean.length > T["max-rodin-pisma"]) W("pisma-pocet", `${clean.length} rodin písma (${clean.join(", ")}), max. ${T["max-rodin-pisma"]}`);
-    const suspicious = T["pisma-podezrela"].split(",").map((x) => x.trim().toLowerCase()).filter(Boolean);
+    if (clean.length > T["pocet-rodin-pisem-max"]) W("pisma-pocet", `${clean.length} rodin písma (${clean.join(", ")}), max. ${T["pocet-rodin-pisem-max"]}`);
+    const sizesUsed = new Set(textEls.map((e) => Math.round(parseFloat(getComputedStyle(e).fontSize))));
+    if (sizesUsed.size > T["pocet-velikosti-pisma-max"]) W("pisma-velikosti", `${sizesUsed.size} různých velikostí písma (${[...sizesUsed].sort((a, b) => a - b).join(", ")}), max. ${T["pocet-velikosti-pisma-max"]}: chybí typografická škála`);
+    const suspicious = (T["font-family-varovani"] + "," + T["pisma-podezrela"]).split(",").map((x) => x.trim().toLowerCase()).filter(Boolean);
     for (const f of clean) {
       if (banned.includes(f.toLowerCase())) E("pisma-vychozi", `výchozí „AI“ písmo ${f}: zvolit písmo odvozené z identity produktu`);
       else if (suspicious.includes(f.toLowerCase())) W("pisma-vychozi", `velmi rozšířené výchozí písmo ${f}: posoudit v revizi, zda má web vlastní typografickou identitu`);
@@ -146,7 +149,7 @@ for (const [name, w, h, mobile] of [["pc", 1440, 900, false], ["mobil", 390, 844
     if (emoji.length) E("emoji", `emoji v rozhraní: ${[...new Set(emoji)].join(" ")} (nahradit vlastní ikonou nebo grafikou)`);
 
     // měřítko kvality zoo-hero (plan/postupy/mericko-kvality-zoo-hero.md): hierarchie, pohyb, systém
-    if (h1 && medianSize && parseFloat(getComputedStyle(h1).fontSize) / medianSize < T["h1-pomer-k-telu-min"]) W("hierarchie", `h1 je jen ${(parseFloat(getComputedStyle(h1).fontSize) / medianSize).toFixed(1)}× větší než text těla (zoo-hero ≈ 8×, min. ${T["h1-pomer-k-telu-min"]}×)`);
+    if (h1 && medianSize && parseFloat(getComputedStyle(h1).fontSize) / medianSize < T["pomer-h1-k-telu-pc-min"] * (mobile ? 0.7 : 1)) W("hierarchie", `h1 je jen ${(parseFloat(getComputedStyle(h1).fontSize) / medianSize).toFixed(1)}× větší než text těla (zoo-hero ≈ 8×, min. ${T["pomer-h1-k-telu-pc-min"]}×)`);
     if (!mobile) {
       let animated = document.getAnimations().length > 0, reduced = false, tokens = 0, transitions = 0;
       for (const e of document.querySelectorAll("a, button")) { if (parseFloat(getComputedStyle(e).transitionDuration) > 0) transitions++; }
@@ -187,6 +190,37 @@ for (const [name, w, h, mobile] of [["pc", 1440, 900, false], ["mobil", 390, 844
     const stock = imgs.filter((i) => /unsplash|pexels|pixabay|shutterstock|istock/i.test(i.currentSrc + i.src + i.alt)).length + (/Foto:.*Unsplash/i.test(document.body.innerText) ? 0 : 0);
     const credits = (document.body.innerText.match(/Unsplash|Pexels|Pixabay/gi) || []).length;
     if (Math.max(stock, credits) > T["max-stockovych-fotek"]) E("stockove-fotky", `${Math.max(stock, credits)} stockových fotek (max. ${T["max-stockovych-fotek"]}): použít vlastní grafiku a skutečný produkt`);
+
+    // znaky AI vzhledu (plan/postupy/pristavaci-web.md „Znaky webů navržených AI“): jen počítá a hlásí, rozhoduje revize K9
+    const tells = [];
+    const allEls = [...document.querySelectorAll("body *")].filter(vis);
+    if (h1) {
+      const prev = [...document.querySelectorAll("body *")].filter((e) => vis(e) && e !== h1 && !h1.contains(e) && (h1.compareDocumentPosition(e) & Node.DOCUMENT_POSITION_PRECEDING) && e.getBoundingClientRect().bottom <= h1.getBoundingClientRect().top + 2 && e.getBoundingClientRect().bottom > h1.getBoundingClientRect().top - 90 && (e.innerText || "").trim().length > 3 && (e.innerText || "").trim().length < 60 && !e.querySelector("*") && getComputedStyle(e).textTransform === "uppercase");
+      if (prev.length) tells.push("štítek VELKÝMI nad h1 (eyebrow)");
+      if ([...h1.querySelectorAll("*")].some((e) => getComputedStyle(e).fontStyle === "italic" && /serif|fraunces|playfair|georgia|times/i.test(getComputedStyle(e).fontFamily) && !/sans/i.test(getComputedStyle(e).fontFamily.split(",").pop()))) tells.push("kurzivní patkový akcent v h1");
+    }
+    if (allEls.some((e) => /blur\(/.test(getComputedStyle(e).backdropFilter || getComputedStyle(e).webkitBackdropFilter || ""))) tells.push("glassmorphism (backdrop-filter blur)");
+    if (allEls.some((e) => { const m = getComputedStyle(e).boxShadow.match(/(\d+)px\s+(\d+)px\s+(\d+)px/g); return m && m.some((x) => +x.split(/px\s+/)[2].replace("px", "") >= 24 && /rgba?\((?!0, 0, 0)/.test(getComputedStyle(e).boxShadow)); })) tells.push("barevná záře (glow) ve stínu");
+    const uppers = allEls.filter((e) => getComputedStyle(e).textTransform === "uppercase" && (e.innerText || "").trim().length > 2 && !e.querySelector("*")).length;
+    if (uppers > 2) tells.push(`${uppers} prvků psaných VELKÝMI`);
+    const numbered = allEls.filter((e) => /^\s*0?[1-9]\s*$/.test(e.childNodes.length === 1 && e.firstChild.nodeType === 3 ? e.textContent : "x")).length;
+    if (numbered >= 3 && numbered <= 8) tells.push(`očíslované kroky 1-2-3 (${numbered}×)`);
+    const cta0 = ctaFold[0], cbg = cta0 && parse(getComputedStyle(cta0).backgroundColor);
+    if (cbg && cbg.a > 0.5) { const mx = Math.max(cbg.r, cbg.g, cbg.b), mn = Math.min(cbg.r, cbg.g, cbg.b), d = mx - mn; if (d > 0) { let hh = mx === cbg.r ? ((cbg.g - cbg.b) / d) % 6 : mx === cbg.g ? (cbg.b - cbg.r) / d + 2 : (cbg.r - cbg.g) / d + 4; hh = (hh * 60 + 360) % 360; const sat = d / (255 - Math.abs(mx + mn - 255)) * 100; if (hh >= 240 && hh <= 295 && sat >= 35) tells.push(`fialové/indigo CTA (hue ${Math.round(hh)}°)`); } }
+    const cream = parse(getComputedStyle(document.body).backgroundColor);
+    if (cream && cream.a > 0 && cream.r > 235 && cream.g > 225 && cream.b > 200 && cream.r - cream.b > 6 && cream.r - cream.b < 40) tells.push("krémové pozadí");
+    if (grids.length) tells.push(`${grids.length}× mřížka stejných karet`);
+    if (tells.length) {
+      const msg = `${tells.length} znaků AI vzhledu: ${tells.join("; ")} (jednotlivě jen varování, posoudit v revizi K9)`;
+      if (tells.length > T["ai-znaky-celkem-max"]) E("znaky-ai", msg); else if (!mobile) W("znaky-ai", msg);
+    }
+    // focus a výška CTA
+    if (!mobile) {
+      let focusRule = false;
+      for (const sh of document.styleSheets) { try { for (const rule of sh.cssRules) if (/:focus-visible/.test(rule.cssText)) focusRule = true; } catch {} }
+      if (!focusRule) W("focus-viditelny", "žádné pravidlo :focus-visible (klávesnicová přístupnost)");
+    }
+    if (ctaFold.length && ctaFold[0].getBoundingClientRect().height < T["cta-vyska-min-px"]) W("cta-vyska", `primární CTA vysoké ${Math.round(ctaFold[0].getBoundingClientRect().height)} px (min. ${T["cta-vyska-min-px"]})`);
 
     // přístupnost
     const lowc = new Set();

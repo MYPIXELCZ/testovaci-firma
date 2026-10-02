@@ -2,7 +2,7 @@
 
 Pravidlo: dokud žádný aktivní business nemá verdikt „ověřitelné do 3 dnů: ANO“ a „dostatečný prodej: ANO“ (`plan/verdikt.py`), hledá se alternativa.
 
-**Cíl (Ondřej 2026-10-02 13:46):** 3 000 Kč měsíčně není cíl. Hledáme buď (A) **škálovatelný business**: zisk ≥ 10 000 Kč měsíčně hned, nebo doložená cesta k němu do ~12 měsíců (Ondřej 14:13: nemusí to být zisk první měsíc, perspektiva musí být dlouhodobá; v `plan/verdikt.py` parametry `--rust-mesicne` a `--horizont`, růst s odůvodněním) s cestou k desítkám tisíc, kolísání OK (např. 50 000 → 10 000 → 15 000), nebo (B) **plně pasivní business**: po spuštění žádná práce, náklady ≤ ⅓ tržeb (tržby 3 000, náklad 1 000, zisk 2 000). Čísla níže (tržby při 3 000 Kč cíli) jsou proto jen horní odhad; podle nového cíle neprojde ani jeden kandidát přes Seznam.
+**Cíl (Ondřej 2026-10-02 13:46):** 3 000 Kč měsíčně není cíl. Hledáme buď (A) **škálovatelný business**: zisk ≥ 10 000 Kč měsíčně hned, nebo doložená cesta k němu do ~6 měsíců (Ondřej 14:16) (Ondřej 14:13: nemusí to být zisk první měsíc, perspektiva musí být dlouhodobá; v `plan/verdikt.py` parametry `--rust-mesicne` a `--horizont`, růst s odůvodněním) s cestou k desítkám tisíc, kolísání OK (např. 50 000 → 10 000 → 15 000), nebo (B) **plně pasivní business**: po spuštění žádná práce, náklady ≤ ⅓ tržeb (tržby 3 000, náklad 1 000, zisk 2 000). Čísla níže (tržby při 3 000 Kč cíli) jsou proto jen horní odhad; podle nového cíle neprojde ani jeden kandidát přes Seznam.
 V každém probuzení posunout nejlepšího kandidáta o krok (research, test 72 hodin, rozhodnutí). Stav vypisuje `tools/stav.py` (sekce portfolio).
 
 ## Aktivní businessy a jejich verdikt (stav 2026-10-02)

@@ -3,16 +3,16 @@
 Zpracováno 2026-10-02 po Ondřejově hlášení (FAILS.md 13:50, „weby nesplňují normy přistávacího webu a vypadají průměrně“, „nesmí vypadat, že je dělala AI“). Jen výzkum, v kódu webů nic nezměněno.
 Cílová skupina tohoto dokumentu: Claude (staví) a nezávislý recenzent (hodnotí). Weby, na které se vztahuje: Printopia (hledá rodič, používá žák, platí rodič) a anoberu (hledají, používají i platí snoubenci).
 Legenda sloupce **Auto**: **A** = ověří skript (Playwright computed styles, Lighthouse), **Č** = skript upozorní, rozhodne recenzent, **N** = jen recenzent. Číslo v hranatých závorkách = zdroj v oddílu Zdroje. „vlastní“ = náš práh bez normy (odhad z příkladů a praxe), dá se změnit.
-Omezení průzkumu: Chromium v kontejneru nedůvěřuje CA proxy a TLS jsem nevypínal, proto jsou hodnoty příkladů čtené z CSS a HTML kódu (curl), ne z vykreslení. Číselné statistiky z blogů dodavatelů nástrojů jsou označené „orientačně“.
+Omezení průzkumu: Chromium v kontejneru nedůvěřuje CA proxy; obejít ověření TLS systém zamítl a nezkoušel jsem to znovu, proto jsou hodnoty příkladů čtené z CSS a HTML kódu (curl), ne z vykreslení (u Plausible žádné px hodnoty neuvádím). Číselné statistiky z blogů dodavatelů nástrojů jsou označené „orientačně“.
 
 ## Závěr
 
-- Normy nejsou o ozdobách: jedna nabídka, jedno primární tlačítko opakované aspoň 3×, cena a důkaz v prvních dvou obrazovkách (74 % času čtenáři stráví v prvních dvou obrazovkách [3]), námitky v FAQ, rychlost (LCP ≤ 2,5 s, CLS ≤ 0,1, INP ≤ 200 ms [16]), kontrast 4,5:1 [23], cíle k dotyku ≥ 44 px [25][28].
+- Normy v kostce: jedna nabídka, jedno primární tlačítko opakované aspoň 3×, cena a důkaz v prvních dvou obrazovkách (74 % času čtenáři stráví v prvních dvou obrazovkách [3]), námitky v FAQ, rychlost (LCP ≤ 2,5 s, CLS ≤ 0,1, INP ≤ 200 ms [16]), kontrast 4,5:1 [23], cíle k dotyku ≥ 44 px [25][28].
 - Špičkové jednoproduktové stránky mají velký skutečný náhled produktu, konkrétní čísla (218 stran, 50 kapitol, 200 lekcí) a pojmenované reference s rolí.
 - „AI vzhled“ je statistický průměr: Inter, fialovo-indigový akcent, gradient, vycentrovaný hero se štítkem nad nadpisem a třemi stejnými kartami s ikonou, emoji, krémové pozadí s terakotou [31][32][33][34][35][36][37]. Studie 1 590 stránek: 54 % má aspoň 2 znaky, 22 % čtyři a více [31].
 - **Naše weby zasahuje většina znaků:** Inter + Fraunces, krémové pozadí, štítek (eyebrow) velkými písmeny nad H1, ikony v zaoblených čtvercích, dvě akcentní barvy (Printopia), 17 (Printopia) a 15 (anoberu) různých velikostí písma proti limitu 8, popisek 11,5 px, krátké sekce (48 a 72 px). Podrobně v oddílu 2.5.
 - Reference nevymýšlet: recenze musí být skutečné a označené, jinak hrozí pokuta (tisk uvádí až 5 mil. Kč) [9]. Bez recenzí se prodává ukázkou zdarma, ověřitelnými čísly produktu, zárukou a tím, kdo za tím stojí (oddíl 1.3).
-- Recenze vzhledu: rubrika 10 bodů (oddíl 4), spuštění od 8/10 a zároveň body K7 (poctivost) a K9 (nepůsobí jako AI) musí být 1.
+- Revize vzhledu: rubrika 10 bodů (oddíl 4), spuštění od 8/10 a zároveň body K7 (poctivost) a K9 (nepůsobí jako AI) musí být 1.
 - Měřitelné prahy jsou v posledním oddílu „Automaticky ověřitelné prahy“ pro kontrolní skript.
 
 ## 1. Normy přistávacího webu (jeden produkt)
@@ -53,7 +53,7 @@ Pořadí odpovídá doporučení Unbounce [1] a příkladům E1–E7 (oddíl 2.3
 | Cena | Kotva = srovnání s reálnou alternativou se zdrojem. Přeškrtnutá „původní cena“ jen s nejnižší cenou za posledních 30 dní, jinak zákaz | N | [10] |
 | Cena | Jedna nabídka a jedna cena u jednoho produktu, záruka (konkrétně, kolik dní a jak) vedle tlačítka | Č | E1, E5, E7 |
 | FAQ | 5–12 otázek z reálných námitek (ne vymyšlených), odpověď ≤ 60 slov | Č | [7] |
-| Objednávka | ≤ 3 viditelná pole, jen e-mail (+ jméno), bez účtu, label, `type=email`, `autocomplete`, chyba u pole; od tlačítka k platebním pokynům ≤ 2 kliky | A | [11] |
+| Objednávka | ≤ 3 viditelná pole, jen e-mail (+ jméno), bez účtu, label, `type=email`, `autocomplete`, chyba u pole; od tlačítka k platebním pokynům ≤ 2 kliky | A | [11] (ideál 8 polí platí pro fyzickou objednávku), vlastní |
 | Výkon | LCP ≤ 2,5 s, INP ≤ 200 ms, CLS ≤ 0,1 (75. percentil), FCP ≤ 1,8 s, TBT ≤ 200 ms (labor), Lighthouse mobil ≥ 90 | A labor, pole až při provozu | [16][17][18][20] |
 | Výkon | LCP obrázek bez `loading=lazy`, s `fetchpriority=high`; všechny obrázky se `width`/`height`; WebP/AVIF/SVG; přenos při prvním načtení ≤ 1 600 KiB (Lighthouse selže nad 5 000 KiB) | A | [19][21] |
 | Výkon | Rychlost je tržba: 0,1 s rychleji = +8,4 % konverzí (retail), 3 s na mobilu je hranice ztrát (orientačně, sekundární zdroje) | – | [1][22] |
@@ -74,9 +74,9 @@ Zákaz: vymyšlené citáty, jména („Jana K.“), „4,9/5“, „stovky spok
 Náhrada důkazu, kterou můžeme splnit hned:
 1. Ukázka zdarma (PDF) a velký náhled produktu: kupující si důkaz vyrobí sám.
 2. Ověřitelná čísla produktu: počet témat, úloh, stran, „každá úloha ověřená výpočtem“ (jen pokud je to pravda).
-3. Záruka vrácení peněz u ceny (14 dní podle VOP) a věta „jsme nový obchod“ místo předstírání zkušeností.
+3. Záruka vrácení peněz u ceny (počet dní podle VOP) a věta „jsme nový obchod“ místo předstírání zkušeností.
 4. Kdo za tím stojí: skutečný autor nebo značka, kontakt, odpověď na dotaz do 24 h.
-5. Externí hodnocení, které nevyrábíme: Zboží.cz „Ověřeno zákazníky“, Firmy.cz. Odkaz místo okopírované hvězdičky [6].
+5. Externí hodnocení, které nevyrábíme: hodnocení obchodu na Zboží.cz (program Ověřený zákazník, vyžaduje měřicí kód, viz `plan/postupy/zbozi-heureka.md`) a Firmy.cz. Odkaz místo okopírované hvězdičky [6].
 6. Sběr skutečných recenzí: e-mail 14 dní po nákupu s odkazem; ověřené označit („koupeno u nás“) a způsob uvést u recenzí [9]. Do první recenze sekci Recenze nezobrazovat.
 7. Prvním zákazníkům za zpětnou vazbu zdarma: označit jako sponzorovanou [9].
 
@@ -92,7 +92,7 @@ Náhrada důkazu, kterou můžeme splnit hned:
 
 | Oblast | Prémiově | Levně | Auto |
 |---|---|---|---|
-| Typografie | ≤ 2 rodiny písma, výrazné nadpisy a čitelný text; H1 ≥ 2,5× tělo na PC (E1 4×, E2 4,5×, E4 3×); škála ≤ 8 velikostí; max. 3 tloušťky; řádkování těla 1,4–1,7 [13]; nadpisy mezery mezi písmeny −0,01 až −0,03 em | 10 různých velikostí, malé písmo 11 px, těsné nadpisy pod −0,05 em, plochá hierarchie (H1 do 2× těla) [33] | A |
+| Typografie | ≤ 2 rodiny písma, výrazné nadpisy a čitelný text; H1 ≥ 2,5× tělo na PC (E1 3,6×, E2 4,5×, E4 3×); škála ≤ 8 velikostí; max. 3 tloušťky; řádkování těla 1,4–1,7 [13]; nadpisy s prostrkáním −0,01 až −0,03 em | 10 různých velikostí, malé písmo 11 px, těsné nadpisy pod −0,05 em, plochá hierarchie (H1 do 2× těla) [33] | A |
 | Mezery a rytmus | Mřížka 8 px, pro text 4 px [15]; sekce 80–160 px nahoře i dole na PC (E1 96/160), 48–96 px na mobilu; blízkost: mezera nadpis → text menší než mezera mezi sekcemi | Různé mezery po 5–7 px, stejné odsazení všeho, sekce 48 px natěsno | A |
 | Barva | Neutrální tmavý text, 1 akcent jen na tlačítka a pár prvků, sémantické barvy (chyba, úspěch) navíc; kontrast 4,5:1 / 3:1 | 2+ akcentů bez hierarchie, gradienty, záře, neon [37] | A |
 | Vizuály produktu | Velký skutečný náhled (≥ 560 px na PC, ≥ 85 % šířky mobilu) s čitelným textem, ořez na jednu úlohu nebo list, popisky; vlastní grafika odvozená z produktu; foto jen když nese informaci | Drobný mockup, stock lidé u notebooku, dekorativní fotka bez vztahu k produktu | A rozměr, N čitelnost |
@@ -101,7 +101,7 @@ Náhrada důkazu, kterou můžeme splnit hned:
 | Konzistence | 2–4 hodnoty zaoblení podle role (tlačítko, karta, obrázek), jedna sada ikon, jeden styl stínu, jeden levý okraj | Jedno zaoblení a `shadow-lg` na všem [34][36] | A |
 | Texty | Konkrétní čísla a slova z jazyka zákazníka, jednotné vykání, žádné fráze (oddíl Znaky AI) | „Posuňte na vyšší úroveň“ [36] | A frázemi |
 
-### 2.2 Vlastní vizuální jazyk z produktu (návrh k ověření recenzí, nic nenasazeno)
+### 2.2 Vlastní vizuální jazyk z produktu (návrh k ověření revizí, nic nenasazeno)
 
 Odlišení od šablony se nedá koupit písmem, vzniká z toho, co produkt je. Návrhy:
 - Printopia: produkt je tištěný pracovní list. Vizuální jazyk z papíru: kostičkovaný nebo linkovaný podklad, korektura tužkou, razítko u vyřešené úlohy; v hero velká skutečná strana PDF s jednou úlohou a postupem, ne tři rotované drobné listy.
@@ -110,7 +110,7 @@ Odlišení od šablony se nedá koupit písmem, vzniká z toho, co produkt je. N
 
 ### 2.3 Příklady špičkových stránek (7)
 
-Hodnoty z CSS a HTML (curl) 2026-10-02. Našich barev a písem se z toho nepřebírá nic, přebírá se přístup a měřítka.
+Hodnoty z CSS a HTML (curl) 2026-10-02. Z příkladů se přebírají měřítka a přístup, ne barvy ani písma.
 
 | Příklad | Typ | Co dělá dobře | Hodnoty z kódu |
 |---|---|---|---|
@@ -118,7 +118,7 @@ Hodnoty z CSS a HTML (curl) 2026-10-02. Našich barev a písem se z toho nepřeb
 | E2 [CSS for JavaScript Developers](https://www.css-for-js.dev) | kurz | Osobní hlas („CSS can be fun. I promise.“), vlastní ilustrace, 30+ pojmenovaných referencí s rolemi (Netflix, tvůrce Tailwindu), sekce „Hi, I'm Josh“, FAQ 16 otázek, záruka 30 dní, regionální ceny | Wotfard + Sriracha + League Mono, H1 `min(72px, 8vw)` váha 500, na mobilu 12vw vlevo, citát 24 px, pozadí hsl(274 16% 8%), akcent hsl(333 100% 52%). Přebrat: osobnost a vlastní kresby, ne barvy |
 | E3 [Things](https://culturedcode.com/things/) | jednoprodukt (aplikace) | Obrovské snímky produktu, ceny a ocenění (Apple Design Award), citáty konkrétně o funkcích, jedna hlavní výzva (video) | systémové písmo, tělo 18 px, řádek 1,4, text #303336 na bílé, H2 1,5 em řádek 1,25, `max-width: 900px` (3×) |
 | E4 [Fakturoid](https://www.fakturoid.cz) (CZ) | malá firma, SaaS | H1 6 slov o výsledku („Fakturujte jednoduše a dostaňte rychleji zaplaceno“), čísla měsíce (895 350 faktur), „88 % doporučuje“, „Napsali o nás“, reference s fotkou u každé funkce, mikrotext pod tlačítkem „Bez zbytečných složitostí“, 7× CTA „Začněte zdarma“ | nadpisy Cocon, tělo systémové, tělo řádek 1,625, H1 36 px → 48 px (xl), základ mezer 4 px, zelený akcent, `rounded-full` 43×, `rounded-2xl` 11× |
-| E5 [Ultimate Brain](https://thomasjfrank.com/brain/) | šablona (Notion) | „+40 000 uživatelů“ u tlačítka, video ukázka, FAQ řeší rozdíl od jiných produktů, záruka 30 dní a postup, ceny před/po s kódem. Nepřebírat: emoji v nadpisech | systémové písmo, H1 6 slov, CTA „Get Started“ 2× + „Buy“ |
+| E5 [Ultimate Brain](https://thomasjfrank.com/brain/) | šablona (Notion) | „+40 000 uživatelů“ u tlačítka, video ukázka, FAQ řeší rozdíl od jiných produktů, záruka 30 dní a postup, ceny před/po s kódem. Nepřebírat: emoji v nadpisech a přeškrtnuté ceny | systémové písmo, H1 6 slov, CTA „Get Started“ 2× + „Buy“ |
 | E6 [Plausible](https://plausible.io) | malý produkt (SaaS) | H1 8 slov, dvě tlačítka (zkouška a živé demo), pás čísel (21 tis. předplatitelů), srovnání s alternativou („54× menší skript“), snímek produktu je hlavní vizuál, ceny v tabulce | systémové písmo, jeden akcent; hodnoty jen z čtení stránky, ne z kódu |
 | E7 [Hatchly](https://www.hatchly.co.uk) | produktizovaná služba | Cena v hero („od 995 £ první měsíc“), Trustpilot 4,5, 4sloupcová srovnávací tabulka (my / interně / freelancer / agentura s cenami), 4 kroky, záruka 7 dní, CTA 4+× | – |
 
@@ -132,7 +132,7 @@ H1 PC 40–72 px (E1 64, E2 72, E4 48), mobil 28–40 px (E4 36); tělo 16–24 
 | Nález | Kde | Práh | Verdikt |
 |---|---|---|---|
 | Písma Inter + Fraunces | oba | zakázané/varování (oddíl Znaky AI) | selhává |
-| Krémové pozadí #fbfaf6 / #faf7f2 | oba | varování | selhává |
+| Krémové pozadí #fbfaf6 / #faf7f2 | oba | varování | varování |
 | Štítek `.eyebrow` velkými písmeny nad H1 | oba | zakázáno | selhává |
 | Ikony v zaoblených čtvercích 44 px (`.icon`) | Printopia | zakázáno | selhává |
 | Dvě akcentní barvy (modrá, žlutá) | Printopia | 1 akcent | selhává |
@@ -141,7 +141,7 @@ H1 PC 40–72 px (E1 64, E2 72, E4 48), mobil 28–40 px (E4 36); tělo 16–24 
 | Sekce 48 px (mobil 36 px) u Printopie, 72 px u anoberu | oba | 80–160 / 48–96 | selhává |
 | Žlutá číslice 1,71:1 na papíře (`ol.topics::before`, dekorativní) | Printopia | 3:1 pro text | selhává, pokud nese informaci |
 | `.accent` terakota #b5694a 3,87:1 | anoberu | text 4,5:1 | jen pro velký text |
-| Ostatní dvojice text/pozadí (měřeno) | oba | 4,5:1 | splněno (5,1–11,8) |
+| Hlavní dvojice text/pozadí (vzorek 18 dvojic, měřeno) | oba | 4,5:1 | splněno (5,1–11,8) |
 | `.btn-small` ≈ 34–38 px, `.chip` ≈ 37 px | oba | 44 px | selhává |
 | `.btn` ≈ 47–48 px | oba | 48 px | splněno |
 | Chybí `:focus-visible` pro odkazy a tlačítka, chybí `prefers-reduced-motion` | oba | povinné | selhává |
@@ -179,18 +179,18 @@ Zdroje [31]–[38], u textů [39][40]. Sloupec Auto: A skript, Č částečně, 
 | Z21 | Chybí kontext a vlastní grafika: nadpis bez čísla a bez konkrétní věci [35][36] | H1 bez číslice a podnadpis bez konkrétního podstatného jména produktu; v hero < 2 čísla | „12 témat, 340 úloh s postupem“; autor a příklad | Č |
 | Z22 | Vymyšlené reference [9] | `blockquote`/hvězdičky bez zdroje a označení ověření; generická jména; „tisíce spokojených“ | Oddíl 1.3 | Č |
 | Z23 | Marketingové fráze, vzorec „není X, ale Y“, trojice, vykřičníky [39][40] | regex (seznam v posledním oddílu): bezproblémově, na vyšší úroveň, odemkněte, vše, co potřebujete, ponořte se, komplexní řešení, „není to jen…, ale“, nadpis „A, B a C“ | Konkrétní věty s čísly; žádná výčtová trojice v nadpisech | A |
-| Z24 | Dlouhá pomlčka — a přemíra pomlček [39][40] | U+2014; > 3 pomlčky (–) na 1 000 znaků | Čárka, tečka, závorka; pomlčka (–) s mezerami jen výjimečně | A |
+| Z24 | Dlouhá pomlčka (znak U+2014) a přemíra pomlček [39][40] | U+2014; > 3 pomlčky (–) na 1 000 znaků | Čárka, tečka, závorka; pomlčka (–) s mezerami jen výjimečně | A |
 | Z25 | Chybějící stavy a pohyb: žádný focus, chyba formuláře bez textu, vše se plynule objevuje stejně [36] | chybí `:focus-visible`; `fade-in` na všech blocích; chybí hlášky chyb | Focus, hover, stisk; hláška u pole česky; animace jen u tlačítek a FAQ | Č |
 
 Pravidlo: 0 znaků třídy A (Z3, Z4, Z5, Z8, Z9, Z10, Z14) a celkem ≤ 1 znak (obdoba „clean 0–1“ [31]).
 
 ## 4. Rubrika nezávislé revize vzhledu (10 bodů)
 
-Recenzent je jiný agent než autor. Vidí jen: screenshoty PC 1440×900 (první obrazovka i celá stránka), mobil 390×844 (první obrazovka i celá stránka), vykreslené HTML a výstup kontrolního skriptu (JSON z oddílu Automaticky ověřitelné prahy). Každé kritérium 0 nebo 1, žádné půlbody. Bod dostane jen ten, kdo splní VŠECHNY dílčí podmínky. Při pochybnosti 0. U každého uvede jednu větu důkazu a jednu konkrétní opravu.
+Recenzent je jiný agent než autor. Vidí jen: screenshoty PC 1440×900 (první obrazovka i celá stránka), mobil 390×844 (první obrazovka i celá stránka) a vykreslené HTML; výstup kontrolního skriptu (JSON podle oddílu Automaticky ověřitelné prahy) je volitelný, hodnotí se i bez něj. Každé kritérium 0 nebo 1, žádné půlbody. Bod dostane jen ten, kdo splní VŠECHNY dílčí podmínky. Při pochybnosti 0. U každého uvede jednu větu důkazu a jednu konkrétní opravu.
 
 | # | Kritérium | 1 bod, pokud platí vše |
 |---|---|---|
-| K1 | Sdělení do 5 sekund | V první obrazovce PC i mobilu lze odpovědět: pro koho to je, co dostane, kolik to stojí nebo co kliknout. H1 nese výsledek pro plátce, ne název firmy; je tam cena nebo konkrétní číslo a jedno primární tlačítko |
+| K1 | Sdělení do 5 sekund | V první obrazovce PC i mobilu lze odpovědět: pro koho to je, co dostane, kolik to stojí a kam kliknout. H1 nese výsledek pro plátce, ne název firmy; cena je v tlačítku nebo vedle něj a je tam jedno primární tlačítko |
 | K2 | Hierarchie | Každá sekce má jedno ohnisko; tlačítko je nejvýraznější prvek stránky; 3 jasné úrovně textu; H1 ≥ 2,5× tělo; oko vede shora dolů k tlačítku |
 | K3 | Typografie | ≤ 2 rodiny, řádek 45–80 znaků, řádkování 1,4–1,7, žádný text < 12 px, škála ≤ 8 velikostí, nadpisy se nelámou na sirotky (jednoslovné řádky) |
 | K4 | Mezery a rytmus | Sekce 80–160 px (mobil 48–96), mezery na mřížce 4/8 px, stejné okraje, nic není natěsno a žádná prázdnota > 200 px bez obsahu; podobné věci blízko sebe |
@@ -295,7 +295,20 @@ Příklady: E1 https://refactoringui.com, E2 https://www.css-for-js.dev, E3 http
 
 ## Automaticky ověřitelné prahy
 
-Formát: jeden řádek `klíč: hodnota`. Číslo = práh (`-min` nejméně, `-max` nejvýše), `povinne` a `zakazano` = pravidlo, `varovani` = nahlásit, ale samo nezakládá chybu (počítá se do K9), seznam oddělený čárkou = hodnoty. Měří se Playwrightem (computed styles) na viditelných prvcích při viewportech PC 1440×900 a 1280×800, mobil 390×844, 360×740, 320×640, 768×1024; Lighthouse v režimu mobil. „pc“ a „mobil“ v názvu klíče určují viewport. Skrytá pole (`.hp`, `tabindex=-1`) se nepočítají. 
+**Kalibrace hlavní session (2026-10-02 14:2x):** původní prahy zakazovaly Inter, kurzivní patkový akcent v H1, štítek nad H1, skleněnou kartu a záři, tedy přesně prvky, které má Ondřejovo měřítko kvality `reference/zoo-hero`. Ondřej řekl, že zoo-hero je příklad ÚROVNĚ zpracování, ne stylu. Proto jsou tyto jednotlivé znaky jen `varovani` (skript je spočítá a vypíše), blokující je až jejich nahromadění bez dotažení (`ai-znaky-celkem-max: 6`) a hlavně nezávislá revize K9 „nepůsobí jako AI“. Bezpodmínečně zakázané zůstávají znaky, které nemají obhajobu (gradientní text, emoji v rozhraní, výchozí písma Space Grotesk/Geist, tři a více bloků stejných karet za sebou, vymyšlené reference, zakázané fráze).
+
+Formát: jeden řádek `klíč: hodnota`. Číslo = práh (`-min` nejméně, `-max` nejvýše), `povinne` a `zakazano` = pravidlo, `varovani` = nahlásit, ale samo nezakládá chybu (počítá se do K9), seznam oddělený čárkou = hodnoty (u `text-zakazane-fraze` středníkem, protože fráze obsahují čárku). Měří se Playwrightem (computed styles) na viditelných prvcích při viewportech PC 1440×900 a 1280×800, mobil 390×844, 360×740, 320×640, 768×1024, plus Lighthouse v režimu mobil. „pc“ a „mobil“ v názvu klíče určují viewport. Skrytá pole (`.hp`, `tabindex=-1`) se nepočítají.
+Výklad méně zřejmých klíčů:
+- `mezery-nasobek-px` a `mezery-na-mrizce-min-pct`: podíl hodnot `margin`, `padding` a `gap` (v px), které jsou násobkem 4, musí být aspoň 90 %.
+- `kontrast-velky-text-px`: od jaké velikosti platí kontrast 3:1 (24 px, nebo 18,66 px a tučný).
+- `obrazek-natural-pomer-*`: poměr přirozené šířky obrázku k vykreslené šířce (1,0 = ostrý, nad 2,5 zbytečně těžký).
+- `sekce-padding-*`: svislý `padding` shora i zdola u každé sekce hlavního obsahu.
+- `akcentni-barvy-max`: počet odstínových skupin (po 30°) mezi sytými barvami (sytost > 15 %) na prvcích mimo fotky; chyba a úspěch jako sémantické barvy se nepočítají.
+- `max-stejnych-karet-v-rade`: nejvýše tolik sourozenců stejné struktury a stylu vedle sebe (4 a více = chyba); tři stejné karty s ikonou nahoře zakazuje zvlášť `karty-ikona-nahore-3-stejne`.
+- `ai-znaky-trida-a-max` a `ai-znaky-celkem-max`: součet porušených klíčů tříd z oddílu Znaky AI (třída A: Z3, Z4, Z5, Z8, Z9, Z10, Z14).
+- `text-regex-zakazane`: regulární výraz bez ohledu na velikost písmen na viditelném textu stránky; `text-zakazane-fraze` hledá podřetězce (bez ohledu na velikost písmen a diakritiku).
+- `cta-max-vzdalenost-obrazovek`: v násobcích výšky viewportu.
+
 ```text
 lcp-max-s: 2.5
 inp-max-ms: 200
@@ -407,16 +420,16 @@ recenze-oznaceni-overeni: povinne
 recenze-bez-zdroje: zakazano
 placeholder-texty: zakazano
 placeholder-texty-seznam: lorem ipsum, john doe, jan novak, jana k., acme
-font-family-zakazane: Inter, Space Grotesk, Geist, Instrument Serif
-font-family-varovani: Roboto, Fraunces, Playfair Display, Poppins, DM Sans, Outfit, Plus Jakarta Sans, Montserrat, Open Sans, Lato, Arial, Helvetica, system-ui
+font-family-zakazane: Space Grotesk, Geist, Instrument Serif
+font-family-varovani: Inter, Roboto, Fraunces, Playfair Display, Poppins, DM Sans, Outfit, Plus Jakarta Sans, Montserrat, Open Sans, Lato, Arial, Helvetica, system-ui
 font-podpora-cestiny: povinne
-h1-serifova-kurziva: zakazano
+h1-serifova-kurziva: varovani
 cta-barva-hue-zakazane-stupne: 240-295
 cta-barva-sytost-zakazana-min-pct: 35
 gradient-text: zakazano
 gradienty-max-prvku: 1
-glassmorphism: zakazano
-glow-stin: zakazano
+glassmorphism: varovani
+glow-stin: varovani
 glow-stin-blur-px: 24
 tmave-pozadi-body-se-sedym-textem: zakazano
 pozadi-kremove: varovani
@@ -424,7 +437,7 @@ pozadi-kremove-hue: 30-50
 pozadi-kremove-sat-pct: 20-60
 pozadi-kremove-light-pct: 90-97
 vycentrovane-textove-bloky-max-pct: 30
-eyebrow-nad-h1: zakazano
+eyebrow-nad-h1: varovani
 uppercase-prvky-max: 2
 max-stejnych-karet-v-rade: 3
 karty-ikona-nahore-3-stejne: zakazano
@@ -436,9 +449,9 @@ emoji-v-ui: zakazano
 ai-jiskry: zakazano
 cislovane-kroky-bloky-max: 1
 stat-banner-radky-max: 1
-ai-znaky-trida-a-max: 0
-ai-znaky-celkem-max: 1
-text-zakazane-fraze: bezproblémov, bezstarostn, na vyšší úroveň, na další úroveň, odemkněte, odemknout, revoluční, revoluci, v dnešní uspěchané, v dnešním digitálním, ponořte se, objevte sílu, vše, co potřebujete, vše na jednom místě, komplexní řešení, inovativní, špičkov, nejmodernější, bez kompromisů, přeměňte, posuňte
+ai-znaky-trida-a-max: 3
+ai-znaky-celkem-max: 6
+text-zakazane-fraze: bezproblémov; bezstarostn; na vyšší úroveň; na další úroveň; odemkněte; odemknout; revoluční; revoluci; v dnešní uspěchané; v dnešním digitálním; ponořte se; objevte sílu; vše, co potřebujete; vše na jednom místě; komplexní řešení; inovativní; špičkov; nejmodernější; bez kompromisů; přeměňte; posuňte
 text-regex-zakazane: (?i)\b(není|nejde)\s+(to\s+)?(jen|pouze|pouhý|pouhá|pouhé)\b.{3,80}?,\s*(ale|nýbrž)\b
 h1-trojice-slov: zakazano
 pomlcka-em-dash: zakazano
