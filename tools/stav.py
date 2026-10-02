@@ -188,7 +188,9 @@ active = model_file.exists() and "vyšší model aktivní" in model_file.read_te
 for line in (ROOT / "plan/akce.md").read_text(encoding="utf-8").splitlines():
     cols = [c.strip() for c in line.strip().strip("|").split("|")]
     if len(cols) >= 5 and cols[0].isdigit() and "[model:vyšší]" in cols[4] and not cols[3].startswith(("zamítnuto", "hotovo")):
-        if active:
+        if cols[3].startswith("čeká na schválení"):
+            print(f"  akce #{cols[0]} ({cols[1][:50]}): čeká na schválení Ondřeje, model až potom")
+        elif active:
             print(f"  akce #{cols[0]} ({cols[1][:50]}): vyšší model aktivní, dělat teď")
         else:
             print(f"  akce #{cols[0]} ({cols[1][:50]}): ČEKÁ NA PŘEPNUTÍ MODELU")
