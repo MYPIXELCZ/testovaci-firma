@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Automatický verdikt před stavbou (FAILS.md 2026-10-02 13:31): jde to ověřit do 3 dnů a bude prodej dostatečný?
 
-    python3 plan/verdikt.py <projekt> --cena 349 [--konv 0.01] [--konv-overeni X] [--ctr 0.03] [--cil 10000] [--dny 3] [--rozpocet 0] [--jine-kliky-mesicne 0] [--naklad-mesicne 0] [--pasivni]
+    python3 plan/verdikt.py <projekt> --cena 349 [--konv 0.01] [--konv-overeni X] [--ctr 0.03] [--cil 10000] [--dny 3] [--rozpocet 0] [--jine-kliky-mesicne 0] [--naklad-mesicne 0] [--jine-cpc N] [--pasivni]
 
 Čte `plan/hledanost-<projekt>.md` (tabulka „Cílové dotazy“ ze `plan/hledanost.py`) a do téhož souboru zapíše oddíl „## Verdikt (automaticky)“.
 - Ověřitelnost: kolik návštěv se do `--dny` dnů dá reálně získat (hledání × CTR × dny/30 + jiné kliky) proti tomu, kolik jich je potřeba,
@@ -22,7 +22,7 @@ from pathlib import Path
 
 args = sys.argv[1:]
 project = args[0]
-opt = {"--cena": None, "--konv": 0.01, "--konv-overeni": None, "--ctr": 0.03, "--cil": 10000, "--dny": 3, "--rozpocet": 0, "--jine-kliky-mesicne": 0, "--naklad-mesicne": 0}
+opt = {"--cena": None, "--konv": 0.01, "--konv-overeni": None, "--ctr": 0.03, "--cil": 10000, "--dny": 3, "--rozpocet": 0, "--jine-kliky-mesicne": 0, "--naklad-mesicne": 0, "--jine-cpc": None}
 pasivni = "--pasivni" in args
 for i, a in enumerate(args):
     if a in opt:
@@ -53,9 +53,10 @@ bought = rozpocet / cpc if cpc else 0
 reach = avg * ctr * dny / 30 + jine * dny / 30 + bought
 monthly_avg = (avg * ctr + jine) * konv * cena
 monthly_peak = (peak * ctr + jine) * konv * cena
-naklad = (avg * ctr + jine) * cpc + opt["--naklad-mesicne"]
+jine_cpc = cpc if opt["--jine-cpc"] is None else opt["--jine-cpc"]  # cena kliku mimo Sklik (např. 0 u inzertního portálu, náklady pak do --naklad-mesicne)
+naklad = avg * ctr * cpc + jine * jine_cpc + opt["--naklad-mesicne"]
 zisk = monthly_avg - naklad
-zisk_peak = monthly_peak - ((peak * ctr + jine) * cpc + opt["--naklad-mesicne"])
+zisk_peak = monthly_peak - (peak * ctr * cpc + jine * jine_cpc + opt["--naklad-mesicne"])
 if pasivni:
     ok_sales = monthly_avg > 0 and naklad <= monthly_avg / 3 and zisk >= 2000
     kriterium = "pasivní (náklady ≤ ⅓ tržeb a zisk ≥ 2 000 Kč měsíčně, bez práce po spuštění)"
