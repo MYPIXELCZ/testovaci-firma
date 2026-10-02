@@ -1,6 +1,6 @@
 # Stav hlavní session (průběžný zápis, aby se po kompresi chatu neztratila nit)
 
-Aktualizováno: 2026-10-02 15:40 Praha. Aktualizovat po každém významném kroku (nový pokyn Ondřeje, start nebo konec agenta, rozhodnutí, commit). Po kompresi nebo novém startu session ho přečíst jako první (vkládá ho hook `session-resume.py`), pak CLAUDE.md a FAILS.md.
+Aktualizováno: 2026-10-02 15:45 Praha. Aktualizovat po každém významném kroku (nový pokyn Ondřeje, start nebo konec agenta, rozhodnutí, commit). Po kompresi nebo novém startu session ho přečíst jako první (vkládá ho hook `session-resume.py`), pak CLAUDE.md a FAILS.md.
 
 ## Kdo a kde
 Hlavní session „TESTOVACÍ FIRMA“ (CCR `session_01N4ZDnfkuU5cm6b5gWA3X3Y`), větev `claude/hopeful-hamilton-n1pbnk` (push nasazuje do Vercel týmu MYPIXELCZ). Hodinová rutina `trig_01JwSBqqYubWBAPLvW1ZK1Te` (:25) a jednorázová připomínka `trig_01HsG7157SouDk5eMtpHKrbB` (15:28 Praha); po každém probuzení nová `send_later` za 60 minut. Ondřej píše česky, krátce; odpovědi jen s informační hodnotou.
@@ -25,6 +25,9 @@ Projekt má chybu, nesmím ho využít; nic jsem v jeho repu neměnil, lokální
 
 ## Ondřej zvolil 🥇 (15:21): Google Ads + Keyword Planner
 Seznamy dotazů jsou v `plan/keyword-planner-seznamy.md` (A Česko, B USA); Ondřej je vloží do Plánovače klíčových slov a pošle mi CSV (pásma stačí). Po obdržení: do `plan/hledanost-*.md`, přepočítat K4 a dřívější kandidáty (Google ≈ 5× Seznam), nový verdikt a rozhodnutí. Ondřej 15:23 se ptá na API: nabídnuto 🥇 API Google Ads (Cloud projekt s fakturací, zapnout Google Ads API, ověření značky, Basic access automaticky, servisní účet + JSON klíč, e-mail přidat v Google Ads jako uživatele; od 9. 9. 2026 bez developer tokenu; egress do googleads.googleapis.com funguje) nebo 🥈 ruční export. Čeká na jeho volbu; po klíči napsat `plan/hledanost_google.py` (REST generateKeywordHistoricalMetrics).
+
+## Google Ads API krok po kroku (Ondřej 15:27: účet Google Ads založen, chce kroky jednotlivě)
+Krok 1 (dán 15:27): projekt `mypixel-ads-api` v Cloud Console + fakturace + zapnout Google Ads API; čeká na „krok 1 hotovo“. Další kroky: 2) Google Auth Platform → Branding (název, e-mail podpory, doména mypixel.cz) a ověření značky; v Google Ads API Overview zkontrolovat úroveň přístupu (výchozí Explorer, stačí zkusit; „Apply for access“ na Basic, může být automaticky nebo do 10 pracovních dnů); 3) servisní účet + JSON klíč (IAM → Servisní účty); 4) e-mail servisního účtu přidat v Google Ads (Správa → Přístup a zabezpečení → uživatel Standard) a předat mi ID účtu (10 číslic) a klíč; 5) já napíšu `plan/hledanost_google.py` (REST generateKeywordHistoricalMetrics) a ověřím. Pozor: dokumentace nejasná, zda je pro REST stále potřeba hlavička developer-token; ověřit po klíči.
 
 ## DataForSEO zamítnuto (Ondřej 15:19)
 K4 Etsy tím nejde ověřit; navrženo 🥇 Google Ads účet + Keyword Planner (zdarma, pásma), 🥈 jen B-sondy bez dat, 🥉 pauza hledání (Printopia a anoberu zůstávají pasivní). Čeká na jeho volbu.
