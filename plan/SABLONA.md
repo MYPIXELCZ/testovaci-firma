@@ -42,6 +42,9 @@ a Ondřej nekupuje nic (doména, reklama). Každé tvrzení o poptávce musí m�
 
 - **Zahraniční kanály a služby (Ondřej 2026-10-02):** v kapacitě trhu, konkurenci i v kanálech posuzovat zahraniční a placené služby (Google Ads, Etsy, Gumroad, hostingy, platební brány) stejně jako české: přínos proti ceně včetně 21 % DPH (reverse charge), poplatků a administrativy. Původ služby není důvod zamítnutí.
 
+## 2a. Schopnost (umím to?) (povinné, FAIL 2026-10-02 14:43)
+Rozhodujeme podle toho, zda jsme schopni to udělat, ne zda jsme to už dělali. U každé části řešení: umím ji? Ověření do 24 h (zkouška, prototyp, dokumentace) a výsledek zapsat. „Nedělali jsme“ není důvod k NE. Chybějící reference řešit pilotem se zárukou, nikdy ne vymyšlenými referencemi (klamavé jednání).
+
 ## 2b. Konkurence a ukousnutelný podíl (povinné, FAIL 2026-10-02 14:38)
 V každém businessu drží trh statisticky pár velkých hráčů. Neříkáme proto automaticky „nasycené, NE“, ptáme se, zda a čím si ukousneme kus (realisticky):
 1. **Trh a koncentrace:** kolik nákupních rozhodnutí měsíčně je v dosažitelném trhu (poptávky, nové e-shopy, hledání, prodeje konkurence) a kolik z něj drží vedoucí hráči (číslo a zdroj).
