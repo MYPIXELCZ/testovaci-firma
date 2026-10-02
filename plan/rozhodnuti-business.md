@@ -1,5 +1,7 @@
 # Rozhodnutí o novém businessu (#13, 2026-10-02 15:0x Praha, vyšší model)
 
+> **REVIZE 2026-10-02 15:12: celé rozhodnutí níže je ZRUŠENO.** Ondřej mi sdělil, že 1) má živý web mypixel.cz (MYPIXEL s.r.o., WordPress weby od 14 800 Kč, 85+ webů, 5,0 z 24 Google recenzí, sólo) a webprodava.cz (nabídka webů, Ing. Ondřej Chloupek), 2) už platí ePoptávku 500 Kč měsíčně a poptávkové portály tohoto typu nechce (duplicita). Sonda „Dílna na poptávky“ (#21) i stránka dílny na webprodava.cz (#14) jsou zrušeny; webové služby jsou duplicitní s jeho vlastním byznysem. Ponechávám jako záznam analýzy (čísla trhu poptávek platí). Aktuální stav: `plan/stav-session.md` a akce #22, #23.
+
 Podklady: `plan/alternativy-2026-10-02.md` (data, konkurence, dodatky o podílu a prezentaci), `plan/hledanost-alt2-*.md` (verdikty), `plan/postupy/zahranicni-sluzby.md`, `plan/konkurence-web-za-24-hodin.md`. Čísla, která tu nejsou změřená, jsou označená jako odhad.
 
 ## Rozhodnutí
