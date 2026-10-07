@@ -1,0 +1,57 @@
+{
+  "slug": "cermat-testy-matematika-jak-procvicovat",
+  "title": "CERMAT testy z matematiky: kde je najít a jak je procvičovat",
+  "h1": "CERMAT testy z matematiky: kde je najít a jak je procvičovat",
+  "description": "Kde zdarma najdete testy z matematiky z minulých jednotných přijímacích zkoušek, jak s nimi pracovat podle týdenního plánu a 4 vlastní úlohy s postupem navíc.",
+  "lead": "Testy z minulých let zveřejňuje CERMAT zdarma, a je proto nejlepší začít jimi. Jednotná přijímací zkouška z matematiky trvá 70 minut čistého času, je za maximálně 50 bodů a nesmí se používat kalkulačka (podle CERMAT pro rok 2027). My nejsme CERMAT a naše úlohy nejsou oficiální: jsou vlastní, ve stylu zkoušky. Níže najdete, kde testy najít, jak s nimi pracovat, aby se z nich žák něco naučil, a čtyři úlohy navíc s postupem řešení.",
+  "tips": [
+    "Testová zadání k procvičování a aplikaci TAU najdete na prijimacky.cermat.cz (sekce Jednotná přijímací zkouška, matematika). Používejte vždy zdroj z CERMAT, ne přepsané kopie.",
+    "Jeden test týdně zkuste jako generálku: 70 minut, žádná kalkulačka, propisovací tužka, rýsovací potřeby, bez nápovědy.",
+    "Po testu spočítejte body podle klíče a ke každé chybě napište, proč vznikla: neznal jsem postup, špatně jsem počítal, špatně jsem přečetl zadání, nestihl jsem to.",
+    "Chyby ze stejné skupiny (zlomky, procenta, rovnice, geometrie) procvičte krátkými sadami úloh, a teprve potom si napište další celý test.",
+    "Nejdřív dělejte úlohy, které umíte (rychlé body), těžké nechte na konec. Na výpočet nenechávejte poslední minuty.",
+    "Počítejte pro sebe nahlas nebo na papír: kontrola dosazením do zadání odhalí většinu chyb."
+  ],
+  "tasks": [
+    {
+      "topic": "Zlomky bez kalkulačky",
+      "text": "Vypočtěte bez kalkulačky: 3/4 + 5/6 − 1/3.",
+      "answer": "9/4 = 2 1/4",
+      "steps": [
+        "Společný jmenovatel 12: 9/12 + 10/12 − 4/12.",
+        "Součet a rozdíl čitatelů: 9 + 10 − 4 = 15, tedy 15/12.",
+        "Zkrátíme: 15/12 = 5/4 = 1 1/4."
+      ]
+    },
+    {
+      "topic": "Procenta",
+      "text": "Triko stálo 480 Kč. Nejdřív zlevnilo o 25 %, potom zdražilo o 25 %. Kolik stojí nyní?",
+      "answer": "450 Kč",
+      "steps": [
+        "Po slevě 25 % platíme 75 %: 0,75 · 480 = 360 Kč.",
+        "Po zdražení o 25 % platíme 125 % nové ceny: 1,25 · 360 = 450 Kč.",
+        "Cena není původních 480 Kč, protože procenta se počítají pokaždé z jiného základu."
+      ]
+    },
+    {
+      "topic": "Rovnice",
+      "text": "Řešte rovnici 3(x − 2) + 5 = 2x + 7.",
+      "answer": "x = 8",
+      "steps": [
+        "Roznásobíme: 3x − 6 + 5 = 2x + 7, tedy 3x − 1 = 2x + 7.",
+        "Neznámé na jednu stranu: 3x − 2x = 7 + 1, tedy x = 8.",
+        "Zkouška: levá strana 3 · 6 + 5 = 23, pravá strana 16 + 7 = 23. ✓"
+      ]
+    },
+    {
+      "topic": "Pythagorova věta",
+      "text": "Žebřík dlouhý 5 m stojí u zdi tak, že jeho spodní konec je 3 m od zdi. Do jaké výšky dosáhne?",
+      "answer": "4 m",
+      "steps": [
+        "Žebřík, zeď a zem tvoří pravoúhlý trojúhelník, žebřík je přepona.",
+        "Výška v² = 5² − 3² = 25 − 9 = 16.",
+        "v = 4 m. (Je to trojúhelník 3, 4, 5.)"
+      ]
+    }
+  ]
+}

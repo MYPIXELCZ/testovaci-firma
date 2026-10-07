@@ -153,3 +153,28 @@ page("slovni-ulohy-prijimacky", "Slovní úlohy na přijímačky: příklady s p
      ["Nejdřív si napište, co je neznámá x, a všechno ostatní vyjádřete pomocí ní.", "Pohyb proti sobě: rychlosti se sčítají. Stejným směrem: odčítají.",
       "Společná práce: sčítají se části práce za hodinu (1/a + 1/b), ne časy.", "Směsi: cena (nebo množství látky) celé směsi = součet cen jednotlivých částí.",
       "Na konci vždy zkouška dosazením do zadání, ne do rovnice."], w)
+
+
+# ------------------------------------------------------------------ CERMAT testy: jak je procvičovat (záměr „cermat testy“)
+c = []
+c.append(t("Zlomky bez kalkulačky", "Vypočtěte bez kalkulačky: 3/4 + 5/6 − 1/3.", "9/4 = 2 1/4",
+           ["Společný jmenovatel 12: 9/12 + 10/12 − 4/12.", "Součet a rozdíl čitatelů: 9 + 10 − 4 = 15, tedy 15/12.", "Zkrátíme: 15/12 = 5/4 = 1 1/4."],
+           F(3, 4) + F(5, 6) - F(1, 3) == F(5, 4)))
+c.append(t("Procenta", "Triko stálo 480 Kč. Nejdřív zlevnilo o 25 %, potom zdražilo o 25 %. Kolik stojí nyní?", "450 Kč",
+           ["Po slevě 25 % platíme 75 %: 0,75 · 480 = 360 Kč.", "Po zdražení o 25 % platíme 125 % nové ceny: 1,25 · 360 = 450 Kč.",
+            "Cena není původních 480 Kč, protože procenta se počítají pokaždé z jiného základu."], F(75, 100) * 480 * F(125, 100) == 450))
+c.append(t("Rovnice", "Řešte rovnici 3(x − 2) + 5 = 2x + 7.", "x = 8",
+           ["Roznásobíme: 3x − 6 + 5 = 2x + 7, tedy 3x − 1 = 2x + 7.", "Neznámé na jednu stranu: 3x − 2x = 7 + 1, tedy x = 8.",
+            "Zkouška: levá strana 3 · 6 + 5 = 23, pravá strana 16 + 7 = 23. ✓"], 3 * (8 - 2) + 5 == 2 * 8 + 7))
+c.append(t("Pythagorova věta", "Žebřík dlouhý 5 m stojí u zdi tak, že jeho spodní konec je 3 m od zdi. Do jaké výšky dosáhne?", "4 m",
+           ["Žebřík, zeď a zem tvoří pravoúhlý trojúhelník, žebřík je přepona.", "Výška v² = 5² − 3² = 25 − 9 = 16.", "v = 4 m. (Je to trojúhelník 3, 4, 5.)"], 5 ** 2 - 3 ** 2 == 4 ** 2))
+page("cermat-testy-matematika-jak-procvicovat", "CERMAT testy z matematiky: kde je najít a jak je procvičovat",
+     "CERMAT testy z matematiky: kde je najít a jak je procvičovat",
+     "Kde zdarma najdete testy z matematiky z minulých jednotných přijímacích zkoušek, jak s nimi pracovat podle týdenního plánu a 4 vlastní úlohy s postupem navíc.",
+     "Testy z minulých let zveřejňuje CERMAT zdarma, a je proto nejlepší začít jimi. Jednotná přijímací zkouška z matematiky trvá 70 minut čistého času, je za maximálně 50 bodů a nesmí se používat kalkulačka (podle CERMAT pro rok 2027). My nejsme CERMAT a naše úlohy nejsou oficiální: jsou vlastní, ve stylu zkoušky. Níže najdete, kde testy najít, jak s nimi pracovat, aby se z nich žák něco naučil, a čtyři úlohy navíc s postupem řešení.",
+     ["Testová zadání k procvičování a aplikaci TAU najdete na prijimacky.cermat.cz (sekce Jednotná přijímací zkouška, matematika). Používejte vždy zdroj z CERMAT, ne přepsané kopie.",
+      "Jeden test týdně zkuste jako generálku: 70 minut, žádná kalkulačka, propisovací tužka, rýsovací potřeby, bez nápovědy.",
+      "Po testu spočítejte body podle klíče a ke každé chybě napište, proč vznikla: neznal jsem postup, špatně jsem počítal, špatně jsem přečetl zadání, nestihl jsem to.",
+      "Chyby ze stejné skupiny (zlomky, procenta, rovnice, geometrie) procvičte krátkými sadami úloh, a teprve potom si napište další celý test.",
+      "Nejdřív dělejte úlohy, které umíte (rychlé body), těžké nechte na konec. Na výpočet nenechávejte poslední minuty.",
+      "Počítejte pro sebe nahlas nebo na papír: kontrola dosazením do zadání odhalí většinu chyb."], c)
