@@ -16,3 +16,6 @@ Zdroje: nařízení vlády č. 29/2023 Sb. (vzorové poučení a vzorový formul
 - E-mail po objednávce (platební údaje) doplnit o: poučení, vzorový formulář, OP (PDF příloha nebo text), odkaz na stránku odstoupení; e-mail s doručením odkaz.
 - OP § 6: jiné jednoznačné prohlášení (např. dopis na sídlo), odkaz na formulář a stránku, text podle vzorového poučení.
 - Postup refundu: odstoupení čte Claude (e-mail), vrácení z Fio provádí Ondřej (autorizace platby); lhůta 14 dní od odstoupení.
+
+## Provedeno (Ondřej 2026-10-07 20:49: „1“ = oprava podle vzoru, jen e-mail bez telefonu)
+Stránka `/odstoupeni-od-smlouvy` (vzorové poučení a vzorový formulář podle NV 29/2023 Sb., online odstoupení ve dvou krocích, potvrzení e-mailem v textové podobě), e-mail po objednávce obsahuje poučení a formulář a přílohu s obchodními podmínkami (načtena z veřejné stránky), OP § 6 upraveno (jiné jednoznačné prohlášení, odkaz na formulář), odkazy v patičce (Obchodní podmínky, Odstoupení od smlouvy). Úpravy vzoru: bez telefonu a bez nákladů na dodání, doplněna věta o nepoužívání obsahu. Refund: oznámení firmě obsahuje pokyn vrátit částku z Fio do 14 dnů (platí Ondřej). e2e 25+ kontrol zelené.

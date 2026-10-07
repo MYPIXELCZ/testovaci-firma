@@ -142,6 +142,9 @@ try {
   check(/^8\d{9}$/.test(vs) && opage.includes("<svg") && opage.includes("2202343801/2010"), `stránka objednávky: QR, účet a VS 8xxxxxxxxx (${vs})`);
   await new Promise((r) => setTimeout(r, 400));
   check(emails.some((e) => e.to === "rodic@example.cz" && e.subject.includes(vs)), "e-mail s platebními údaji odešel");
+  const payMail = emails.find((e) => e.to === "rodic@example.cz" && e.subject.includes(vs));
+  check(payMail.html.includes("Právo odstoupit od smlouvy") && payMail.html.includes("Vzorový formulář pro odstoupení od smlouvy") && payMail.html.includes("/odstoupeni-od-smlouvy"), "e-mail s platbou obsahuje poučení o odstoupení a vzorový formulář");
+  check(payMail.attachments?.length === 1 && payMail.attachments[0].filename === "obchodni-podminky-printopia.html" && Buffer.from(payMail.attachments[0].content, "base64").toString("utf8").includes("6. Odstoupení od smlouvy"), "e-mail s platbou má jako přílohu obchodní podmínky");
   check((await fetch(`${BASE}/stahnout/${oid}?soubor=zlomky`, { redirect: "manual" })).status === 303, "stažení před zaplacením přesměruje");
   check((await cron("Bearer spatne")).status === 401, "cron bez tajemství vrací 401");
   payments.push({ id: 5001, vs: "2610011234", amount: 349, date: today }); // platba anoberu: printopia ji nehlásí
@@ -175,6 +178,16 @@ try {
   const st2 = await (await fetch(`${BASE}/api/stats`, { headers: { "x-stats-key": "tajne" } })).json();
   check(st2.orders.created.sklik === 1 && st2.orders.paid.sklik === 1 && st2.orders.revenue === 349, "souhrn: objednávky a tržby podle zdroje");
   check((await (await get("/obchodni-podminky")).text()).includes("printopia.cz"), "obchodní podmínky");
+  const wdPage = (await (await get("/odstoupeni-od-smlouvy")).text()).replaceAll("<!-- -->", "");
+  check(wdPage.includes("Do 14 dnů máte právo odstoupit od této smlouvy bez udání důvodu.") && wdPage.includes("Vzorový formulář pro odstoupení od smlouvy") && wdPage.includes("Potvrdit") === false, "stránka odstoupení od smlouvy s poučením a vzorovým formulářem");
+  const wdPost = (b, ip = "198.51.100.7") => fetch(`${BASE}/api/odstoupeni`, { method: "POST", headers: { "content-type": "application/json", "x-real-ip": ip, ...UA }, body: JSON.stringify(b) });
+  check((await wdPost({ name: "", email: "x", vs })).status === 400, "odstoupení: odmítne neplatné údaje");
+  check((await wdPost({ name: "Bot", email: "bot@example.cz", vs, website: "x" })).status === 400, "odstoupení: honeypot");
+  const wdBefore = emails.length;
+  check((await wdPost({ name: "Test Rodič", email: "rodic@example.cz", vs })).ok, "odstoupení se odešle");
+  await new Promise((r) => setTimeout(r, 1500));
+  check(emails.slice(wdBefore).some((e) => e.to === "rodic@example.cz" && e.subject.includes("Potvrzení přijetí odstoupení") && e.html.includes(vs)), "zákazník dostane potvrzení přijetí odstoupení");
+  check(emails.slice(wdBefore).some((e) => e.to === "printopia@mypixel.cz" && e.subject.includes("Odstoupení od smlouvy") && e.html.includes("Vrátit 349 Kč")), "firma dostane upozornění s pokynem k vrácení peněz");
   // Přehled pro majitele: jen na chráněné adrese *.vercel.app, na veřejné doméně 404
   const asHost = (host) => new Promise((resolve) => http.get({ host: "localhost", port: PORT, path: "/prehled", headers: { host, ...UA } }, (res) => {
     let t = ""; res.on("data", (c) => (t += c)); res.on("end", () => resolve({ status: res.statusCode, text: t }));
@@ -206,7 +219,7 @@ try {
   check(imgRes.status === 200 && imgBuf.readUInt32BE(16) >= 425 && imgBuf.readUInt32BE(20) >= 440, `obrázek sady pro Zboží.cz (${imgBuf.readUInt32BE(16)}×${imgBuf.readUInt32BE(20)} px)`);
 
   // Vizuální a textová kontrola (FAILS.md 2026-10-01 02:02 a 02:05): šířka 1340 + 80 px, mobil, překryvy, z-index, texty.
-  const pages = `/,/koupit,/obchodni-podminky,/objednavka/${oid},/zlomky-prijimacky,/procenta-prijimacky,/telesa-objem-povrch-prijimacky,/konstrukcni-ulohy-prijimacky,/jak-se-pripravit-na-prijimacky,/prijimacky-z-matematiky-2027,/ochrana-osobnich-udaju`;
+  const pages = `/,/koupit,/obchodni-podminky,/odstoupeni-od-smlouvy,/objednavka/${oid},/zlomky-prijimacky,/procenta-prijimacky,/telesa-objem-povrch-prijimacky,/konstrukcni-ulohy-prijimacky,/jak-se-pripravit-na-prijimacky,/prijimacky-z-matematiky-2027,/ochrana-osobnich-udaju`;
   const viz = spawnSync("node", ["../tools/vizualni-kontrola.mjs", BASE, pages, process.env.VIZ_DIR ?? path.join(store, "viz")], { encoding: "utf8" });
   console.log(viz.stdout.trim());
   check(viz.status === 0, "vizuální a textová kontrola stránek");

@@ -3,5 +3,5 @@ import { TOPICS } from "@/content/temata";
 import { SITE_URL } from "@/lib/config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return ["/", "/jak-se-pripravit-na-prijimacky", "/prijimacky-z-matematiky-2027", "/zlomky-prijimacky", ...Object.keys(TOPICS).map((s) => `/${s}`), "/obchodni-podminky", "/ochrana-osobnich-udaju"].map((p) => ({ url: `${SITE_URL}${p === "/" ? "" : p}` }));
+  return ["/", "/jak-se-pripravit-na-prijimacky", "/prijimacky-z-matematiky-2027", "/zlomky-prijimacky", ...Object.keys(TOPICS).map((s) => `/${s}`), "/obchodni-podminky", "/odstoupeni-od-smlouvy", "/ochrana-osobnich-udaju"].map((p) => ({ url: `${SITE_URL}${p === "/" ? "" : p}` }));
 }

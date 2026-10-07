@@ -35,6 +35,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {COMPANY.register}.
             </p>
             <p style={{ margin: 0 }}>
+              <Link href="/obchodni-podminky">Obchodní podmínky</Link> ·{" "}
+              <Link href="/odstoupeni-od-smlouvy">Odstoupení od smlouvy</Link> ·{" "}
               <Link href="/ochrana-osobnich-udaju">Ochrana osobních údajů</Link> ·{" "}
               <a href={`mailto:${CONTACT}`}>{CONTACT}</a>
             </p>

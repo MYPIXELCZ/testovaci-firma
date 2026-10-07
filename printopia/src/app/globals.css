@@ -202,3 +202,5 @@ section p, .lead { max-width: 68ch; }
 
 @media (max-width: 520px) { .header-sample { display: none; } }
 .check { min-height: 44px; align-items: center; }
+.withdrawal-form { list-style: none; padding: 16px 20px; margin: 12px 0; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.withdrawal-form li { padding: 4px 0; }

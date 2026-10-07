@@ -76,7 +76,7 @@ for (const p of paths.split(",")) {
         const main = document.querySelector("main") ?? document.body;
         const first = main.querySelector("section");
         const legal = /IČO|IČ:|s\.r\.o\.|provozuje|Provozuje|spisová značka|obchodním rejstříku/;
-        const legalPage = /ochrana-osobnich-udaju|obchodni-podminky|doklad/.test(location.pathname);
+        const legalPage = /ochrana-osobnich-udaju|obchodni-podminky|odstoupeni-od-smlouvy|doklad/.test(location.pathname);
         if (first && !legalPage && legal.test(first.innerText)) out.push(`text: úvod obsahuje provozovatele/právní údaje („${first.innerText.match(legal)[0]}“), patří do patičky`);
         const text = main.innerText;
         const sentences = text.split(/(?<=[.!?])\s+|\n+/).map((x) => x.trim()).filter((x) => x.length > 40);

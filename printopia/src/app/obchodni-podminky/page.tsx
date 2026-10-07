@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { COMPANY, PRODUCT, UNPAID_RETENTION_DAYS } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Obchodní podmínky" };
@@ -80,13 +79,15 @@ export default function TermsPage() {
         <h2>6. Odstoupení od smlouvy</h2>
         <ol>
           <li>
-            Spotřebitel může od smlouvy odstoupit bez udání důvodu do 14 dnů od jejího uzavření. Stačí poslat e-mail na{" "}
-            <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a> s číslem objednávky (variabilním symbolem). Lhůta je
-            zachována, pokud e-mail odešle v jejím průběhu.
+            Spotřebitel může od smlouvy odstoupit bez udání důvodu do 14 dnů od jejího uzavření. Odstoupit lze jakýmkoli
+            jednoznačným prohlášením, například e-mailem na <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a> nebo dopisem
+            na adresu sídla prodávajícího, případně online na stránce <a href="/odstoupeni-od-smlouvy">printopia.cz/odstoupeni-od-smlouvy</a>,
+            kde je také vzorový formulář. Lhůta je zachována, pokud odstoupení odešle v jejím průběhu. Úplné poučení je na uvedené
+            stránce a v e-mailu s platebními údaji.
           </li>
           <li>
-            Peníze vrátíme do 14 dnů od odstoupení na účet, ze kterého přišla platba, pokud se nedomluvíme jinak. Kupujícímu
-            tím nevznikají žádné další náklady.
+            Peníze vrátíme bez zbytečného odkladu, nejpozději do 14 dnů od doručení odstoupení, na účet, ze kterého přišla platba,
+            pokud spotřebitel výslovně neurčí jinak. Kupujícímu tím nevzniknou žádné další náklady.
           </li>
           <li>Po odstoupení kupující sadu dál nepoužívá a její kopie smaže.</li>
         </ol>
@@ -114,7 +115,7 @@ export default function TermsPage() {
 
         <h2>9. Osobní údaje</h2>
         <p>
-          Jak zpracováváme osobní údaje, popisují <Link href="/ochrana-osobnich-udaju">zásady ochrany osobních údajů</Link>.
+          Jak zpracováváme osobní údaje, popisují <a href="/ochrana-osobnich-udaju">zásady ochrany osobních údajů</a>.
         </p>
 
         <h2>10. Závěrečná ustanovení</h2>
