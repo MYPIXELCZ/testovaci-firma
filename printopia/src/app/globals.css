@@ -187,3 +187,18 @@ ol.topics { grid-template-columns: repeat(4, 1fr); }
 .header-nav { display: flex; gap: 10px; align-items: center; }
 .header-nav .btn-small { padding: 9px 18px; font-size: 0.92rem; }
 @media (max-width: 520px) { .header-sample { display: none; } }
+
+/* Kontrola přistávací stránky (tools/landing-kontrola.mjs): cíle dotyku ≥ 44 px, viditelný fokus, plynulé přechody, délka řádku */
+.btn, .btn-small, .chip { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+.task summary, .tips-box summary { min-height: 44px; display: flex; align-items: center; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, .btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.btn, a, summary, .chip { transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease; }
+section p, .lead { max-width: 68ch; }
+.hero-sheet { background: #fff; padding: 0; }
+.end-cta { text-align: center; }
+.end-cta h2 { margin-top: 0; }
+.end-cta p { margin-left: auto; margin-right: auto; }
+.card .icon { margin-bottom: 10px; color: var(--blue); }
+
+@media (max-width: 520px) { .header-sample { display: none; } }
+.check { min-height: 44px; align-items: center; }

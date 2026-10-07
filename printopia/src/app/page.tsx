@@ -8,7 +8,6 @@ import Icon from "@/components/Icon";
 import LeadForm from "@/components/LeadForm";
 import MathText from "@/components/MathText";
 import StickyCta from "@/components/StickyCta";
-import foto from "@/content/foto.json";
 import ukazka from "@/content/ukazka.json";
 import { PRICE } from "@/lib/config";
 import { track } from "@/lib/track";
@@ -68,10 +67,8 @@ export default async function Home({ searchParams }: Props) {
             <p className="trust">Jednorázová platba, bez předplatného · 14 dní na vrácení peněz</p>
           </div>
           <div className="hero-visual">
-            <Image src="/foto/rodic-a-dcera-1400.webp" width={1400} height={788} priority sizes="(max-width: 800px) 100vw, 640px"
-                   alt="Maminka pomáhá dceři s úlohami u psacího stolu" className="hero-photo" />
-            <Image src="/nahled-postup.webp" width={909} height={719} alt="Stránka sady s postupy řešení krok za krokem" className="hero-paper" />
-            <p className="credit">Foto: <a href={foto["rodic-a-dcera"].author_url}>{foto["rodic-a-dcera"].author}</a>, <a href={foto["rodic-a-dcera"].page}>Unsplash</a></p>
+            <Image src="/nahled-postup.webp" width={909} height={719} priority sizes="(max-width: 800px) 100vw, 640px"
+                   alt="Stránka sady s postupy řešení krok za krokem" className="hero-photo hero-sheet" />
           </div>
         </div>
       </section>
@@ -86,10 +83,8 @@ export default async function Home({ searchParams }: Props) {
       <section>
         <div className="wrap">
           <div className="two">
-            <div className="card card-photo">
-              <Image src="/foto/rodic-podpora-800.webp" width={800} height={450} sizes="(max-width: 800px) 100vw, 660px"
-                     alt="Maminka povzbuzuje dceru při učení" className="card-img" />
-              <p className="credit credit-dark">Foto: <a href={foto["rodic-podpora"].author_url}>{foto["rodic-podpora"].author}</a>, <a href={foto["rodic-podpora"].page}>Unsplash</a></p>
+            <div className="card">
+              <Icon name="calendar" />
               <p className="eyebrow">Pro rodiče</p>
               <ul className="checks checks-dark">
                 <li><strong>Nemusíte umět matiku.</strong> U každé úlohy je postup, stačí porovnat výsledek.</li>
@@ -97,10 +92,8 @@ export default async function Home({ searchParams }: Props) {
                 <li><strong>Za cenu jedné až dvou hodin doučování.</strong> A listy můžete tisknout znovu.</li>
               </ul>
             </div>
-            <div className="card card-photo">
-              <Image src="/foto/sesit-matematika-800.webp" width={800} height={600} sizes="(max-width: 800px) 100vw, 660px"
-                     alt="Žák počítá úlohy z matematiky do sešitu" className="card-img" />
-              <p className="credit credit-dark">Foto: <a href={foto["sesit-matematika"].author_url}>{foto["sesit-matematika"].author}</a>, <a href={foto["sesit-matematika"].page}>Unsplash</a></p>
+            <div className="card">
+              <Icon name="steps" />
               <p className="eyebrow">Pro deváťáky</p>
               <ul className="checks checks-dark">
                 <li><strong>Jen to, co ti nejde.</strong> Zlomky zvlášť, procenta zvlášť, žádné celé testy dokola.</li>
@@ -149,6 +142,7 @@ export default async function Home({ searchParams }: Props) {
           </div>
           <ol className="topics">{TOPICS.map((t) => <li key={t}>{t}</li>)}</ol>
           <p className="muted small">Úlohy jsou vlastní, ve stylu jednotné přijímací zkoušky. Každý výsledek ověřujeme výpočtem.</p>
+          <p><Link href={buyHref} className="btn btn-yellow" data-track="cta_buy">Koupit sadu za {PRICE} Kč</Link></p>
         </div>
       </section>
 
@@ -218,6 +212,14 @@ export default async function Home({ searchParams }: Props) {
             </dl>
           </div>
           <Feedback />
+        </div>
+      </section>
+
+      <section className="soft">
+        <div className="wrap end-cta">
+          <h2>Zbývá {days} dní do zkoušky</h2>
+          <p className="muted">Sada se stáhne hned po zaplacení a do 14 dnů ji můžete vrátit.</p>
+          <p><Link href={buyHref} className="btn btn-yellow" data-track="cta_buy">Koupit sadu za {PRICE} Kč</Link></p>
         </div>
       </section>
 

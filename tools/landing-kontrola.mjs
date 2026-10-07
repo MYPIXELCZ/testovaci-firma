@@ -232,7 +232,7 @@ for (const [name, w, h, mobile] of [["pc", 1440, 900, false], ["mobil", 390, 844
     }
     if (lowc.size) E("kontrast", `nízký kontrast: ${[...lowc].slice(0, 5).join("; ")}${lowc.size > 5 ? ` … (+${lowc.size - 5})` : ""}`);
     if (mobile) {
-      const small = [...document.querySelectorAll("button, a.btn, a[class*=btn], a[class*=button], input, select")].filter((e) => vis(e) && Math.min(e.getBoundingClientRect().height, 99) < T["tap-target-min-px"]);
+      const small = [...document.querySelectorAll("button, a.btn, a[class*=btn], a[class*=button], input, select")].filter((e) => vis(e) && !(e.tabIndex < 0 && e.getAttribute("autocomplete") === "off") && !(["radio", "checkbox"].includes(e.type) && (e.closest("label")?.getBoundingClientRect().height ?? 0) >= T["tap-target-min-px"]) && Math.min(e.getBoundingClientRect().height, 99) < T["tap-target-min-px"]);  // radio a checkbox uvnitř štítku ≥ 44 px a skrytá pole proti robotům (tabindex −1) cílem dotyku nejsou
       if (small.length) E("tap-target", `${small.length} ovládacích prvků nižších než ${T["tap-target-min-px"]} px (např. „${(small[0].innerText || small[0].value || "").trim().slice(0, 20)}“)`);
       window.scrollTo(200, 0); if (window.scrollX > 0) E("preteka", "stránka se dá posunout do strany (vodorovný posuvník)"); window.scrollTo(0, 0);
     }
