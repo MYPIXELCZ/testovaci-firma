@@ -1,6 +1,6 @@
 # Stav hlavní session (průběžný zápis, aby se po kompresi chatu neztratila nit)
 
-Aktualizováno: 2026-10-11 13:10 Praha. Aktualizovat po každém významném kroku (nový pokyn Ondřeje, start nebo konec agenta, rozhodnutí, commit). Po kompresi nebo novém startu session ho přečíst jako první (vkládá ho hook `session-resume.py`), pak CLAUDE.md a FAILS.md.
+Aktualizováno: 2026-10-11 13:25 Praha. Aktualizovat po každém významném kroku (nový pokyn Ondřeje, start nebo konec agenta, rozhodnutí, commit). Po kompresi nebo novém startu session ho přečíst jako první (vkládá ho hook `session-resume.py`), pak CLAUDE.md a FAILS.md.
 
 ## Kdo a kde
 Hlavní session „TESTOVACÍ FIRMA“ (CCR `session_01N4ZDnfkuU5cm6b5gWA3X3Y`), větev `claude/hopeful-hamilton-n1pbnk` (push nasazuje do Vercel týmu MYPIXELCZ). **Hodinová rutina `trig_01JwSBqqYubWBAPLvW1ZK1Te` je VYPNUTÁ a jednorázová připomínka smazána (Ondřej 15:36); nic neplánovat, `send_later` nepoužívat.** Termíny: Zboží.cz přeměřit 2026-10-03, vyhodnotit do 2026-10-04 (bez připomínky, jen na Ondřejovo vyzvání). Ondřej píše česky, krátce; odpovědi jen s informační hodnotou.
@@ -9,6 +9,7 @@ Hlavní session „TESTOVACÍ FIRMA“ (CCR `session_01N4ZDnfkuU5cm6b5gWA3X3Y`),
 Cíl A: zisk ≥ 10 000 Kč měsíčně hned nebo doložená cesta do ~6 měsíců (dnes nezáporný), nebo B: pasivně, náklad ≤ ⅓ tržeb. Preference: automatizovaný produkt, pak 3D tisk, pak zakázkový web/systém/e-shop. Zahraniční placené služby povoleny (výdaj schvaluje Ondřej). Rozpočet zbývá ~700 Kč. Pravidla z FAILů dnes: verdikt/ověřitelnost, stav všech akcí (`tools/stav.py`), portfolio gate, zpětná platnost, normy přistávacího webu a zákaz „AI vzhledu“, modely se nemíchají (dávky), Vercel jen MYPIXELCZ, poradce ne přikyvovač (`plan/rozhodnuti.md`), podíl na trhu (SABLONA 2b), schopnost místo minulosti (2a), prezentace jako proměnná (2c).
 
 ## Stav businessů
+**2026-10-11 11:13 Ondřej: zůstává s.r.o., Stripe pošle; klíče do Vercelu sám (ne do chatu). 11:16 dotaz „kolik lidí došlo k platbě a odešlo“: 0 reálných (1 reálná objednávka, zaplacená; ostatní odeslání formuláře byla testovací).**
 **2026-10-11 13:10 Stripe: kód HOTOVÝ a nasazený (vypnutý, zapne se po env STRIPE_SECRET_KEY + STRIPE_WEBHOOK_SECRET); čeká na Ondřejovo rozhodnutí OSVČ vs s.r.o. a na účet Stripe + klíč + webhook; postup v `plan/printopia-rust.md`.**
 **2026-10-11 11:04 Ondřej se ptá: „Můžeme předělat vše na mé IČO?“ (OSVČ místo MYPIXEL s.r.o.). Moje odpověď: jde, ale doporučuji zůstat u s.r.o. (omezené ručení, Fio API s.r.o. páruje platby, ČSOB účet OSVČ API nemá, nutné přepsat OP/GDPR/e-maily/Zboží.cz/Sklik/Stripe); čekám na jeho důvod a na info, zda je OSVČ plátce DPH a má Fio účet; nic nepředělávat před jeho rozhodnutím (právo a finance, jeho veto).**
 **2026-10-11 12:30 konverze Printopie (Ondřej se ptal): hotovo platební stránka (kopírování, pokyny), jedna připomínka nezaplacené objednávky, měření objednávek podle slova a reklamy; další páka = platba kartou (Stripe, čeká na rozhodnutí a účet od Ondřeje), pak přesměrování reklam „cermat testy“ po datech; detail `plan/printopia-rust.md`.**

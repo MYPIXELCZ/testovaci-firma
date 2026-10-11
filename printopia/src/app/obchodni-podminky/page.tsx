@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { COMPANY, PRODUCT, UNPAID_RETENTION_DAYS, stripeEnabled } from "@/lib/config";
+import { COMPANY, PRODUCT, UNPAID_RETENTION_DAYS, stripeLive } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Obchodní podmínky" };
 
@@ -62,7 +62,7 @@ export default function TermsPage() {
             Platí se bankovním převodem na účet prodávajícího s uvedeným variabilním symbolem, nejsnáze pomocí QR kódu na
             stránce objednávky.
           </li>
-          {stripeEnabled() && (
+          {stripeLive() && (
             <li>
               Lze také zaplatit platební kartou, přes Apple Pay nebo Google Pay prostřednictvím platební brány Stripe. Údaje o
               kartě prodávající nevidí ani neukládá, po úspěšné platbě dostane kupující sadu okamžitě.

@@ -3,6 +3,10 @@ export const PRICE = 349;
 
 /** Platba kartou se zapne, až když je v env STRIPE_SECRET_KEY (a STRIPE_WEBHOOK_SECRET). Do té doby je jen QR převod. */
 export const stripeEnabled = () => !!process.env.STRIPE_SECRET_KEY && !!process.env.STRIPE_WEBHOOK_SECRET;
+/** Testovací klíč Stripe (sk_test_, rk_test_): platba kartou se nabízí jen na chráněné adrese *.vercel.app, zákazníkům ne. */
+export const stripeTestMode = () => /^(sk|rk)_test_/.test(process.env.STRIPE_SECRET_KEY ?? "");
+/** Platba kartou je veřejně zapnutá jen s ostrým klíčem. */
+export const stripeLive = () => stripeEnabled() && !stripeTestMode();
 export const CONTACT = "printopia@mypixel.cz";
 export const COMPANY = {
   name: "MYPIXEL s.r.o.",

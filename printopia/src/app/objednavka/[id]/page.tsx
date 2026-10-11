@@ -6,7 +6,8 @@ import { FILES } from "@/content/sada";
 import { getOrder } from "@/lib/orders";
 import CardPay from "@/components/CardPay";
 import CopyButton from "@/components/CopyButton";
-import { stripeEnabled } from "@/lib/config";
+import { isInternalHost, stripeEnabled, stripeTestMode } from "@/lib/config";
+import { headers } from "next/headers";
 import { paymentConfigured, qrSvg } from "@/lib/payment";
 import WaitForPayment from "./WaitForPayment";
 
@@ -15,6 +16,7 @@ export const metadata: Metadata = { title: "Vaše objednávka", robots: { index:
 export default async function OrderStatusPage(props: PageProps<"/objednavka/[id]">) {
   const { id } = await props.params;
   const afterCard = (await props.searchParams).karta === "ok";
+  const cardOffered = stripeEnabled() && (!stripeTestMode() || isInternalHost((await headers()).get("host")));
   const order = await getOrder(id);
   if (!order) notFound();
 
@@ -54,7 +56,7 @@ export default async function OrderStatusPage(props: PageProps<"/objednavka/[id]
         <h1>Zbývá zaplatit</h1>
         <p className="muted">Naskenujte QR kód v bankovní aplikaci. Platíte z telefonu? Zkopírujte údaje níže a vložte je do platby, nebo QR kód uložte jako obrázek a načtěte ho z galerie (většina bankovních aplikací to umí). Odkaz ke stažení pošleme na {order.email}, jakmile platba dorazí, u okamžité platby obvykle do 10 minut.</p>
         {afterCard && <p role="status"><strong>Děkujeme, platbu kartou zpracováváme.</strong> Stránka se za chvíli sama obnoví a sadu pošleme i e-mailem.</p>}
-        {stripeEnabled() && !afterCard && (
+        {cardOffered && !afterCard && (
           <div className="card-pay">
             <CardPay id={order.id} />
             <p className="muted small">Kartou, Apple Pay nebo Google Pay, sadu dostanete okamžitě. Platbu zpracovává Stripe. Nebo zaplaťte převodem níže.</p>

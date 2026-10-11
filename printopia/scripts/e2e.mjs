@@ -47,7 +47,7 @@ const app = spawn("npx", ["next", "start", "-p", String(PORT)], {
   env: {
     ...process.env, LOCAL_STORE_DIR: store, BLOB_READ_WRITE_TOKEN: "", VERCEL: "", STATS_KEY: "tajne",
     SALES_OPEN: "1", FIO_TOKEN: "test", FIO_API_BASE: `http://localhost:${MOCK}/fio`, RESEND_API_KEY: "test",
-    RESEND_API_URL: `http://localhost:${MOCK}/emails`, STRIPE_SECRET_KEY: "sk_test_x", STRIPE_WEBHOOK_SECRET: "whsec_test", STRIPE_API_URL: `http://localhost:${MOCK}/stripe`, CRON_SECRET: "cron-tajne", SITE_URL: `http://localhost:${PORT}`,
+    RESEND_API_URL: `http://localhost:${MOCK}/emails`, STRIPE_SECRET_KEY: "sk_live_x", STRIPE_WEBHOOK_SECRET: "whsec_test", STRIPE_API_URL: `http://localhost:${MOCK}/stripe`, CRON_SECRET: "cron-tajne", SITE_URL: `http://localhost:${PORT}`,
   },
   stdio: ["ignore", "pipe", "pipe"],
   detached: true,
