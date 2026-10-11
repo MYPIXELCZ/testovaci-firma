@@ -1,4 +1,4 @@
-import { SALES_OPEN } from "@/lib/config";
+import { SALES_OPEN, stripeEnabled, stripeLive } from "@/lib/config";
 import { incomingPayments } from "@/lib/fio";
 
 export const maxDuration = 30;
@@ -14,5 +14,5 @@ export async function GET(req: Request) {
   } catch (e) {
     fio = { ok: false, error: e instanceof Error ? e.message : String(e) };
   }
-  return Response.json({ ok: true, salesOpen: SALES_OPEN, fio, resend: Boolean(process.env.RESEND_API_KEY), cron: Boolean(process.env.CRON_SECRET) });
+  return Response.json({ ok: true, salesOpen: SALES_OPEN, fio, resend: Boolean(process.env.RESEND_API_KEY), cron: Boolean(process.env.CRON_SECRET), card: stripeLive() ? "live" : stripeEnabled() ? "test" : "off" });
 }
