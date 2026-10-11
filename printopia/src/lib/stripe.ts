@@ -5,6 +5,9 @@ import type { Order } from "./orders";
 
 const API = process.env.STRIPE_API_URL ?? "https://api.stripe.com";
 
+/** Stripe v korunách přijímá platby od 15 Kč. Testovací objednávky (1 Kč, jen chráněná adresa týmu) se kartou účtují 15 Kč, skutečné beze změny. */
+export const stripeAmountCzk = (order: Pick<Order, "amount" | "test">) => (order.test ? Math.max(order.amount, 15) : order.amount);
+
 /** Stripe Checkout (hostovaná platební stránka: karta, Apple Pay, Google Pay). Částka je vždy z objednávky, ne z prohlížeče. */
 export async function createCheckoutSession(order: Order): Promise<{ id: string; url: string }> {
   const params = new URLSearchParams({
@@ -12,7 +15,7 @@ export async function createCheckoutSession(order: Order): Promise<{ id: string;
     locale: "cs",
     "line_items[0][quantity]": "1",
     "line_items[0][price_data][currency]": "czk",
-    "line_items[0][price_data][unit_amount]": String(order.amount * 100),
+    "line_items[0][price_data][unit_amount]": String(stripeAmountCzk(order) * 100),
     "line_items[0][price_data][product_data][name]": PRODUCT.name,
     client_reference_id: order.id,
     customer_email: order.email,

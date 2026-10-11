@@ -1,6 +1,6 @@
 import { notifyOwner, sendDelivery } from "@/lib/email";
 import { getOrder, markPaid, paymentSeen } from "@/lib/orders";
-import { verifyWebhook } from "@/lib/stripe";
+import { stripeAmountCzk, verifyWebhook } from "@/lib/stripe";
 
 /** Stripe webhook: po zaplacení (checkout.session.completed, async_payment_succeeded) označí objednávku a pošle sadu. */
 export async function POST(req: Request) {
@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   const order = await getOrder(String(s.client_reference_id ?? ""));
   const payId = `stripe_${s.id}`;
   if (!order || order.status !== "pending" || (await paymentSeen(payId))) return Response.json({ ok: true, skipped: true });
-  if (s.currency !== "czk" || s.amount_total !== order.amount * 100) {
+  if (s.currency !== "czk" || s.amount_total !== stripeAmountCzk(order) * 100) {
     await notifyOwner(`Platba kartou nesedí k objednávce ${order.vs}`, [
       `Stripe ${s.id}: ${s.amount_total} ${s.currency}, objednávka ${order.amount} Kč (${order.name}, ${order.email}).`,
       "Objednávka zůstává nezaplacená. Zkontrolujte platbu ve Stripe a domluvte se se zákazníkem.",
