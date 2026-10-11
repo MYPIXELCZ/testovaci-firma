@@ -21,6 +21,7 @@ export type Order = {
   ad?: string; // utm_content (reklama ve Skliku)
   instructionsAt?: string; // kdy odešel e-mail s platebními údaji (u karty se neposílá, údaje s poučením jdou v e-mailu se sadou)
   remindedAt?: string; // kdy odešla připomínka nezaplacené objednávky (nejvýš jedna)
+  invoiceNo?: string; // číslo faktury vystavené v UOL (po zaplacení)
   test?: boolean;
 };
 
@@ -126,6 +127,13 @@ export async function markReminded(order: Order): Promise<Order> {
 /** Poznačí, že odešel e-mail s platebními údaji a poučením (posílá se nejvýš jednou). */
 export async function markInstructionsSent(order: Order): Promise<Order> {
   const updated: Order = { ...order, instructionsAt: new Date().toISOString() };
+  await save(updated);
+  return updated;
+}
+
+/** Poznačí číslo faktury vystavené v UOL. */
+export async function markInvoiced(order: Order, invoiceNo: string): Promise<Order> {
+  const updated: Order = { ...order, invoiceNo };
   await save(updated);
   return updated;
 }

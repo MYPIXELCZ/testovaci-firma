@@ -1,4 +1,5 @@
-import { notifyOwner, sendDelivery } from "@/lib/email";
+import { notifyOwner } from "@/lib/email";
+import { deliverPaid } from "@/lib/fulfil";
 import { getOrder, markPaid, paymentSeen } from "@/lib/orders";
 import { storage } from "@/lib/storage";
 import { stripeAmountCzk, verifyWebhook } from "@/lib/stripe";
@@ -68,11 +69,14 @@ export async function POST(req: Request) {
     ]).catch((e) => console.error("[stripe] upozornění selhalo", e));
     return Response.json({ ok: true, mismatch: true });
   }
-  const paid = await markPaid(order, payId);
+  const marked = await markPaid(order, payId);
   if (s.payment_intent) await storage.write(`stripe-pi/${s.payment_intent}`, order.id, { overwrite: true }).catch((e) => console.error("[stripe] značka platby selhala", e));
-  await sendDelivery(paid).catch((e) => console.error("[stripe] doručovací e-mail selhal", paid.vs, e));
+  const paid = await deliverPaid(marked).catch((e) => {
+    console.error("[stripe] doručení selhalo", marked.vs, e);
+    return marked;
+  });
   await notifyOwner(`Zaplaceno kartou ${paid.amount} Kč${paid.test ? " (test)" : ""}`, [
-    `Objednávka ${paid.vs}: ${paid.name}, ${paid.email}`,
+    `Objednávka ${paid.vs}: ${paid.name}, ${paid.email}${paid.invoiceNo ? `, faktura UOL ${paid.invoiceNo}` : ""}`,
     `Stripe platba ${s.id}. Výplata ze Stripe přijde na bankovní účet podle nastavení Stripe.`,
   ]).catch((e) => console.error("[stripe] upozornění selhalo", e));
   return Response.json({ ok: true, paid: paid.vs });

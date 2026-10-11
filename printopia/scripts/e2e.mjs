@@ -15,7 +15,30 @@ const MOCK = 3209;
 const payments = [];
 const emails = [];
 const stripeSessions = [];
+// Falešné UOL: "fail" = výpadek (503), "ok" = vystavuje faktury; ukládá přijaté požadavky
+let uolMode = "fail";
+const uolContacts = [];
+const uolInvoices = [];
+const UOL_AUTH = "e2e@mypixel.cz:tajny-token";
 const mock = http.createServer((req, res) => {
+  if (req.url.startsWith("/uol/v1/")) {
+    if (uolMode === "fail") { res.statusCode = 503; return res.end("{}"); }
+    if (req.headers.authorization !== `Basic ${Buffer.from(UOL_AUTH).toString("base64")}`) { res.statusCode = 401; return res.end("{}"); }
+    const url = new URL(req.url, "http://x");
+    const route = url.pathname.slice("/uol/v1/".length);
+    let body = "";
+    req.on("data", (c) => (body += c));
+    return req.on("end", () => {
+      const json = (code, data) => { res.statusCode = code; res.setHeader("Content-Type", "application/json"); res.end(JSON.stringify(data)); };
+      const ext = url.searchParams.get("external_id");
+      if (route === "contacts" && req.method === "GET") return json(200, { items: uolContacts.filter((c) => c.external_id === ext) });
+      if (route === "contacts" && req.method === "POST") { const c = { ...JSON.parse(body), contact_id: `kontakt_${uolContacts.length + 1}` }; uolContacts.push(c); return json(201, c); }
+      if (route === "sales_invoices" && req.method === "GET") return json(200, { items: uolInvoices.filter((i) => i.external_id === ext) });
+      if (route === "sales_invoices" && req.method === "POST") { const i = { ...JSON.parse(body), public_id: `2026${String(uolInvoices.length + 1).padStart(6, "0")}` }; uolInvoices.push(i); return json(201, i); }
+      if (route.startsWith("sales_invoices/") && req.headers.accept === "application/pdf") { res.setHeader("Content-Type", "application/pdf"); return res.end("%PDF-1.4 falešná faktura"); }
+      json(404, {});
+    });
+  }
   if (req.url.startsWith("/fio/periods/")) {
     const transaction = payments.map((p, i) => ({
       column22: { value: p.id }, column0: { value: p.date }, column1: { value: p.amount },
@@ -47,7 +70,7 @@ const app = spawn("npx", ["next", "start", "-p", String(PORT)], {
   env: {
     ...process.env, LOCAL_STORE_DIR: store, BLOB_READ_WRITE_TOKEN: "", VERCEL: "", STATS_KEY: "tajne",
     SALES_OPEN: "1", FIO_TOKEN: "test", FIO_API_BASE: `http://localhost:${MOCK}/fio`, RESEND_API_KEY: "test",
-    RESEND_API_URL: `http://localhost:${MOCK}/emails`, STRIPE_SECRET_KEY: "sk_live_x", STRIPE_WEBHOOK_SECRET: "whsec_test", STRIPE_API_URL: `http://localhost:${MOCK}/stripe`, CRON_SECRET: "cron-tajne", SITE_URL: `http://localhost:${PORT}`,
+    RESEND_API_URL: `http://localhost:${MOCK}/emails`, STRIPE_SECRET_KEY: "sk_live_x", STRIPE_WEBHOOK_SECRET: "whsec_test", STRIPE_API_URL: `http://localhost:${MOCK}/stripe`, UOL_AUTH, UOL_API_URL: `http://localhost:${MOCK}/uol`, CRON_SECRET: "cron-tajne", SITE_URL: `http://localhost:${PORT}`,
   },
   stdio: ["ignore", "pipe", "pipe"],
   detached: true,
@@ -174,6 +197,8 @@ try {
   const delivery = emails.find((e) => e.to === "rodic@example.cz" && e.subject.includes("sada"));
   check(Boolean(delivery?.html.includes(`/objednavka/${oid}`) && delivery?.html.includes(`Doklad o zaplacení č. ${vs}`)), "doručovací e-mail s odkazem a dokladem");
   check(emails.filter((e) => e.to === "printopia@mypixel.cz" && e.subject.includes("Zaplaceno")).length === 1, "firma dostala upozornění na platbu");
+  check(emails.some((e) => e.to === "printopia@mypixel.cz" && e.subject.includes("Fakturu v UOL se nepodařilo vystavit") && e.html.includes(vs)), "UOL: při výpadku odejde sada se starým dokladem a firma dostane upozornění, že má fakturu vystavit ručně");
+  check(!delivery.attachments?.some((a) => a.filename.endsWith(".pdf")), "UOL: při výpadku e-mail nenese fakturu");
   const paidPage = (await (await get(`/objednavka/${oid}`)).text()).replaceAll("<!-- -->", "");
   check(paidPage.includes("Zaplaceno") && paidPage.includes(`/stahnout/${oid}?soubor=zlomky`), "po zaplacení stránka nabízí listy ke stažení");
   const manifest = JSON.parse(readFileSync(new URL("../src/content/sada-soubory.json", import.meta.url), "utf8"));
@@ -265,6 +290,7 @@ try {
   await hook(session({ id: "cs_test_bad", amount_total: 100 }));
   check((await (await get(`/api/orders/${cardOrder.id}`)).json()).status !== "paid", "Stripe webhook: platba s jinou částkou objednávku neodemkne");
   const mailsCard = emails.length;
+  uolMode = "ok";
   const okHook = await hook(session({}));
   check(okHook.ok, "Stripe webhook: platná platba se přijme");
   check((await (await get(`/api/orders/${cardOrder.id}`)).json()).status === "paid", "Stripe webhook: objednávka je zaplacená");
@@ -272,7 +298,15 @@ try {
   const cardMails = emails.filter((e) => e.to === "karta@example.cz");
   check(!cardMails.some((e) => e.subject.includes("platební údaje")), "kupující kartou nedostane e-mail s platebními údaji");
   const cardDelivery = cardMails.find((e) => e.subject.includes("sada"));
-  check(cardDelivery.html.includes("Právo odstoupit od smlouvy") && cardDelivery.html.includes("zaplaceno kartou") && cardDelivery.attachments?.length === 1, "e-mail se sadou pro kupujícího kartou nese poučení o odstoupení a obchodní podmínky");
+  check(cardDelivery.html.includes("Právo odstoupit od smlouvy") && cardDelivery.attachments?.some((a) => a.filename === "obchodni-podminky-printopia.html"), "e-mail se sadou pro kupujícího kartou nese poučení o odstoupení a obchodní podmínky");
+  // Faktura z UOL: kontakt + potvrzená faktura bez označení zaplaceno, PDF v příloze, číslo v objednávce
+  const inv = uolInvoices.find((i) => i.external_id === cardOrder.id);
+  check(uolContacts.length === 1 && uolContacts[0].name === "Karel Kartou" && uolContacts[0].addresses[0].email === "karta@example.cz" && uolContacts[0].external_id === cardOrder.id, "UOL: vznikl kontakt kupujícího s e-mailem");
+  check(uolInvoices.length === 1 && inv?.status === "confirmed" && inv.buyer_id === "kontakt_1" && inv.payment_method === "credit_card" && inv.items[0].unit_price === 349 && inv.items[0].vat_rate === 0 && inv.note === `VS ${JSON.parse(readFileSync(path.join(store, "orders", `${cardOrder.id}.json`), "utf8")).vs}`, "UOL: potvrzená faktura s položkou 349 Kč bez DPH, VS objednávky v poznámce");
+  check(!("paid" in inv) && !inv.text.includes("undefined") && inv.text.includes("kartou") && inv.text.includes("nic neplaťte"), "UOL: faktura se neoznačuje jako zaplacená, text říká že je uhrazená");
+  check(cardDelivery.html.includes(`Faktura č. ${inv.public_id}`) && !cardDelivery.html.includes("Doklad o zaplacení č.") && cardDelivery.attachments?.some((a) => a.filename === `faktura-${inv.public_id}.pdf` && Buffer.from(a.content, "base64").toString().startsWith("%PDF")), "UOL: e-mail se sadou nese fakturu jako PDF a místo vlastního dokladu ji uvádí");
+  check(emails.slice(mailsCard).some((e) => e.to === "printopia@mypixel.cz" && e.html.includes(`faktura UOL ${inv.public_id}`)), "UOL: firma v upozornění na platbu vidí číslo faktury");
+  check(JSON.parse(readFileSync(path.join(store, "orders", `${cardOrder.id}.json`), "utf8")).invoiceNo === inv.public_id, "UOL: číslo faktury je uložené u objednávky");
   const mailsAgain = emails.length;
   await hook(session({}));
   check(emails.length === mailsAgain, "Stripe webhook: opakované doručení nepošle sadu podruhé");

@@ -1,5 +1,6 @@
 import { TEST_PRICE, UNPAID_RETENTION_DAYS } from "@/lib/config";
-import { notifyOwner, sendDelivery, sendPaymentReminder } from "@/lib/email";
+import { notifyOwner, sendPaymentReminder } from "@/lib/email";
+import { deliverPaid } from "@/lib/fulfil";
 import { incomingPayments, type IncomingPayment } from "@/lib/fio";
 import { deleteOrder, getOrder, listPending, markPaid, markPaymentAlerted, markReminded, paymentSeen } from "@/lib/orders";
 import { cleanupRateLimits } from "@/lib/ratelimit";
@@ -82,11 +83,14 @@ export async function GET(req: Request) {
         }
         continue;
       }
-      const paid = await markPaid(order, payment.id);
-      result.paid.push(paid.vs);
-      await sendDelivery(paid).catch((e) => console.error("[cron] doručovací e-mail selhal", paid.vs, e));
+      const marked = await markPaid(order, payment.id);
+      result.paid.push(marked.vs);
+      const paid = await deliverPaid(marked).catch((e) => {
+        console.error("[cron] doručení selhalo", marked.vs, e);
+        return marked;
+      });
       await notifyOwner(`Zaplaceno ${paid.amount} Kč${paid.test ? " (test)" : ""}`, [
-        `Objednávka ${paid.vs}: ${paid.name}, ${paid.email}`,
+        `Objednávka ${paid.vs}: ${paid.name}, ${paid.email}${paid.invoiceNo ? `, faktura UOL ${paid.invoiceNo}` : ""}`,
         `Platba: ${describe(payment)}`,
       ]).catch((e) => console.error("[cron] upozornění selhalo", e));
     }

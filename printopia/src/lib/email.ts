@@ -85,10 +85,27 @@ ${button(orderUrl(o), "Zobrazit QR platbu")}
   );
 }
 
-export async function sendDelivery(o: Order) {
+export async function sendDelivery(o: Order, invoice?: { no: string; pdf: string }) {
   // Kupující kartou nedostal e-mail s platebními údaji, poučení o odstoupení a podmínky mu proto jdou s doručením (nejpozději při dodání digitálního obsahu).
   const legal = o.instructionsAt ? "" : withdrawalBlock();
-  const attachments = o.instructionsAt ? [] : await termsAttachment();
+  const attachments = [
+    ...(o.instructionsAt ? [] : await termsAttachment()),
+    ...(invoice ? [{ filename: `faktura-${invoice.no}.pdf`, content: invoice.pdf }] : []),
+  ];
+  const how = o.paymentId?.startsWith("stripe_") ? "kartou" : "převodem";
+  const h2 = (t: string) => `<h2 style="font-family:Georgia,serif;font-size:18px;font-weight:normal;margin:32px 0 8px">${t}</h2>`;
+  // S fakturou z UOL je doklad PDF v příloze, bez ní (UOL vypnuté nebo výpadek) zůstává vlastní doklad na webu.
+  const receipt = invoice
+    ? `${h2(`Faktura č. ${invoice.no}`)}
+<p style="font-size:14px;line-height:1.6">Faktura (daňový doklad) je v příloze tohoto e-mailu jako PDF. Je už uhrazená, nic platit nemusíte. Zaplaceno ${how} ${new Date(o.paidAt!).toLocaleDateString("cs-CZ")}, ${kc(o.amount)}.</p>`
+    : `${h2(`Doklad o zaplacení č. ${o.vs}`)}
+<p style="font-size:14px;line-height:1.6">
+Prodávající: ${COMPANY.name}, ${COMPANY.address}, IČO ${COMPANY.ico}, ${COMPANY.register}<br>
+Kupující: ${escape(o.name)}, ${escape(o.email)}<br>
+Položka: ${PRODUCT.name} (digitální obsah), 1 ks<br>
+Cena: ${kc(o.amount)}, zaplaceno ${how} ${new Date(o.paidAt!).toLocaleDateString("cs-CZ")}<br>
+${COMPANY.vat}</p>
+<p style="font-size:14px"><a href="${SITE_URL}/doklad/${o.id}" style="color:#2952cc">Doklad k tisku</a></p>`;
   await send(
     o.email,
     "Vaše sada na přijímačky je tady",
@@ -97,14 +114,7 @@ export async function sendDelivery(o: Order) {
       `<p>Všechny pracovní listy k tisku najdete na stránce objednávky. Začněte úvodním testem, ukáže, která témata procvičit nejdřív.</p>
 ${button(orderUrl(o), "Stáhnout pracovní listy")}
 <p>Odkaz funguje i později, stačí si tento e-mail nechat.</p>
-<h2 style="font-family:Georgia,serif;font-size:18px;font-weight:normal;margin:32px 0 8px">Doklad o zaplacení č. ${o.vs}</h2>
-<p style="font-size:14px;line-height:1.6">
-Prodávající: ${COMPANY.name}, ${COMPANY.address}, IČO ${COMPANY.ico}, ${COMPANY.register}<br>
-Kupující: ${escape(o.name)}, ${escape(o.email)}<br>
-Položka: ${PRODUCT.name} (digitální obsah), 1 ks<br>
-Cena: ${kc(o.amount)}, zaplaceno ${o.paymentId?.startsWith("stripe_") ? "kartou" : "převodem"} ${new Date(o.paidAt!).toLocaleDateString("cs-CZ")}<br>
-${COMPANY.vat}</p>
-<p style="font-size:14px"><a href="${SITE_URL}/doklad/${o.id}" style="color:#2952cc">Doklad k tisku</a></p>
+${receipt}
 ${o.instructionsAt ? `<p style="font-size:14px;color:#5f6675">Do 14 dnů můžete od smlouvy odstoupit bez udání důvodu: <a href="${WITHDRAWAL_URL}" style="color:#2952cc">${WITHDRAWAL_URL}</a>. Úplné poučení a formulář jsou v e-mailu s platebními údaji.</p>` : legal}`,
     ),
     attachments.length ? attachments : undefined,
