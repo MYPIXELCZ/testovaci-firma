@@ -4,6 +4,7 @@ const PATHS: Record<string, string> = {
   steps: "M4 18h4v-4h4v-4h4V6h4",
   print: "M7 8V3h10v5M7 17H4v-7h16v7h-3M7 14h10v7H7z",
   calendar: "M4 6h16v14H4zM4 10h16M8 3v5M16 3v5M8 14h3v3H8z",
+  lock: "M7 11V8a5 5 0 0 1 10 0v3M5 11h14v9H5zM12 15v2",
 };
 export default function Icon({ name }: { name: keyof typeof PATHS | string }) {
   return (

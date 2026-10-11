@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CONTACT, PAYMENT } from "@/lib/config";
+import { CONTACT, PAYMENT, PRODUCT, cardOffered as cardOfferedFor } from "@/lib/config";
 import { FILES } from "@/content/sada";
 import { getOrder } from "@/lib/orders";
 import CardPay from "@/components/CardPay";
 import CopyButton from "@/components/CopyButton";
-import { isInternalHost, stripeEnabled, stripeTestMode } from "@/lib/config";
+import Icon from "@/components/Icon";
+import TransferPanel from "@/components/TransferPanel";
 import { headers } from "next/headers";
 import { paymentConfigured, qrSvg } from "@/lib/payment";
 import WaitForPayment from "./WaitForPayment";
@@ -16,7 +17,7 @@ export const metadata: Metadata = { title: "Vaše objednávka", robots: { index:
 export default async function OrderStatusPage(props: PageProps<"/objednavka/[id]">) {
   const { id } = await props.params;
   const afterCard = (await props.searchParams).karta === "ok";
-  const cardOffered = stripeEnabled() && (!stripeTestMode() || isInternalHost((await headers()).get("host")));
+  const cardOffered = cardOfferedFor((await headers()).get("host"));
   const order = await getOrder(id);
   if (!order) notFound();
 
@@ -49,36 +50,60 @@ export default async function OrderStatusPage(props: PageProps<"/objednavka/[id]
   }
 
   const ready = paymentConfigured();
+  const bank = ready ? (
+    <div className="pay">
+      <div className="qr" dangerouslySetInnerHTML={{ __html: await qrSvg(order) }} aria-label="QR kód pro platbu" />
+      <div>
+        <p className="muted small" style={{ marginTop: 0 }}>Naskenujte QR kód v bankovní aplikaci. Z telefonu zkopírujte údaje níže, nebo QR kód uložte jako obrázek a načtěte ho z galerie (většina bankovních aplikací to umí).</p>
+        <table className="pay-table">
+          <tbody>
+            <tr><td>Číslo účtu</td><td>{PAYMENT.account} <CopyButton value={PAYMENT.account} label="číslo účtu" /></td></tr>
+            <tr><td>Částka</td><td>{order.amount} Kč <CopyButton value={String(order.amount)} label="částku" /></td></tr>
+            <tr><td>Variabilní symbol</td><td>{order.vs} <CopyButton value={order.vs} label="variabilní symbol" /></td></tr>
+          </tbody>
+        </table>
+        <p className="muted small">Platby párujeme automaticky každých pár minut, u okamžité platby sadu pošleme obvykle do 10 minut. Stránku můžete zavřít, vše vám přijde e-mailem na {order.email}.</p>
+      </div>
+    </div>
+  ) : (
+    <p className="error">Platby teď nepřijímáme. Napište nám prosím na {CONTACT}.</p>
+  );
+
   return (
     <section className="hero">
-      <div className="wrap narrow">
+      <div className="wrap narrow checkout">
         <p className="eyebrow">Objednávka {order.vs}</p>
-        <h1>Zbývá zaplatit</h1>
-        <p className="muted">Naskenujte QR kód v bankovní aplikaci. Platíte z telefonu? Zkopírujte údaje níže a vložte je do platby, nebo QR kód uložte jako obrázek a načtěte ho z galerie (většina bankovních aplikací to umí). Odkaz ke stažení pošleme na {order.email}, jakmile platba dorazí, u okamžité platby obvykle do 10 minut.</p>
-        {afterCard && <p role="status"><strong>Děkujeme, platbu kartou zpracováváme.</strong> Stránka se za chvíli sama obnoví a sadu pošleme i e-mailem.</p>}
-        {cardOffered && !afterCard && (
-          <div className="card-pay">
-            <CardPay id={order.id} />
-            <p className="muted small">Kartou, Apple Pay nebo Google Pay, sadu dostanete okamžitě. Platbu zpracovává Stripe. Nebo zaplaťte převodem níže.</p>
+        <h1>Dokončete objednávku</h1>
+        <div className="summary">
+          <span>
+            {PRODUCT.name}
+            <br />
+            <span className="muted small">{FILES.length} pracovních listů v PDF k tisku, ke stažení hned po zaplacení</span>
+          </span>
+          <strong>{order.amount} Kč</strong>
+        </div>
+        {afterCard ? (
+          <div className="pay-card" role="status">
+            <h2>Děkujeme, platbu kartou zpracováváme</h2>
+            <p className="muted">Stránka se za chvíli sama obnoví a sadu pošleme i e-mailem na {order.email}.</p>
+            <p><WaitForPayment id={order.id} fast /></p>
           </div>
-        )}
-        {ready ? (
-          <div className="pay">
-            <div className="qr" dangerouslySetInnerHTML={{ __html: await qrSvg(order) }} aria-label="QR kód pro platbu" />
-            <div>
-              <table className="pay-table">
-                <tbody>
-                  <tr><td>Číslo účtu</td><td>{PAYMENT.account} <CopyButton value={PAYMENT.account} label="číslo účtu" /></td></tr>
-                  <tr><td>Částka</td><td>{order.amount} Kč <CopyButton value={String(order.amount)} label="částku" /></td></tr>
-                  <tr><td>Variabilní symbol</td><td>{order.vs} <CopyButton value={order.vs} label="variabilní symbol" /></td></tr>
-                </tbody>
-              </table>
-              <p style={{ marginTop: 24 }}><WaitForPayment id={order.id} fast={afterCard} /></p>
-              <p className="muted small">Platby párujeme automaticky každých pár minut. Stránku můžete zavřít, vše vám přijde e-mailem.</p>
+        ) : cardOffered ? (
+          <>
+            <div className="pay-card">
+              <h2>Rychlá platba online</h2>
+              <CardPay id={order.id} />
+              <p className="secure small"><Icon name="lock" /> Platba je zabezpečená, zpracovává ji Stripe. Údaje o kartě nevidíme. Sadu dostanete okamžitě.</p>
             </div>
-          </div>
+            <p className="or"><span>nebo</span></p>
+            <TransferPanel id={order.id} notifyOnOpen>{bank}</TransferPanel>
+            <p style={{ marginTop: 16 }}><WaitForPayment id={order.id} /></p>
+          </>
         ) : (
-          <p className="error">Platby teď nepřijímáme. Napište nám prosím na {CONTACT}.</p>
+          <>
+            {bank}
+            <p style={{ marginTop: 16 }}><WaitForPayment id={order.id} /></p>
+          </>
         )}
       </div>
     </section>

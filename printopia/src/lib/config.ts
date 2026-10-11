@@ -5,6 +5,8 @@ export const PRICE = 349;
 export const stripeEnabled = () => !!process.env.STRIPE_SECRET_KEY && !!process.env.STRIPE_WEBHOOK_SECRET;
 /** Testovací klíč Stripe (sk_test_, rk_test_): platba kartou se nabízí jen na chráněné adrese *.vercel.app, zákazníkům ne. */
 export const stripeTestMode = () => /^(sk|rk)_test_/.test(process.env.STRIPE_SECRET_KEY ?? "");
+/** Karta se nabízí zákazníkům jen s ostrým klíčem, s testovacím jen na chráněné adrese týmu (*.vercel.app). */
+export const cardOffered = (host: string | null) => stripeEnabled() && (!stripeTestMode() || isInternalHost(host));
 /** Platba kartou je veřejně zapnutá jen s ostrým klíčem. */
 export const stripeLive = () => stripeEnabled() && !stripeTestMode();
 export const CONTACT = "printopia@mypixel.cz";

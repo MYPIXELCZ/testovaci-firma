@@ -1,7 +1,7 @@
 import { after } from "next/server";
 import { sendPaymentInstructions } from "@/lib/email";
-import { SALES_OPEN, TEST_PRICE, isInternalHost } from "@/lib/config";
-import { createOrder } from "@/lib/orders";
+import { SALES_OPEN, TEST_PRICE, cardOffered, isInternalHost } from "@/lib/config";
+import { createOrder, markInstructionsSent } from "@/lib/orders";
 import { allow, dayWindow, hourWindow } from "@/lib/ratelimit";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -33,6 +33,9 @@ export async function POST(req: Request) {
     ad: String(body.ad ?? "").slice(0, 20).replace(/[^\w.-]/g, ""),
     ...(test ? { test: true, amount: TEST_PRICE } : {}),
   });
-  after(() => sendPaymentInstructions(order).catch((e) => console.error("[orders] e-mail s platbou selhal", order.vs, e)));
+  // Když se nabízí karta, e-mail s platebními údaji se pošle až při volbě převodu (/api/orders/{id}/instructions), ať kupující kartou nedostane zbytečnou poštu.
+  if (!cardOffered(req.headers.get("host"))) {
+    after(() => sendPaymentInstructions(order).then(() => markInstructionsSent(order)).catch((e) => console.error("[orders] e-mail s platbou selhal", order.vs, e)));
+  }
   return Response.json({ id: order.id });
 }

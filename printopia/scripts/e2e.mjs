@@ -148,6 +148,9 @@ try {
   check((await order({ email: "rodic@example.cz", name: "Jana Nová", terms: false })).status === 400, "objednávka bez souhlasu s podmínkami neprojde");
   const created = await (await order({ email: "Rodic@Example.cz", name: "Jana Nová", terms: true, src: "sklik" })).json();
   const oid = created.id;
+  check(!emails.some((e) => e.to === "rodic@example.cz" && e.subject.includes("platební údaje")), "když je k dispozici karta, e-mail s platebními údaji se hned nepošle");
+  check((await fetch(`${BASE}/api/orders/${oid}/instructions`, { method: "POST", headers: UA })).ok, "volba bankovního převodu pošle e-mail s platebními údaji");
+  await new Promise((r) => setTimeout(r, 1200));
   const opage = await (await get(`/objednavka/${oid}`)).text();
   check(opage.includes("Kopírovat") && opage.includes("načtěte ho z galerie"), "platební stránka: tlačítka Kopírovat a pokyn pro platbu z mobilu");
   const vs = /Variabilní symbol<\/td><td>(\d+)</.exec(opage)?.[1] ?? "";
@@ -266,6 +269,10 @@ try {
   check(okHook.ok, "Stripe webhook: platná platba se přijme");
   check((await (await get(`/api/orders/${cardOrder.id}`)).json()).status === "paid", "Stripe webhook: objednávka je zaplacená");
   check(emails.slice(mailsCard).some((e) => e.to === "karta@example.cz" && e.subject.includes("sada")) && emails.slice(mailsCard).some((e) => e.to === "printopia@mypixel.cz" && e.subject.includes("Zaplaceno kartou")), "Stripe webhook: kupující dostane sadu a firma upozornění");
+  const cardMails = emails.filter((e) => e.to === "karta@example.cz");
+  check(!cardMails.some((e) => e.subject.includes("platební údaje")), "kupující kartou nedostane e-mail s platebními údaji");
+  const cardDelivery = cardMails.find((e) => e.subject.includes("sada"));
+  check(cardDelivery.html.includes("Právo odstoupit od smlouvy") && cardDelivery.html.includes("zaplaceno kartou") && cardDelivery.attachments?.length === 1, "e-mail se sadou pro kupujícího kartou nese poučení o odstoupení a obchodní podmínky");
   const mailsAgain = emails.length;
   await hook(session({}));
   check(emails.length === mailsAgain, "Stripe webhook: opakované doručení nepošle sadu podruhé");

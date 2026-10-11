@@ -86,6 +86,9 @@ ${button(orderUrl(o), "Zobrazit QR platbu")}
 }
 
 export async function sendDelivery(o: Order) {
+  // Kupující kartou nedostal e-mail s platebními údaji, poučení o odstoupení a podmínky mu proto jdou s doručením (nejpozději při dodání digitálního obsahu).
+  const legal = o.instructionsAt ? "" : withdrawalBlock();
+  const attachments = o.instructionsAt ? [] : await termsAttachment();
   await send(
     o.email,
     "Vaše sada na přijímačky je tady",
@@ -102,8 +105,9 @@ Položka: ${PRODUCT.name} (digitální obsah), 1 ks<br>
 Cena: ${kc(o.amount)}, zaplaceno ${o.paymentId?.startsWith("stripe_") ? "kartou" : "převodem"} ${new Date(o.paidAt!).toLocaleDateString("cs-CZ")}<br>
 ${COMPANY.vat}</p>
 <p style="font-size:14px"><a href="${SITE_URL}/doklad/${o.id}" style="color:#2952cc">Doklad k tisku</a></p>
-<p style="font-size:14px;color:#5f6675">Do 14 dnů můžete od smlouvy odstoupit bez udání důvodu: <a href="${WITHDRAWAL_URL}" style="color:#2952cc">${WITHDRAWAL_URL}</a>. Úplné poučení a formulář jsou v e-mailu s platebními údaji.</p>`,
+${o.instructionsAt ? `<p style="font-size:14px;color:#5f6675">Do 14 dnů můžete od smlouvy odstoupit bez udání důvodu: <a href="${WITHDRAWAL_URL}" style="color:#2952cc">${WITHDRAWAL_URL}</a>. Úplné poučení a formulář jsou v e-mailu s platebními údaji.</p>` : legal}`,
     ),
+    attachments.length ? attachments : undefined,
   );
 }
 
@@ -150,7 +154,7 @@ export async function sendPaymentReminder(o: Order) {
 <tr><td style="color:#5f6675;padding:4px 16px 4px 0">Částka</td><td><strong>${kc(o.amount)}</strong></td></tr>
 <tr><td style="color:#5f6675;padding:4px 16px 4px 0">Variabilní symbol</td><td><strong>${o.vs}</strong></td></tr>
 </table>
-${button(orderUrl(o), "Zobrazit QR platbu")}
+${button(orderUrl(o), "Dokončit platbu")}
 <p style="font-size:14px;color:#5f6675">Pokud jste se rozhodli nenakupovat, nemusíte nic dělat. Nezaplacenou objednávku po čase smažeme a další připomínku už nepošleme.</p>`,
     ),
   );
