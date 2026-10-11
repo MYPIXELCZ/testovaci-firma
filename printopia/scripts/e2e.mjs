@@ -1,6 +1,6 @@
 // E2E test testovací stránky: build musí proběhnout předem (npm run test:e2e).
 import { spawn, spawnSync } from "node:child_process";
-import { mkdtempSync, readdirSync, readFileSync } from "node:fs";
+import { mkdtempSync, readdirSync, readFileSync, utimesSync } from "node:fs";
 import http from "node:http";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -138,6 +138,7 @@ try {
   const created = await (await order({ email: "Rodic@Example.cz", name: "Jana Nová", terms: true, src: "sklik" })).json();
   const oid = created.id;
   const opage = await (await get(`/objednavka/${oid}`)).text();
+  check(opage.includes("Kopírovat") && opage.includes("načtěte ho z galerie"), "platební stránka: tlačítka Kopírovat a pokyn pro platbu z mobilu");
   const vs = /Variabilní symbol<\/td><td>(\d+)</.exec(opage)?.[1] ?? "";
   check(/^8\d{9}$/.test(vs) && opage.includes("<svg") && opage.includes("2202343801/2010"), `stránka objednávky: QR, účet a VS 8xxxxxxxxx (${vs})`);
   await new Promise((r) => setTimeout(r, 400));
@@ -218,11 +219,26 @@ try {
   const imgBuf = Buffer.from(await imgRes.arrayBuffer());
   check(imgRes.status === 200 && imgBuf.readUInt32BE(16) >= 425 && imgBuf.readUInt32BE(20) >= 440, `obrázek sady pro Zboží.cz (${imgBuf.readUInt32BE(16)}×${imgBuf.readUInt32BE(20)} px)`);
 
+  // Připomínka nezaplacené objednávky (jedna, po 20 hodinách) a měření objednávek podle klíčového slova a reklamy
+  const rem = await (await order({ email: "pozdeji@example.cz", name: "Petr Pozdní", terms: true, src: "sklik", kw: "3497103273", ad: "705661704" })).json();
+  const marker = readdirSync(path.join(store, "pending")).find((f) => f.endsWith(`_${rem.id}`));
+  check(!!marker, "nezaplacená objednávka má značku");
+  const longAgo = new Date(Date.now() - 25 * 3_600_000);
+  utimesSync(path.join(store, "pending", marker), longAgo, longAgo);
+  const mailsBefore = emails.length;
+  const rm1 = await (await cron()).json();
+  check(rm1.reminded === 1 && emails.slice(mailsBefore).some((e) => e.to === "pozdeji@example.cz" && e.subject.includes("čeká na zaplacení")), "po 20 hodinách odejde připomínka nezaplacené objednávky");
+  const rm2 = await (await cron()).json();
+  check(rm2.reminded === 0, "připomínka se nepošle podruhé");
+  const st3 = await (await fetch(`${BASE}/api/stats`, { headers: { "x-stats-key": "tajne" } })).json();
+  check(st3.ordersBy.keyword.created["3497103273"] === 1 && st3.ordersBy.ad.created["705661704"] === 1 && !st3.ordersBy.keyword.paid["3497103273"], "souhrn: objednávky podle klíčového slova a reklamy");
+
   // Vizuální a textová kontrola (FAILS.md 2026-10-01 02:02 a 02:05): šířka 1340 + 80 px, mobil, překryvy, z-index, texty.
   const pages = `/,/koupit,/obchodni-podminky,/odstoupeni-od-smlouvy,/objednavka/${oid},/zlomky-prijimacky,/procenta-prijimacky,/telesa-objem-povrch-prijimacky,/konstrukcni-ulohy-prijimacky,/jak-se-pripravit-na-prijimacky,/prijimacky-z-matematiky-2027,/ochrana-osobnich-udaju`;
   const viz = spawnSync("node", ["../tools/vizualni-kontrola.mjs", BASE, pages, process.env.VIZ_DIR ?? path.join(store, "viz")], { encoding: "utf8" });
   console.log(viz.stdout.trim());
   check(viz.status === 0, "vizuální a textová kontrola stránek");
+
 } finally {
   process.kill(-app.pid);
   mock.close();

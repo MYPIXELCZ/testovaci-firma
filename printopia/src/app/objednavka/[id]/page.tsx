@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { CONTACT, PAYMENT } from "@/lib/config";
 import { FILES } from "@/content/sada";
 import { getOrder } from "@/lib/orders";
+import CopyButton from "@/components/CopyButton";
 import { paymentConfigured, qrSvg } from "@/lib/payment";
 import WaitForPayment from "./WaitForPayment";
 
@@ -48,16 +49,16 @@ export default async function OrderStatusPage(props: PageProps<"/objednavka/[id]
       <div className="wrap narrow">
         <p className="eyebrow">Objednávka {order.vs}</p>
         <h1>Zbývá zaplatit</h1>
-        <p className="muted">Naskenujte QR kód v bankovní aplikaci. Odkaz ke stažení pošleme na {order.email}, jakmile platba dorazí.</p>
+        <p className="muted">Naskenujte QR kód v bankovní aplikaci. Platíte z telefonu? Zkopírujte údaje níže a vložte je do platby, nebo QR kód uložte jako obrázek a načtěte ho z galerie (většina bankovních aplikací to umí). Odkaz ke stažení pošleme na {order.email}, jakmile platba dorazí, u okamžité platby obvykle do 10 minut.</p>
         {ready ? (
           <div className="pay">
             <div className="qr" dangerouslySetInnerHTML={{ __html: await qrSvg(order) }} aria-label="QR kód pro platbu" />
             <div>
               <table className="pay-table">
                 <tbody>
-                  <tr><td>Číslo účtu</td><td>{PAYMENT.account}</td></tr>
-                  <tr><td>Částka</td><td>{order.amount} Kč</td></tr>
-                  <tr><td>Variabilní symbol</td><td>{order.vs}</td></tr>
+                  <tr><td>Číslo účtu</td><td>{PAYMENT.account} <CopyButton value={PAYMENT.account} label="číslo účtu" /></td></tr>
+                  <tr><td>Částka</td><td>{order.amount} Kč <CopyButton value={String(order.amount)} label="částku" /></td></tr>
+                  <tr><td>Variabilní symbol</td><td>{order.vs} <CopyButton value={order.vs} label="variabilní symbol" /></td></tr>
                 </tbody>
               </table>
               <p style={{ marginTop: 24 }}><WaitForPayment id={order.id} /></p>

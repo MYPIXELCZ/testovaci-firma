@@ -14,6 +14,8 @@ type Props = { searchParams: Promise<Record<string, string | string[] | undefine
 export default async function Buy({ searchParams }: Props) {
   const sp = await searchParams;
   const src = String(sp.src ?? sp.utm_source ?? "").slice(0, 40).replace(/[^\w.-]/g, "");
+  const clean = (v: unknown) => String(v ?? "").slice(0, 20).replace(/[^\w.-]/g, "");
+  const [kw, ad] = [clean(sp.kw), clean(sp.ad)];
   const h = await headers();
   const ua = h.get("user-agent");
   const test = isInternalHost(h.get("host"));
@@ -33,7 +35,7 @@ export default async function Buy({ searchParams }: Props) {
         </div>
         {test && <p className="error">Testovací objednávka (jen pro tým): cena {TEST_PRICE} Kč.</p>}
         {SALES_OPEN || test ? (
-          <OrderForm src={src} />
+          <OrderForm src={src} kw={kw} ad={ad} />
         ) : (
           <p>Prodej právě spouštíme. Napište nám na <a href={`mailto:${CONTACT}`}>{CONTACT}</a> a pošleme vám odkaz, jakmile to půjde.</p>
         )}

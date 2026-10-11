@@ -1,7 +1,7 @@
 import { TEST_PRICE, UNPAID_RETENTION_DAYS } from "@/lib/config";
-import { notifyOwner, sendDelivery } from "@/lib/email";
+import { notifyOwner, sendDelivery, sendPaymentReminder } from "@/lib/email";
 import { incomingPayments, type IncomingPayment } from "@/lib/fio";
-import { deleteOrder, getOrder, listPending, markPaid, markPaymentAlerted, paymentSeen } from "@/lib/orders";
+import { deleteOrder, getOrder, listPending, markPaid, markPaymentAlerted, markReminded, paymentSeen } from "@/lib/orders";
 import { cleanupRateLimits } from "@/lib/ratelimit";
 import { storage } from "@/lib/storage";
 
@@ -30,7 +30,7 @@ export async function GET(req: Request) {
   }
 
   const pending = await listPending();
-  const result = { pending: pending.length, paid: [] as string[], underpaid: [] as string[], orphans: 0, expired: 0 };
+  const result = { pending: pending.length, paid: [] as string[], underpaid: [] as string[], orphans: 0, expired: 0, reminded: 0 };
 
   if (pending.length > 0) {
     let payments: IncomingPayment[];
@@ -111,9 +111,24 @@ export async function GET(req: Request) {
     }
   }
 
+  // Jedna připomínka nezaplacené objednávce 20 hodin až 7 dnů po vytvoření (testovací se nepřipomínají).
+  for (const p of pending) {
+    const age = Date.now() - p.uploadedAt.getTime();
+    if (result.paid.includes(p.vs) || age < 20 * 3_600_000 || age > 7 * 86_400_000) continue;
+    const order = await getOrder(p.id);
+    if (!order || order.status !== "pending" || order.test || order.remindedAt) continue;
+    try {
+      await sendPaymentReminder(order);
+      await markReminded(order);
+      result.reminded++;
+    } catch (e) {
+      console.error("[cron] připomínka selhala", p.vs, e);
+    }
+  }
+
   // Jednou za hodinu uklidit stará počítadla ochrany proti spamu.
   if (new Date().getUTCMinutes() < 5) await cleanupRateLimits().catch((e) => console.error("[cron] úklid limitů selhal", e));
 
-  if (result.paid.length || result.underpaid.length || result.orphans || result.expired) console.log("[cron]", JSON.stringify(result));
+  if (result.paid.length || result.underpaid.length || result.orphans || result.expired || result.reminded) console.log("[cron]", JSON.stringify(result));
   return Response.json(result);
 }

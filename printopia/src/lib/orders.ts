@@ -17,6 +17,9 @@ export type Order = {
   paymentId?: string;
   consents: { terms: string };
   src?: string; // odkud zákazník přišel (sklik, seo…), pro vyhodnocení kanálů
+  kw?: string; // utm_term (klíčové slovo ve Skliku), pro vyhodnocení slov
+  ad?: string; // utm_content (reklama ve Skliku)
+  remindedAt?: string; // kdy odešla připomínka nezaplacené objednávky (nejvýš jedna)
   test?: boolean;
 };
 
@@ -52,6 +55,8 @@ export async function createOrder(input: {
   email: string;
   name: string;
   src?: string;
+  kw?: string;
+  ad?: string;
   test?: boolean;
   amount?: number;
 }): Promise<Order> {
@@ -66,6 +71,8 @@ export async function createOrder(input: {
     createdAt: now,
     consents: { terms: now },
     ...(input.src ? { src: input.src } : {}),
+    ...(input.kw ? { kw: input.kw } : {}),
+    ...(input.ad ? { ad: input.ad } : {}),
     ...(input.test ? { test: true } : {}),
   };
   await save(order);
@@ -106,4 +113,11 @@ export async function listPending() {
     const [vs, id] = [rest.slice(0, sep), rest.slice(sep + 1)];
     return sep > 0 && id ? [{ vs, id, uploadedAt: b.uploadedAt }] : [];
   });
+}
+
+/** Poznačí, že nezaplacené objednávce odešla připomínka (posílá se nejvýš jednou). */
+export async function markReminded(order: Order): Promise<Order> {
+  const updated: Order = { ...order, remindedAt: new Date().toISOString() };
+  await save(updated);
+  return updated;
 }

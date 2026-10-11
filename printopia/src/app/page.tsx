@@ -43,7 +43,11 @@ export default async function Home({ searchParams }: Props) {
   const w = Math.max(1, Math.floor(days / 7 / 12));
   const perTopic = w === 1 ? "týden" : w < 5 ? `${w} týdny` : `${w} týdnů`;
   const preview = ukazka.tasks.filter((t) => ["Složený zlomek", "Slovní úloha"].includes(t.topic)).slice(0, 2);
-  const buyHref = `/koupit${src ? `?src=${src}` : ""}`;
+  const buyParams = new URLSearchParams();
+  if (src) buyParams.set("src", src);
+  if (term) buyParams.set("kw", term);
+  if (content) buyParams.set("ad", content);
+  const buyHref = `/koupit${buyParams.size ? `?${buyParams}` : ""}`;
 
   return (
     <>

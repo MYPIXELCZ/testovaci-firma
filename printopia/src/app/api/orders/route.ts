@@ -29,6 +29,8 @@ export async function POST(req: Request) {
     email,
     name,
     src: String(body.src ?? "").slice(0, 40).replace(/[^\w.-]/g, ""),
+    kw: String(body.kw ?? "").slice(0, 20).replace(/[^\w.-]/g, ""),
+    ad: String(body.ad ?? "").slice(0, 20).replace(/[^\w.-]/g, ""),
     ...(test ? { test: true, amount: TEST_PRICE } : {}),
   });
   after(() => sendPaymentInstructions(order).catch((e) => console.error("[orders] e-mail s platbou selhal", order.vs, e)));

@@ -15,3 +15,7 @@ Cíl: z jedné objednávky týdně na pravidelný pasivní příjem (B: ≥ 6 ob
 
 ## Co potřebuji od Ondřeje (jen autorizace)
 1. Search Console: „Ověřit“ pro printopia.cz. 2. Souhlas s rozpočtem na Google Ads (případně pokračovat v krocích Google Cloud). 3. Účet platební brány (Stripe nebo GoPay) až po potvrzení, že chce kartu.
+
+## Konverze: úpravy 2026-10-11 (na dotaz Ondřeje „nemůžeme zvýšit konverzi?“)
+Hotovo (nasazeno): 1) platební stránka: tlačítka Kopírovat u účtu, částky a VS, pokyn pro platbu z mobilu (údaje nebo uložený QR obrázek), odhad času doručení; 2) jedna připomínka nezaplacené objednávky 20 hodin až 7 dnů po vytvoření (cron, provozní e-mail, věta v zásadách ochrany osobních údajů); 3) měření objednávek podle klíčového slova a reklamy (`ordersBy` v `/api/stats`, utm_term a utm_content se přenesou z úvodu přes /koupit do objednávky).
+Čeká: A) platba kartou, Apple Pay a Google Pay přes Stripe Checkout (odhad: +30 až 100 % relativně u digitálního zboží, benchmark ne naše měření; poplatek ≈ 12 Kč z 349 Kč, ověřit; Stripe je zahraniční služba s reverse charge DPH; potřebuje účet Stripe pro MYPIXEL s.r.o. od Ondřeje, klíč do env, můj kód a test režimem); B) po 1 až 2 týdnech dat po slovech přesměrovat reklamy „cermat testy“ (22 z 24 prokliků, lidé hledají zdarma testy) na stránku /cermat-testy-matematika-jak-procvicovat nebo je omezit; C) důvěra: pošlet po doručení jednu prosbu o poctivé hodnocení (žádné vymyšlené reference), sekce „kdo za tím stojí“ s údaji firmy.

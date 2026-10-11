@@ -136,3 +136,22 @@ export async function sendWithdrawalReceipt(d: { name: string; email: string; vs
     ),
   );
 }
+
+/** Jedna připomínka nezaplacené objednávky (provozní zpráva k objednávce zákazníka, bez reklamy). */
+export async function sendPaymentReminder(o: Order) {
+  await send(
+    o.email,
+    `Objednávka ${o.vs} čeká na zaplacení`,
+    layout(
+      "Objednávka čeká na zaplacení",
+      `<p>V objednávce sady na přijímačky nám zatím chybí platba. Sadu pošleme hned, jak dorazí.</p>
+<table style="font-size:15px;margin:16px 0">
+<tr><td style="color:#5f6675;padding:4px 16px 4px 0">Číslo účtu</td><td><strong>${PAYMENT.account}</strong></td></tr>
+<tr><td style="color:#5f6675;padding:4px 16px 4px 0">Částka</td><td><strong>${kc(o.amount)}</strong></td></tr>
+<tr><td style="color:#5f6675;padding:4px 16px 4px 0">Variabilní symbol</td><td><strong>${o.vs}</strong></td></tr>
+</table>
+${button(orderUrl(o), "Zobrazit QR platbu")}
+<p style="font-size:14px;color:#5f6675">Pokud jste se rozhodli nenakupovat, nemusíte nic dělat. Nezaplacenou objednávku po čase smažeme a další připomínku už nepošleme.</p>`,
+    ),
+  );
+}

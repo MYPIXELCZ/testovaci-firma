@@ -38,9 +38,15 @@ export async function computeStats() {
 
   // Objednávky a platby podle zdroje (bez osobních údajů, testovací se nepočítají)
   const orders = { created: {} as Record<string, number>, paid: {} as Record<string, number>, revenue: 0 };
+  const ordersBy = { keyword: { created: {} as Record<string, number>, paid: {} as Record<string, number> }, ad: { created: {} as Record<string, number>, paid: {} as Record<string, number> } };
   for (const o of (await listOrders()).filter((x) => !x.test)) {
     const k = o.src || "direct";
     orders.created[k] = (orders.created[k] ?? 0) + 1;
+    for (const [dim, val] of [["keyword", o.kw], ["ad", o.ad]] as const) {
+      if (!val) continue;
+      ordersBy[dim].created[val] = (ordersBy[dim].created[val] ?? 0) + 1;
+      if (o.status === "paid") ordersBy[dim].paid[val] = (ordersBy[dim].paid[val] ?? 0) + 1;
+    }
     if (o.status === "paid") {
       orders.paid[k] = (orders.paid[k] ?? 0) + 1;
       orders.revenue += o.amount;
@@ -98,6 +104,7 @@ export async function computeStats() {
     days: [...days].sort(),
     server: { visits: counts.visit ?? {}, visitsByDay, buyClicks: counts.buy_click ?? {}, leads: sum(counts.lead), leadsByRole: roles },
     orders,
+    ordersBy,
     sklik: { byKeyword: byTerm, byAd },
     funnel: { byPage, bySrc, byDevice },
     rates: {

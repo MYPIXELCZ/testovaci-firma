@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { send } from "@/components/Beacon";
 
-export default function OrderForm({ src }: { src: string }) {
+export default function OrderForm({ src, kw = "", ad = "" }: { src: string; kw?: string; ad?: string }) {
   const router = useRouter();
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
@@ -25,6 +25,8 @@ export default function OrderForm({ src }: { src: string }) {
           terms: f.get("terms") === "on",
           website: f.get("website"),
           src,
+          kw,
+          ad,
         }),
       });
       const data = await res.json();

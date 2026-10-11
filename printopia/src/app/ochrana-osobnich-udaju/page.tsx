@@ -20,7 +20,8 @@ export default function Privacy() {
         <ul>
           <li>
             <strong>Vyřízení objednávky:</strong> e-mail, jméno a příjmení, údaje o objednávce a platbě a odkud jste na web
-            přišli (například z reklamy). Právním základem je plnění smlouvy. Nezaplacené objednávky mažeme po{" "}
+            přišli (například z reklamy). Právním základem je plnění smlouvy. Nezaplacené objednávce pošleme jednu
+            připomínku s platebními údaji a nezaplacené objednávky mažeme po{" "}
             {UNPAID_RETENTION_DAYS} dnech.
           </li>
           <li>

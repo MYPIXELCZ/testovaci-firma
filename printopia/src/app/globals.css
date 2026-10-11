@@ -204,3 +204,5 @@ section p, .lead { max-width: 68ch; }
 .check { min-height: 44px; align-items: center; }
 .withdrawal-form { list-style: none; padding: 16px 20px; margin: 12px 0; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
 .withdrawal-form li { padding: 4px 0; }
+.copy-btn { margin-left: 10px; min-height: 36px; padding: 4px 12px; border-radius: 8px; border: 1.5px solid var(--line); background: #fff; color: var(--blue); font: 600 0.85rem var(--sans); cursor: pointer; }
+.copy-btn:hover { background: var(--blue-light); }
