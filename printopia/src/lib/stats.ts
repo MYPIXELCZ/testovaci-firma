@@ -53,6 +53,13 @@ export async function computeStats() {
     }
   }
 
+  // Platby kartou: odpadání u platby a vrácené peníze (webhook Stripe, jen počty)
+  const stripe = { expired: 0, failed: 0, refunded: 0, disputes: 0 };
+  for (const item of await storage.list("stripe-events/").catch(() => [])) {
+    const kind = item.pathname.split("/")[1] as keyof typeof stripe;
+    if (kind in stripe) stripe[kind]++;
+  }
+
   // 2) Trychtýř z anonymních událostí: počítáme návštěvy (pv), které daný krok udělaly aspoň jednou
   const visits = new Map<string, { page: string; src: string; device: string; steps: Set<string> }>();
   const feedback: Record<string, number> = {};
@@ -105,6 +112,7 @@ export async function computeStats() {
     server: { visits: counts.visit ?? {}, visitsByDay, buyClicks: counts.buy_click ?? {}, leads: sum(counts.lead), leadsByRole: roles },
     orders,
     ordersBy,
+    stripe,
     sklik: { byKeyword: byTerm, byAd },
     funnel: { byPage, bySrc, byDevice },
     rates: {

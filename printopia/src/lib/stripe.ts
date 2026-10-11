@@ -21,6 +21,8 @@ export async function createCheckoutSession(order: Order): Promise<{ id: string;
     customer_email: order.email,
     "metadata[vs]": order.vs,
     "metadata[order_id]": order.id,
+    "payment_intent_data[metadata][vs]": order.vs,
+    "payment_intent_data[metadata][order_id]": order.id,
     success_url: `${SITE_URL}/objednavka/${order.id}?karta=ok`,
     cancel_url: `${SITE_URL}/objednavka/${order.id}`,
   });

@@ -257,7 +257,7 @@ try {
     const sig = createHmac("sha256", secret).update(`${ts}.${raw}`).digest("hex");
     return fetch(`${BASE}/api/stripe/webhook`, { method: "POST", headers: { "content-type": "application/json", "stripe-signature": `t=${ts},v1=${sig}`, ...UA }, body: raw });
   };
-  const session = (over) => ({ type: "checkout.session.completed", data: { object: { id: "cs_test_1", client_reference_id: cardOrder.id, payment_status: "paid", currency: "czk", amount_total: 34900, ...over } } });
+  const session = (over) => ({ type: "checkout.session.completed", data: { object: { id: "cs_test_1", client_reference_id: cardOrder.id, payment_status: "paid", currency: "czk", amount_total: 34900, payment_intent: "pi_test_1", ...over } } });
   check((await hook(session({}), "jiny_secret")).status === 400, "Stripe webhook: špatný podpis se odmítne");
   await hook(session({ id: "cs_test_bad", amount_total: 100 }));
   check((await (await get(`/api/orders/${cardOrder.id}`)).json()).status !== "paid", "Stripe webhook: platba s jinou částkou objednávku neodemkne");
@@ -269,6 +269,19 @@ try {
   const mailsAgain = emails.length;
   await hook(session({}));
   check(emails.length === mailsAgain, "Stripe webhook: opakované doručení nepošle sadu podruhé");
+  // Další události Stripe: odpadání u platby, vrácení peněz a reklamace u banky
+  const ev = (type, object, id) => hook({ id, type, data: { object } });
+  await ev("checkout.session.expired", { id: "cs_test_exp" }, "evt_exp_1");
+  await ev("checkout.session.expired", { id: "cs_test_exp" }, "evt_exp_1");
+  await ev("payment_intent.payment_failed", { id: "pi_fail" }, "evt_fail_1");
+  const mailsEv = emails.length;
+  await ev("charge.refunded", { id: "ch_1", payment_intent: "pi_test_1", amount: 34900, amount_refunded: 34900, currency: "czk" }, "evt_ref_1");
+  await ev("charge.refunded", { id: "ch_1", payment_intent: "pi_test_1", amount: 34900, amount_refunded: 34900, currency: "czk" }, "evt_ref_1");
+  check(emails.slice(mailsEv).filter((e) => e.to === "printopia@mypixel.cz" && e.subject.includes("Vrácení platby kartou")).length === 1, "Stripe: vrácení peněz upozorní firmu jednou (a spáruje objednávku)");
+  await ev("charge.dispute.created", { id: "dp_1", payment_intent: "pi_test_1", amount: 34900, currency: "czk", reason: "fraudulent", evidence_details: { due_by: Math.floor(Date.now() / 1000) + 7 * 86400 } }, "evt_dp_1");
+  check(emails.slice(mailsEv).some((e) => e.subject.includes("reklamace platby kartou") && e.html.includes("Termín na odpověď")), "Stripe: reklamace u banky upozorní firmu s termínem");
+  const stS = await (await fetch(`${BASE}/api/stats`, { headers: { "x-stats-key": "tajne" } })).json();
+  check(stS.stripe.expired === 1 && stS.stripe.failed === 1 && stS.stripe.refunded === 1 && stS.stripe.disputes === 1, "souhrn: odpadání u platby kartou, vrácení a reklamace");
 
   // Vizuální a textová kontrola (FAILS.md 2026-10-01 02:02 a 02:05): šířka 1340 + 80 px, mobil, překryvy, z-index, texty.
   const pages = `/,/koupit,/obchodni-podminky,/odstoupeni-od-smlouvy,/objednavka/${oid},/zlomky-prijimacky,/procenta-prijimacky,/telesa-objem-povrch-prijimacky,/konstrukcni-ulohy-prijimacky,/jak-se-pripravit-na-prijimacky,/prijimacky-z-matematiky-2027,/ochrana-osobnich-udaju`;
