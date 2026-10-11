@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { COMPANY, CONTACT, UNPAID_RETENTION_DAYS } from "@/lib/config";
+import { COMPANY, CONTACT, UNPAID_RETENTION_DAYS, stripeEnabled } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Ochrana osobních údajů" };
 
@@ -47,6 +47,12 @@ export default function Privacy() {
           Resend. Oba jsou zpracovateli s odpovídajícími zárukami pro předávání údajů mimo EU (EU–US Data Privacy
           Framework nebo standardní smluvní doložky). Nikomu dalšímu údaje nepředáváme ani je neprodáváme.
         </p>
+        {stripeEnabled() && (
+          <p>
+            Platby kartou, přes Apple Pay a Google Pay zpracovává Stripe Payments Europe, Ltd. (Irsko). Údaje o platební kartě
+            zadáváte přímo u Stripe a my je nevidíme, Stripe nám předá jen potvrzení o zaplacení.
+          </p>
+        )}
 
         <h2>Cookies</h2>
         <p>

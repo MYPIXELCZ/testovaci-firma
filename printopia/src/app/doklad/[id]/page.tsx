@@ -23,7 +23,7 @@ export default async function ReceiptPage(props: PageProps<"/doklad/[id]">) {
             <tr><td>Položka</td><td>{PRODUCT.name} (digitální obsah), 1 ks</td></tr>
             <tr><td>Cena</td><td>{order.amount} Kč</td></tr>
             <tr><td>Datum přijetí platby</td><td>{paid}</td></tr>
-            <tr><td>Způsob úhrady</td><td>bankovní převod</td></tr>
+            <tr><td>Způsob úhrady</td><td>{order.paymentId?.startsWith("stripe_") ? "platební karta (Stripe)" : "bankovní převod"}</td></tr>
           </tbody>
         </table>
         <p className="muted small" style={{ marginTop: 16 }}>{COMPANY.vat}{order.test ? " Testovací objednávka." : ""}</p>

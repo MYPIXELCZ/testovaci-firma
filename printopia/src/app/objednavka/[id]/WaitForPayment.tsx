@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 /** Každých 15 s se zeptá na stav objednávky a po zaplacení překreslí stránku. */
-export default function WaitForPayment({ id }: { id: string }) {
+export default function WaitForPayment({ id, fast = false }: { id: string; fast?: boolean }) {
   const router = useRouter();
   useEffect(() => {
     const timer = setInterval(async () => {
@@ -14,7 +14,7 @@ export default function WaitForPayment({ id }: { id: string }) {
         clearInterval(timer);
         router.refresh();
       }
-    }, 15_000);
+    }, fast ? 4_000 : 15_000);
     return () => clearInterval(timer);
   }, [id, router]);
 

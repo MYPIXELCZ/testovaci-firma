@@ -1,5 +1,8 @@
 export const SITE_URL = process.env.SITE_URL ?? "https://printopia.cz";
 export const PRICE = 349;
+
+/** Platba kartou se zapne, až když je v env STRIPE_SECRET_KEY (a STRIPE_WEBHOOK_SECRET). Do té doby je jen QR převod. */
+export const stripeEnabled = () => !!process.env.STRIPE_SECRET_KEY && !!process.env.STRIPE_WEBHOOK_SECRET;
 export const CONTACT = "printopia@mypixel.cz";
 export const COMPANY = {
   name: "MYPIXEL s.r.o.",

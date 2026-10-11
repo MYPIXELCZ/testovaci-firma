@@ -99,7 +99,7 @@ ${button(orderUrl(o), "Stáhnout pracovní listy")}
 Prodávající: ${COMPANY.name}, ${COMPANY.address}, IČO ${COMPANY.ico}, ${COMPANY.register}<br>
 Kupující: ${escape(o.name)}, ${escape(o.email)}<br>
 Položka: ${PRODUCT.name} (digitální obsah), 1 ks<br>
-Cena: ${kc(o.amount)}, zaplaceno převodem ${new Date(o.paidAt!).toLocaleDateString("cs-CZ")}<br>
+Cena: ${kc(o.amount)}, zaplaceno ${o.paymentId?.startsWith("stripe_") ? "kartou" : "převodem"} ${new Date(o.paidAt!).toLocaleDateString("cs-CZ")}<br>
 ${COMPANY.vat}</p>
 <p style="font-size:14px"><a href="${SITE_URL}/doklad/${o.id}" style="color:#2952cc">Doklad k tisku</a></p>
 <p style="font-size:14px;color:#5f6675">Do 14 dnů můžete od smlouvy odstoupit bez udání důvodu: <a href="${WITHDRAWAL_URL}" style="color:#2952cc">${WITHDRAWAL_URL}</a>. Úplné poučení a formulář jsou v e-mailu s platebními údaji.</p>`,

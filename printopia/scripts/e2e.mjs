@@ -1,6 +1,7 @@
 // E2E test testovací stránky: build musí proběhnout předem (npm run test:e2e).
 import { spawn, spawnSync } from "node:child_process";
 import { mkdtempSync, readdirSync, readFileSync, utimesSync } from "node:fs";
+import { createHmac } from "node:crypto";
 import http from "node:http";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -13,6 +14,7 @@ const store = mkdtempSync(path.join(tmpdir(), "printopia-"));
 const MOCK = 3209;
 const payments = [];
 const emails = [];
+const stripeSessions = [];
 const mock = http.createServer((req, res) => {
   if (req.url.startsWith("/fio/periods/")) {
     const transaction = payments.map((p, i) => ({
@@ -27,6 +29,15 @@ const mock = http.createServer((req, res) => {
     req.on("data", (c) => (body += c));
     return req.on("end", () => { emails.push(JSON.parse(body)); res.end("{}"); });
   }
+  if (req.url === "/stripe/v1/checkout/sessions" && req.method === "POST") {
+    let body = "";
+    req.on("data", (c) => (body += c));
+    return req.on("end", () => {
+      stripeSessions.push(Object.fromEntries(new URLSearchParams(body)));
+      res.setHeader("Content-Type", "application/json");
+      res.end(JSON.stringify({ id: `cs_test_${stripeSessions.length}`, url: `http://localhost:${MOCK}/stripe/pay/cs_test_${stripeSessions.length}` }));
+    });
+  }
   res.statusCode = 404;
   res.end();
 });
@@ -36,7 +47,7 @@ const app = spawn("npx", ["next", "start", "-p", String(PORT)], {
   env: {
     ...process.env, LOCAL_STORE_DIR: store, BLOB_READ_WRITE_TOKEN: "", VERCEL: "", STATS_KEY: "tajne",
     SALES_OPEN: "1", FIO_TOKEN: "test", FIO_API_BASE: `http://localhost:${MOCK}/fio`, RESEND_API_KEY: "test",
-    RESEND_API_URL: `http://localhost:${MOCK}/emails`, CRON_SECRET: "cron-tajne", SITE_URL: `http://localhost:${PORT}`,
+    RESEND_API_URL: `http://localhost:${MOCK}/emails`, STRIPE_SECRET_KEY: "sk_test_x", STRIPE_WEBHOOK_SECRET: "whsec_test", STRIPE_API_URL: `http://localhost:${MOCK}/stripe`, CRON_SECRET: "cron-tajne", SITE_URL: `http://localhost:${PORT}`,
   },
   stdio: ["ignore", "pipe", "pipe"],
   detached: true,
@@ -232,6 +243,32 @@ try {
   check(rm2.reminded === 0, "připomínka se nepošle podruhé");
   const st3 = await (await fetch(`${BASE}/api/stats`, { headers: { "x-stats-key": "tajne" } })).json();
   check(st3.ordersBy.keyword.created["3497103273"] === 1 && st3.ordersBy.ad.created["705661704"] === 1 && !st3.ordersBy.keyword.paid["3497103273"], "souhrn: objednávky podle klíčového slova a reklamy");
+
+  // Platba kartou přes Stripe (falešný Stripe): založení platby, webhook s podpisem, částka se kontroluje
+  const cardOrder = await (await order({ email: "karta@example.cz", name: "Karel Kartou", terms: true, src: "sklik" })).json();
+  const cardPage = await (await get(`/objednavka/${cardOrder.id}`)).text();
+  check(cardPage.includes("Zaplatit kartou nebo mobilem"), "platební stránka nabízí platbu kartou, když je Stripe zapnutý");
+  const co = await fetch(`${BASE}/api/stripe/checkout`, { method: "POST", headers: { "content-type": "application/json", ...UA }, body: JSON.stringify({ id: cardOrder.id }) });
+  const coData = await co.json();
+  check(co.ok && coData.url?.includes("/stripe/pay/cs_test_") && stripeSessions.at(-1)["line_items[0][price_data][unit_amount]"] === "34900" && stripeSessions.at(-1).client_reference_id === cardOrder.id, "Stripe: platba se založí s částkou z objednávky (34900 haléřů)");
+  check((await fetch(`${BASE}/api/stripe/checkout`, { method: "POST", headers: { "content-type": "application/json", ...UA }, body: JSON.stringify({ id: "neexistuje" }) })).status === 404, "Stripe: neznámá objednávka se odmítne");
+  const hook = (event, secret = "whsec_test", ts = Math.floor(Date.now() / 1000)) => {
+    const raw = JSON.stringify(event);
+    const sig = createHmac("sha256", secret).update(`${ts}.${raw}`).digest("hex");
+    return fetch(`${BASE}/api/stripe/webhook`, { method: "POST", headers: { "content-type": "application/json", "stripe-signature": `t=${ts},v1=${sig}`, ...UA }, body: raw });
+  };
+  const session = (over) => ({ type: "checkout.session.completed", data: { object: { id: "cs_test_1", client_reference_id: cardOrder.id, payment_status: "paid", currency: "czk", amount_total: 34900, ...over } } });
+  check((await hook(session({}), "jiny_secret")).status === 400, "Stripe webhook: špatný podpis se odmítne");
+  await hook(session({ id: "cs_test_bad", amount_total: 100 }));
+  check((await (await get(`/api/orders/${cardOrder.id}`)).json()).status !== "paid", "Stripe webhook: platba s jinou částkou objednávku neodemkne");
+  const mailsCard = emails.length;
+  const okHook = await hook(session({}));
+  check(okHook.ok, "Stripe webhook: platná platba se přijme");
+  check((await (await get(`/api/orders/${cardOrder.id}`)).json()).status === "paid", "Stripe webhook: objednávka je zaplacená");
+  check(emails.slice(mailsCard).some((e) => e.to === "karta@example.cz" && e.subject.includes("sada")) && emails.slice(mailsCard).some((e) => e.to === "printopia@mypixel.cz" && e.subject.includes("Zaplaceno kartou")), "Stripe webhook: kupující dostane sadu a firma upozornění");
+  const mailsAgain = emails.length;
+  await hook(session({}));
+  check(emails.length === mailsAgain, "Stripe webhook: opakované doručení nepošle sadu podruhé");
 
   // Vizuální a textová kontrola (FAILS.md 2026-10-01 02:02 a 02:05): šířka 1340 + 80 px, mobil, překryvy, z-index, texty.
   const pages = `/,/koupit,/obchodni-podminky,/odstoupeni-od-smlouvy,/objednavka/${oid},/zlomky-prijimacky,/procenta-prijimacky,/telesa-objem-povrch-prijimacky,/konstrukcni-ulohy-prijimacky,/jak-se-pripravit-na-prijimacky,/prijimacky-z-matematiky-2027,/ochrana-osobnich-udaju`;

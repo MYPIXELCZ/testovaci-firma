@@ -206,3 +206,6 @@ section p, .lead { max-width: 68ch; }
 .withdrawal-form li { padding: 4px 0; }
 .copy-btn { margin-left: 10px; min-height: 36px; padding: 4px 12px; border-radius: 8px; border: 1.5px solid var(--line); background: #fff; color: var(--blue); font: 600 0.85rem var(--sans); cursor: pointer; }
 .copy-btn:hover { background: var(--blue-light); }
+.card-pay { margin: 24px 0 8px; }
+.card-pay .btn { width: 100%; max-width: 420px; }
+.card-pay p { margin: 8px 0 0; }
