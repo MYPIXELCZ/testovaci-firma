@@ -1,1 +1,2 @@
 sonnet aktivní: claude-sonnet-5-5 (2026-10-02 15:08 Praha); vyšší model nepotřeba, čeká jen #14 po schválení
+vyšší model aktivní: claude-opus-5-5 (2026-10-22, hodnocení produktu Sojka)
