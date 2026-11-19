@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 // Vizuální a textová kontrola webu (pojistky z FAILS.md 2026-10-01 02:02 a 02:05).
 //   node tools/vizualni-kontrola.mjs <základní URL> <cesta1,cesta2,...> [složka na screenshoty]
 // Na PC (1500 px), notebooku (1280), mobilu (390 a 360) ověří:
@@ -21,7 +22,7 @@ const [base, paths = "/", out = "/tmp/vizualni-kontrola"] = process.argv.slice(2
 const VIEWPORTS = [["pc", 1500, 900], ["notebook", 1280, 800], ["mobil", 390, 844], ["mobil-maly", 360, 740]];
 mkdirSync(out, { recursive: true });
 
-const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
+const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH ?? ["/opt/pw-browsers/chromium", "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"].find((p) => existsSync(p)) });
 const problems = [];
 for (const p of paths.split(",")) {
   for (const [name, w, h] of VIEWPORTS) {

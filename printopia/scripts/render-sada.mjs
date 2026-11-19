@@ -7,7 +7,7 @@ import { createRequire } from "node:module";
 const root = new URL("../", import.meta.url);
 const require = createRequire(new URL("../web/package.json", root));
 const { chromium } = require("playwright-core");
-const CHROMIUM = process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
+const CHROMIUM = process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium";
 const LEVELS = { 1: "Základ", 2: "Jako u zkoušky", 3: "Náročnější" };
 const KIND = { open: "", choice: "Vyberte jednu možnost.", yesno: "Rozhodněte o každém tvrzení, zda je pravdivé (ANO), či nikoli (NE).", construct: "Rýsujte tužkou a pravítkem." };
 

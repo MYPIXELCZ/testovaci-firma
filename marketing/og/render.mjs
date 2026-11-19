@@ -6,7 +6,7 @@ import { createRequire } from "node:module";
 const root = new URL("../../", import.meta.url);
 const require = createRequire(new URL("web/package.json", root));
 const { chromium } = require("playwright-core");
-const CHROMIUM = process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
+const CHROMIUM = process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium";
 
 // Seznam článků čteme přímo z web/src/content/articles.ts (href + title).
 const src = readFileSync(new URL("web/src/content/articles.ts", root), "utf8");

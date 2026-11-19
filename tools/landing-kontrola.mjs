@@ -45,7 +45,7 @@ const results = [];
 const err = (id, msg) => results.push(["ERR", id, msg]);
 const warn = (id, msg) => results.push(["VAROVÁNÍ", id, msg]);
 
-const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
+const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH ?? ["/opt/pw-browsers/chromium", "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"].find((p) => existsSync(p)) });
 for (const [name, w, h, mobile] of [["pc", 1440, 900, false], ["mobil", 390, 844, true]]) {
   const page = await browser.newPage({ viewport: { width: w, height: h } });
   const consoleErrors = [], bad = [];

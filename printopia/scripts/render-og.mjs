@@ -20,7 +20,7 @@ h1{font-family:F;font-weight:500;font-size:84px;line-height:1.05;margin:18px 0 0
 </style></head><body><div><div class="e">Přijímačky na SŠ · matematika</div><h1>Přijímačky z matiky po tématech</h1></div>
 <div class="f"><span>Úlohy k tisku s postupem · ukázka zdarma</span><span class="l">Printopia<span>.</span></span></div></body></html>`;
 
-const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
+const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium" });
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
 await page.setContent(html, { waitUntil: "load" });
 await page.evaluate(() => document.fonts.ready);

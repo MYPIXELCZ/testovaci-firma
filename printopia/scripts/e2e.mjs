@@ -5,6 +5,7 @@ import { createHmac } from "node:crypto";
 import http from "node:http";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { SignJWT, exportJWK, generateKeyPair } from "jose";
 
 const PORT = 3200;
 const BASE = `http://localhost:${PORT}`;
@@ -20,7 +21,11 @@ let uolMode = "fail";
 const uolContacts = [];
 const uolInvoices = [];
 const UOL_AUTH = "e2e@mypixel.cz:tajny-token";
+// Falešný Project Tracker pro Klíčenku: JWKS s klíčem Ed25519, tokeny podepisuje test
+const { publicKey: kPub, privateKey: kPriv } = await generateKeyPair("EdDSA", { crv: "Ed25519" });
+const kJwk = { ...(await exportJWK(kPub)), kid: "e2e-1", alg: "EdDSA", use: "sig" };
 const mock = http.createServer((req, res) => {
+  if (req.url === "/tracker/.well-known/jwks.json") { res.setHeader("Content-Type", "application/json"); return res.end(JSON.stringify({ keys: [kJwk] })); }
   if (req.url.startsWith("/uol/v1/")) {
     if (uolMode === "fail") { res.statusCode = 503; return res.end("{}"); }
     if (req.headers.authorization !== `Basic ${Buffer.from(UOL_AUTH).toString("base64")}`) { res.statusCode = 401; return res.end("{}"); }
@@ -70,7 +75,7 @@ const app = spawn("npx", ["next", "start", "-p", String(PORT)], {
   env: {
     ...process.env, LOCAL_STORE_DIR: store, BLOB_READ_WRITE_TOKEN: "", VERCEL: "", STATS_KEY: "tajne",
     SALES_OPEN: "1", FIO_TOKEN: "test", FIO_API_BASE: `http://localhost:${MOCK}/fio`, RESEND_API_KEY: "test",
-    RESEND_API_URL: `http://localhost:${MOCK}/emails`, STRIPE_SECRET_KEY: "sk_live_x", STRIPE_WEBHOOK_SECRET: "whsec_test", STRIPE_API_URL: `http://localhost:${MOCK}/stripe`, UOL_AUTH, UOL_API_URL: `http://localhost:${MOCK}/uol`, CRON_SECRET: "cron-tajne", SITE_URL: `http://localhost:${PORT}`,
+    RESEND_API_URL: `http://localhost:${MOCK}/emails`, STRIPE_SECRET_KEY: "sk_live_x", STRIPE_WEBHOOK_SECRET: "whsec_test", STRIPE_API_URL: `http://localhost:${MOCK}/stripe`, UOL_AUTH, UOL_API_URL: `http://localhost:${MOCK}/uol`, KLICENKA_ISSUER: `http://localhost:${MOCK}/tracker`, KLICENKA_AUDIENCE: "printopia", KLICENKA_ENVIRONMENT: "production", SPRAVA_UCTY: "spravce@example.cz", SESSION_SECRET: "e2e-session-secret-0123456789abcdef0123", CRON_SECRET: "cron-tajne", SITE_URL: `http://localhost:${PORT}`,
   },
   stdio: ["ignore", "pipe", "pipe"],
   detached: true,
@@ -323,6 +328,28 @@ try {
   check(emails.slice(mailsEv).some((e) => e.subject.includes("reklamace platby kartou") && e.html.includes("Termín na odpověď")), "Stripe: reklamace u banky upozorní firmu s termínem");
   const stS = await (await fetch(`${BASE}/api/stats`, { headers: { "x-stats-key": "tajne" } })).json();
   check(stS.stripe.expired === 1 && stS.stripe.failed === 1 && stS.stripe.refunded === 1 && stS.stripe.disputes === 1, "souhrn: odpadání u platby kartou, vrácení a reklamace");
+
+
+  // Klíčenka: přihlášení z Project Trackeru do /sprava (adresát, prostředí, jednorázovost, jen povolený účet)
+  const klToken = (over = {}) => new SignJWT({ act: { sub: "u1", name: "Ondřej", email: "spravce@example.cz" }, sh: 8, ...over.claims })
+    .setProtectedHeader({ alg: "EdDSA", kid: "e2e-1", typ: "klicenka+jwt" })
+    .setIssuer(`http://localhost:${MOCK}/tracker`).setAudience(over.aud ?? "printopia@production").setSubject(over.sub ?? "spravce@example.cz")
+    .setJti(over.jti ?? `jti-${Math.random()}`).setIssuedAt().setExpirationTime("50s").sign(kPriv);
+  const klLogin = async (token) => fetch(`${BASE}/klicenka/login`, { method: "POST", redirect: "manual", headers: { "content-type": "application/x-www-form-urlencoded", ...UA }, body: new URLSearchParams({ token }) });
+  const kst = await (await get("/klicenka/status")).json();
+  check(kst.name === "klicenka" && kst.adapter === "cookie" && kst.audience === "printopia", "Klíčenka: /klicenka/status hlásí verzi, adaptér a identifikátor");
+  check(!(await (await get("/sprava")).text()).includes("Přehled Printopie"), "správa bez přihlášení nic neukáže");
+  const kTok = await klToken({ jti: "jti-jednou" });
+  const kRes = await klLogin(kTok);
+  const kCookie = (kRes.headers.get("set-cookie") ?? "").split(";")[0];
+  check(kRes.status === 303 && kRes.headers.get("location") === "/sprava" && kCookie.startsWith("printopia_sprava="), "Klíčenka: platný token přihlásí a přesměruje do správy");
+  const spr = (await (await fetch(`${BASE}/sprava`, { headers: { ...UA, cookie: kCookie } })).text()).replaceAll("<!-- -->", "");
+  check(spr.includes("Přehled Printopie") && spr.includes("Přihlášen: spravce@example.cz"), "správa po přihlášení ukazuje přehled a účet");
+  check((await klLogin(kTok)).status !== 303, "Klíčenka: stejný token podruhé neprojde");
+  check((await klLogin(await klToken({ aud: "printopia@preview" }))).status !== 303, "Klíčenka: token pro jiné prostředí neprojde");
+  check((await klLogin(await klToken({ sub: "cizi@example.cz" }))).status !== 303, "Klíčenka: účet mimo SPRAVA_UCTY se nepřihlásí");
+  const kOut = await fetch(`${BASE}/sprava/odhlasit`, { method: "POST", redirect: "manual", headers: { ...UA, cookie: kCookie } });
+  check(kOut.status === 303 && (kOut.headers.get("set-cookie") ?? "").includes("Max-Age=0"), "odhlášení ze správy smaže cookie");
 
   // Vizuální a textová kontrola (FAILS.md 2026-10-01 02:02 a 02:05): šířka 1340 + 80 px, mobil, překryvy, z-index, texty.
   const pages = `/,/koupit,/obchodni-podminky,/odstoupeni-od-smlouvy,/objednavka/${oid},/zlomky-prijimacky,/procenta-prijimacky,/telesa-objem-povrch-prijimacky,/konstrukcni-ulohy-prijimacky,/jak-se-pripravit-na-prijimacky,/prijimacky-z-matematiky-2027,/ochrana-osobnich-udaju`;

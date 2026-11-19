@@ -39,7 +39,7 @@ h1{font-family:F;font-weight:500;font-size:74px;line-height:1.05;margin:0;letter
 <div class="s"><span>14 PDF k tisku · 12 témat · postup u každé úlohy</span><span class="l">Printopia<span>.</span></span></div>
 </body></html>`;
 
-const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
+const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium" });
 const page = await browser.newPage({ viewport: { width: 1200, height: 1200 } });
 await page.setContent(html, { waitUntil: "load" });
 await page.evaluate(() => document.fonts.ready);

@@ -10,7 +10,7 @@ const APP = 3100;
 const MOCK = 3200;
 const SECRET = "e2e-secret";
 const STORE = new URL("../.localstore-e2e/", import.meta.url).pathname;
-const CHROMIUM = process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
+const CHROMIUM = process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium";
 
 let failures = 0;
 const check = (ok, label) => {

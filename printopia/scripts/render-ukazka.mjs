@@ -6,7 +6,7 @@ import { createRequire } from "node:module";
 const root = new URL("../", import.meta.url);
 const require = createRequire(new URL("../web/package.json", root));
 const { chromium } = require("playwright-core");
-const CHROMIUM = process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
+const CHROMIUM = process.env.CHROMIUM_PATH ?? "/opt/pw-browsers/chromium";
 
 const data = JSON.parse(readFileSync(new URL("src/content/ukazka.json", root), "utf8"));
 const font = (f) => `data:font/woff2;base64,${readFileSync(new URL(`public/fonts/${f}`, root)).toString("base64")}`;
