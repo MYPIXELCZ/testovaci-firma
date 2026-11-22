@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 import Nbsp from "@/components/Nbsp";
 import { COMPANY, CONTACT, SITE_URL } from "@/lib/config";
 import TrackerScript from "@/components/TrackerScript";
@@ -47,8 +46,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </footer>
         <Nbsp />
-        {/* Měření Project Trackeru (MYPIXEL): návštěvnost a chování bez cookies. */}
-        <Script src="https://tracker.mypixel.cz/n.js" strategy="afterInteractive" />
       </body>
     </html>
   );
