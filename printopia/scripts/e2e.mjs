@@ -348,6 +348,8 @@ try {
   check((await klLogin(kTok)).status !== 303, "Klíčenka: stejný token podruhé neprojde");
   check((await klLogin(await klToken({ aud: "printopia@preview" }))).status !== 303, "Klíčenka: token pro jiné prostředí neprojde");
   check((await klLogin(await klToken({ sub: "cizi@example.cz" }))).status !== 303, "Klíčenka: účet mimo SPRAVA_UCTY se nepřihlásí");
+  const homeHtml = await (await get("/")).text();
+  check(homeHtml.includes("tracker.mypixel.cz/n.js") && /data-site(="|\\":\\")printopia/.test(homeHtml), "na webu je měřicí skript Project Trackeru");
   const kOut = await fetch(`${BASE}/sprava/odhlasit`, { method: "POST", redirect: "manual", headers: { ...UA, cookie: kCookie } });
   check(kOut.status === 303 && (kOut.headers.get("set-cookie") ?? "").includes("Max-Age=0"), "odhlášení ze správy smaže cookie");
 

@@ -61,7 +61,8 @@ export default function PrivacyPage() {
 
         <h2>Cookies</h2>
         <p>
-          Web nepoužívá analytické ani reklamní cookies a nesleduje vás. Písma hostujeme sami, nenačítají se od třetích stran.
+          Web nepoužívá analytické ani reklamní cookies. Písma hostujeme sami, nenačítají se od třetích stran.
+          Návštěvnost navíc měříme nástrojem naší firmy (Project Tracker MYPIXEL, tracker.mypixel.cz) bez cookies: z IP adresy a prohlížeče vznikne otisk platný jen jeden den, aby šli spočítat návštěvníci, a ukládají se jen denní souhrny (počet zobrazení, odkud lidé přišli, země a typ zařízení). Právním základem je náš oprávněný zájem na tom, vědět, jak se web používá.
           Anonymně počítáme, jak se stránky používají (například jak daleko lidé dočtou a na co kliknou), bez IP adresy a bez
           jakéhokoli identifikátoru, který by šel spojit s konkrétním člověkem. Stejně anonymní je i krátká anketa, co vám na
           nabídce chybí.

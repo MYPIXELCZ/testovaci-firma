@@ -5,6 +5,7 @@ import { spawn, spawnSync } from "node:child_process";
 import { readFileSync, rmSync, writeFileSync } from "node:fs";
 import http from "node:http";
 import { chromium } from "playwright-core";
+import { SignJWT, exportJWK, generateKeyPair } from "jose";
 
 const APP = 3100;
 const MOCK = 3200;
@@ -25,7 +26,11 @@ const toCustomer = () => emails.filter((e) => e.to === "nevesta@example.cz");
 const toOwner = () => emails.filter((e) => e.to === "anoberu@mypixel.cz");
 let fioCalls = 0;
 let fioDown = false;
+// Falešný Project Tracker pro Klíčenku
+const { publicKey: kPub, privateKey: kPriv } = await generateKeyPair("EdDSA", { crv: "Ed25519" });
+const kJwk = { ...(await exportJWK(kPub)), kid: "e2e-1", alg: "EdDSA", use: "sig" };
 const mock = http.createServer((req, res) => {
+  if (req.url === "/tracker/.well-known/jwks.json") { res.setHeader("Content-Type", "application/json"); return res.end(JSON.stringify({ keys: [kJwk] })); }
   if (req.url.startsWith("/fio/periods/")) {
     fioCalls++;
     if (fioDown) { res.statusCode = 401; return res.end("{}"); }
@@ -63,6 +68,8 @@ const app = spawn("npx", ["next", "start", "-p", String(APP)], {
     SALES_OPEN: "1",
     SITE_URL: `http://localhost:${APP}`,
     STATS_KEY: "tajne",
+    KLICENKA_ISSUER: `http://localhost:${MOCK}/tracker`, KLICENKA_AUDIENCE: "anoberu", KLICENKA_ENVIRONMENT: "production",
+    SPRAVA_UCTY: "spravce@example.cz", SESSION_SECRET: "e2e-session-secret-0123456789abcdef0123",
   },
   stdio: ["ignore", "pipe", "pipe"],
   detached: true, // vlastní skupina procesů, aby šel ukončit i next-server pod npx
@@ -257,6 +264,26 @@ try {
   check(["par-planuje", "Koupit za 349", "Proč tabulka, a ne PDF nebo aplikace", "do 14 dnů vrátíme peníze", "Časté otázky", "sticky-cta"].every((t) => flat.includes(t)),
     "prodejní stránka má povinné prvky (fotka, cena v CTA, srovnání, záruka, FAQ, sticky CTA)");
   // Vizuální a textová kontrola (FAILS.md 2026-10-01 02:02 a 02:05): šířka 1340 + 80 px, mobil, překryvy, z-index, texty.
+
+  // 12) Klíčenka: přihlášení z Project Trackeru do /nastaveni
+  const klToken = (o = {}) => new SignJWT({ act: { sub: "u1", name: "Ondřej", email: "spravce@example.cz" }, sh: 8 })
+    .setProtectedHeader({ alg: "EdDSA", kid: "e2e-1", typ: "klicenka+jwt" })
+    .setIssuer(`http://localhost:${MOCK}/tracker`).setAudience(o.aud ?? "anoberu@production").setSubject(o.sub ?? "spravce@example.cz")
+    .setJti(o.jti ?? `jti-${Math.random()}`).setIssuedAt().setExpirationTime("50s").sign(kPriv);
+  const klLogin = (token) => fetch(`${base}/klicenka/login`, { method: "POST", redirect: "manual", headers: { "content-type": "application/x-www-form-urlencoded" }, body: new URLSearchParams({ token }) });
+  const kst = await (await fetch(`${base}/klicenka/status`)).json();
+  check(kst.name === "klicenka" && kst.adapter === "cookie" && kst.audience === "anoberu", "Klíčenka: /klicenka/status hlásí identifikátor anoberu");
+  const kTok = await klToken();
+  const kRes = await klLogin(kTok);
+  const kCookie = (kRes.headers.get("set-cookie") ?? "").split(";")[0];
+  check(kRes.status === 303 && kRes.headers.get("location") === "/nastaveni" && kCookie.startsWith("anoberu_sprava="), "Klíčenka: platný token přihlásí do nastavení");
+  const kPage = (await (await fetch(`${base}/nastaveni`, { headers: { cookie: kCookie } })).text()).replaceAll("<!-- -->", "");
+  check(kPage.includes("Přihlášen přes Klíčenku: spravce@example.cz"), "nastavení ukazuje přihlášení přes Klíčenku");
+  check((await klLogin(kTok)).status !== 303, "Klíčenka: stejný token podruhé neprojde");
+  check((await klLogin(await klToken({ aud: "anoberu@preview" }))).status !== 303, "Klíčenka: token pro jiné prostředí neprojde");
+  check((await klLogin(await klToken({ sub: "cizi@example.cz" }))).status !== 303, "Klíčenka: cizí účet se nepřihlásí");
+  const home = await (await fetch(base)).text();
+  check(home.includes("tracker.mypixel.cz/n.js") && /data-site(="|\\":\\")anoberu/.test(home), "na webu je měřicí skript Project Trackeru");
   const pages = "/,/objednat,/svatebni-checklist,/svatebni-rozpocet,/kalkulacka-svatebniho-rozpoctu,/podekovani-za-svatebni-dar,/ochrana-osobnich-udaju";
   const viz = spawnSync("node", ["../tools/vizualni-kontrola.mjs", BASE_URL, pages, process.env.VIZ_DIR ?? `${STORE}viz`], { encoding: "utf8" });
   console.log(viz.stdout.trim());

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { listOrders } from "@/lib/orders";
-import { getSecret, isAdminRequest } from "@/lib/secrets";
+import { getSecret, isAdminRequest, sprava } from "@/lib/secrets";
 import { storage } from "@/lib/storage";
 import { saveFioToken, saveResendKey } from "./actions";
 import SecretForm from "./SecretForm";
@@ -26,6 +26,7 @@ async function traffic() {
 
 export default async function SettingsPage() {
   if (!(await isAdminRequest())) notFound();
+  const s = await sprava();
   const visits = await traffic();
   const today = new Date().toISOString().slice(0, 10);
   const [fio, resend, orders] = await Promise.all([getSecret("FIO_TOKEN"), getSecret("RESEND_API_KEY"), listOrders()]);
@@ -40,6 +41,12 @@ export default async function SettingsPage() {
     <section>
       <div className="wrap narrow">
         <h1 style={{ fontSize: "2.2rem" }}>Nastavení</h1>
+        {s && (
+          <form action="/nastaveni/odhlasit" method="post" id="sprava-stav">
+            Přihlášen přes Klíčenku: {s.email}{" "}
+            <button type="submit">Odhlásit</button>
+          </form>
+        )}
 
         <h2 style={{ fontSize: "1.4rem" }}>Návštěvnost</h2>
         <div className="grid-2" style={{ marginBottom: 16 }}>

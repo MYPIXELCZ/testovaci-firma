@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nbsp from "@/components/Nbsp";
 import { COMPANY, CONTACT, SITE_URL } from "@/lib/config";
+import TrackerScript from "@/components/TrackerScript";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="cs">
       <body>
+        <TrackerScript />
         <header className="header">
           <div className="wrap">
             <Link href="/" className="logo" aria-label="Printopia – úvod">Printopia<span>.</span></Link>
