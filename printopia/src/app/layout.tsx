@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import Nbsp from "@/components/Nbsp";
 import { COMPANY, CONTACT, SITE_URL } from "@/lib/config";
 import TrackerScript from "@/components/TrackerScript";
@@ -12,7 +13,8 @@ export const metadata: Metadata = {
     "Sady úloh k tisku na přijímačky z matematiky, rozdělené podle témat. U každé úlohy postup řešení krok za krokem. Ukázka zdarma.",
   openGraph: { type: "website", locale: "cs_CZ", siteName: "Printopia", images: ["/og.png"] },
   // Ověření Google Search Console (služba https://printopia.cz), NEMAZAT.
-  verification: { google: "yXArGHW_hPXReSbAJc3DLNoeKonICv-sItHJziSSQXc" },
+  // Druhá značka: Search Console Project Trackeru (Ondřej 2026-11-22), taky NEMAZAT.
+  verification: { google: ["yXArGHW_hPXReSbAJc3DLNoeKonICv-sItHJziSSQXc", "sQMBmumKu7pZCvcy7IrG8utcLiocJQXoFflzwtjefIE"] },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -45,6 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </footer>
         <Nbsp />
+        {/* Měření Project Trackeru (MYPIXEL): návštěvnost a chování bez cookies. */}
+        <Script src="https://tracker.mypixel.cz/n.js" strategy="afterInteractive" />
       </body>
     </html>
   );

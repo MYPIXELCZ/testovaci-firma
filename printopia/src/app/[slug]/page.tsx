@@ -7,6 +7,7 @@ import Beacon from "@/components/Beacon";
 import Feedback from "@/components/Feedback";
 import { TOPICS } from "@/content/temata";
 import { PRICE } from "@/lib/config";
+import TrackerEvent from "@/components/TrackerEvent";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => Object.keys(TOPICS).map((slug) => ({ slug }));
@@ -23,6 +24,7 @@ export default async function TopicPage({ params }: PageProps<"/[slug]">) {
   return (
     <section className="hero">
       <Beacon page="tema" topic={topic.slug} />
+      <TrackerEvent event="product" />
       <div className="wrap narrow">
         <p className="eyebrow">Přijímačky z matematiky</p>
         <h1>{topic.h1}</h1>

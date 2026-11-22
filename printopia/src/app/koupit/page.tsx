@@ -6,6 +6,7 @@ import { track } from "@/lib/track";
 import { CONTACT, PRODUCT, SALES_OPEN, TEST_PRICE, isInternalHost } from "@/lib/config";
 import { FILES } from "@/content/sada";
 import OrderForm from "./OrderForm";
+import TrackerEvent from "@/components/TrackerEvent";
 
 export const metadata: Metadata = { title: "Objednávka", robots: { index: false } };
 
@@ -23,6 +24,7 @@ export default async function Buy({ searchParams }: Props) {
   return (
     <section className="hero">
       <Beacon page="koupit" />
+      <TrackerEvent event="checkout" />
       <div className="wrap narrow">
         <h1>Objednávka</h1>
         <div className="summary">

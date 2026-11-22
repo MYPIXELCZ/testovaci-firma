@@ -11,6 +11,7 @@ import TransferPanel from "@/components/TransferPanel";
 import { headers } from "next/headers";
 import { paymentConfigured, qrSvg } from "@/lib/payment";
 import WaitForPayment from "./WaitForPayment";
+import TrackerPurchase from "@/components/TrackerPurchase";
 
 export const metadata: Metadata = { title: "Vaše objednávka", robots: { index: false } };
 
@@ -25,6 +26,7 @@ export default async function OrderStatusPage(props: PageProps<"/objednavka/[id]
     return (
       <section className="hero">
         <div className="wrap narrow">
+          <TrackerPurchase orderId={order.id} />
           <p className="eyebrow">Objednávka {order.vs}</p>
           <h1>Zaplaceno, děkujeme!</h1>
           <p>Odkaz na tuto stránku jsme poslali i na <strong>{order.email}</strong>. Pracovní listy si můžete stáhnout kdykoli znovu.</p>

@@ -11,6 +11,7 @@ import StickyCta from "@/components/StickyCta";
 import ukazka from "@/content/ukazka.json";
 import { PRICE } from "@/lib/config";
 import { track } from "@/lib/track";
+import TrackerEvent from "@/components/TrackerEvent";
 
 // Cílová skupina (plan/prijimacky.md 1b): hledají deváťáci, platí rodiče i žáci 15+ (měří test).
 // Prodejní sdělení pro dospělé, žákům jen informace; žádná výzva dětem ke koupi. Design: plan/design-prijimacky.md.
@@ -52,6 +53,7 @@ export default async function Home({ searchParams }: Props) {
   return (
     <>
       <Beacon page="home" />
+      <TrackerEvent event="product" />
 
       <section className="hero-dark">
         <div className="wrap hero-grid">
