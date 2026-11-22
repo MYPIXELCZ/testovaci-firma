@@ -12,7 +12,8 @@ export const metadata: Metadata = {
     "Sady úloh k tisku na přijímačky z matematiky, rozdělené podle témat. U každé úlohy postup řešení krok za krokem. Ukázka zdarma.",
   openGraph: { type: "website", locale: "cs_CZ", siteName: "Printopia", images: ["/og.png"] },
   // Ověření Google Search Console (služba https://printopia.cz), NEMAZAT.
-  verification: { google: "yXArGHW_hPXReSbAJc3DLNoeKonICv-sItHJziSSQXc" },
+  // Druhá značka: Search Console Project Trackeru (Ondřej 2026-11-22), taky NEMAZAT.
+  verification: { google: ["yXArGHW_hPXReSbAJc3DLNoeKonICv-sItHJziSSQXc", "sQMBmumKu7pZCvcy7IrG8utcLiocJQXoFflzwtjefIE"] },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
