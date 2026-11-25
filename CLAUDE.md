@@ -96,3 +96,10 @@
 - DNS: delegace na ns1/ns2.vercel-dns.com (od 2026-09-30 20:28 UTC), web živý na https://anoberu.cz (www → 308 na apex). Konektor NESMÍ zapisovat DNS záznamy (401) → záznamy zadává Ondřej ve Vercel → Domains → anoberu.cz. Resend: TXT resend._domainkey, CNAME rsend → rsend-euw1.forge.rmta.net, CNAME send → send.forge.rmta.net, TXT _dmarc.
 - Síť Full: web, Trends a našeptávače jdou přímo z kontejneru (curl). **Prodej spuštěn 2026-09-30 ~21:40 UTC** (env SALES_OPEN=1, INDEXING=1 v production).
 - Ověření .xlsx: `recalc.py` ze skillu xlsx (potřebuje `apt-get install libreoffice-calc`), pracovní soubory v `.build/`.
+
+## Nasazení na Vercel: build se NEspouští sám (od 26. 11. 2026)
+
+- Automatický build na Vercelu po pushnutí na GitHub je u tohoto projektu **záměrně vypnutý**. Důvod: Vercel od 8. 12. 2026 účtuje každý build, proto se builduje na Ondřejově Macu a na Vercel se nahrává hotový výsledek.
+- Push na GitHub tedy web **nenasadí**. Není to chyba, nic neopravuj a automatický build nezapínej.
+- Nasazení (jen z Macu, z kořene projektu na Vercelu): `bash ~/projekty/mypixel-standard/tools/nasadit.sh`
+- Session bez přístupu k Macu (cloud): udělej commit a push a Ondřejovi výslovně napiš, že změna **ještě není nasazená** a čeká na nasazení z Macu. Nikdy to nenech bez zmínky.
